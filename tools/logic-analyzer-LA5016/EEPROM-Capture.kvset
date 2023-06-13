@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings>
+    <global>
+        <version>3.6.0</version>
+        <windowPosition>1715,84,1280,717</windowPosition>
+        <viewState>0</viewState>
+        <disAnimateZoom>0</disAnimateZoom>
+        <autoWaitTrig>1</autoWaitTrig>
+        <colorWaveform/>
+        <smpProgPosition>0</smpProgPosition>
+        <userLang>en-US</userLang>
+        <devModel>8</devModel>
+        <windowMaximized>0</windowMaximized>
+        <anlyDbgPath/>
+        <enaSocket/>
+        <listenPort/>
+        <oscCursorEna/>
+        <lgcMeasure/>
+        <extparam/>
+        <chnShowIndex>0,4,3,5,1,2,6,7,8,11,10,12,13,9,14,15</chnShowIndex>
+        <chnShowMultip>1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1</chnShowMultip>
+        <chnShowName0>CS_</chnShowName0>
+        <chnShowName1>D0 (DQ1)</chnShowName1>
+        <chnShowName2>WP_(DQ2)</chnShowName2>
+        <chnShowName3>VSSDI (DQ0)</chnShowName3>
+        <chnShowName4>CLK</chnShowName4>
+        <chnShowName5>HOLD_(DQ3)</chnShowName5>
+        <chnShowName6/>
+        <chnShowName7/>
+        <chnShowName8/>
+        <chnShowName9/>
+        <chnShowName10/>
+        <chnShowName11/>
+        <chnShowName12/>
+        <chnShowName13/>
+        <chnShowName14/>
+        <chnShowName15/>
+        <recentAnalyzers>CAN.dll,I2C.dll,SPI.dll,UART.dll</recentAnalyzers>
+        <disAutoUpdate>0</disAutoUpdate>
+        <lastUpdate>2023-02-28_19:55:37</lastUpdate>
+        <zeroSmpCnt/>
+        <lastPath>I:/My Drive/local_repositories/unified-btc-reverse/tools/logic-analyzer-LA5016</lastPath>
+        <LogicProbe>1</LogicProbe>
+        <toolbarPWM>0</toolbarPWM>
+        <analyzerAlias/>
+    </global>
+    <devices>
+        <Demo>
+            <trgPosition/>
+            <chnTrig/>
+            <chnEnable/>
+            <smpMode/>
+            <smpDepth/>
+            <smpDepthIndex/>
+            <smpFrequ/>
+            <smpFrequIndex/>
+            <chnLevel>3.3V CMOS</chnLevel>
+            <chnVth>1.65</chnVth>
+        </Demo>
+        <LA5016>
+            <trgPosition>0</trgPosition>
+            <chnTrig>3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</chnTrig>
+            <chnEnable>1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0</chnEnable>
+            <smpMode/>
+            <smpDepth>100000</smpDepth>
+            <smpDepthIndex>8</smpDepthIndex>
+            <smpFrequ>500000</smpFrequ>
+            <smpFrequIndex>0</smpFrequIndex>
+            <chnLevel>3.3V CMOS</chnLevel>
+            <chnVth>1.65</chnVth>
+        </LA5016>
+    </devices>
+    <analyzers/>
+</settings>

@@ -1,0 +1,208 @@
+//
+// aperture.c
+//
+// Code to support different aperture lenses by changing the threshold at which
+//      day and night mode is detected.  Larger aperture means lower theshold 
+//      (and more opportunity for color shots)
+//
+//
+
+#include "BTC.h"
+#include "WBWL.h"
+#include "menus.h"
+#include "aperture.h"
+
+//#define DEBUG
+
+// Global Variables
+// Menus
+struct_hp5_menu_item g_apt_aperture_menu[4] = {
+  {no_icon, SST_STANDARD,     0x00, 0x01, 0x00, 0x1, 0x1},
+  {no_icon, SST_LOW_SP_LIGHT, 0x00, 0x01, 0x00, 0x1, 0x1},
+  {no_icon, SST_NO_SP_LIGHT, 0x00, 0x01, 0x00, 0x1, 0x1},
+  {no_icon, SST_DAY_SP_THRESHOLD,        0x00, 0x00, 0x01, 0x03, 0x03}
+};
+
+// Look table to map an aperture ind
+
+#if (defined BTC_8E_HP5) || (defined BTC_7E_HP5) 
+struct_night_mode_min_max g_apt_nightmode_threshold_lookup_table[3] = {
+  {25, 40},   // Standard
+  {12, 20 },  // Low Light
+  { 0,  0 }   // No Light
+};
+#elif (defined BTC_8E_HP4) || (defined BTC_7E_HP4) 
+struct_night_mode_min_max g_apt_nightmode_threshold_lookup_table[3] = {
+  {90, 190},  // Standard
+  {45, 95 },  // Low Light
+  { 0,  0 }   // No Light
+};
+#elif (defined BTC_8E) || (defined BTC_7E) 
+struct_night_mode_min_max g_apt_nightmode_threshold_lookup_table[3] = {
+  {90, 190},  // Standard
+  {45, 95 },  // Low Light
+  { 0,  0 }   // No Light
+};
+#endif
+
+
+// 
+byte apt_get_cold_item_aperture() {
+  byte result = g_ColdItemData.wbwl_encoded_aperture;
+  result = GET_BYTE_N_BIT(result,
+			  WBWL_APERTURE_N_BITS,
+			  WBWL_APERTURE_LSBIT);
+  return(result);
+
+}
+
+void apt_set_cold_item_aperture(byte aperture) {
+  byte temp_byte = g_ColdItemData.wbwl_encoded_aperture;
+  temp_byte = SET_BYTE_N_BIT(temp_byte, aperture,
+			     WBWL_APERTURE_N_BITS,
+			     WBWL_APERTURE_LSBIT);
+
+  g_ColdItemData.wbwl_encoded_aperture = temp_byte;
+}
+
+
+void apt_handle_aperture_menu() {
+  byte  encoded_aperture;
+  struct_CameraConfig *camera_config;
+  int iVar1;
+  int iVar2;
+  uint index;
+  
+  camera_config = getCameraConfigStructPtr();
+  if (camera_config->exit_menu_p_or_ir_led_on != 0) {
+    camera_config->exit_menu_p_or_ir_led_on = 0;
+    encoded_aperture = apt_get_cold_item_aperture();
+    camera_config->menu_selection_1 = encoded_aperture;
+    menu_draw_selected_item(&camera_config->menu_selection_1,&g_menu_root);
+    return;
+  }
+  iVar1 = ui_cursor_key_pressed_p(up);
+  if (((iVar1 == 1) && (encoded_aperture = 0, g_up_button_enable == 2)) ||
+     ((iVar1 = ui_cursor_key_pressed_p(down), iVar1 == 1 &&
+      (encoded_aperture = 1, g_down_button_enable == 2)))) {
+    menu_get_next_menu_selection(encoded_aperture,&camera_config->menu_selection_1,1,&g_menu_root);
+    menu_redraw_items(camera_config->menu_selection_1,&g_menu_root);
+    return;
+  }
+  iVar1 = ui_cursor_key_pressed_p(left);
+  if (((iVar1 == 1) && (g_left_button_enable == 2)) ||
+     ((iVar1 = ui_cursor_key_pressed_p(right), iVar1 == 1 && (g_right_button_enable == 2)))) {
+    return;
+  }
+  iVar1 = ui_cursor_key_pressed_p(enter);
+  if ((iVar1 == 1) && (g_enter_button_enable == 2)) {
+    index = (uint)camera_config->menu_selection_1;
+    camera_config->exit_menu_p_or_ir_led_on = 1;
+    iVar2 = get_next_state_from_menu_enter(index,
+					   g_wbwl_camera_setup_selector_array[index].menu_item_array,
+					   g_wbwl_camera_setup_selector_array[index].num_array_entries,
+					   &g_menu_root);
+    if (iVar2 == 0xff) {
+      return;
+    }
+    apt_set_cold_item_aperture(camera_config->menu_selection_1);
+    camera_config->commit_menu_change = 1;
+  }
+  else {
+    iVar1 = ui_cursor_key_pressed_p(mode);
+    if (iVar1 != 1) {
+      return;
+    }
+    if (g_mode_button_enable != 2) {
+      return;
+    }
+    camera_config->exit_menu_p_or_ir_led_on = 1;
+    iVar2 = get_next_state_from_menu_mode(1,&g_menu_root);
+    iVar1 = WBWL_NUM_BTC_SETUP_MENU_FUNCTIONS + WBWL_NUM_WBWL_SETUP_MENU_FUNCTIONS +1;
+    if (iVar2 == 0xff) goto EXIT1;
+  }
+  iVar1 = iVar2;
+EXIT1:
+  set_fsm_state_absolute(iVar1);
+  return;
+}
+
+
+// get_night_mode_threhold_mix_max
+
+void apt_get_night_mode_theshold_min_max(uint *min, uint *max, uint aperture) {
+  enum_aperture_encoding encoded_aperture = (enum_aperture_encoding) aperture;
+
+  if (encoded_aperture >= invalid) {
+    encoded_aperture = standard;
+    aperture = (byte)encoded_aperture;
+  }
+
+  *min = g_apt_nightmode_threshold_lookup_table[aperture].min;
+  *max = g_apt_nightmode_threshold_lookup_table[aperture].max;
+  return;
+}
+
+
+bool apt_HceIQ_CheckNightMode(void) {
+  uint photo_sensor_value;
+  uint hysteresis;
+  uint threshold;
+  uint min_threshold;
+  uint max_threshold;
+  uint encoded_aperture;
+  
+  photo_sensor_value = read_photo_sensor_value();
+
+  // dummy call to get this in to the symbol table
+  //       HceIQ_CheckNightMode should never be called
+  if (photo_sensor_value > 10000) {
+    return(HceIQ_CheckNightMode());
+  }
+
+  g_photo_sensor_value = photo_sensor_value;
+  log_printf(0,"PhotoSensor ADC = %d", photo_sensor_value);
+#ifdef DEBUG
+  set_pre_printf_state();
+  tty_printf("apt_HceIQ_CheckNightMode: PhotoSensor ADC = %d\n", 
+	     g_photo_sensor_value);
+  check_post_printf_state_set_sio_params();
+#endif
+  if (g_new_check_night_mode_p == 0) {
+    hysteresis = (uint)g_night_mode_p;
+  }
+  else {
+    hysteresis = photo_sensor_hysteresis();
+    g_new_check_night_mode_p = 0;
+  }
+ 
+  encoded_aperture = (uint) apt_get_cold_item_aperture();
+#ifdef DEBUG
+  set_pre_printf_state();
+  tty_printf("apt_HceIQ_CheckNightMode: Encoded Aperture = %d\n", 
+	     encoded_aperture);
+  check_post_printf_state_set_sio_params();
+#endif
+  apt_get_night_mode_theshold_min_max(&min_threshold, &max_threshold, encoded_aperture);
+
+#ifdef DEBUG
+  set_pre_printf_state();
+  tty_printf("apt_HceIQ_CheckNightMode:  min = %d; max = %d\n", 
+	     min_threshold, max_threshold);
+  check_post_printf_state_set_sio_params();
+#endif
+ 
+  threshold = max_threshold;
+  if (hysteresis == 0) {
+    threshold = min_threshold;
+  }
+  g_night_mode_p = photo_sensor_value < threshold;
+  g_photo_detector_hysteresis = (byte)hysteresis;
+  tty_printf("aptHceIQ_CheckNightMode : Value = %d \n", photo_sensor_value);
+#ifdef DEBUG
+  set_pre_printf_state();
+  tty_printf("aptHceIQ_CheckNightMode : Value = %d; returning = %d \n", photo_sensor_value, (uint)g_night_mode_p);
+  check_post_printf_state_set_sio_params();
+#endif
+  return (bool)g_night_mode_p;
+}

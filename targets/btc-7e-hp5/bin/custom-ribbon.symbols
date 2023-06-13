@@ -1,0 +1,41 @@
+
+custom-ribbon.o:     file format elf32-tradlittlemips
+
+SYMBOL TABLE:
+00000000 l    df *ABS*	00000000 custom-ribbon.c
+00000000 l    d  .text	00000000 .text
+00000000 l    d  .data	00000000 .data
+00000000 l    d  .bss	00000000 .bss
+00000000 l    d  .mdebug.abi32	00000000 .mdebug.abi32
+00000000 l    d  .rodata.str1.4	00000000 .rodata.str1.4
+00000020 l       .rodata.str1.4	00000000 $LC2
+00000030 l       .rodata.str1.4	00000000 $LC3
+00000000 l       .rodata.str1.4	00000000 $LC0
+00000010 l       .rodata.str1.4	00000000 $LC1
+0000004c l       .rodata.str1.4	00000000 $LC4
+00000064 l       .rodata.str1.4	00000000 $LC5
+00000000 l    d  .reginfo	00000000 .reginfo
+00000000 l    d  .MIPS.abiflags	00000000 .MIPS.abiflags
+00000000 l    d  .pdr	00000000 .pdr
+00000000 l    d  .comment	00000000 .comment
+00000000 l    d  .gnu.attributes	00000000 .gnu.attributes
+00000000 g     F .text	00000090 wbwlFileCTimeGet
+00000000         *UND*	00000000 memoryAllocate
+00000000         *UND*	00000000 posix_finfo
+00000000         *UND*	00000000 get_unix_time
+00000000         *UND*	00000000 free
+00000090 g     F .text	00000190 wbwl_custom_ribbon_sprintf
+00000000         *UND*	00000000 getCameraConfigStructPtr
+00000000         *UND*	00000000 vfsOpen
+00000000         *UND*	00000000 vfsClose
+00000000         *UND*	00000000 rtc_get_cold_item_time_format
+00000000         *UND*	00000000 rtc_get_cold_item_date_format
+00000000         *UND*	00000000 local_sprintf
+00000220 g     F .text	000000b4 ld_draw_video_scroll_bar
+00000000         *UND*	00000000 draw_video_scroll_bar
+00000000         *UND*	00000000 draw_rectangle_wrapper
+000002d4 g     F .text	00000010 ld_clear_video_scroll_bar
+00000054       O *COM*	00000004 g_rtc_time_format_menu
+00000070       O *COM*	00000004 g_rtc_date_format_menu
+
+

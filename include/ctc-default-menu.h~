@@ -1,0 +1,7 @@
+// ctc-default-menu.h
+// 
+// Prototypes and Variables
+// 2021-10-20 zak: created
+
+
+struct_menu_item_collection_4 g_ctc_extensions_menu_descriptors;

@@ -1,0 +1,1513 @@
+Prof Log(0): from 192179us
+0:sysAppInit: 0
+22:devInit
+412:[host]devInitPrimary s
+433:sio: 1
+462:[host]init: devRtcInit s 302
+466:[host]init: devRtcInit e 304
+470:[host]init: appLensFastBootInit s 320
+502:[host]init: appLensFastBootInit e 322
+507:[host]init: devDiskEnumBoot s 329
+567:HceInitPinChkThread
+7346:[host]init: devDiskEnumBoot e 331
+7350:[host]init: devDispEnum s 346
+7475:[host]init: devDispEnum e 348
+7479:[host]init: devFrontEnum s 360
+7491:[host]init: devFrontEnum e 362
+7495:[host]init: hostInit s 370
+7569:appInitWait
+7577:[host]init: hostInit e 372
+7581:[host]devInitPrimary e
+7613:appInit1
+7881:@#@ SonyIMX291 sensorDoFuncInit++ 6350
+7888:________Sensor driver ver <<$unp_tg_sonyimx291-
+7894:________Sensor driver build time <<Oct 30 2017-
+7895:sensorDoFuncInit()_SonyIMX291_enter_....
+7922:[host]devInitSecondary s
+7928:[host]init: devDiskEnumMedia s 402
+7986:[host]init: disk detect s
+8063:[host]init: disk detect e
+8067:[host]init: devDiskEnumMedia e 404
+8071:[host]init: devAudioEnum s 415
+8076:[host]init: devAudioEnum e 417
+8080:[host]init: devKeyBtnEnum s 419
+8088:[host]init: devKeyBtnEnum e 421
+8092:[host]init: devUsbEnum s 429
+8097:[host]init: devUsbEnum e 431
+8101:[host]devInitSecondary e
+8120:modeswInit
+8224:cdspSav:1(10)
+8235:mIdle s 0
+8751:mIdle e
+8755:sysgRes
+8960:[host]init: rsvBufInit s
+14685:[host]init: rsvBufInit e
+14839:cdspBootInit
+15010:sensorIMX291Read++
+15217:READ [3004] = [10]
+15218:sensorIMX291Read--
+15219:sensorIMX291Read++
+15378:READ [3008] = [a0]
+15379:sensorIMX291Read--
+15381:sen. SyncSigInit
+15435:irqRollCfg [id=1 h=51] entryTotal=1
+15442:irqRollCfg [id=1 h=1031] entryTotal=2
+15651:appInit
+16890:HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH burst abor
+17005:[host]pwr: appHostFastBootInit s
+18000:[host]init: appInitExTask2 s
+18021:[host]init: appInitExTask s
+26666:sensorDoFuncInit()___done
+26668:SONYIMX291 sensorDoFuncInit--
+26697:[host]init: appSensorInitDoneCb
+26698:appInit1 OK
+27137:sensorStartTask s
+27314:[host]pwr: appHostFastBootInit e
+27316:appInit OK
+27330:appInitWait OK
+27332:[host]sp5kjob: host enter
+27360:SP5K_MSG_HOST_TASK_INIT - s
+27490:init gpio
+27600:HceInitPinChkThread - end
+30010:tvlcd: _dispLcdOut:s
+30016:[host]tvlcd: _dispLcdInit: s
+30017:tvlcd: _dispLcdInit:s
+33505:HwVer s
+33920:HwVer e
+34725:Volt_Calib Batt_0:527 Batt_100:784
+35422:tvlcd: disp gfx init -s
+35423:tvlcd: disp fif init -s
+36098:init mcu s
+36112:sio: 0
+40430:[host]init: appInitExTask2 e
+40746:tvlcd: disp fif init -e
+40799:tvlcd: Osd LcdMode :s
+47999:sensorStartTask e
+73010:sio: 1
+73014:init mcu e
+73015:init digital pir
+76638:SP5K_MSG_HOST_TASK_INIT - e
+77016:tvlcd: Osd LcdMode :e
+77018:tvlcd: disp gfx init -e
+78028:[host]osdinit: init :s
+81178:[host]osdinit: init :e
+81195:[host]init: appInitExTask e
+230302:HceIQ_PowerOnStateInit s
+238394:HceIQ_PowerOnStateInit 0
+238436:[host]ae: aeCapIsoSet: 0
+238498:HceIQ_PowerOnStateInit e
+238544:sio: 0
+500811:mountSD s
+600022:SDclk=3,bus=0,mtype=0
+954267:SDclk=0,bus=1,mtype=0
+961000:SDclk=4,bus=1,mtype=0
+1161679:mountSD e
+2304163:HceIRCut_SetIRCut - s 1
+2304169:HceIRCut_SetIRCutSt - 2
+2406919:HceIRCut_SetIRCutSt - 1
+2406923:HceIRCut_SetIRCut - ready 1
+2560934:HceIRCut_SetIRCutSt - 0
+2560937:HceIRCut_SetIRCut - e 1
+2564269:[host]ae: aeCapIsoSet: 0
+2573129:5kmode:0x88>0x11
+2573168:addr.sh 80353ee8 803538a8 800b1538 800058ec 8001d2d4 80003f78 8001d140 80003f78 8000da04
+2573186:#S#modeSw#N#0x88>0x11
+2573240:addr.sh 80353ee8 803538a8 8011219c 80106cf8 800b3224 800b11b0 80354944
+2573246:modesw pict size(1920,1080),fitMedia=0
+2573256:HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH burst abor
+2584578:.sen mode req 30
+2584586:.sen mode0>30
+2584593:.sen mode0>30 new mode r
+2584602:sen. SyncSigInit
+2584701:@#@ preview begin
+2584772:@#@ Exp[112]=568 VMAX=1136
+2584792:@#@ Agc[96]=0x1e:0x100
+2584811:sen. SyncSigInit
+2584877:mode 0x30 no i2c send ..
+2584907:.mpv enter s 0x30
+2584944:cdspFlipCfg:0x0 /tdEn:0x0
+2585086:EN2ndPath  0 DualDisp 0
+2585598:.sen main pv ack
+2590285:.sen set SENSOR_EVENT_MODESW_DONE
+2590289:sensorDoFuncPreviewExpEnd()
+2597159:INTERVAL opt 0
+2597347:.pvstart 0x27 0x0 1
+2597350:[mpv]drampvStart
+2597374:.modesw senwait
+2597379:.modesw MODESW_DONE
+2597392:[0x30] lane_num=4 bayerhs=0 hsize=480
+2597398:htotal=550 cdsp_clk=137454,pclk1x=150000
+2597404:cdspSav:1(137454)
+2602749:@#@ Exp[112]=568 VMAX=1136
+2602761:@#@ Agc[96]=0x1e:0x100
+2605985:zfUpdIrq=2 (10000 10000)
+2606947:sensorDoFuncPreviewExpEnd()
+2610294:#P#modeSw#N#0x11
+2610296:#E#modeSw#N#
+2623605:sensorDoFuncPreviewExpEnd()
+2639691:appAePreAdjustCB 0, 0, 112, 24
+2640081:lastbv=55, TargetStep=-58, both=-3
+2640087:appAeAdjustCB 774, 0, 96, 66 [157]
+2640275:sensorDoFuncPreviewExpEnd()
+2652737:@#@ Exp[96]=1136 VMAX=1138
+2652748:@#@ Agc[264]=0x52:0x107
+2656929:sensorDoFuncPreviewExpEnd()
+2673620:sensorDoFuncPreviewExpEnd()
+2690319:sensorDoFuncPreviewExpEnd()
+2690391:lastbv=-3, TargetStep=0, both=-3
+2690396:appAeAdjustCB 9552, 1, 96, 66 [160]
+2702777:@#@ Exp[96]=1136 VMAX=1138
+2702789:@#@ Agc[264]=0x52:0x107
+2707006:sensorDoFuncPreviewExpEnd()
+2707075:lastbv=-3, TargetStep=0, both=-3
+2707081:appAeAdjustCB 9563, 1, 96, 66 [161]
+2719466:@#@ Exp[96]=1136 VMAX=1138
+2719478:@#@ Agc[264]=0x52:0x107
+2723699:sensorDoFuncPreviewExpEnd()
+2723751:lastbv=-3, TargetStep=0, both=-3
+2723757:appAeAdjustCB 9576, 1, 96, 66 [162]
+2736157:@#@ Exp[96]=1136 VMAX=1138
+2736168:@#@ Agc[264]=0x52:0x107
+2740385:sensorDoFuncPreviewExpEnd()
+2740464:lastbv=-3, TargetStep=0, both=-3
+2740470:appAeAdjustCB 9588, 1, 96, 66 [163]
+2752853:@#@ Exp[96]=1136 VMAX=1138
+2752865:@#@ Agc[264]=0x52:0x107
+2757079:sensorDoFuncPreviewExpEnd()
+2757144:lastbv=-3, TargetStep=0, both=-3
+2757150:appAeAdjustCB 9658, 1, 96, 66 [164]
+2769539:@#@ Exp[96]=1136 VMAX=1138
+2769551:@#@ Agc[264]=0x52:0x107
+2773770:sensorDoFuncPreviewExpEnd()
+2773830:lastbv=-3, TargetStep=0, both=-3
+2773835:appAeAdjustCB 9705, 1, 96, 66 [165]
+2786230:@#@ Exp[96]=1136 VMAX=1138
+2786241:@#@ Agc[264]=0x52:0x107
+2790460:sensorDoFuncPreviewExpEnd()
+2790519:lastbv=-3, TargetStep=0, both=-3
+2790524:appAeAdjustCB 9708, 1, 96, 66 [166]
+2802920:@#@ Exp[96]=1136 VMAX=1138
+2802932:@#@ Agc[264]=0x52:0x107
+2807152:sensorDoFuncPreviewExpEnd()
+2807191:lastbv=-3, TargetStep=0, both=-3
+2807197:appAeAdjustCB 9694, 1, 96, 66 [167]
+2819616:@#@ Exp[96]=1136 VMAX=1138
+2819627:@#@ Agc[264]=0x52:0x107
+2823843:sensorDoFuncPreviewExpEnd()
+2823898:lastbv=-3, TargetStep=0, both=-3
+2823904:appAeAdjustCB 9644, 1, 96, 66 [168]
+2836306:@#@ Exp[96]=1136 VMAX=1138
+2836321:@#@ Agc[264]=0x52:0x107
+2840530:sensorDoFuncPreviewExpEnd()
+2840783:lastbv=-3, TargetStep=0, both=-3
+2840789:appAeAdjustCB 9622, 1, 96, 66 [169]
+2852994:@#@ Exp[96]=1136 VMAX=1138
+2853007:@#@ Agc[264]=0x52:0x107
+2857224:sensorDoFuncPreviewExpEnd()
+2857284:lastbv=-3, TargetStep=0, both=-3
+2857289:appAeAdjustCB 9611, 1, 96, 66 [170]
+2869682:@#@ Exp[96]=1136 VMAX=1138
+2869694:@#@ Agc[264]=0x52:0x107
+2873915:sensorDoFuncPreviewExpEnd()
+2873957:lastbv=-3, TargetStep=0, both=-3
+2873963:appAeAdjustCB 9587, 1, 96, 66 [171]
+2886379:@#@ Exp[96]=1136 VMAX=1138
+2886391:@#@ Agc[264]=0x52:0x107
+2890601:sensorDoFuncPreviewExpEnd()
+2890688:lastbv=-3, TargetStep=0, both=-3
+2890694:appAeAdjustCB 9548, 1, 96, 66 [172]
+2903066:@#@ Exp[96]=1136 VMAX=1138
+2903078:@#@ Agc[264]=0x52:0x107
+2907297:sensorDoFuncPreviewExpEnd()
+2907356:lastbv=-3, TargetStep=0, both=-3
+2907362:appAeAdjustCB 9477, 1, 96, 66 [173]
+2919754:@#@ Exp[96]=1136 VMAX=1138
+2919766:@#@ Agc[264]=0x52:0x107
+2923987:sensorDoFuncPreviewExpEnd()
+2924034:lastbv=-3, TargetStep=0, both=-3
+2924040:appAeAdjustCB 9343, 1, 96, 66 [174]
+2936445:@#@ Exp[96]=1136 VMAX=1138
+2936457:@#@ Agc[264]=0x52:0x107
+2940673:sensorDoFuncPreviewExpEnd()
+2940754:lastbv=-3, TargetStep=-1, both=-4
+2940759:appAeAdjustCB 9302, 1, 96, 67 [175]
+2953141:@#@ Exp[96]=1136 VMAX=1138
+2953152:@#@ Agc[268]=0x54:0x100
+2957363:sensorDoFuncPreviewExpEnd()
+2974059:sensorDoFuncPreviewExpEnd()
+2990748:sensorDoFuncPreviewExpEnd()
+2990808:lastbv=-4, TargetStep=0, both=-4
+2990814:appAeAdjustCB 9803, 1, 96, 67 [178]
+3003207:@#@ Exp[96]=1136 VMAX=1138
+3003219:@#@ Agc[268]=0x54:0x100
+3007440:sensorDoFuncPreviewExpEnd()
+3007497:lastbv=-4, TargetStep=0, both=-4
+3007503:appAeAdjustCB 9795, 1, 96, 67 [179]
+3019904:@#@ Exp[96]=1136 VMAX=1138
+3019915:@#@ Agc[268]=0x54:0x100
+3024128:sensorDoFuncPreviewExpEnd()
+3024206:lastbv=-4, TargetStep=0, both=-4
+3024212:appAeAdjustCB 9802, 1, 96, 67 [180]
+3036593:@#@ Exp[96]=1136 VMAX=1138
+3036608:@#@ Agc[268]=0x54:0x100
+3040817:sensorDoFuncPreviewExpEnd()
+3041223:lastbv=-4, TargetStep=0, both=-4
+3041229:appAeAdjustCB 9766, 1, 96, 67 [181]
+3053282:@#@ Exp[96]=1136 VMAX=1138
+3053295:@#@ Agc[268]=0x54:0x100
+3057508:sensorDoFuncPreviewExpEnd()
+3057584:lastbv=-4, TargetStep=0, both=-4
+3057590:appAeAdjustCB 9761, 1, 96, 67 [182]
+3069971:@#@ Exp[96]=1136 VMAX=1138
+3069983:@#@ Agc[268]=0x54:0x100
+3074204:sensorDoFuncPreviewExpEnd()
+3074263:lastbv=-4, TargetStep=0, both=-4
+3074268:appAeAdjustCB 9782, 1, 96, 67 [183]
+3086667:@#@ Exp[96]=1136 VMAX=1138
+3086679:@#@ Agc[268]=0x54:0x100
+3090889:sensorDoFuncPreviewExpEnd()
+3090989:lastbv=-4, TargetStep=0, both=-4
+3090994:appAeAdjustCB 9803, 1, 96, 67 [184]
+3103353:@#@ Exp[96]=1136 VMAX=1138
+3103365:@#@ Agc[268]=0x54:0x100
+3107580:sensorDoFuncPreviewExpEnd()
+3107657:lastbv=-4, TargetStep=0, both=-4
+3107663:appAeAdjustCB 9794, 1, 96, 67 [185]
+3120043:@#@ Exp[96]=1136 VMAX=1138
+3120055:@#@ Agc[268]=0x54:0x100
+3124274:sensorDoFuncPreviewExpEnd()
+3124332:lastbv=-4, TargetStep=0, both=-4
+3124338:appAeAdjustCB 9742, 1, 96, 67 [186]
+3136732:@#@ Exp[96]=1136 VMAX=1138
+3136744:@#@ Agc[268]=0x54:0x100
+3140962:sensorDoFuncPreviewExpEnd()
+3143438:lastbv=-4, TargetStep=0, both=-4
+3143444:appAeAdjustCB 9738, 1, 96, 67 [187]
+3153429:@#@ Exp[96]=1136 VMAX=1138
+3153440:@#@ Agc[268]=0x54:0x100
+3157653:sensorDoFuncPreviewExpEnd()
+3157733:lastbv=-4, TargetStep=0, both=-4
+3157739:appAeAdjustCB 9764, 1, 96, 67 [188]
+3163998:5kmode:0x11>0x88
+3164037:addr.sh 80353ee8 803538a8 800b1538 800058ec 8000dca0 80003f78 8000db6c 80003f78 8000da04
+3164052:#S#modeSw#N#0x11>0x88
+3166197:vidDistStopFunc 1(1)
+
+3166223:addr.sh 80353ee8 803538a8 801f0774 801f0b10 800b34e0 800b1190 80354944
+3166230:[vidDistStopFunc,3457] 33, 33
+
+3169138:mpv Ex 0
+3169214:.sen mode req 0
+3169221:.sen mode30>0
+3169226:.sen mode30>0 new mode r
+3169239:pre valid ,no wait vc=842
+3169249:sensorDoFuncPreviewExpEnd()
+3169271:.sen mode req 10
+3169277:.sen mode0>10
+3169281:.sen mode0>10 new mode r
+3169324:[mpv]drampvStop
+3169329:.pvstop 0x37 0x2
+3170444:[mpv]pvexit q=0
+3170456:cdspSav:1(10)
+3170470:mIdle s 0
+3174373:irqFrontHdnumRollClr Ln567
+3180635:mIdle e
+3180739:cdspSav:1(10)
+3180750:mIdle s 0
+3181167:mIdle SAME BUF e
+3181173:#P#modeSw#N#0x88
+3181175:#E#modeSw#N#
+38143320:mountSD s
+38143418:mountSD e
+Prof Log(1): from 2776021us
+0:Snap Buffer used=25078784 bytes(rgb 8358912, yu
+Prof Log(2): from 2566543us
+0:.sen vvld,cnt=141,t=16500
+2:sen fend irq
+237:int_org_vd_rise chk(0)
+571:sen reshape sof irq
+662:sen newf irq ,t:16495
+1410:prev sen pre irq vc=51
+13858:sen cmd irq
+15785:prev sen sec pre irq vc=1031
+16500:.sen vvld,cnt=142,t=16500
+16502:sen fend irq
+16737:int_org_vd_rise chk(0)
+17071:sen reshape sof irq
+17162:sen newf irq ,t:16495
+17910:prev sen pre irq vc=51
+30358:sen cmd irq
+32285:prev sen sec pre irq vc=1031
+33000:.sen vvld,cnt=143,t=16500
+33002:sen fend irq
+33238:int_org_vd_rise chk(0)
+33571:sen reshape sof irq
+33662:sen newf irq ,t:16495
+34410:prev sen pre irq vc=51
+46858:sen cmd irq
+48785:prev sen sec pre irq vc=1031
+49500:.sen vvld,cnt=144,t=16500
+49502:sen fend irq
+49737:int_org_vd_rise chk(0)
+50071:sen reshape sof irq
+50162:sen newf irq ,t:16495
+50910:prev sen pre irq vc=51
+63358:sen cmd irq
+65285:prev sen sec pre irq vc=1031
+66000:.sen vvld,cnt=145,t=16500
+66002:sen fend irq
+66237:int_org_vd_rise chk(0)
+66571:sen reshape sof irq
+66662:sen newf irq ,t:16495
+67410:prev sen pre irq vc=51
+79858:sen cmd irq
+81784:prev sen sec pre irq vc=1031
+82500:.sen vvld,cnt=146,t=16500
+82502:sen fend irq
+82737:int_org_vd_rise chk(0)
+83071:sen reshape sof irq
+83162:sen newf irq ,t:16495
+83910:prev sen pre irq vc=51
+96358:sen cmd irq
+98285:prev sen sec pre irq vc=1031
+99000:.sen vvld,cnt=147,t=16500
+99002:sen fend irq
+99237:int_org_vd_rise chk(0)
+99571:sen reshape sof irq
+99662:sen newf irq ,t:16495
+100410:prev sen pre irq vc=51
+112858:sen cmd irq
+114785:prev sen sec pre irq vc=1031
+115500:.sen vvld,cnt=148,t=16500
+115502:sen fend irq
+115738:int_org_vd_rise chk(0)
+116071:sen reshape sof irq
+116162:sen newf irq ,t:16495
+116910:prev sen pre irq vc=51
+129358:sen cmd irq
+131285:prev sen sec pre irq vc=1031
+132000:.sen vvld,cnt=149,t=16500
+132002:sen fend irq
+132237:int_org_vd_rise chk(0)
+132571:sen reshape sof irq
+132662:sen newf irq ,t:16495
+133410:prev sen pre irq vc=51
+145858:sen cmd irq
+147785:prev sen sec pre irq vc=1031
+148500:.sen vvld,cnt=150,t=16500
+148502:sen fend irq
+148738:int_org_vd_rise chk(0)
+149071:sen reshape sof irq
+149162:sen newf irq ,t:16495
+149910:prev sen pre irq vc=51
+162358:sen cmd irq
+164285:prev sen sec pre irq vc=1031
+165000:.sen vvld,cnt=151,t=16500
+165002:sen fend irq
+165237:int_org_vd_rise chk(0)
+165571:sen reshape sof irq
+165662:sen newf irq ,t:16495
+166411:prev sen pre irq vc=51
+178858:sen cmd irq
+180784:prev sen sec pre irq vc=1031
+181500:.sen vvld,cnt=152,t=16500
+181502:sen fend irq
+181737:int_org_vd_rise chk(0)
+182071:sen reshape sof irq
+182162:sen newf irq ,t:16495
+182910:prev sen pre irq vc=51
+195359:sen cmd irq
+197286:prev sen sec pre irq vc=1031
+198001:.sen vvld,cnt=153,t=16500
+198004:sen fend irq
+198238:int_org_vd_rise chk(0)
+198572:sen reshape sof irq
+198662:sen newf irq ,t:16496
+198768:5kmode:0x88>0x11
+199412:prev sen pre irq vc=51
+210211:.sen mode req 30
+210219:.sen mode0>30
+210291:sen reshape sof irq
+210313:sen fend irq
+210322:power save sucess
+210334:.sen main pv begin
+210348:power save set = 0
+210456:int_org_vd_rise chk(0)
+210488:sen reshape sof irq
+210504:sen fend irq
+210530:.modesw new sensor set at pv enter
+210546:.mpv enter s 0x30
+211228:.sen main pv begin---
+211230:.sen pv s capint1
+211233:.sen main pv ack
+214747:int_org_vd_rise chk(0)
+215163:sen newf irq ,t:16495
+215913:prev sen pre irq vc=51
+222988:[mpv]drampvStart
+223009:.modesw senwait
+223014:.modesw MODESW_DONE
+223077:.sen cdspctr req0>1@0 thr80690de0
+223082:.sen cdspctr cb2 1set
+223084:.sen cdspctr hal1,1
+228360:sen cmd irq
+230287:prev sen sec pre irq vc=1031
+231001:.sen vvld,cnt=1,t=33001
+231009:.sen cdspctr s evt1,req clr
+231011:sen fend irq
+231400:int_org_vd_rise chk(0)
+231577:sen reshape sof irq
+231588:.sen csof
+231607:.sen dsof
+231625:zfUpdIrq=2 (10000 10000)
+231824:sen newf irq ,t:16656
+232573:prev sen pre irq vc=51
+235935:modeRdy:0x11
+235997:...aastat start 0
+236006:aainfo alg:b host:0 req:b
+236052:...aastat_start e
+245022:sen cmd irq
+246947:prev sen sec pre irq vc=1031
+247661:.sen vvld,cnt=2,t=16661
+247664:sen fend irq
+248038:.sen eof_49,23
+248059:#L#seoffrc#N#(23,37)pnl1,enc(0,0)skp0
+248071:int_org_vd_rise chk(0)
+248238:sen reshape sof irq
+248243:.sen csof
+248249:.sen dsof
+248484:sen newf irq ,t:16655
+249233:prev sen pre irq vc=51
+261685:sen cmd irq
+263612:prev sen sec pre irq vc=1031
+263815:aa irq,12<b 9d (b/0)
+263822:aa irq ae,not aok b 1
+263831:aa irq,15<b 9d (b/0)
+263836:aa irq awb,not aok b 3
+264033:aa irq,14<b 9d (b/0)
+264037:aa irq,his roll
+264046:state 4 4 4
+264051:aa irq ae,9d-0>=3
+264056:aa irq awb,9d-0>=1
+264059:aastat s:860
+264069:aastat r:860@9d
+264076:phis !rdy
+264091:phis rdy
+264324:.sen vvld,cnt=3,t=16661
+264327:sen fend irq
+264697:.sen eof_49,24
+264717:#L#seoffrc#N#(24,47)pnl2,enc(0,0)skp0
+264731:int_org_vd_rise chk(0)
+264897:sen reshape sof irq
+264903:.sen csof
+264909:.sen dsof
+265146:sen newf irq ,t:16657
+265294:aeCB s0 b,t=2831833
+265755:aeCB e
+265761:awbCB s0 b,t=2832299
+265899:prev sen pre irq vc=51
+268074:awbCB e
+268089:aastat r: enter 860@9d
+278344:sen cmd irq
+280271:prev sen sec pre irq vc=1031
+280475:aa irq,12<b 9e (b/0)
+280481:aa irq ae,not aok b 1
+280490:aa irq,15<b 9e (b/0)
+280495:aa irq awb,not aok b 3
+280695:aa irq,14<b 9e (b/0)
+280698:aa irq,his roll
+280707:state 4 4 4
+280713:aa irq ae,9e-9d>=1
+280718:aa irq awb,9e-9d>=1
+280721:aastat s:860
+280729:aastat r:860@9e
+280736:phis !rdy
+280749:phis rdy
+280986:.sen vvld,cnt=4,t=16662
+280988:sen fend irq
+281357:.sen eof_49,25
+281376:#L#seoffrc#N#(25,57)pnl3,enc(0,0)skp0
+281392:int_org_vd_rise chk(0)
+281559:sen reshape sof irq
+281566:.sen csof
+281582:.sen dsof
+281808:sen newf irq ,t:16656
+281962:aeCB s0 b,t=16664
+281966:aeCB e
+281970:awbCB s0 b,t=16206
+282556:prev sen pre irq vc=51
+284211:awbCB e
+284220:aastat r: enter 860@9e
+295007:sen cmd irq
+296935:prev sen sec pre irq vc=1031
+297138:aa irq,12<b 9f (b/0)
+297144:aa irq ae,not aok b 1
+297153:aa irq,15<b 9f (b/0)
+297158:aa irq awb,not aok b 3
+297356:aa irq,14<b 9f (b/0)
+297360:aa irq,his roll
+297369:state 4 4 4
+297374:aa irq ae,9f-9e>=1
+297380:aa irq awb,9f-9e>=1
+297383:aastat s:860
+297391:aastat r:860@9f
+297398:phis !rdy
+297412:phis rdy
+297647:.sen vvld,cnt=5,t=16661
+297650:sen fend irq
+298019:.sen eof_49,26
+298039:#L#seoffrc#N#(26,67)pnl4,enc(0,0)skp0
+298074:int_org_vd_rise chk(0)
+298221:sen reshape sof irq
+298226:.sen csof
+298233:.sen dsof
+298499:sen newf irq ,t:16685
+298939:aeCB s0 b,t=16974
+298943:aeCB e
+298948:awbCB s0 b,t=16973
+299247:prev sen pre irq vc=51
+301203:awbCB e
+301212:aastat r: enter 860@9f
+311697:sen cmd irq
+313627:prev sen sec pre irq vc=1031
+313828:aa irq,12<b a0 (b/0)
+313834:aa irq ae,not aok b 1
+313843:aa irq,15<b a0 (b/0)
+313848:aa irq awb,not aok b 3
+314047:aa irq,14<b a0 (b/0)
+314050:aa irq,his roll
+314059:state 4 4 4
+314065:aa irq ae,a0-9f>=1
+314070:aa irq awb,a0-9f>=1
+314073:aastat s:860
+314082:aastat r:860@a0
+314089:phis !rdy
+314101:phis rdy
+314338:.sen vvld,cnt=6,t=16691
+314341:sen fend irq
+314709:.sen eof_49,27
+314729:#L#seoffrc#N#(27,77)pnl5,enc(0,0)skp0
+314765:int_org_vd_rise chk(0)
+314911:sen reshape sof irq
+314917:.sen csof
+314923:.sen dsof
+315189:sen newf irq ,t:16685
+315657:aeCB s0 b,t=16713
+315943:prev sen pre irq vc=51
+316071:aeCB e
+316076:awbCB s0 b,t=17124
+318692:awbCB e
+318707:aastat r: enter 860@a0
+328386:sen cmd irq
+330314:prev sen sec pre irq vc=1031
+330518:aa irq,12<b a1 (b/0)
+330525:aa irq ae,not aok b 1
+330533:aa irq,15<b a1 (b/0)
+330539:aa irq awb,not aok b 3
+330737:aa irq,14<b a1 (b/0)
+330740:aa irq,his roll
+330749:state 4 4 4
+330755:aa irq ae,a1-a0>=1
+330760:aa irq awb,a1-a0>=1
+330763:aastat s:860
+330771:aastat r:860@a1
+330777:phis !rdy
+330791:phis rdy
+331028:.sen vvld,cnt=7,t=16690
+331031:sen fend irq
+331402:.sen eof_49,20
+331423:#L#seoffrc#N#(20,7)pnl6,enc(0,0)skp0
+331455:int_org_vd_rise chk(0)
+331602:sen reshape sof irq
+331609:.sen csof
+331625:.sen dsof
+331881:sen newf irq ,t:16686
+332349:aeCB s0 b,t=16689
+332630:prev sen pre irq vc=51
+332756:aeCB e
+332760:awbCB s0 b,t=16680
+332802:awbCB e
+332814:aastat r: enter 860@a1
+345077:sen cmd irq
+347004:prev sen sec pre irq vc=1031
+347209:aa irq,12<b a2 (b/0)
+347214:aa irq ae,not aok b 1
+347223:aa irq,15<b a2 (b/0)
+347228:aa irq awb,not aok b 3
+347428:aa irq,14<b a2 (b/0)
+347431:aa irq,his roll
+347440:state 4 4 4
+347446:aa irq ae,a2-a1>=1
+347451:aa irq awb,a2-a1>=1
+347454:aastat s:860
+347461:aastat r:860@a2
+347469:phis !rdy
+347480:phis rdy
+347718:.sen vvld,cnt=8,t=16691
+347721:sen fend irq
+348090:.sen eof_49,21
+348109:#L#seoffrc#N#(21,17)pnl7,enc(0,0)skp0
+348146:int_org_vd_rise chk(0)
+348293:sen reshape sof irq
+348299:.sen csof
+348315:.sen dsof
+348572:sen newf irq ,t:16684
+349027:aeCB s0 b,t=16674
+349323:prev sen pre irq vc=51
+349431:aeCB e
+349435:awbCB s0 b,t=16671
+349475:awbCB e
+349488:aastat r: enter 860@a2
+361767:sen cmd irq
+363694:prev sen sec pre irq vc=1031
+363899:aa irq,12<b a3 (b/0)
+363905:aa irq ae,not aok b 1
+363913:aa irq,15<b a3 (b/0)
+363919:aa irq awb,not aok b 3
+364118:aa irq,14<b a3 (b/0)
+364121:aa irq,his roll
+364130:state 4 4 4
+364136:aa irq ae,a3-a2>=1
+364141:aa irq awb,a3-a2>=1
+364144:aastat s:860
+364152:aastat r:860@a3
+364158:phis !rdy
+364170:phis rdy
+364409:.sen vvld,cnt=9,t=16691
+364412:sen fend irq
+364781:.sen eof_49,22
+364801:#L#seoffrc#N#(22,27)pnl0,enc(0,0)skp0
+364836:int_org_vd_rise chk(0)
+364983:sen reshape sof irq
+364989:.sen csof
+365006:.sen dsof
+365262:sen newf irq ,t:16685
+365742:aeCB s0 b,t=16711
+366012:prev sen pre irq vc=51
+366144:aeCB e
+366148:awbCB s0 b,t=16709
+366190:awbCB e
+366202:aastat r: enter 860@a3
+378461:sen cmd irq
+380385:prev sen sec pre irq vc=1031
+380590:aa irq,12<b a4 (b/0)
+380597:aa irq ae,not aok b 1
+380606:aa irq,15<b a4 (b/0)
+380611:aa irq awb,not aok b 3
+380809:aa irq,14<b a4 (b/0)
+380812:aa irq,his roll
+380822:state 4 4 4
+380827:aa irq ae,a4-a3>=1
+380832:aa irq awb,a4-a3>=1
+380835:aastat s:860
+380844:aastat r:860@a4
+380851:phis !rdy
+380863:phis rdy
+381100:.sen vvld,cnt=10,t=16690
+381103:sen fend irq
+381472:.sen eof_49,23
+381492:#L#seoffrc#N#(23,37)pnl1,enc(0,0)skp0
+381528:int_org_vd_rise chk(0)
+381674:sen reshape sof irq
+381680:.sen csof
+381696:.sen dsof
+381953:sen newf irq ,t:16685
+382411:aeCB s0 b,t=16665
+382703:prev sen pre irq vc=51
+382824:aeCB e
+382829:awbCB s0 b,t=16676
+385456:awbCB e
+385471:aastat r: enter 860@a4
+395149:sen cmd irq
+397076:prev sen sec pre irq vc=1031
+397281:aa irq,12<b a5 (b/0)
+397287:aa irq ae,not aok b 1
+397296:aa irq,15<b a5 (b/0)
+397301:aa irq awb,not aok b 3
+397500:aa irq,14<b a5 (b/0)
+397503:aa irq,his roll
+397512:state 4 4 4
+397518:aa irq ae,a5-a4>=1
+397523:aa irq awb,a5-a4>=1
+397525:aastat s:860
+397534:aastat r:860@a5
+397543:phis !rdy
+397560:phis rdy
+397791:.sen vvld,cnt=11,t=16691
+397793:sen fend irq
+398163:.sen eof_49,24
+398184:#L#seoffrc#N#(24,47)pnl2,enc(0,0)skp0
+398218:int_org_vd_rise chk(0)
+398365:sen reshape sof irq
+398371:.sen csof
+398387:.sen dsof
+398643:sen newf irq ,t:16685
+399103:aeCB s0 b,t=16687
+399394:prev sen pre irq vc=51
+399509:aeCB e
+399514:awbCB s0 b,t=16681
+399559:awbCB e
+399571:aastat r: enter 860@a5
+411840:sen cmd irq
+413766:prev sen sec pre irq vc=1031
+413971:aa irq,12<b a6 (b/0)
+413977:aa irq ae,not aok b 1
+413986:aa irq,15<b a6 (b/0)
+413991:aa irq awb,not aok b 3
+414190:aa irq,14<b a6 (b/0)
+414193:aa irq,his roll
+414202:state 4 4 4
+414208:aa irq ae,a6-a5>=1
+414213:aa irq awb,a6-a5>=1
+414216:aastat s:860
+414224:aastat r:860@a6
+414231:phis !rdy
+414242:phis rdy
+414481:.sen vvld,cnt=12,t=16691
+414484:sen fend irq
+414852:.sen eof_49,25
+414871:#L#seoffrc#N#(25,57)pnl3,enc(0,0)skp0
+414909:int_org_vd_rise chk(0)
+415055:sen reshape sof irq
+415061:.sen csof
+415077:.sen dsof
+415334:sen newf irq ,t:16685
+415797:aeCB s0 b,t=16690
+416085:prev sen pre irq vc=51
+416198:aeCB e
+416202:awbCB s0 b,t=16684
+416247:awbCB e
+416259:aastat r: enter 860@a6
+428531:sen cmd irq
+430457:prev sen sec pre irq vc=1031
+430662:aa irq,12<b a7 (b/0)
+430668:aa irq ae,not aok b 1
+430676:aa irq,15<b a7 (b/0)
+430681:aa irq awb,not aok b 3
+430881:aa irq,14<b a7 (b/0)
+430884:aa irq,his roll
+430893:state 4 4 4
+430899:aa irq ae,a7-a6>=1
+430904:aa irq awb,a7-a6>=1
+430906:aastat s:860
+430914:aastat r:860@a7
+430921:phis !rdy
+430933:phis rdy
+431172:.sen vvld,cnt=13,t=16690
+431175:sen fend irq
+431544:.sen eof_49,26
+431564:#L#seoffrc#N#(26,67)pnl4,enc(0,0)skp0
+431600:int_org_vd_rise chk(0)
+431746:sen reshape sof irq
+431752:.sen csof
+431768:.sen dsof
+432025:sen newf irq ,t:16685
+432469:aeCB s0 b,t=16669
+432776:prev sen pre irq vc=51
+432870:aeCB e
+432875:awbCB s0 b,t=16668
+432919:awbCB e
+432932:aastat r: enter 860@a7
+445224:sen cmd irq
+447148:prev sen sec pre irq vc=1031
+447353:aa irq,12<b a8 (b/0)
+447360:aa irq ae,not aok b 1
+447369:aa irq,15<b a8 (b/0)
+447374:aa irq awb,not aok b 3
+447572:aa irq,14<b a8 (b/0)
+447575:aa irq,his roll
+447584:state 4 4 4
+447590:aa irq ae,a8-a7>=1
+447595:aa irq awb,a8-a7>=1
+447598:aastat s:860
+447607:aastat r:860@a8
+447614:phis !rdy
+447627:phis rdy
+447862:.sen vvld,cnt=14,t=16691
+447866:sen fend irq
+448234:.sen eof_49,27
+448254:#L#seoffrc#N#(27,77)pnl5,enc(0,0)skp0
+448291:int_org_vd_rise chk(0)
+448437:sen reshape sof irq
+448443:.sen csof
+448459:.sen dsof
+448715:sen newf irq ,t:16685
+449166:aeCB s0 b,t=16693
+449467:prev sen pre irq vc=51
+449578:aeCB e
+449583:awbCB s0 b,t=16704
+452203:awbCB e
+452217:aastat r: enter 860@a8
+461913:sen cmd irq
+463839:prev sen sec pre irq vc=1031
+464043:aa irq,12<b a9 (b/0)
+464049:aa irq ae,not aok b 1
+464059:aa irq,15<b a9 (b/0)
+464064:aa irq awb,not aok b 3
+464262:aa irq,14<b a9 (b/0)
+464266:aa irq,his roll
+464275:state 4 4 4
+464280:aa irq ae,a9-a8>=1
+464286:aa irq awb,a9-a8>=1
+464289:aastat s:860
+464297:aastat r:860@a9
+464304:phis !rdy
+464318:phis rdy
+464554:.sen vvld,cnt=15,t=16691
+464557:sen fend irq
+464926:.sen eof_49,20
+464947:#L#seoffrc#N#(20,7)pnl5,enc(0,0)skp0
+464980:int_org_vd_rise chk(0)
+465128:sen reshape sof irq
+465134:.sen csof
+465150:.sen dsof
+465406:sen newf irq ,t:16685
+466031:aeCB s0 b,t=16860
+466155:prev sen pre irq vc=51
+466465:aeCB e
+466469:awbCB s0 b,t=16883
+466542:awbCB e
+466560:aastat r: enter 860@a9
+478603:sen cmd irq
+480529:prev sen sec pre irq vc=1031
+480734:aa irq,12<b aa (b/0)
+480740:aa irq ae,not aok b 1
+480749:aa irq,15<b aa (b/0)
+480754:aa irq awb,not aok b 3
+480953:aa irq,14<b aa (b/0)
+480957:aa irq,his roll
+480966:state 4 4 4
+480972:aa irq ae,aa-a9>=1
+480977:aa irq awb,aa-a9>=1
+480980:aastat s:860
+480988:aastat r:860@aa
+480995:phis !rdy
+481007:phis rdy
+481244:.sen vvld,cnt=16,t=16690
+481247:sen fend irq
+481616:.sen eof_49,21
+481636:#L#seoffrc#N#(21,17)pnl7,enc(0,0)skp0
+481672:int_org_vd_rise chk(0)
+481819:sen reshape sof irq
+481825:.sen csof
+481841:.sen dsof
+482097:sen newf irq ,t:16685
+482548:aeCB s0 b,t=16513
+482849:prev sen pre irq vc=51
+482963:aeCB e
+482968:awbCB s0 b,t=16494
+483011:awbCB e
+483024:aastat r: enter 860@aa
+495293:sen cmd irq
+497219:prev sen sec pre irq vc=1031
+497425:aa irq,12<b ab (b/0)
+497431:aa irq ae,not aok b 1
+497439:aa irq,15<b ab (b/0)
+497444:aa irq awb,not aok b 3
+497644:aa irq,14<b ab (b/0)
+497647:aa irq,his roll
+497656:state 4 4 4
+497662:aa irq ae,ab-aa>=1
+497667:aa irq awb,ab-aa>=1
+497670:aastat s:860
+497678:aastat r:860@ab
+497685:phis !rdy
+497697:phis rdy
+497935:.sen vvld,cnt=17,t=16691
+497937:sen fend irq
+498307:.sen eof_49,22
+498326:#L#seoffrc#N#(22,27)pnl0,enc(0,0)skp0
+498362:int_org_vd_rise chk(0)
+498509:sen reshape sof irq
+498515:.sen csof
+498531:.sen dsof
+498787:sen newf irq ,t:16686
+499237:aeCB s0 b,t=16685
+499539:prev sen pre irq vc=51
+499636:aeCB e
+499641:awbCB s0 b,t=16669
+499685:awbCB e
+499697:aastat r: enter 860@ab
+511987:sen cmd irq
+513911:prev sen sec pre irq vc=1031
+514116:aa irq,12<b ac (b/0)
+514122:aa irq ae,not aok b 1
+514131:aa irq,15<b ac (b/0)
+514137:aa irq awb,not aok b 3
+514335:aa irq,14<b ac (b/0)
+514338:aa irq,his roll
+514347:state 4 4 4
+514353:aa irq ae,ac-ab>=1
+514358:aa irq awb,ac-ab>=1
+514361:aastat s:860
+514370:aastat r:860@ac
+514377:phis !rdy
+514390:phis rdy
+514625:.sen vvld,cnt=18,t=16691
+514628:sen fend irq
+514997:.sen eof_49,23
+515016:#L#seoffrc#N#(23,37)pnl1,enc(0,0)skp0
+515053:int_org_vd_rise chk(0)
+515200:sen reshape sof irq
+515206:.sen csof
+515222:.sen dsof
+515478:sen newf irq ,t:16685
+515960:aeCB s0 b,t=16719
+516227:prev sen pre irq vc=51
+516369:aeCB e
+516374:awbCB s0 b,t=16728
+518974:awbCB e
+518989:aastat r: enter 860@ac
+528675:sen cmd irq
+530601:prev sen sec pre irq vc=1031
+530806:aa irq,12<b ad (b/0)
+530813:aa irq ae,not aok b 1
+530821:aa irq,15<b ad (b/0)
+530826:aa irq awb,not aok b 3
+531025:aa irq,14<b ad (b/0)
+531028:aa irq,his roll
+531038:state 4 4 4
+531043:aa irq ae,ad-ac>=1
+531048:aa irq awb,ad-ac>=1
+531051:aastat s:860
+531059:aastat r:860@ad
+531066:phis !rdy
+531080:phis rdy
+531316:.sen vvld,cnt=19,t=16690
+531319:sen fend irq
+531689:.sen eof_49,24
+531710:#L#seoffrc#N#(24,47)pnl2,enc(0,0)skp0
+531744:int_org_vd_rise chk(0)
+531890:sen reshape sof irq
+531897:.sen csof
+531913:.sen dsof
+532169:sen newf irq ,t:16685
+532631:aeCB s0 b,t=16666
+532921:prev sen pre irq vc=51
+533036:aeCB e
+533040:awbCB s0 b,t=16663
+533085:awbCB e
+533097:aastat r: enter 860@ad
+545365:sen cmd irq
+547292:prev sen sec pre irq vc=1031
+547497:aa irq,12<b ae (b/0)
+547502:aa irq ae,not aok b 1
+547511:aa irq,15<b ae (b/0)
+547516:aa irq awb,not aok b 3
+547716:aa irq,14<b ae (b/0)
+547719:aa irq,his roll
+547728:state 4 4 4
+547734:aa irq ae,ae-ad>=1
+547739:aa irq awb,ae-ad>=1
+547742:aastat s:860
+547750:aastat r:860@ae
+547757:phis !rdy
+547768:phis rdy
+548006:.sen vvld,cnt=20,t=16691
+548009:sen fend irq
+548378:.sen eof_49,25
+548397:#L#seoffrc#N#(25,57)pnl3,enc(0,0)skp0
+548434:int_org_vd_rise chk(0)
+548581:sen reshape sof irq
+548587:.sen csof
+548602:.sen dsof
+548860:sen newf irq ,t:16686
+549313:aeCB s0 b,t=16678
+549611:prev sen pre irq vc=51
+549714:aeCB e
+549718:awbCB s0 b,t=16674
+549762:awbCB e
+549774:aastat r: enter 860@ae
+562056:sen cmd irq
+563982:prev sen sec pre irq vc=1031
+564187:aa irq,12<b af (b/0)
+564193:aa irq ae,not aok b 1
+564201:aa irq,15<b af (b/0)
+564207:aa irq awb,not aok b 3
+564406:aa irq,14<b af (b/0)
+564409:aa irq,his roll
+564419:state 4 4 4
+564424:aa irq ae,af-ae>=1
+564429:aa irq awb,af-ae>=1
+564432:aastat s:860
+564441:aastat r:860@af
+564447:phis !rdy
+564460:phis rdy
+564697:.sen vvld,cnt=21,t=16691
+564700:sen fend irq
+565069:.sen eof_49,26
+565089:#L#seoffrc#N#(26,67)pnl4,enc(0,0)skp0
+565124:int_org_vd_rise chk(0)
+565271:sen reshape sof irq
+565277:.sen csof
+565293:.sen dsof
+565550:sen newf irq ,t:16685
+566031:aeCB s0 b,t=16714
+566300:prev sen pre irq vc=51
+566433:aeCB e
+566438:awbCB s0 b,t=16715
+566482:awbCB e
+566494:aastat r: enter 860@af
+578749:sen cmd irq
+580673:prev sen sec pre irq vc=1031
+580879:aa irq,12<b b0 (b/0)
+580885:aa irq ae,not aok b 1
+580894:aa irq,15<b b0 (b/0)
+580900:aa irq awb,not aok b 3
+581097:aa irq,14<b b0 (b/0)
+581101:aa irq,his roll
+581110:state 4 4 4
+581115:aa irq ae,b0-af>=3
+581121:aa irq awb,b0-af>=1
+581124:aastat s:840
+581132:aastat r:840@b0
+581140:phis !rdy
+581152:phis rdy
+581388:.sen vvld,cnt=22,t=16690
+581391:sen fend irq
+581760:.sen eof_49,27
+581781:#L#seoffrc#N#(27,77)pnl5,enc(0,0)skp0
+581816:int_org_vd_rise chk(0)
+581963:sen reshape sof irq
+581969:.sen csof
+581985:.sen dsof
+582241:sen newf irq ,t:16685
+582548:awbCB s0 2,t=16106
+582989:prev sen pre irq vc=51
+585177:awbCB e
+585186:aastat r: enter 840@b0
+595437:sen cmd irq
+597365:prev sen sec pre irq vc=1031
+597569:aa irq,12<b b1 (b/0)
+597575:aa irq ae,not aok b 1
+597583:aa irq,15<b b1 (b/0)
+597589:aa irq awb,not aok b 3
+597788:aa irq,14<b b1 (b/0)
+597791:aa irq,his roll
+597800:state 4 4 4
+597806:aa irq ae,b1-af>=3
+597811:aa irq awb,b1-b0>=1
+597814:aastat s:840
+597822:aastat r:840@b1
+597828:phis !rdy
+597841:phis rdy
+598079:.sen vvld,cnt=23,t=16691
+598081:sen fend irq
+598451:.sen eof_49,20
+598472:#L#seoffrc#N#(20,7)pnl6,enc(0,0)skp0
+598506:int_org_vd_rise chk(0)
+598653:sen reshape sof irq
+598658:.sen csof
+598664:.sen dsof
+598931:sen newf irq ,t:16685
+599223:awbCB s0 2,t=16670
+599264:awbCB e
+599271:aastat r: enter 840@b1
+599682:prev sen pre irq vc=51
+612126:sen cmd irq
+614052:prev sen sec pre irq vc=1031
+614259:aa irq,12<b b2 (b/0)
+614265:aa irq ae,not aok b 1
+614272:aa irq,15<b b2 (b/0)
+614278:aa irq awb,not aok b 3
+614478:aa irq,14<b b2 (b/0)
+614482:aa irq,his roll
+614491:state 4 4 4
+614496:aa irq ae,b2-af>=3
+614500:aa irq awb,b2-b1>=1
+614503:aastat s:860
+614510:aastat r:860@b2
+614516:phis !rdy
+614528:phis rdy
+614769:.sen vvld,cnt=24,t=16691
+614772:sen fend irq
+615140:.sen eof_49,21
+615159:#L#seoffrc#N#(21,17)pnl7,enc(0,0)skp0
+615197:int_org_vd_rise chk(0)
+615343:sen reshape sof irq
+615348:.sen csof
+615354:.sen dsof
+615621:sen newf irq ,t:16685
+616076:aeCB s0 b,t=50042
+616373:prev sen pre irq vc=51
+616488:aeCB e
+616493:awbCB s0 b,t=17266
+616536:awbCB e
+616549:aastat r: enter 860@b2
+628818:sen cmd irq
+630745:prev sen sec pre irq vc=1031
+630950:aa irq,12<b b3 (b/0)
+630956:aa irq ae,not aok b 1
+630964:aa irq,15<b b3 (b/0)
+630970:aa irq awb,not aok b 3
+631169:aa irq,14<b b3 (b/0)
+631172:aa irq,his roll
+631181:state 4 4 4
+631187:aa irq ae,b3-b2>=1
+631192:aa irq awb,b3-b2>=1
+631195:aastat s:860
+631203:aastat r:860@b3
+631210:phis !rdy
+631222:phis rdy
+631460:.sen vvld,cnt=25,t=16690
+631463:sen fend irq
+631832:.sen eof_49,22
+631852:#L#seoffrc#N#(22,27)pnl0,enc(0,0)skp0
+631887:int_org_vd_rise chk(0)
+632034:sen reshape sof irq
+632041:.sen csof
+632057:.sen dsof
+632313:sen newf irq ,t:16686
+632779:aeCB s0 b,t=16698
+633065:prev sen pre irq vc=51
+633177:aeCB e
+633181:awbCB s0 b,t=16685
+633225:awbCB e
+633237:aastat r: enter 860@b3
+645512:sen cmd irq
+647436:prev sen sec pre irq vc=1031
+647641:aa irq,12<b b4 (b/0)
+647648:aa irq ae,not aok b 1
+647657:aa irq,15<b b4 (b/0)
+647662:aa irq awb,not aok b 3
+647860:aa irq,14<b b4 (b/0)
+647863:aa irq,his roll
+647872:state 4 4 4
+647878:aa irq ae,b4-b3>=1
+647883:aa irq awb,b4-b3>=1
+647886:aastat s:860
+647896:aastat r:860@b4
+647903:phis !rdy
+647915:phis rdy
+648151:.sen vvld,cnt=26,t=16691
+648154:sen fend irq
+648522:.sen eof_49,23
+648543:#L#seoffrc#N#(23,37)pnl1,enc(0,0)skp0
+648578:int_org_vd_rise chk(0)
+648725:sen reshape sof irq
+648731:.sen csof
+648747:.sen dsof
+649004:sen newf irq ,t:16686
+649475:aeCB s0 b,t=16692
+649753:prev sen pre irq vc=51
+649887:aeCB e
+649892:awbCB s0 b,t=16706
+652493:awbCB e
+652507:aastat r: enter 860@b4
+662201:sen cmd irq
+664127:prev sen sec pre irq vc=1031
+664331:aa irq,12<b b5 (b/0)
+664338:aa irq ae,not aok b 1
+664346:aa irq,15<b b5 (b/0)
+664352:aa irq awb,not aok b 3
+664551:aa irq,14<b b5 (b/0)
+664554:aa irq,his roll
+664563:state 4 4 4
+664569:aa irq ae,b5-b4>=1
+664574:aa irq awb,b5-b4>=1
+664577:aastat s:860
+664585:aastat r:860@b5
+664593:phis !rdy
+664607:phis rdy
+664841:.sen vvld,cnt=27,t=16691
+664844:sen fend irq
+665214:.sen eof_49,24
+665235:#L#seoffrc#N#(24,47)pnl2,enc(0,0)skp0
+665269:int_org_vd_rise chk(0)
+665416:sen reshape sof irq
+665422:.sen csof
+665438:.sen dsof
+665695:sen newf irq ,t:16684
+666399:aeCB s0 b,t=16920
+666443:prev sen pre irq vc=51
+666916:aeCB e
+666921:awbCB s0 b,t=17025
+666995:awbCB e
+667012:aastat r: enter 860@b5
+678891:sen cmd irq
+680817:prev sen sec pre irq vc=1031
+681022:aa irq,12<b b6 (b/0)
+681028:aa irq ae,not aok b 1
+681037:aa irq,15<b b6 (b/0)
+681042:aa irq awb,not aok b 3
+681241:aa irq,14<b b6 (b/0)
+681245:aa irq,his roll
+681254:state 4 4 4
+681260:aa irq ae,b6-b5>=1
+681265:aa irq awb,b6-b5>=1
+681268:aastat s:860
+681276:aastat r:860@b6
+681284:phis !rdy
+681296:phis rdy
+681532:.sen vvld,cnt=28,t=16690
+681535:sen fend irq
+681904:.sen eof_49,25
+681924:#L#seoffrc#N#(25,57)pnl3,enc(0,0)skp0
+681960:int_org_vd_rise chk(0)
+682106:sen reshape sof irq
+682112:.sen csof
+682129:.sen dsof
+682385:sen newf irq ,t:16684
+682856:aeCB s0 b,t=16452
+683134:prev sen pre irq vc=51
+683264:aeCB e
+683269:awbCB s0 b,t=16343
+683314:awbCB e
+683328:aastat r: enter 860@b6
+695581:sen cmd irq
+697508:prev sen sec pre irq vc=1031
+697713:aa irq,12<b b7 (b/0)
+697718:aa irq ae,not aok b 1
+697727:aa irq,15<b b7 (b/0)
+697732:aa irq awb,not aok b 3
+697932:aa irq,14<b b7 (b/0)
+697935:aa irq,his roll
+697944:state 4 4 4
+697950:aa irq ae,b7-b6>=1
+697955:aa irq awb,b7-b6>=1
+697958:aastat s:860
+697966:aastat r:860@b7
+697973:phis !rdy
+697985:phis rdy
+698223:.sen vvld,cnt=29,t=16691
+698226:sen fend irq
+698594:.sen eof_49,26
+698615:#L#seoffrc#N#(26,67)pnl4,enc(0,0)skp0
+698650:int_org_vd_rise chk(0)
+698797:sen reshape sof irq
+698803:.sen csof
+698819:.sen dsof
+699075:sen newf irq ,t:16685
+699540:aeCB s0 b,t=16680
+699827:prev sen pre irq vc=51
+699942:aeCB e
+699947:awbCB s0 b,t=16673
+699990:awbCB e
+700003:aastat r: enter 860@b7
+712275:sen cmd irq
+714199:prev sen sec pre irq vc=1031
+714404:aa irq,12<b b8 (b/0)
+714411:aa irq ae,not aok b 1
+714420:aa irq,15<b b8 (b/0)
+714425:aa irq awb,not aok b 3
+714623:aa irq,14<b b8 (b/0)
+714626:aa irq,his roll
+714636:state 4 4 4
+714641:aa irq ae,b8-b7>=1
+714646:aa irq awb,b8-b7>=1
+714649:aastat s:860
+714658:aastat r:860@b8
+714665:phis !rdy
+714677:phis rdy
+714914:.sen vvld,cnt=30,t=16691
+714917:sen fend irq
+715285:.sen eof_49,27
+715306:#L#seoffrc#N#(27,77)pnl5,enc(0,0)skp0
+715341:int_org_vd_rise chk(0)
+715488:sen reshape sof irq
+715494:.sen csof
+715510:.sen dsof
+715766:sen newf irq ,t:16685
+716257:aeCB s0 b,t=16714
+716515:prev sen pre irq vc=51
+716669:aeCB e
+716674:awbCB s0 b,t=16722
+719291:awbCB e
+719307:aastat r: enter 860@b8
+728962:sen cmd irq
+730889:prev sen sec pre irq vc=1031
+731094:aa irq,12<b b9 (b/0)
+731101:aa irq ae,not aok b 1
+731109:aa irq,15<b b9 (b/0)
+731114:aa irq awb,not aok b 3
+731313:aa irq,14<b b9 (b/0)
+731316:aa irq,his roll
+731325:state 4 4 4
+731331:aa irq ae,b9-b8>=1
+731336:aa irq awb,b9-b8>=1
+731339:aastat s:860
+731347:aastat r:860@b9
+731354:phis !rdy
+731368:phis rdy
+731604:.sen vvld,cnt=31,t=16690
+731607:sen fend irq
+731977:.sen eof_49,20
+731999:#L#seoffrc#N#(20,7)pnl6,enc(0,0)skp0
+732032:int_org_vd_rise chk(0)
+732179:sen reshape sof irq
+732185:.sen csof
+732201:.sen dsof
+732457:sen newf irq ,t:16685
+732931:aeCB s0 b,t=16669
+733206:prev sen pre irq vc=51
+733337:aeCB e
+733342:awbCB s0 b,t=16663
+733387:awbCB e
+733399:aastat r: enter 860@b9
+745653:sen cmd irq
+747580:prev sen sec pre irq vc=1031
+747784:aa irq,12<b ba (b/0)
+747790:aa irq ae,not aok b 1
+747799:aa irq,15<b ba (b/0)
+747804:aa irq awb,not aok b 3
+748004:aa irq,14<b ba (b/0)
+748007:aa irq,his roll
+748016:state 4 4 4
+748021:aa irq ae,ba-b9>=1
+748026:aa irq awb,ba-b9>=1
+748029:aastat s:860
+748037:aastat r:860@ba
+748044:phis !rdy
+748055:phis rdy
+748295:.sen vvld,cnt=32,t=16691
+748298:sen fend irq
+748666:.sen eof_49,21
+748685:#L#seoffrc#N#(21,17)pnl7,enc(0,0)skp0
+748723:int_org_vd_rise chk(0)
+748869:sen reshape sof irq
+748875:.sen csof
+748891:.sen dsof
+749147:sen newf irq ,t:16684
+749611:aeCB s0 b,t=16676
+749898:prev sen pre irq vc=51
+750012:aeCB e
+750016:awbCB s0 b,t=16670
+750060:awbCB e
+750072:aastat r: enter 860@ba
+762343:sen cmd irq
+764270:prev sen sec pre irq vc=1031
+764475:aa irq,12<b bb (b/0)
+764481:aa irq ae,not aok b 1
+764490:aa irq,15<b bb (b/0)
+764495:aa irq awb,not aok b 3
+764694:aa irq,14<b bb (b/0)
+764698:aa irq,his roll
+764707:state 4 4 4
+764713:aa irq ae,bb-ba>=1
+764718:aa irq awb,bb-ba>=1
+764721:aastat s:860
+764729:aastat r:860@bb
+764735:phis !rdy
+764748:phis rdy
+764985:.sen vvld,cnt=33,t=16691
+764988:sen fend irq
+765357:.sen eof_49,22
+765377:#L#seoffrc#N#(22,27)pnl0,enc(0,0)skp0
+765412:int_org_vd_rise chk(0)
+765559:sen reshape sof irq
+765565:.sen csof
+765582:.sen dsof
+765839:sen newf irq ,t:16686
+766335:aeCB s0 b,t=16720
+766589:prev sen pre irq vc=51
+769114:aeCB e
+769119:awbCB s0 b,t=19097
+769165:awbCB e
+769175:aastat r: enter 860@bb
+779038:sen cmd irq
+780962:prev sen sec pre irq vc=1031
+781166:aa irq,12<b bc (b/0)
+781173:aa irq ae,not aok b 1
+781182:aa irq,15<b bc (b/0)
+781187:aa irq awb,not aok b 3
+781385:aa irq,14<b bc (b/0)
+781388:aa irq,his roll
+781398:state 4 4 4
+781404:aa irq ae,bc-bb>=1
+781409:aa irq awb,bc-bb>=1
+781412:aastat s:860
+781421:aastat r:860@bc
+781427:phis !rdy
+781440:phis rdy
+781677:.sen vvld,cnt=34,t=16690
+781679:sen fend irq
+782048:.sen eof_49,23
+782068:#L#seoffrc#N#(23,37)pnl1,enc(0,0)skp0
+782104:int_org_vd_rise chk(0)
+782250:sen reshape sof irq
+782257:.sen csof
+782273:.sen dsof
+782529:sen newf irq ,t:16684
+783002:aeCB s0 b,t=16664
+783278:prev sen pre irq vc=51
+783413:aeCB e
+783418:awbCB s0 b,t=14295
+786073:awbCB e
+786089:aastat r: enter 860@bc
+789638:5kmode:0x11>0x88
+794776:mpv Ex 0
+794792:...aastat_stop 0
+794814:...aastat_stop e
+794826:.sen cdspctr nowoff con0 thr80690de0
+794841:.sen cdspctr nowoff s evt0
+794847:.sen mode req 0
+794854:.sen mode30>0
+794887:sen pv ex evset gets
+794890:sen pv ex evset got
+794891:sen pv ex evset put vlast=1
+794895:.sen main idle ack
+794898:power save = 0
+794901:power save fail
+794902:power save timeout
+794905:.sen mode req 10
+794910:.sen mode0>10
+794946:.sen cdspctr gets0 thr80690de0
+794951:.sen cdspctr got0 thr80690de0
+794961:[mpv]drampvStop
+796084:[mpv]pvexit
+800023:.sen main ack pwrsave
+806814:modeRdy:0x88
+Prof Log(3): from 206799us
+0:dqToolParamVer = 13505221
+217544:[aelib]appAEALGLib_ParamSet sel=13 val=-2143078
+218732:[aelib]appAEALGLib_ParamSet sel=2 val=-21430784
+218743:[aelib]appAEALGLib_ParamSet sel=4 val=-21430794
+218751:[aelib]appAEALGLib_ParamSet sel=5 val=-21471454
+218758:[aelib]appAEALGLib_ParamSet sel=6 val=-21471472
+223812:[aelib]appAEALGLib_ParamSet sel=12 val=0
+223829:[aelib]appAEALGLib_ParamSet sel=1 val=-21430796
+223847:[aelib]appAEALGLib_ParamSet sel=0 val=-21430798
+223856:[aelib]appAEALGLib_ParamSet sel=1 val=-21430796
+223865:[aelib]appAEALGLib_ParamSet sel=0 val=-21430798
+223874:[aelib]appAEALGLib_ParamSet sel=1 val=-21430796
+2549644:[aelib]appAEALGLib_ParamSet sel=12 val=0
+2549661:[aelib]appAEALGLib_ParamSet sel=1 val=-21430796
+2551953:[aelib]appAEALGLib_ParamSet sel=0 val=-21430798
+2551962:[aelib]appAEALGLib_ParamSet sel=1 val=-21430796
+2551971:[aelib]appAEALGLib_ParamSet sel=0 val=-21430798
+2551980:[aelib]appAEALGLib_ParamSet sel=1 val=-21430796
+2557087:[aelib]appAEALGLib_ParamSet sel=7 val=0
+2582479:cedge src(zoom) = 1920, 1080, dst = 1920, 1080,
+2582646:cedge src(zoom) = 1920, 1080, dst = 1920, 1080,
+2625213:[aelib]appAEALGLib_ParamSet sel=3 val=-21430794
+2675520:[aelib]appAEALGLib_ParamSet sel=3 val=-21430794
+2692211:[aelib]appAEALGLib_ParamSet sel=3 val=-21430794
+2708888:[aelib]appAEALGLib_ParamSet sel=3 val=-21430794
+2725602:[aelib]appAEALGLib_ParamSet sel=3 val=-21430794
+2742275:[aelib]appAEALGLib_ParamSet sel=3 val=-21430794
+2758965:[aelib]appAEALGLib_ParamSet sel=3 val=-21430794
+2775658:[aelib]appAEALGLib_ParamSet sel=3 val=-21430794
+2792330:[aelib]appAEALGLib_ParamSet sel=3 val=-21430794
+2809030:[aelib]appAEALGLib_ParamSet sel=3 val=-21430794
+2825926:[aelib]appAEALGLib_ParamSet sel=3 val=-21430794
+2842410:[aelib]appAEALGLib_ParamSet sel=3 val=-21430794
+2859098:[aelib]appAEALGLib_ParamSet sel=3 val=-21430794
+2875823:[aelib]appAEALGLib_ParamSet sel=3 val=-21430794
+2892493:[aelib]appAEALGLib_ParamSet sel=3 val=-21430794
+2909173:[aelib]appAEALGLib_ParamSet sel=3 val=-21430794
+2925892:[aelib]appAEALGLib_ParamSet sel=3 val=-21430794
+2975940:[aelib]appAEALGLib_ParamSet sel=3 val=-21430794
+2992639:[aelib]appAEALGLib_ParamSet sel=3 val=-21430794
+3009339:[aelib]appAEALGLib_ParamSet sel=3 val=-21430794
+3026291:[aelib]appAEALGLib_ParamSet sel=3 val=-21430794
+3042719:[aelib]appAEALGLib_ParamSet sel=3 val=-21430794
+3059401:[aelib]appAEALGLib_ParamSet sel=3 val=-21430794
+3076121:[aelib]appAEALGLib_ParamSet sel=3 val=-21430794
+3092794:[aelib]appAEALGLib_ParamSet sel=3 val=-21430794
+3109472:[aelib]appAEALGLib_ParamSet sel=3 val=-21430794
+3126196:[aelib]appAEALGLib_ParamSet sel=3 val=-21430794
+3142867:[aelib]appAEALGLib_ParamSet sel=3 val=-21430794
+Prof Log(4): from 270212us
+0:appOsdInit s
+3147:appOsdInit e
+153852:[host]pwr: AA init:s
+160264:[host]pwr: AA init:e

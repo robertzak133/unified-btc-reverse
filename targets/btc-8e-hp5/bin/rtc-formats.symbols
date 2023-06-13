@@ -1,0 +1,44 @@
+
+rtc-formats.o:     file format elf32-tradlittlemips
+
+SYMBOL TABLE:
+00000000 l    df *ABS*	00000000 rtc-formats.c
+00000000 l    d  .text	00000000 .text
+00000000 l    d  .data	00000000 .data
+00000000 l    d  .bss	00000000 .bss
+00000000 l    d  .mdebug.abi32	00000000 .mdebug.abi32
+00000000 l    d  .reginfo	00000000 .reginfo
+00000000 l    d  .MIPS.abiflags	00000000 .MIPS.abiflags
+00000000 l    d  .pdr	00000000 .pdr
+00000000 l    d  .comment	00000000 .comment
+00000000 l    d  .gnu.attributes	00000000 .gnu.attributes
+00000000 g     F .text	00000014 rtc_get_cold_item_date_format
+00000000         *UND*	00000000 g_ColdItemData
+00000014 g     F .text	00000024 rtc_set_cold_item_date_format
+00000038 g     F .text	00000014 rtc_get_cold_item_time_format
+0000004c g     F .text	0000001c rtc_set_cold_item_time_format
+00000000         *UND*	00000000 set_cold_item_sd_management_p
+00000068 g     F .text	0000020c rtc_handle_date_format_menu
+00000000         *UND*	00000000 getCameraConfigStructPtr
+00000000         *UND*	00000000 g_menu_root
+00000000         *UND*	00000000 menu_draw_selected_item
+00000000         *UND*	00000000 ui_cursor_key_pressed_p
+00000000         *UND*	00000000 g_up_button_enable
+00000000         *UND*	00000000 g_down_button_enable
+00000000         *UND*	00000000 g_left_button_enable
+00000000         *UND*	00000000 g_right_button_enable
+00000000         *UND*	00000000 g_enter_button_enable
+000000f8       O *COM*	00000004 g_wbwl_camera_setup_selector_array
+00000000         *UND*	00000000 get_next_state_from_menu_enter
+00000000         *UND*	00000000 set_fsm_state_absolute
+00000000         *UND*	00000000 menu_get_next_menu_selection
+00000000         *UND*	00000000 menu_redraw_items
+00000000         *UND*	00000000 g_mode_button_enable
+00000000         *UND*	00000000 get_next_state_from_menu_mode
+00000274 g     F .text	0000020c rtc_handle_time_format_menu
+00000000 g     O .data	00000054 g_rtc_time_format_menu
+00000054 g     O .data	00000070 g_rtc_date_format_menu
+00000018       O *COM*	00000004 g_wbwl_menu_handler_function_array_extensions
+00000364       O *COM*	00000004 g_wbwl_camera_setup_menu_item_array
+
+

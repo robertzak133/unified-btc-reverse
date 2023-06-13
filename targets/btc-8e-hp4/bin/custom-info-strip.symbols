@@ -1,0 +1,37 @@
+
+custom-info-strip.o:     file format elf32-tradlittlemips
+
+SYMBOL TABLE:
+00000000 l    df *ABS*	00000000 custom-info-strip.c
+00000000 l    d  .text	00000000 .text
+00000000 l    d  .data	00000000 .data
+00000000 l    d  .bss	00000000 .bss
+00000000 l    d  .mdebug.abi32	00000000 .mdebug.abi32
+00000000 l    d  .rodata.str1.4	00000000 .rodata.str1.4
+00000000 l       .rodata.str1.4	00000000 $LC0
+00000010 l       .rodata.str1.4	00000000 $LC1
+00000020 l       .rodata.str1.4	00000000 $LC2
+00000034 l       .rodata.str1.4	00000000 $LC3
+00000044 l       .rodata.str1.4	00000000 $LC4
+0000004c l       .rodata.str1.4	00000000 $LC5
+00000000 l    d  .reginfo	00000000 .reginfo
+00000000 l    d  .MIPS.abiflags	00000000 .MIPS.abiflags
+00000000 l    d  .pdr	00000000 .pdr
+00000000 l    d  .comment	00000000 .comment
+00000000 l    d  .gnu.attributes	00000000 .gnu.attributes
+00000000 g     F .text	00000088 wbwl_custom_info_strip_date_sprintf
+00000000         *UND*	00000000 rtc_get_cold_item_date_format
+00000000         *UND*	00000000 local_sprintf
+00000088 g     F .text	000000cc wbwl_custom_info_strip_time_sprintf
+00000000         *UND*	00000000 get_rtc_time_or_alarm
+00000000         *UND*	00000000 rtc_get_cold_item_time_format
+00000154 g     F .text	00000070 wbwl_custom_info_strip_strlen
+00000000         *UND*	00000000 btc_strlen
+00000000         *UND*	00000000 get_power_supply_mode
+00000000         *UND*	00000000 get_battery_percent
+000001c4 g     F .text	00000008 wbwl_StampDrawLogo
+00000000         *UND*	00000000 HceStampDrawLogo
+00000054       O *COM*	00000004 g_rtc_time_format_menu
+00000070       O *COM*	00000004 g_rtc_date_format_menu
+
+

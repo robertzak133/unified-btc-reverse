@@ -1,0 +1,175 @@
+// 
+// White Flash and Large Type for Date on Review for BTC-7A
+// 2021-04-22 Zak: Created
+
+// Enable white flash (compile time option) and
+//        large print of date for review
+
+// A version of the setDigitalEffect() function that is much shorter because
+//   it only supports the two digital effects used by the trail camera.
+//   We use the left over space for functions used to implement our battery
+//   monitor. 
+
+#include "../include/BTC.h"
+#include "../include/white-flash.h"
+
+// Define if we want a white flash only camera; leave undefined
+//        for factory IR LED
+
+
+
+//#define DEBUG
+
+// White flash
+//    2022-08-31 -- Updated for HP5
+
+void wf_setDigitalEffect(enum_digital_effect digital_effect, 
+			 unsigned int brightness_hue, unsigned int brightness,
+			 unsigned int param_4) {
+
+  // Color Mode
+  // Copied directly from Ghidra Decompile window, lines 21-69 2022-08-30
+    if (DAT_8034e820 != '\0') {
+      DAT_8034e821 = get_DAT_80357b60_at_global_index();
+      FUN_80136ae0(DAT_8034e821);
+      dispatch_IQ_function(0x23,0,1,0x22001);
+      FUN_80136a94(DAT_8034e821);
+    }
+    DAT_8034e820 = '\0';
+    sp5kIqCfgSet(0x22001,0);
+    sp5kIqBlockEnable(0x2b,0);
+    sp5kIqBlockEnable(0x2c,0);
+    sp5kIqCfgSet(0x42000,0);
+    sp5kIqCfgSet(0x42001,0);
+    sp5kIqCfgSet(0x42002,0);
+    sp5kIqCfgSet(0x42003,0);
+    sp5kIqCfgSet(0x42004,0);
+    sp5kIqCfgSet(0x42005,0);
+    sp5kIqCfgSet(0x42006,0);
+    sp5kIqCfgSet(0x42019,1);
+    sp5kIqCfgSet(0x4201a,0);
+    sp5kIqCfgSet(0x4201b,0);
+    sp5kIqCfgSet(0x4201c,0);
+    sp5kIqCfgSet(0x4201d,0);
+    sp5kIqCfgSet(0x42007,0);
+    sp5kIqCfgSet(0x42008,0);
+    sp5kIqCfgSet(0x42009,3);
+    sp5kIqCfgSet(0x4200a,0);
+    sp5kIqCfgSet(0x4200b,0);
+    sp5kIqCfgSet(0x4200c,7);
+    sp5kIqCfgSet(0x4200d,7);
+    sp5kIqCfgSet(0x4200e,0);
+    sp5kIqCfgSet(0x4200f,0);
+    sp5kIqCfgSet(0x42010,0);
+    sp5kIqCfgSet(0x42011,0x80);
+    sp5kIqCfgSet(0x42012,0x80);
+    sp5kIqCfgSet(0x42013,0x80);
+    sp5kIqCfgSet(0x42014,0);
+    sp5kIqCfgSet(0x42015,0);
+    sp5kIqCfgSet(0x42016,0);
+    sp5kIqCfgSet(0x42017,0);
+    sp5kIqCfgSet(0x42018,0xff);
+    sp5kIqCfgSet(0x4201e,0);
+    sp5kIqCfgSet(0x4201f,1);
+    sp5kIqCfgSet(0x42020,1);
+    sp5kIqCfgSet(0x42021,(unsigned int)&DAT_80313770);
+    sp5kIqCfgSet(0x42022,0);
+    sp5kIqCfgSet(0x42023,0);
+    sp5kIqCfgSet(0x42024,1);
+    sp5kIqCfgSet(0x42025,0);
+    sp5kIqCfgSet(0x42026,0);
+  return;
+}
+
+// 
+// cp_setSensorDigitalEffectPhoto()
+//    Modified from original to remove the B&W path
+//    2022-08-31 Zak: Updated based on HP5 binary
+void cp_setSensorDigitalEffectPhoto(char night_p) {
+  // Prolog lifted from the original function
+  uint cold_item_112;
+  byte table_lookup_value;
+
+#ifdef DEBUG
+   tty_printf("Info::cp_setSensorDigitalEffectPhoto; night_p: %d; -- enter\n",
+	     (uint) night_p);
+#endif
+
+  g_photo_mode_p = 1;
+  g_night_mode_p = night_p;
+  set_aaa_ae_pipeline_wrapper(2);
+  set_aaa_awb_pipeline_wrapper(2);
+  appAWBALGLib_WBParamSet(8,0x40);
+  // Call to null function FUN_80013c0 removed
+
+  // We just take the "daylight" path from the original function
+  set_g_ae_parameter(0);
+  exif_remove_and_add_wrapper(0);
+  cold_item_112 = get_cold_item_112();
+  table_lookup_value = 0x40;
+  if (cold_item_112 < 2) {
+    table_lookup_value = g_sensor_config_table_A[cold_item_112];
+  }
+  dispatch_IQ_function(0x1e,table_lookup_value,1);
+  FUN_80136a94(0x11);
+  setDigitalEffect(0);
+  sp5kIqBlockEnable(0xe,1);
+  FUN_80136ae0(0x11);
+  FUN_80136a94(0x13);
+  setDigitalEffect(0);
+  sp5kIqBlockEnable(0xe,1);
+  FUN_80136ae0(0x13);
+  dispatch_IQ_function(0x23,0,1,0x20000);
+  dispatch_IQ_function(0x23,0,0,0xe);
+#ifdef DEBUG
+   tty_printf("Info::cp_setSensorDigitalEffectPhoto -- exit\n");
+#endif
+
+}
+
+//
+// cp_setSensorDigitalEffectVideo()
+//     Modified from original to remove B&W path
+//     2022-08-31 Zak: Updated based on HP5 binary
+
+ void cp_setSensorDigitalEffectVideo(char night_p) {
+   // Prolog lifted from the original function
+   int temp_int;
+   uint temp_uint;
+   byte temp_byte;
+
+#ifdef DEBUG
+   tty_printf("Info::cp_setSensorDigitalEffectVideo; night_p: %d -- enter\n",
+	     (uint) night_p);
+#endif
+
+   g_photo_mode_p = 0;
+   g_night_mode_p = night_p;
+   set_aaa_ae_pipeline_wrapper(2);
+   set_aaa_awb_pipeline_wrapper(2);
+   appAWBALGLib_WBParamSet(8,0xff);
+
+   // We just take the "daylight" path from the original function
+   set_g_ae_parameter(0);
+   exif_remove_and_add_wrapper(0);
+   temp_uint = get_cold_item_112();
+   temp_byte = 0x40;
+   if (temp_uint < 2) {
+     temp_byte = g_sensor_config_table_A[temp_uint];
+   }
+   dispatch_IQ_function(0x1e,temp_byte,1);
+   FUN_80136a94(0x21);
+   setDigitalEffect(0);
+   sp5kIqBlockEnable(0xe,1);
+   FUN_80136ae0(0x21);
+   dispatch_IQ_function(0x23,0,1,0x20000);
+   dispatch_IQ_function(0x23,0,0,0xe);
+#ifdef DEBUG
+   tty_printf("Info::cp_setSensorDigitalEffectVideo -- exit\n");
+#endif
+ }
+
+
+
+
+

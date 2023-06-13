@@ -1,0 +1,243 @@
+
+test.bin:     file format elf32-tradlittlemips
+
+SYMBOL TABLE:
+8006d448 l    d  entry0_section	00000000 entry0_section
+800d76f4 l    d  entry1_section	00000000 entry1_section
+800dc9c4 l    d  entry2_section	00000000 entry2_section
+8018b01c l    d  entry3_section	00000000 entry3_section
+00000000 l    df *ABS*	00000000 entry0.c
+00000000 l    df *ABS*	00000000 aperture.c
+00000000 l    df *ABS*	00000000 ir-flash-menu-early.c
+00000000 l    df *ABS*	00000000 entry1.c
+00000000 l    df *ABS*	00000000 custom-ribbon.c
+00000000 l    df *ABS*	00000000 custom-info-strip.c
+00000000 l    df *ABS*	00000000 entry2.c
+00000000 l    df *ABS*	00000000 extend-event-SD-card.c
+00000000 l    df *ABS*	00000000 rtc-formats.c
+00000000 l    df *ABS*	00000000 dslr-trigger.c
+00000000 l    df *ABS*	00000000 entry3.c
+00000000 l    df *ABS*	00000000 menus.c
+00000000 l    df *ABS*	00000000 timelapse.c
+00000000 l    df *ABS*	00000000 volume-file-naming.c
+00000000 l    df *ABS*	00000000 aperture-menu.c
+00000000 l    df *ABS*	00000000 ir-flash-menu.c
+800d7bd0 g     F entry1_section	00000088 wbwl_custom_info_strip_date_sprintf
+8010cd60 g       *ABS*	00000000 menu_draw_selected_item
+8005c4dc g       *ABS*	00000000 get_power_switch_on_p
+8018b020 g     F entry3_section	00000028 build_panorama
+800d7870 g     F entry1_section	00000190 wbwl_custom_ribbon_sprintf
+800e37cc g       *ABS*	00000000 exif_remove_and_add_wrapper
+80312224 g       *ABS*	00000000 g_video_length_menu
+80104fe4 g       *ABS*	00000000 TaskTimeLapseFSM_task4
+80031158 g       *ABS*	00000000 vfsFileDel
+800d7700 g     F entry1_section	00000028 cli_command_function
+800e54dc g       *ABS*	00000000 get_g_cold_item_battery_type
+8031233c g       *ABS*	00000000 g_photo_delay_menu
+80136bf8 g       *ABS*	00000000 get_DAT_80357b60_at_global_index
+801105d8 g       *ABS*	00000000 handleCommitUpdates_menu
+8031a5a1 g       *ABS*	00000000 g_down_button_enable
+8005c51c g       *ABS*	00000000 HceIQ_CheckNightMode
+80318700 g       *ABS*	00000000 g_btc_init_directory_suffix_prefix_dyn
+8018b668 g     F entry3_section	00000018 tlps_execute_if_not_null
+8018b680 g     F entry3_section	0000002c tlps_update_system_measurements
+800dce90 g     F entry2_section	00000014 rtc_get_cold_item_date_format
+8031a5a3 g       *ABS*	00000000 g_right_button_enable
+800fd4f8 g       *ABS*	00000000 set_fsm_state_absolute
+8018ba68 g     F entry3_section	00000104 vfn_get_dir_suffix_file_prefix_from_camera_name
+800eae6c g       *ABS*	00000000 get_power_supply_mode
+800dc9d0 g     F entry2_section	00000028 cli_test_dispatch
+800dcb18 g     F entry2_section	00000038 evsd_check_remaining_sd_capacity
+8018b6ac g     F entry3_section	000000bc tlps_TaskTimeLapseFSM_task12a
+8018b13c g     F entry3_section	0000001c wbwl_get_next_state_from_menu_enter
+8031a615 g       *ABS*	00000000 g_night_mode_p
+800dd550 g     F entry2_section	00000024 dslr_set_cold_item_dslr_trigger_p
+800d7c58 g     F entry1_section	000000cc wbwl_custom_info_strip_time_sprintf
+8012bd9c g       *ABS*	00000000 set_aaa_awb_pipeline_wrapper
+803211a0 g       *ABS*	00000000 _gp
+8018b7b0 g     O entry3_section	00000018 g_wbwl_timelapse_frequency_lookup_table
+80003488 g       *ABS*	00000000 get_current_operating_time_ms
+8005c80c g       *ABS*	00000000 get_g_cold_item_led_power
+80033558 g       *ABS*	00000000 btc_strcpy
+8018ba10 g     F entry3_section	00000058 wbwl_fatVolLabSet
+8005c850 g       *ABS*	00000000 HceCommon_RestoreDefaultColdItem
+80103be8 g       *ABS*	00000000 TaskTimeLapseFSM_task14_end
+8034e821 g       *ABS*	00000000 g_iq_init_function_param
+8006142c g       *ABS*	00000000 btc_fread
+80012cb8 g       *ABS*	00000000 btc_strlen
+8000a420 g       *ABS*	00000000 memcpy
+800e53e8 g       *ABS*	00000000 get_cold_item_camera_name
+803128b4 g       *ABS*	00000000 g_restore_default_menu
+800dd520 g     F entry2_section	00000030 dt_IRLedOff
+803127f0 g       *ABS*	00000000 g_battery_type_menu
+800e53b0 g       *ABS*	00000000 get_cold_item_timelapse_frequency
+80313770 g       *ABS*	00000000 g_iq_init_color_param
+800e5fac g       *ABS*	00000000 update_global_pressure_temperature
+803126f4 g       *ABS*	00000000 g_image_data_strip_menu
+80312ba8 g       *ABS*	00000000 g_smart_ir_video_menu
+800f83a8 g       *ABS*	00000000 HceStampDrawLogo
+8003084c g       *ABS*	00000000 vfsClose
+8018b160 g     O entry3_section	00000018 g_wbwl_menu_handler_function_array_extensions
+800dd364 g     O entry2_section	00000070 g_rtc_date_format_menu
+80060bc8 g       *ABS*	00000000 get_rtc_time_or_alarm
+80277254 g       *ABS*	00000000 fatVolLabSet_wrapper
+800e6a50 g       *ABS*	00000000 set_cold_item_language_id
+80312d84 g       *ABS*	00000000 g_firmware_upgrade_menu
+80104f54 g       *ABS*	00000000 TaskTimeLapseFSM_task10_WaitMountSD
+80007f40 g       *ABS*	00000000 function_with_syscall_zero
+80061640 g       *ABS*	00000000 btc_fclose
+800ebda8 g       *ABS*	00000000 setBatteryCalibConfig
+800e5428 g       *ABS*	00000000 set_cold_item_sd_management_p
+8031a5a5 g       *ABS*	00000000 g_mode_button_enable
+80312684 g       *ABS*	00000000 g_temp_unit_menu
+8031210c g       *ABS*	00000000 g_set_date_time_menu
+8006d5b0 g     F entry0_section	00000030 apt_get_night_mode_theshold_min_max
+8005b6dc g       *ABS*	00000000 get_extra_rtc_alt_ir_led_intensity
+8013691c g       *ABS*	00000000 sp5kIqBlockEnable
+8005c4f4 g       *ABS*	00000000 read_photo_sensor_value
+803192b4 g       *ABS*	00000000 g_new_check_night_mode_p
+8010cccc g       *ABS*	00000000 menu_get_next_menu_selection
+8018b768 g     F entry3_section	00000008 tlps_Pressure_sensor_getReading
+8006d5e0 g     F entry0_section	00000168 apt_HceIQ_CheckNightMode
+800e56b8 g       *ABS*	00000000 HceCommon_SetCaptureImag
+800d7d94 g     F entry1_section	00000008 wbwl_StampDrawLogo
+800e5b5c g       *ABS*	00000000 get_short_rtc_time
+80136a94 g       *ABS*	00000000 setSensor_configA
+80035f64 g       *ABS*	00000000 posix_finfo
+801047d4 g       *ABS*	00000000 TaskTimeLapseFSM_task7
+8018b108 g     F entry3_section	00000034 menus_execute_if_not_null
+800e7b44 g       *ABS*	00000000 encoded_timelapse_frequency_to_seconds
+8018b7c8 g     O entry3_section	0000016c g_wbwl_timelapse_frequency_menu
+802cc514 g       *ABS*	00000000 setDigitalEffectswitchdataD_table
+802cbc44 g       *ABS*	00000000 g_HceTaskMenuMultiItem_fsm_function_array
+802ca2bc g       *ABS*	00000000 g_sensor_config_table_A
+801046c0 g       *ABS*	00000000 TaskTimeLapseFSM_task9
+80312748 g       *ABS*	00000000 g_motion_test_menu
+800e54d0 g       *ABS*	00000000 set_g_cold_item_battery_type
+8010495c g       *ABS*	00000000 TaskTimeLapseFSM_task6
+800dcae8 g     F entry2_section	0000001c evsd_set_cold_item_extended_sd_power_p
+803126d8 g       *ABS*	00000000 g_camera_name_menu
+80312c50 g       *ABS*	00000000 g_language_menu
+80030744 g       *ABS*	00000000 vfsOpen
+80032990 g       *ABS*	00000000 fatVolLabSet
+800eaf38 g       *ABS*	00000000 get_battery_voltage_x100
+80026758 g       *ABS*	00000000 thread_sleep
+8006d750 g     O entry0_section	00000018 g_apt_nightmode_threshold_lookup_table
+800dd310 g     O entry2_section	00000054 g_rtc_time_format_menu
+800dd4b0 g     F entry2_section	00000014 dslr_get_cold_item_dslr_trigger_p
+800e5440 g       *ABS*	00000000 cold_item_led_power_blur_reduction_p
+80312630 g       *ABS*	00000000 g_hdr_menu
+800fd5bc g       *ABS*	00000000 getCameraConfigStructPtr
+80030158 g       *ABS*	00000000 get_unix_time
+8005b364 g       *ABS*	00000000 hal_set_rtc
+8005e078 g       *ABS*	00000000 set_pre_printf_state
+8001269c g       *ABS*	00000000 memoryAllocate
+8010cf20 g       *ABS*	00000000 get_next_state_from_menu_mode
+800e5dec g       *ABS*	00000000 store_pressure_trend
+80103c28 g       *ABS*	00000000 TaskTimeLapseFSM_task11_openTLfile
+800e4e34 g       *ABS*	00000000 execute_if_not_null
+800ebb14 g       *ABS*	00000000 Volt_Calib_Bat
+800eb37c g       *ABS*	00000000 get_battery_percent
+80312860 g       *ABS*	00000000 g_trigger_speed_menu
+80104d80 g       *ABS*	00000000 TaskTimeLapseFSM_task1
+80136ae0 g       *ABS*	00000000 setSensor_configB
+800d7ab4 g     F entry1_section	00000010 ld_clear_video_scroll_bar
+800eb0fc g       *ABS*	00000000 get_battery_percent_from_voltage
+801121e8 g       *ABS*	00000000 draw_video_scroll_bar
+800dcea4 g     F entry2_section	00000024 rtc_set_cold_item_date_format
+80312ae4 g       *ABS*	00000000 g_delete_all_menu
+800209e8 g       *ABS*	00000000 local_sprintf
+80061158 g       *ABS*	00000000 seekToSpecifiedFileLocation
+8011ecec g       *ABS*	00000000 setDigitalEffect
+800dd780 g     O entry2_section	00000054 g_dlsr_led_enable_menu
+800e5434 g       *ABS*	00000000 get_cold_item_sd_management_p
+8011645c g       *ABS*	00000000 appAWBALGLib_WBParamSet
+802d91ac g       *ABS*	00000000 g_last_timelapse_time_in_ms
+803858f4 g       *ABS*	00000000 g_dcfapi_loaded_p
+80104f08 g       *ABS*	00000000 TaskTimeLapseFSM_task12
+803192cc g       *ABS*	00000000 g_photo_mode_p
+800dd104 g     F entry2_section	0000020c rtc_handle_time_format_menu
+800b8da8 g       *ABS*	00000000 set_aaa_ae_pipeline_wrapper
+8012f81c g       *ABS*	00000000 dispatch_IQ_function
+800db878 g       *ABS*	00000000 tty_printf_battery_stats
+80312df4 g       *ABS*	00000000 g_camera_setup_menu_item_array
+8018bd10 g     F entry3_section	0000020c apt_handle_aperture_menu
+80104bfc g       *ABS*	00000000 TaskTimeLapseFSM_task3_ae_set
+800ee4e0 g       *ABS*	00000000 Write_LEDOff
+8031a5a4 g       *ABS*	00000000 g_enter_button_enable
+8031279c g       *ABS*	00000000 g_pir_range_menu
+8006d450 g     F entry0_section	00000034 get_VideoFormatStructure
+8010cfcc g       *ABS*	00000000 get_next_state_from_menu_enter
+80108a78 g       *ABS*	00000000 Pressure_sensor_getReading
+8031a618 g       *ABS*	00000000 g_photo_sensor_value
+80061d7c g       *ABS*	00000000 btc_fwrite
+800e0e4c g       *ABS*	00000000 set_g_ae_parameter
+80312a3c g       *ABS*	00000000 g_timelapse_period_menu
+800dcb50 g     F entry2_section	0000020c evsd_handle_extended_sd_power_menu
+801367fc g       *ABS*	00000000 sp5kIqCfgSet
+800dcab0 g     F entry2_section	00000018 evsd_set_cold_item_sd_management_p
+80312198 g       *ABS*	00000000 g_photo_quality_menu
+80104edc g       *ABS*	00000000 TaskTimeLapseFSM_task13
+801046f0 g       *ABS*	00000000 TaskTimeLapseFSM_task8_CopyJPGFromRAM
+80104a60 g       *ABS*	00000000 TaskTimeLapseFSM_task5
+8018bbdc g     F entry3_section	0000007c wbwl_temp_file_path_sprintf
+800ee44c g       *ABS*	00000000 Write_LEDOn
+800eac9c g       *ABS*	00000000 update_timelapse_rise_set_times
+80312bfc g       *ABS*	00000000 g_sd_management_menu
+800e5ee4 g       *ABS*	00000000 get_temperatureForC
+800f274c g       *ABS*	00000000 btc_init_directory_suffix_file_prefix
+80312d30 g       *ABS*	00000000 g_capture_timer_menu
+8005bb5c g       *ABS*	00000000 photo_sensor_hysteresis
+800f2764 g       *ABS*	00000000 get_current_video_duration_in_seconds
+8018bf20 g     O entry3_section	00000070 g_apt_aperture_menu
+80312470 g       *ABS*	00000000 g_multi_shot_mode_menu
+8010ca68 g       *ABS*	00000000 menu_redraw_items
+8018b178 g     O entry3_section	000000f8 g_wbwl_camera_setup_selector_array
+8031a616 g       *ABS*	00000000 g_photo_detector_hysteresis
+8031a818 g       *ABS*	00000000 g_menu_root
+8018bfc0 g     O entry3_section	0000008c g_ifm_ir_led_power_menu
+8005e094 g       *ABS*	00000000 check_post_printf_state_set_sio_params
+803122e8 g       *ABS*	00000000 g_video_quality_menu
+800e9828 g       *ABS*	00000000 ui_cursor_key_pressed_p
+8018bb6c g     F entry3_section	00000070 wbwl_init_directory_suffix_file_prefix
+8006d580 g     F entry0_section	00000010 apt_get_cold_item_aperture
+80003c9c g       *ABS*	00000000 tty_printf
+80031e90 g       *ABS*	00000000 vfsFileCopy
+800d7a00 g     F entry1_section	000000b4 ld_draw_video_scroll_bar
+8006d590 g     F entry0_section	00000020 apt_set_cold_item_aperture
+8034e820 g       *ABS*	00000000 g_run_iq_init_function_p
+800dd4f0 g     F entry2_section	00000030 dt_video_log_printf_hook
+8018b100 g     F entry3_section	00000008 menus_handleCommitUpdates_menu
+800d77e0 g     F entry1_section	00000090 wbwlFileCTimeGet
+8018b770 g     O entry3_section	00000040 g_wbwl_TaskTimeLapseFSM_function_array
+800f9048 g       *ABS*	00000000 draw_rectangle_wrapper
+80104df0 g       *ABS*	00000000 TaskTimeLapseFSM_task0
+800610e0 g       *ABS*	00000000 btc_fopen
+800e5398 g       *ABS*	00000000 get_cold_item_temperature_unit_celsius_p
+800dcd60 g     O entry2_section	00000054 g_evsd_extended_sd_power_menu
+800dd574 g     F entry2_section	0000020c dslr_handle_led_enable_menu
+800dcb04 g     F entry2_section	00000014 evsd_get_cold_item_extended_sd_power_p
+800dcac8 g     F entry2_section	00000020 evsd_get_cold_item_sd_management_p
+80105274 g       *ABS*	00000000 TaskTimeLapseFSM_task2
+80312128 g       *ABS*	00000000 g_operation_mode_menu
+8031a5a0 g       *ABS*	00000000 g_up_button_enable
+800036c0 g       *ABS*	00000000 log_printf
+800dcec8 g     F entry2_section	00000014 rtc_get_cold_item_time_format
+8018b650 g     F entry3_section	00000018 tlps_encoded_timelapse_frequency_to_seconds
+800dcef8 g     F entry2_section	0000020c rtc_handle_date_format_menu
+8032d4c0 g       *ABS*	00000000 g_ColdItemData
+800dcedc g     F entry2_section	0000001c rtc_set_cold_item_time_format
+8018b270 g     O entry3_section	00000364 g_wbwl_camera_setup_menu_item_array
+8005c7ec g       *ABS*	00000000 positive_diff
+800dd4c4 g     F entry2_section	0000002c dt_cold_item_led_power_blur_reduction_p
+80031968 g       *ABS*	00000000 vfsFileSizeGet
+8006d8f0 g     F entry0_section	0000002c ifm_power_on_IR_LED
+8005e17c g       *ABS*	00000000 power_on_IR_LED
+800ed4fc g       *ABS*	00000000 check_remaining_sd_capacity
+800d7d24 g     F entry1_section	00000070 wbwl_custom_info_strip_strlen
+8005e248 g       *ABS*	00000000 IRLedOff
+800e55bc g       *ABS*	00000000 get_cold_item_sensor_digital_effect
+8031a5a2 g       *ABS*	00000000 g_left_button_enable
+800127d0 g       *ABS*	00000000 free
+
+

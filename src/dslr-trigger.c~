@@ -1,0 +1,155 @@
+//
+// dslr-trigger.c
+// 
+// Using trail camera to trigger a DSLR camera by activatiung "aim" 
+//       LED after trigger, while photos/videos are taken
+
+
+#include "BTC.h"
+#include "WBWL.h"
+#include "menus.h"
+#include "dslr-trigger.h"
+
+// DSLR Enable Menu
+
+#define DEBUG
+
+struct_hp5_menu_item g_dlsr_led_enable_menu[3] = {
+  { no_icon, SST_OFF,             0x00, 0x01, 0x00, 0x1, 0x1},
+  { no_icon, SST_ON,              0x00, 0x01, 0x00, 0x1, 0x1},
+  { no_icon, SST_DSLR_SP_TRIGGER, 0x00, 0x00, 0x01, 0x03, 0x03}
+};
+
+
+
+//
+// For still photos (including various burst sizes) -- aim led is on in
+//     HceTaskStill_task0
+
+bool dt_cold_item_led_power_blur_reduction_p(void) {
+
+  // then turn the LED on
+  if (dslr_get_cold_item_dslr_trigger_p() == 1) {
+#ifdef DEBUG
+    set_pre_printf_state();
+    tty_printf("DEBUG::dt_get_cold_item_mode - WriteLEDOn \n");
+    check_post_printf_state_set_sio_params();
+#endif
+    Write_LEDOn();
+  }
+  // Do what we are supposed to do
+  return cold_item_led_power_blur_reduction_p();
+}
+
+
+// Hook for calling bm_on_video whenever a video is taken
+// replace
+// call to 
+//    8001fe48 0d 4e 0d 0c     jal        log_printf
+//
+// 
+//
+void dt_video_log_printf_hook(unsigned int level, char * format_string, char * function_name) {
+  // do the existing function
+  log_printf(level, format_string, function_name);
+  // turn on LED
+  if (dslr_get_cold_item_dslr_trigger_p() == 1) {
+    Write_LEDOn();
+  }
+}
+
+// hook for turning *off* the AIM LED
+
+void dt_IRLedOff(void) {
+  // This is called instead of IRLedOff
+  // First call the function we hooked
+  IRLedOff();
+#ifdef DEBUG
+  set_pre_printf_state();
+  tty_printf("DEBUG::dt_IRLedOff -- turning off aim led\n");
+  check_post_printf_state_set_sio_params();
+#endif
+  if (dslr_get_cold_item_dslr_trigger_p() == 1) {
+    Write_LEDOff();
+  }
+}
+
+//
+byte dslr_get_cold_item_dslr_trigger_p() {
+  byte result = g_ColdItemData.sd_management_p;
+  result = GET_BYTE_N_BIT(result,
+			  WBWL_DSLR_TRIGGER_N_BITS,
+			  WBWL_DSLR_TRIGGER_LSBIT);
+  return(result);
+}
+
+void dslr_set_cold_item_dslr_trigger_p(byte dslr_trigger_p) {
+  byte temp_byte = g_ColdItemData.sd_management_p;
+  temp_byte = SET_BYTE_N_BIT(temp_byte, dslr_trigger_p,
+			     WBWL_DSLR_TRIGGER_N_BITS,
+			     WBWL_DSLR_TRIGGER_LSBIT);
+  g_ColdItemData.sd_management_p = temp_byte;
+}
+
+// Function for handling DLSR LED Enable menu
+
+void  dslr_handle_led_enable_menu(void) {
+  byte  dslr_trigger_p;
+  struct_CameraConfig *camera_config;
+  int iVar1;
+  int iVar2;
+  uint index;
+  
+  camera_config = getCameraConfigStructPtr();
+  if (camera_config->exit_menu_p_or_ir_led_on != 0) {
+    camera_config->exit_menu_p_or_ir_led_on = 0;
+    dslr_trigger_p = dslr_get_cold_item_dslr_trigger_p();
+    camera_config->menu_selection_1 = dslr_trigger_p;
+    menu_draw_selected_item(&camera_config->menu_selection_1,&g_menu_root);
+    return;
+  }
+  iVar1 = ui_cursor_key_pressed_p(up);
+  if (((iVar1 == 1) && (dslr_trigger_p = 0, g_up_button_enable == 2)) ||
+     ((iVar1 = ui_cursor_key_pressed_p(down), iVar1 == 1 &&
+      (dslr_trigger_p = 1, g_down_button_enable == 2)))) {
+    menu_get_next_menu_selection(dslr_trigger_p,&camera_config->menu_selection_1,1,&g_menu_root);
+    menu_redraw_items(camera_config->menu_selection_1,&g_menu_root);
+    return;
+  }
+  iVar1 = ui_cursor_key_pressed_p(left);
+  if (((iVar1 == 1) && (g_left_button_enable == 2)) ||
+     ((iVar1 = ui_cursor_key_pressed_p(right), iVar1 == 1 && (g_right_button_enable == 2)))) {
+    return;
+  }
+  iVar1 = ui_cursor_key_pressed_p(enter);
+  if ((iVar1 == 1) && (g_enter_button_enable == 2)) {
+    index = (uint)camera_config->menu_selection_1;
+    camera_config->exit_menu_p_or_ir_led_on = 1;
+    iVar2 = get_next_state_from_menu_enter(index,
+					   g_wbwl_camera_setup_selector_array[index].menu_item_array,
+					   g_wbwl_camera_setup_selector_array[index].num_array_entries,
+					   &g_menu_root);
+    if (iVar2 == 0xff) {
+      return;
+    }
+    dslr_set_cold_item_dslr_trigger_p(camera_config->menu_selection_1);
+    camera_config->commit_menu_change = 1;
+  }
+  else {
+    iVar1 = ui_cursor_key_pressed_p(mode);
+    if (iVar1 != 1) {
+      return;
+    }
+    if (g_mode_button_enable != 2) {
+      return;
+    }
+    camera_config->exit_menu_p_or_ir_led_on = 1;
+    iVar2 = get_next_state_from_menu_mode(1,&g_menu_root);
+    iVar1 = WBWL_NUM_BTC_SETUP_MENU_FUNCTIONS + WBWL_NUM_WBWL_SETUP_MENU_FUNCTIONS + 5;
+    if (iVar2 == 0xff) goto EXIT;
+  }
+  iVar1 = iVar2;
+EXIT:
+  set_fsm_state_absolute(iVar1);
+  return;
+}

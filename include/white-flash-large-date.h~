@@ -1,0 +1,29 @@
+// 
+// white-flash-large-date.h
+// 
+// Prototypes for functions defined in white-flash-large-date.c
+
+
+// Internally Defined Functions
+
+extern void setDigitalEffect(enum_digital_effect digital_effect, 
+			     unsigned int brightness_hue, unsigned int brightness,
+			     unsigned int param_4);
+
+extern void cp_setSensorDigitalEffectPhoto(char night_p,uint param_2,uint param_3,uint param_4);
+
+extern void cp_setSensorDigitalEffectVideo(char night_p, uint param_2,uint param_3,uint param_4);
+
+extern void wbwl_custom_ribbon_sprintf(char *buffer, char * format, 
+				       unsigned int current_media_index, 
+				       unsigned int total_num_media);
+
+extern int wbwlFileCTimeGet(unsigned int file_ptr, struct struct_DateTime *creation_date_time);
+
+extern void ld_draw_video_scroll_bar(unsigned int percent_complete);
+
+extern void ld_clear_video_scroll_bar(unsigned int right_x,
+				      unsigned int bottom_y,
+				      unsigned int width,
+				      unsigned int height,
+				      char color);

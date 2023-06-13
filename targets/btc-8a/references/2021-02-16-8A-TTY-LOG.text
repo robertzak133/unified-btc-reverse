@@ -1,0 +1,926 @@
+SPI
+c22018
+bus 4
+OK,177269
+mount ram
+Read GenSt1: 0x7[1]
+Read GenSt2: 0x4[1]
+HCE_MODE_INITIALIZATION destr
+chg mode already in IDLE or not thu IDLE
+HCE_MODE_AUTO const start
+MCUApp_SetPIRTrigger 0x80
+SD INSERT - (2)
+UHS-I SD Card
+switch 1.8V
+LDO = c
+SD Switch 1.8V OK!
+CID:03 53 44 53 53 31 36 47 80 85 8b 15 c8 01 02 fb
+Get RCA AA AA
+CSD:40 0e 00 32 5b 59 00 00 76 b2 7f 80 0a 40 40 13
+Identify SD
+capability=15193 MB
+CMD23 support:1
+CMD20 support:1
+SDHC
+SPEED_CLASS=4
+Set 50MHz
+switch to DDR50 Mode
+sd patch = 0, 0, 0
+UHS-I SD Card DDR Mode Enable
+mount D:
+1 Fragment (<=512KB:0, >512KB:1)
+MOUNT COMPLETE
+vfsOpen(629): errcode=ffffffef
+WARNING DcfRootDirAddrGet 503
+
+Dcf init proc end
+SP5k_MSG_DCF_INIT_START
+estFileSize=31360 Res=2, Cluster Size=32, FreeK=15497568
+Mount time: (570) 676 ms
+HceIQ_CheckNightMode : Value = 37 / 15 ==> N[0]
+CurMode: 0x88
+sp5kmode already in 0x88
+AWB_MODE_Auto
+AWB_PARA_INTERVAL_FRAME 2
+[AWB] AWB_PARA_UPDTREFE_FRAME_NUM  REMOVE!
+CurMode: 0x88
+vidDistEnterFunc 1_0_0
+cur 0 next 1
+halMeOutBufBackupInit a06afbe0 480
+vidDistStartFunc 0(1)
+vid algo set sensorFps 60/1
+vidDistStartFunc mVidDistEn 1
+[R] edge win thr: 100
+go to MENU
+HCE_MODE_AUTO destr
+GO IDLE !!!!!!!!!!
+CurMode: 0x21
+vidDistExitFunc 1_0_0
+cur 1 next 1
+vidDistStopFunc mVidDistEn 0
+GO ChgModeDesed_WaitStandby !!!!!!!!!!
+HCE_MODE_MENU const start
+MCUApp_SetPIRTrigger 0x0
+CurMode: 0x88
+sp5kmode already in 0x88
+HceFwFileChk Prometheus3BTC80 Prometheus3BTC80
+
+CurMode: 0x88
+sp5kmode already in 0x88
+estFileSize=31360 Res=2, Cluster Size=32, FreeK=15497568
+Mount time: (0) 6 ms
+HceFwFileChk Prometheus3BTC80 Prometheus3BTC80
+
+cold.bin store 172/172 <69ms>
+
+---------------------------------------------------
+|                                                 |
+|  iCatch Card ISP Version [6350.0008]            |
+|                                                 |
+---------------------------------------------------
+filePath:D:\brnbtc80.BRN drive:2
+filePath = D:\brnbtc80.BRN
+fileSz:0x7bc15a, buf: 0xa119ea20, 0x7bc15a, pos: 0x0, 0x7bc15a
+brnHeader:
+        fileSize:0x7bc14a
+        brnInfoOffset:0x95800
+        rsvInfoOffset:0x96800
+        fwOffset:0x396920
+        rawCOffset:0x0
+        bkFileListOffset:0x7bbb20
+        dramParamOffset:0x7bbde0
+rsvInfo:
+    060916:build<sign>a?
+    060916:build<sign>b?
+backupList:
+A:\RO_RES\DEFTPXL1.BIN
+A:\RO_RES\DEFTPXL0.BIN
+A:\RO_RES\DEFPIX1.BIN
+A:\RO_RES\COLD.BIN
+A:\RO_RES\BADPIX.BIN
+A:\RO_RES\VOLTCALIB.BIN
+backup to D
+vfsChdir(1182): errcode=ffffffff
+vfsOpen(629): errcode=ffffffef
+backup file A:\RO_RES\DEFTPXL1.BIN is not exist.
+vfsOpen(629): errcode=ffffffff
+backup file A:\RO_RES\DEFTPXL0.BIN is not exist.
+vfsOpen(629): errcode=ffffffff
+backup file A:\RO_RES\DEFPIX1.BIN is not exist.
+vfsOpen(629): errcode=ffffffef
+backup file A:\RO_RES\COLD.BIN is not exist.
+vfsOpen(629): errcode=ffffffff
+backup file A:\RO_RES\BADPIX.BIN is not exist.
+spiRsvSizeChk [ cur new ](0)
+nrFwBlks    = [1062 1062]
+nrFwBlks2   = [   0    0]
+nrRsvA      = [ 640  640]
+nrRsvB      = [ 128  128]
+nrRsvC      = [   0    0]
+nrDiskC     = [2263 2263]
+
+========================================================
+Request :
+A:   size = [    2560] kbytes, nrBlk = [     640] block
+B:   size = [     512] kbytes, nrBlk = [     128] block
+C:   size = [       0] kbytes, nrBlk = [       0] block
+rsvSize = 3
+Actually :
+A:   size = [    2560] kbytes, nrBlk = [     640] block
+B:   size = [     512] kbytes, nrBlk = [     128] block
+C:   size = [       0] kbytes, nrBlk = [       0] block
+========================================================
+
+asciiName   = [NAND RSV¦]
+signature   = [0xbeef]
+nrFwBlks    = [0]
+fwStartBlk  = [771]
+nrFwBlks2   = [0]
+fwStartBlk2 = [771]
+nrRsvA      = [640]
+nrRsvB      = [128]
+nrRsvC      = [0]
+nrRsvBlks   = [768]
+checkSum    = [64768]
+tolblk      = [4096]
+dram param:
+..dump[d0000200]sz0x200
+d0000200 00 00 00 00 01 00 a8 24-1b 00 e8 00 f4 01 00 01 | .......$........
+d0000210 12 40 00 00 ff ff 07 25-04 11 47 ac 5f ea 07 34 | .@.....%..G._..4
+d0000220 21 30 c7 00 60 ea 08 34-1b 00 c8 00 f4 01 00 01 | !0..`..4........
+d0000230 12 30 00 00 ff ff c6 24-ff 00 c6 30 8a 00 46 a0 | .0.....$...0..F.
+d0000240 00 00 87 8c 58 4d a6 24-21 30 e6 00 59 4d a5 24 | ....XM.$!0..YM.$
+d0000250 1b 00 c5 00 f4 01 a0 00-12 28 00 00 ff ff a5 24 | .........(.....$
+d0000260 ff 00 a5 30 8b 00 45 a0-72 00 46 90 11 00 85 90 | ...0..E.r.F.....
+d0000270 fe 00 c6 30 25 20 c5 00-72 00 44 a0 70 00 44 90 | ...0% ..r.D.p.D.
+d0000280 fe 00 84 30 70 00 44 a0-00 d0 02 3c 44 52 04 24 | ...0p.D....<DR.$
+d0000290 00 11 45 94 27 00 a4 14-41 4d 04 24 02 11 45 94 | ..E.'...AM.$..E.
+d00002a0 24 00 a4 14 50 41 04 24-04 11 45 94 21 00 a4 14 | $...PA.$..E.!...
+d00002b0 52 31 04 24 06 11 45 94-1e 00 a4 14 00 00 00 00 | R1.$..E.........
+d00002c0 bc 90 0b 08 ff 2f 07 3c-01 00 48 90 00 00 49 90 | ...../.<..H...I.
+d00002d0 00 42 08 00 25 40 09 01-21 40 88 00 02 00 49 90 | .B..%@..!@....I.
+d00002e0 03 00 42 24 00 00 09 a1-c2 90 0b 08 08 11 c8 94 | ..B$............
+d00002f0 0c 11 42 24 00 ef e7 34-00 d0 06 3c 03 00 05 24 | ..B$...4...<...$
+d0000300 00 b0 04 3c 08 11 c8 94-21 48 47 00 02 40 05 71 | ...<....!HG..@.q
+d0000310 0c 00 08 25 2b 40 28 01-eb ff 00 15 00 00 00 00 | ...%+@(.........
+d0000320 c8 00 02 24 00 00 00 00-ff ff 42 24 fd ff 40 14 | ...$......B$..@.
+d0000330 00 00 00 00 00 b0 02 3c-04 00 04 24 e6 70 44 a0 | .......<...$.pD.
+d0000340 00 b0 04 3c 88 70 85 8c-01 00 a5 30 fd ff a0 10 | ...<.p.....0....
+d0000350 00 b0 02 3c c8 00 44 90-27 18 03 00 ff 00 84 30 | ...<..D.'......0
+d0000360 24 18 83 00 c8 00 43 a0-00 b0 02 3c 18 76 40 ac | $.....C....<.v@.
+d0000370 2c 01 02 24 00 00 00 00-ff ff 42 24 fd ff 40 14 | ,..$......B$..@.
+d0000380 00 00 00 00 08 00 e0 03-00 00 00 00 00 00 00 00 | ................
+d0000390 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d00003a0 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d00003b0 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d00003c0 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d00003d0 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d00003e0 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d00003f0 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+!!!![checkDramPara] 0xd0000200 - DRAMPAR1
+Param Error!
+..dump[d0000200]sz0x400
+d0000200 00 00 00 00 01 00 a8 24-1b 00 e8 00 f4 01 00 01 | .......$........
+d0000210 12 40 00 00 ff ff 07 25-04 11 47 ac 5f ea 07 34 | .@.....%..G._..4
+d0000220 21 30 c7 00 60 ea 08 34-1b 00 c8 00 f4 01 00 01 | !0..`..4........
+d0000230 12 30 00 00 ff ff c6 24-ff 00 c6 30 8a 00 46 a0 | .0.....$...0..F.
+d0000240 00 00 87 8c 58 4d a6 24-21 30 e6 00 59 4d a5 24 | ....XM.$!0..YM.$
+d0000250 1b 00 c5 00 f4 01 a0 00-12 28 00 00 ff ff a5 24 | .........(.....$
+d0000260 ff 00 a5 30 8b 00 45 a0-72 00 46 90 11 00 85 90 | ...0..E.r.F.....
+d0000270 fe 00 c6 30 25 20 c5 00-72 00 44 a0 70 00 44 90 | ...0% ..r.D.p.D.
+d0000280 fe 00 84 30 70 00 44 a0-00 d0 02 3c 44 52 04 24 | ...0p.D....<DR.$
+d0000290 00 11 45 94 27 00 a4 14-41 4d 04 24 02 11 45 94 | ..E.'...AM.$..E.
+d00002a0 24 00 a4 14 50 41 04 24-04 11 45 94 21 00 a4 14 | $...PA.$..E.!...
+d00002b0 52 31 04 24 06 11 45 94-1e 00 a4 14 00 00 00 00 | R1.$..E.........
+d00002c0 bc 90 0b 08 ff 2f 07 3c-01 00 48 90 00 00 49 90 | ...../.<..H...I.
+d00002d0 00 42 08 00 25 40 09 01-21 40 88 00 02 00 49 90 | .B..%@..!@....I.
+d00002e0 03 00 42 24 00 00 09 a1-c2 90 0b 08 08 11 c8 94 | ..B$............
+d00002f0 0c 11 42 24 00 ef e7 34-00 d0 06 3c 03 00 05 24 | ..B$...4...<...$
+d0000300 00 b0 04 3c 08 11 c8 94-21 48 47 00 02 40 05 71 | ...<....!HG..@.q
+d0000310 0c 00 08 25 2b 40 28 01-eb ff 00 15 00 00 00 00 | ...%+@(.........
+d0000320 c8 00 02 24 00 00 00 00-ff ff 42 24 fd ff 40 14 | ...$......B$..@.
+d0000330 00 00 00 00 00 b0 02 3c-04 00 04 24 e6 70 44 a0 | .......<...$.pD.
+d0000340 00 b0 04 3c 88 70 85 8c-01 00 a5 30 fd ff a0 10 | ...<.p.....0....
+d0000350 00 b0 02 3c c8 00 44 90-27 18 03 00 ff 00 84 30 | ...<..D.'......0
+d0000360 24 18 83 00 c8 00 43 a0-00 b0 02 3c 18 76 40 ac | $.....C....<.v@.
+d0000370 2c 01 02 24 00 00 00 00-ff ff 42 24 fd ff 40 14 | ,..$......B$..@.
+d0000380 00 00 00 00 08 00 e0 03-00 00 00 00 00 00 00 00 | ................
+d0000390 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d00003a0 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d00003b0 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d00003c0 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d00003d0 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d00003e0 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d00003f0 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d0000400 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d0000410 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d0000420 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d0000430 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d0000440 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d0000450 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d0000460 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d0000470 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d0000480 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d0000490 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d00004a0 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d00004b0 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d00004c0 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d00004d0 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d00004e0 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d00004f0 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d0000500 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d0000510 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d0000520 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d0000530 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d0000540 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d0000550 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d0000560 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d0000570 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d0000580 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d0000590 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d00005a0 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d00005b0 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d00005c0 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d00005d0 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d00005e0 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d00005f0 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+1st Rsv Blk[3]
+1 start[3]end[770]
+rsvBlkOffset= [3]
+nrFwBlks    = [0]
+fwStartBlk  = [771]
+nrFwBlks2   = [0]
+fwStartBlk2 = [771]
+nrRsvA      = [640]
+nrRsvB      = [128]
+nrRsvC      = [0]
+nrRsvBlks   = [768]
+checkSum    = [64768]
+tolblk      = [4096]
+SPI header programming success...
+SPI ID:C22018
+RES:17
+fwAtLowerBlk=0
+spiDetect 1333 rsvSize=0x18, page=0 nrBlks:0
+spiDev.blkSize 0x1000,0xc,0x4
+spiDev.pageSize 0x100
+Find Dram para set SPI Bus as 4 bit
+Find Dram para set SPI Freq as 7
+rsvBlkA      0x280
+rsvBlkB      0x80
+rsvBlkC      0x0
+nrRsvBlks       0x300
+[spiRsvHeaderParse][L915]nrRsvBlks=771, nrBlks=3325
+rsvBlkOffset 0x3
+nrRsvBlks    0x300
+checkSum     0xfd00
+fwStartBlk   0x303
+nrFwBlocks   0x0
+rsvRawA      0x0
+rsvRawB      0x0
+nrBlks       0xcfd
+tolBlk       0x1000
+spiDetect 1379 megaByte=0xc, nrSects=26600
+mount C:
+mount fail!
+vfsMount(426): errcode=ffffff0c
+err libspi/spi_core.c 1109
+mount A:
+no MBR
+No Fragment
+format A:(FAT)
+mount A:
+no MBR
+No Fragment
+mount B:
+no MBR
+No Fragment
+format B:(FAT)
+mount B:
+no MBR
+No Fragment
+SPI ID:C22018
+RES:17
+fwAtLowerBlk=0
+spiDetect 1333 rsvSize=0x18, page=0 nrBlks:0
+spiDev.blkSize 0x1000,0xc,0x4
+spiDev.pageSize 0x100
+Find Dram para set SPI Bus as 4 bit
+Find Dram para set SPI Freq as 7
+rsvBlkA      0x280
+rsvBlkB      0x80
+rsvBlkC      0x0
+nrRsvBlks       0x300
+[spiRsvHeaderParse][L915]nrRsvBlks=771, nrBlks=3325
+rsvBlkOffset 0x3
+nrRsvBlks    0x300
+checkSum     0xfd00
+fwStartBlk   0x303
+nrFwBlocks   0x0
+rsvRawA      0x0
+rsvRawB      0x0
+nrBlks       0xcfd
+tolBlk       0x1000
+spiDetect 1379 megaByte=0xc, nrSects=26600
+mount C:
+mount fail!
+vfsMount(426): errcode=ffffff0c
+err libspi/spi_core.c 1109
+[CardUpdate]update res files.
+----wr : 060916:build<sign>a?,  0x96920, 0x280000
+        wr: 0xa1235340, 0x280000, 0
+mount A:
+no MBR
+No Fragment
+[CardUpdate]write A completed.
+----imgSz=0x280000, diskSz=0x8ed, 0x11da00
+        cmpTotal=0x11da00
+                rd nand sect: 0, 0x0, 0x8ed -> 0xa0f9e9a0
+                cmp : 0xa1235340, 0xa0f9e9a0, 0x11da00
+----wr : 060916:build<sign>b?,  0x316920, 0x80000
+        wr: 0xa14b5340, 0x80000, 0
+mount B:
+no MBR
+No Fragment
+[CardUpdate]write B completed.
+----imgSz=0x80000, diskSz=0x2e, 0x5c00
+        cmpTotal=0x5c00
+                rd nand sect: 7, 0x0, 0x2e -> 0xa06b1ce0
+                cmp : 0xa14b5340, 0xa06b1ce0, 0x5c00
+[CardUpdate]update Firmware.
+----wr FW: 0x396920, 0x425200
+        wr: 0xa1535340, 0x425200, 0, 1
+forceToFmt=1,fw0=1062,fw1=0
+!!!![checkDramPara] 0xd0000200 - DRAMPAR1
+Param Error!
+..dump[d0000200]sz0x400
+d0000200 00 00 00 00 01 00 a8 24-1b 00 e8 00 f4 01 00 01 | .......$........
+d0000210 12 40 00 00 ff ff 07 25-04 11 47 ac 5f ea 07 34 | .@.....%..G._..4
+d0000220 21 30 c7 00 60 ea 08 34-1b 00 c8 00 f4 01 00 01 | !0..`..4........
+d0000230 12 30 00 00 ff ff c6 24-ff 00 c6 30 8a 00 46 a0 | .0.....$...0..F.
+d0000240 00 00 87 8c 58 4d a6 24-21 30 e6 00 59 4d a5 24 | ....XM.$!0..YM.$
+d0000250 1b 00 c5 00 f4 01 a0 00-12 28 00 00 ff ff a5 24 | .........(.....$
+d0000260 ff 00 a5 30 8b 00 45 a0-72 00 46 90 11 00 85 90 | ...0..E.r.F.....
+d0000270 fe 00 c6 30 25 20 c5 00-72 00 44 a0 70 00 44 90 | ...0% ..r.D.p.D.
+d0000280 fe 00 84 30 70 00 44 a0-00 d0 02 3c 44 52 04 24 | ...0p.D....<DR.$
+d0000290 00 11 45 94 27 00 a4 14-41 4d 04 24 02 11 45 94 | ..E.'...AM.$..E.
+d00002a0 24 00 a4 14 50 41 04 24-04 11 45 94 21 00 a4 14 | $...PA.$..E.!...
+d00002b0 52 31 04 24 06 11 45 94-1e 00 a4 14 00 00 00 00 | R1.$..E.........
+d00002c0 bc 90 0b 08 ff 2f 07 3c-01 00 48 90 00 00 49 90 | ...../.<..H...I.
+d00002d0 00 42 08 00 25 40 09 01-21 40 88 00 02 00 49 90 | .B..%@..!@....I.
+d00002e0 03 00 42 24 00 00 09 a1-c2 90 0b 08 08 11 c8 94 | ..B$............
+d00002f0 0c 11 42 24 00 ef e7 34-00 d0 06 3c 03 00 05 24 | ..B$...4...<...$
+d0000300 00 b0 04 3c 08 11 c8 94-21 48 47 00 02 40 05 71 | ...<....!HG..@.q
+d0000310 0c 00 08 25 2b 40 28 01-eb ff 00 15 00 00 00 00 | ...%+@(.........
+d0000320 c8 00 02 24 00 00 00 00-ff ff 42 24 fd ff 40 14 | ...$......B$..@.
+d0000330 00 00 00 00 00 b0 02 3c-04 00 04 24 e6 70 44 a0 | .......<...$.pD.
+d0000340 00 b0 04 3c 88 70 85 8c-01 00 a5 30 fd ff a0 10 | ...<.p.....0....
+d0000350 00 b0 02 3c c8 00 44 90-27 18 03 00 ff 00 84 30 | ...<..D.'......0
+d0000360 24 18 83 00 c8 00 43 a0-00 b0 02 3c 18 76 40 ac | $.....C....<.v@.
+d0000370 2c 01 02 24 00 00 00 00-ff ff 42 24 fd ff 40 14 | ,..$......B$..@.
+d0000380 00 00 00 00 08 00 e0 03-00 00 00 00 00 00 00 00 | ................
+d0000390 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d00003a0 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d00003b0 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d00003c0 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d00003d0 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d00003e0 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d00003f0 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d0000400 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d0000410 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d0000420 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d0000430 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d0000440 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d0000450 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d0000460 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d0000470 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d0000480 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d0000490 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d00004a0 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d00004b0 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d00004c0 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d00004d0 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d00004e0 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d00004f0 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d0000500 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d0000510 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d0000520 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d0000530 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d0000540 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d0000550 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d0000560 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d0000570 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d0000580 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d0000590 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d00005a0 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d00005b0 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d00005c0 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d00005d0 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d00005e0 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+d00005f0 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+nrFwBlks=1062,nrFwBlks2=0
+1st Rsv Blk[3]
+rsvBlkOffset [3]
+currBlk[768]
+2 start[771]end[1832]
+Header write: addr=0, wrPage=24
+SPI ID:C22018
+RES:17
+fwAtLowerBlk=0
+spiDetect 1333 rsvSize=0x18, page=0 nrBlks:0
+spiDev.blkSize 0x1000,0xc,0x4
+spiDev.pageSize 0x100
+Find Dram para set SPI Bus as 4 bit
+Find Dram para set SPI Freq as 7
+rsvBlkA      0x280
+rsvBlkB      0x80
+rsvBlkC      0x0
+nrRsvBlks       0x726
+[spiRsvHeaderParse][L915]nrRsvBlks=1833, nrBlks=2263
+rsvBlkOffset 0x3
+nrRsvBlks    0x726
+checkSum     0xf8da
+fwStartBlk   0x303
+nrFwBlocks   0x426
+rsvRawA      0x0
+rsvRawB      0x0
+nrBlks       0x8d7
+tolBlk       0x1000
+spiDetect 1379 megaByte=0x8, nrSects=18104
+        verify: 0xa1535340, 0x425200, 0x0
+[CardUpdate]verify fw success.
+[CardUpdate]update Dram Parameter.
+[CardUpdate]Dram parameter size : 874
+!!!![checkDramPara] 0xa195a800 - DRAMPAR1
+Param CheckSum OK!
+Param CheckSum OK!
+Param CheckSum OK!
+Param CheckSum OK!
+Param Set: 4, len=0x36a
+Dram Para : Same !!
+[CardUpdate]verify dram param success.
+SPI ID:C22018
+RES:17
+fwAtLowerBlk=0
+spiDetect 1333 rsvSize=0x18, page=0 nrBlks:0
+spiDev.blkSize 0x1000,0xc,0x4
+spiDev.pageSize 0x100
+Find Dram para set SPI Bus as 4 bit
+Find Dram para set SPI Freq as 7
+rsvBlkA      0x280
+rsvBlkB      0x80
+rsvBlkC      0x0
+nrRsvBlks       0x726
+[spiRsvHeaderParse][L915]nrRsvBlks=1833, nrBlks=2263
+rsvBlkOffset 0x3
+nrRsvBlks    0x726
+checkSum     0xf8da
+fwStartBlk   0x303
+nrFwBlocks   0x426
+rsvRawA      0x0
+rsvRawB      0x0
+nrBlks       0x8d7
+tolBlk       0x1000
+spiDetect 1379 megaByte=0x8, nrSects=18104
+mount C:
+No Fragment
+vfsOpen(629): errcode=ffffffff
+vfsOpen(629): errcode=ffffffff
+vfsOpen(629): errcode=ffffffff
+vfsOpen(629): errcode=ffffffff
+vfsOpen(629): errcode=ffffffff
+A:\RO_RES\VOLTCALIB.BIN already exist, set size to 0
+***** Card ISP complete! *****
+HceCommon_RestoreDefaultColdItem
+reboot for changed power switch state.
+HCE_MODE_MENU destr
+Write LEDOff: 1
+chg mode already in IDLE or not thu IDLE
+HCE_MODE_OFF const start
+Read MCU Ver: 0x3b[1]
+Read MCU SubVer: 0x1f[1]
+MCU CurMode:1
+Gen Ctrl 1: 0x4c / 0x4c
+Gen Ctrl 2: 0xa0 / 0xa0
+PreMCU=4,CurMCU=1
+cold.bin store 172/172 <71ms>
+HcePower_CommonPowerOff 66712 ms
+¦¦¦¦¦¦¦x<¦¦¦¦¦¦¦¦SPI
+c22018
+bus 4
+OK,177261
+mount ram
+Read GenSt1: 0x7[1]
+Read GenSt2: 0x40[1]
+HCE_MODE_INITIALIZATION destr
+chg mode already in IDLE or not thu IDLE
+HCE_MODE_AUTO const start
+MCUApp_SetPIRTrigger 0x80
+SD INSERT - (2)
+UHS-I SD Card
+switch 1.8V
+LDO = c
+SD Switch 1.8V OK!
+CID:03 53 44 53 53 31 36 47 80 85 8b 15 c8 01 02 fb
+Get RCA AA AA
+CSD:40 0e 00 32 5b 59 00 00 76 b2 7f 80 0a 40 40 13
+Identify SD
+capability=15193 MB
+CMD23 support:1
+CMD20 support:1
+SDHC
+SPEED_CLASS=4
+Set 50MHz
+switch to DDR50 Mode
+sd patch = 0, 0, 0
+UHS-I SD Card DDR Mode Enable
+mount D:
+1 Fragment (<=512KB:0, >512KB:1)
+MOUNT COMPLETE
+vfsOpen(629): errcode=ffffffef
+WARNING DcfRootDirAddrGet 503
+
+Dcf init proc end
+SP5k_MSG_DCF_INIT_START
+estFileSize=4736 Res=2, Cluster Size=32, FreeK=15497568
+Mount time: (571) 677 ms
+HceIQ_CheckNightMode : Value = 29 / 15 ==> N[0]
+CurMode: 0x88
+sp5kmode already in 0x88
+AWB_MODE_Auto
+[AWB] AWB_PARA_UPDTREFE_FRAME_NUM  REMOVE!
+CurMode: 0x88
+Snap Buffer used=25078784 bytes(rgb 8358912, yuv 16719872), num 2 4, addr 0xa6815380, rawBit 16, vlc 2
+vidDistEnterFunc 0_0_0
+halMeOutBufBackupInit a06b7ee0 480
+vidDistStartFunc 0(1)
+vid algo set sensorFps 30/1
+vidDistStartFunc mVidDistEn 1
+[R] edge win thr: 100
+go to MENU
+HCE_MODE_AUTO destr
+GO IDLE !!!!!!!!!!
+CurMode: 0x11
+vidDistExitFunc 0_0_0
+vidDistStopFunc mVidDistEn 0
+GO ChgModeDesed_WaitStandby !!!!!!!!!!
+HCE_MODE_MENU const start
+MCUApp_SetPIRTrigger 0x0
+CurMode: 0x88
+sp5kmode already in 0x88
+cold.bin store 172/172 <72ms>
+HCE_MODE_MENU destr
+Write LEDOff: 1
+chg mode already in IDLE or not thu IDLE
+HCE_MODE_AUTO const start
+MCUApp_SetPIRTrigger 0x80
+estFileSize=31360 Res=2, Cluster Size=32, FreeK=15497568
+Mount time: (0) 5 ms
+HceIQ_CheckNightMode : Value = 24 / 15 ==> N[0]
+CurMode: 0x88
+sp5kmode already in 0x88
+AWB_MODE_Auto
+AWB_PARA_INTERVAL_FRAME 2
+[AWB] AWB_PARA_UPDTREFE_FRAME_NUM  REMOVE!
+CurMode: 0x88
+vidDistEnterFunc 1_0_0
+cur 0 next 1
+halMeOutBufBackupInit a06a8860 480
+vidDistStartFunc 0(1)
+vid algo set sensorFps 60/1
+vidDistStartFunc mVidDistEn 1
+HceTmr_AutoOffHdl HceTmr_AutoOffHdl : 10 / 30(1) / 90(0)
+HceTmr_AutoOffHdl HceTmr_AutoOffHdl : 20 / 30(1) / 90(0)
+HceTmr_AutoOffHdl HceTmr_AutoOffHdl : 30 / 30(1) / 90(0)
+HceIQ_CheckNightMode : Value = 138 / 15 ==> N[0]
+ModeAuto_DoCaptureEvent Go to CAP_VIDEO
+[AWB] AWB_PARA_UPDTREFE_FRAME_NUM  REMOVE!
+CurMode: 0x21
+vidDistExitFunc 1_8_0
+cur 1 next 1
+vidDistStopFunc mVidDistEn 0
+vidDistEnterFunc 2_7_0
+cur 0 next 1
+halMeOutBufBackupInit a06a8860 480
+vidDistStartFunc 0(1)
+vid algo set sensorFps 60/1
+vidDistStartFunc mVidDistEn 1
+H264 id=0, brcType=CBR
+rec, freq:44100, bits:16, ch:1, bps:705600, a_codec:1, encUsed:0, hasAdts:0
+[line:1772] codecId=0, fps=0x3c(60/1),(60/1)
+sensor frm intval:16691 us
+spaceThr[4096]
+File : D:\DCIM\100_BTCF\IMG_0005.MP4
+endClipObj.off 0
+Target fps 60/1, bitrate 24000000
+[h264EncSpsPpsInit 1881]len:24, size:128
+s 0 latch_frame 0 diff_frame 3
+fpvalue:450000, fps:60, base:1
+ring_size = 1569248, thd_size = 2204
+[Aud] DRC:0      SW_ALC:0
+HceTaskRecording_RecVideoWaitRec rec start: 116707 ms
+i_dts_base 0
+videoFirst ts 116657
+modify i_dts_base 116641
+videoFirst pts 116657
+HceTmr_AutoOffHdl HceTmr_AutoOffHdl : 40 / 30(0) / 90(0)
+SD write spd:7967(KB/S)
+HceTaskRecording_RecVideoRecording rec stop: 126714 ms
+CurMode: 0x23
+i_stream=0
+Delete stream: p_input=0xa06b82e0
+i_stream=1
+Delete stream: p_input=0xa06b9a60
+matrix[0]: 00010000
+matrix[1]: 00000000
+matrix[2]: 00000000
+matrix[3]: 00000000
+matrix[4]: 00010000
+matrix[5]: 00000000
+matrix[6]: 00000000
+matrix[7]: 00000000
+matrix[8]: 40000000
+drop video 0 = 0, drop audio = 0, elapse = 10046 ret = 0
+vidDistExitFunc 2_7_0
+cur 1 next 1
+vidDistStopFunc mVidDistEn 0
+vidDistExitFunc 2_7_0
+vidDistEnterFunc 1_8_0
+cur 0 next 1
+halMeOutBufBackupInit a0690660 480
+vidDistStartFunc 0(1)
+vid algo set sensorFps 60/1
+vidDistStartFunc mVidDistEn 1
+estFileSize=31360 Res=2, Cluster Size=32, FreeK=15475584
+HceIQ_CheckNightMode : Value = 0 / 15 ==> N[1]
+ModeAuto_DoCaptureEvent Go to CAP_VIDEO
+[AWB] AWB_PARA_UPDTREFE_FRAME_NUM  REMOVE!
+CurMode: 0x21
+vidDistExitFunc 1_8_0
+cur 1 next 1
+vidDistStopFunc mVidDistEn 0
+vidDistEnterFunc 2_7_0
+cur 0 next 1
+halMeOutBufBackupInit a06906e0 480
+vidDistStartFunc 0(1)
+vid algo set sensorFps 60/1
+vidDistStartFunc mVidDistEn 1
+H264 id=0, brcType=CBR
+rec, freq:44100, bits:16, ch:1, bps:705600, a_codec:1, encUsed:0, hasAdts:0
+[line:1772] codecId=0, fps=0x3c(60/1),(60/1)
+sensor frm intval:16690 us
+spaceThr[4096]
+File : D:\DCIM\100_BTCF\IMG_0006.MP4
+endClipObj.off 0
+Target fps 60/1, bitrate 24000000
+[h264EncSpsPpsInit 1881]len:24, size:128
+s 0 latch_frame 0 diff_frame 3
+fpvalue:450000, fps:60, base:1
+ring_size = 1569248, thd_size = 2204
+[Aud] DRC:0      SW_ALC:0
+HceTaskRecording_RecVideoWaitRec rec start: 131028 ms
+i_dts_base 0
+videoFirst ts 130978
+modify i_dts_base 130962
+videoFirst pts 130978
+HceTmr_AutoOffHdl HceTmr_AutoOffHdl : 50 / 30(0) / 90(0)
+HceTaskRecording_RecVideoRecording rec stop: 141035 ms
+CurMode: 0x23
+i_stream=0
+Delete stream: p_input=0xa06aeee0
+i_stream=1
+Delete stream: p_input=0xa06b1fe0
+matrix[0]: 00010000
+matrix[1]: 00000000
+matrix[2]: 00000000
+matrix[3]: 00000000
+matrix[4]: 00010000
+matrix[5]: 00000000
+matrix[6]: 00000000
+matrix[7]: 00000000
+matrix[8]: 40000000
+drop video 0 = 0, drop audio = 0, elapse = 10046 ret = 0
+vidDistExitFunc 2_7_0
+cur 1 next 1
+vidDistStopFunc mVidDistEn 0
+vidDistExitFunc 2_7_0
+vidDistEnterFunc 1_8_0
+cur 0 next 1
+halMeOutBufBackupInit a0690460 480
+vidDistStartFunc 0(1)
+vid algo set sensorFps 60/1
+vidDistStartFunc mVidDistEn 1
+estFileSize=31360 Res=2, Cluster Size=32, FreeK=15459680
+HceTmr_AutoOffHdl HceTmr_AutoOffHdl : 60 / 30(0) / 90(0)
+HceIQ_CheckNightMode : Value = 1 / 40 ==> N[1]
+ModeAuto_DoCaptureEvent Go to CAP_VIDEO
+[AWB] AWB_PARA_UPDTREFE_FRAME_NUM  REMOVE!
+CurMode: 0x21
+vidDistExitFunc 1_8_0
+cur 1 next 1
+vidDistStopFunc mVidDistEn 0
+vidDistEnterFunc 2_7_0
+cur 0 next 1
+halMeOutBufBackupInit a06904e0 480
+vidDistStartFunc 0(1)
+vid algo set sensorFps 60/1
+vidDistStartFunc mVidDistEn 1
+H264 id=0, brcType=CBR
+rec, freq:44100, bits:16, ch:1, bps:705600, a_codec:1, encUsed:0, hasAdts:0
+[line:1772] codecId=0, fps=0x3c(60/1),(60/1)
+sensor frm intval:16691 us
+spaceThr[4096]
+File : D:\DCIM\100_BTCF\IMG_0007.MP4
+endClipObj.off 0
+Target fps 60/1, bitrate 24000000
+[h264EncSpsPpsInit 1881]len:24, size:128
+s 0 latch_frame 0 diff_frame 3
+fpvalue:450000, fps:60, base:1
+ring_size = 1569248, thd_size = 2204
+[Aud] DRC:0      SW_ALC:0
+HceTaskRecording_RecVideoWaitRec rec start: 149237 ms
+i_dts_base 0
+videoFirst ts 149187
+modify i_dts_base 149171
+videoFirst pts 149187
+HceTmr_AutoOffHdl HceTmr_AutoOffHdl : 70 / 30(0) / 90(0)
+HceTaskRecording_RecVideoRecording rec stop: 159242 ms
+CurMode: 0x23
+i_stream=0
+Delete stream: p_input=0xa06af460
+i_stream=1
+Delete stream: p_input=0xa06b1fe0
+matrix[0]: 00010000
+matrix[1]: 00000000
+matrix[2]: 00000000
+matrix[3]: 00000000
+matrix[4]: 00010000
+matrix[5]: 00000000
+matrix[6]: 00000000
+matrix[7]: 00000000
+matrix[8]: 40000000
+drop video 0 = 0, drop audio = 0, elapse = 10046 ret = 0
+vidDistExitFunc 2_7_0
+cur 1 next 1
+vidDistStopFunc mVidDistEn 0
+vidDistExitFunc 2_7_0
+vidDistEnterFunc 1_8_0
+cur 0 next 1
+halMeOutBufBackupInit a0690460 480
+vidDistStartFunc 0(1)
+vid algo set sensorFps 60/1
+vidDistStartFunc mVidDistEn 1
+estFileSize=31360 Res=2, Cluster Size=32, FreeK=15445152
+HceIQ_CheckNightMode : Value = 1 / 40 ==> N[1]
+ModeAuto_DoCaptureEvent Go to CAP_VIDEO
+[AWB] AWB_PARA_UPDTREFE_FRAME_NUM  REMOVE!
+CurMode: 0x21
+vidDistExitFunc 1_8_0
+cur 1 next 1
+vidDistStopFunc mVidDistEn 0
+vidDistEnterFunc 2_7_0
+cur 0 next 1
+halMeOutBufBackupInit a06904e0 480
+vidDistStartFunc 0(1)
+vid algo set sensorFps 60/1
+vidDistStartFunc mVidDistEn 1
+H264 id=0, brcType=CBR
+rec, freq:44100, bits:16, ch:1, bps:705600, a_codec:1, encUsed:0, hasAdts:0
+[line:1772] codecId=0, fps=0x3c(60/1),(60/1)
+sensor frm intval:16691 us
+spaceThr[4096]
+File : D:\DCIM\100_BTCF\IMG_0008.MP4
+endClipObj.off 0
+Target fps 60/1, bitrate 24000000
+[h264EncSpsPpsInit 1881]len:24, size:128
+s 0 latch_frame 0 diff_frame 3
+fpvalue:450000, fps:60, base:1
+ring_size = 1569248, thd_size = 2204
+[Aud] DRC:0      SW_ALC:0
+HceTmr_AutoOffHdl HceTmr_AutoOffHdl : 80 / 30(0) / 90(0)
+HceTaskRecording_RecVideoWaitRec rec start: 162261 ms
+i_dts_base 0
+videoFirst ts 162206
+modify i_dts_base 162190
+videoFirst pts 162206
+HceTmr_AutoOffHdl HceTmr_AutoOffHdl : 90 / 30(0) / 90(0)
+HceTmr_AutoOffHdl IDLE OFF !!!
+HCE_MODE_AUTO destr
+HceTaskRecording_RecVideoRecording rec stop: 172264 ms
+CurMode: 0x23
+i_stream=0
+Delete stream: p_input=0xa06af360
+i_stream=1
+Delete stream: p_input=0xa06b1d60
+matrix[0]: 00010000
+matrix[1]: 00000000
+matrix[2]: 00000000
+matrix[3]: 00000000
+matrix[4]: 00010000
+matrix[5]: 00000000
+matrix[6]: 00000000
+matrix[7]: 00000000
+matrix[8]: 40000000
+drop video 0 = 0, drop audio = 0, elapse = 10046 ret = 0
+vidDistExitFunc 2_7_0
+cur 1 next 1
+vidDistStopFunc mVidDistEn 0
+vidDistExitFunc 2_7_0
+vidDistEnterFunc 1_8_0
+cur 0 next 1
+halMeOutBufBackupInit a0690460 480
+vidDistStartFunc 0(1)
+vid algo set sensorFps 60/1
+vidDistStartFunc mVidDistEn 1
+estFileSize=31360 Res=2, Cluster Size=32, FreeK=15430304
+GO IDLE !!!!!!!!!!
+CurMode: 0x21
+vidDistExitFunc 1_0_0
+cur 1 next 1
+vidDistStopFunc mVidDistEn 0
+GO ChgModeDesed_WaitStandby !!!!!!!!!!
+HCE_MODE_OFF const start
+Read MCU Ver: 0x3b[1]
+Read MCU SubVer: 0x1f[1]
+MCU CurMode:2
+Gen Ctrl 1: 0xf / 0xf
+Gen Ctrl 2: 0xb6 / 0xb6
+Pressure trend Sampled [2926] @ 1199
+PreMCU=2,CurMCU=2
+cold.bin store 172/172 <69ms>
+HcePower_CommonPowerOff 172918 ms
+SPI
+c22018
+bus 4
+OK,177068
+mount ram
+Read GenSt1: 0x7[1]
+Read GenSt2: 0x1[1]
+HceTaskRecording_RecVideoToRec set pre rec: 494 ms
+HceTaskRecording_RecVideoWaitRec rec start: 541 ms
+Mount time: (575) 666 ms
+HceTmr_AutoOffHdl HceTmr_AutoOffHdl : 10 / 30(0) / 90(0)
+HceTaskRecording_RecVideoRecording rec stop: 10595 ms
+HceTaskRecording_RecVideoWaitRec rec start: 11973 ms
+HceTmr_AutoOffHdl HceTmr_AutoOffHdl : 20 / 30(0) / 90(0)
+HceTaskRecording_RecVideoRecording rec stop: 21985 ms
+HceTaskRecording_RecVideoWaitRec rec start: 22789 ms
+HceTmr_AutoOffHdl HceTmr_AutoOffHdl : 30 / 30(0) / 90(0)
+HceTaskRecording_RecVideoRecording rec stop: 32800 ms
+HceTaskRecording_RecVideoWaitRec rec start: 33571 ms
+HceTmr_AutoOffHdl HceTmr_AutoOffHdl : 40 / 30(0) / 90(0)
+HceTaskRecording_RecVideoRecording rec stop: 43583 ms
+HceTaskRecording_RecVideoWaitRec rec start: 45355 ms
+HceTmr_AutoOffHdl HceTmr_AutoOffHdl : 50 / 30(0) / 90(0)
+HceTaskRecording_RecVideoRecording rec stop: 55366 ms
+HceTaskRecording_RecVideoWaitRec rec start: 58106 ms
+HceTmr_AutoOffHdl HceTmr_AutoOffHdl : 60 / 30(0) / 90(0)
+HceTaskRecording_RecVideoRecording rec stop: 68118 ms
+HceTmr_AutoOffHdl HceTmr_AutoOffHdl : 70 / 30(0) / 90(0)
+Read MCU Ver: 0x3b[1]
+Read MCU SubVer: 0x1f[1]
+MCU CurMode:2
+Gen Ctrl 1: 0xf / 0xf
+Gen Ctrl 2: 0xb6 / 0xb6
+cold.bin store 172/172 <71ms>
+HcePower_CommonPowerOff 72190 ms
+¦¦SPI
+c22018
+bus 4
+OK,177271
+mount ram
+Read GenSt1: 0x7[1]
+Read GenSt2: 0x1[1]
+HceTaskRecording_RecVideoToRec set pre rec: 522 ms
+HceTaskRecording_RecVideoWaitRec rec start: 574 ms
+Mount time: (578) 674 ms
+HceTmr_AutoOffHdl HceTmr_AutoOffHdl : 10 / 30(0) / 90(0)
+HceTaskRecording_RecVideoRecording rec stop: 10625 ms
+HceTaskRecording_RecVideoWaitRec rec start: 11856 ms
+HceTmr_AutoOffHdl HceTmr_AutoOffHdl : 20 / 30(0) / 90(0)
+HceTaskRecording_RecVideoRecording rec stop: 21878 ms
+HceTaskRecording_RecVideoWaitRec rec start: 23607 ms
+HceTmr_AutoOffHdl HceTmr_AutoOffHdl : 30 / 30(0) / 90(0)
+HceTaskRecording_RecVideoRecording rec stop: 33628 ms
+HceTaskRecording_RecVideoWaitRec rec start: 35390 ms
+HceTmr_AutoOffHdl HceTmr_AutoOffHdl : 40 / 30(0) / 90(0)
+HceTaskRecording_RecVideoRecording rec stop: 45412 ms
+HceTaskRecording_RecVideoWaitRec rec start: 46273 ms
+HceTmr_AutoOffHdl HceTmr_AutoOffHdl : 50 / 30(0) / 90(0)
+HceTaskRecording_RecVideoRecording rec stop: 56294 ms
+HceTaskRecording_RecVideoWaitRec rec start: 58274 ms
+HceTmr_AutoOffHdl HceTmr_AutoOffHdl : 60 / 30(0) / 90(0)
+HceTaskRecording_RecVideoRecording rec stop: 68295 ms
+HceTaskRecording_RecVideoWaitRec rec start: 69923 ms
+HceTmr_AutoOffHdl HceTmr_AutoOffHdl : 70 / 30(0) / 90(0)
+MCUSpi_WriteNPacketByManualPWM (1) crc error!!! 0x1f - 0xa6
+MCUApp_ResetPIRTrigger 2 ERR: MCUApp_ResetPIRTrigger - MCU write data failed.
+
+HceTaskRecording_RecVideoRecording rec stop: 79873 ms
+Read MCU Ver: 0x3b[1]
+Read MCU SubVer: 0x1f[1]
+MCU CurMode:1
+Gen Ctrl 1: 0xc / 0xc
+Gen Ctrl 2: 0xa0 / 0xa0
+cold.bin store 172/172 <71ms>
+HcePower_CommonPowerOff 80370 ms 

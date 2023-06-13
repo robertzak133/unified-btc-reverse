@@ -1,0 +1,35 @@
+/* Command File for Gcc Loader */
+/*    Created automatically by Ghidra.UnifiedCreateLdScript.java */
+/*    2023-02-08 04:20:48 */
+
+/* Symbol definitions */
+
+
+_gp = 0x803211a0;
+
+
+/* Memory */
+MEMORY {
+  entry0_ram(WXAI) : ORIGIN = 0x800dc9c4, LENGTH = 0x17b4
+  entry1_ram(WXAI) : ORIGIN = 0x8016c96c, LENGTH = 0x11b8
+  entry2_ram(WXAI) : ORIGIN = 0x80177fa0, LENGTH = 0x1058
+}
+
+/* Sections */
+SECTIONS {
+	entry0_section 0x800dc9c4:
+	{
+		entry0.o
+		*
+	} > entry0_ram
+	entry1_section 0x8016c96c:
+	{
+		entry1.o
+		*
+	} > entry1_ram
+	entry2_section 0x80177fa0:
+	{
+		entry2.o
+		* 
+	} > entry2_ram
+}

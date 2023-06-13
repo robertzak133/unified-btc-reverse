@@ -1,0 +1,10 @@
+//
+// extend-event-SD-card.c
+// Per request from James McConnell
+// Keep the SD card powered on for some time after the photo/video has been taken
+
+
+#define EVSD_SD_CARD_DELAY 30000   // 30.000 Seconds at times 1000
+#define DEBUG
+
+void evsd_check_remaining_sd_capacity(void);

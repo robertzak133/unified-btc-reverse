@@ -1,0 +1,18 @@
+//
+// Include file for ir-flash-menu.c
+
+// typedefs, constants, and function prototypes for IR-flash related
+//     feature enhancement.  E.g.
+//     2023-03-17: "Off" menu setting;  No IR LED
+
+//
+
+
+typedef enum enum_ir_led_power_menu_items {
+  e_economy = 0,
+  e_long_range,
+  e_blur_reduction,
+  e_off,
+  e_invalid
+} enum_ir_led_power_menu_items;
+

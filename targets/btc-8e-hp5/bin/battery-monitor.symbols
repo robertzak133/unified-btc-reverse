@@ -1,0 +1,165 @@
+
+battery-monitor.o:     file format elf32-tradlittlemips
+
+SYMBOL TABLE:
+00000000 l    df *ABS*	00000000 battery-monitor.c
+00000000 l    d  .text	00000000 .text
+00000000 l    d  .data	00000000 .data
+00000000 l    d  .bss	00000000 .bss
+00000000 l    d  .mdebug.abi32	00000000 .mdebug.abi32
+00000000 l    d  .rodata.str1.4	00000000 .rodata.str1.4
+00000000 l    d  .rodata	00000000 .rodata
+00000000 l       .rodata.str1.4	00000000 $LC4
+0000004c l       .rodata.str1.4	00000000 $LC5
+000000d4 l       .rodata.str1.4	00000000 $LC6
+00000120 l       .rodata.str1.4	00000000 $LC7
+00000170 l       .rodata.str1.4	00000000 $LC8
+000001c4 l       .rodata.str1.4	00000000 $LC9
+00000204 l       .rodata.str1.4	00000000 $LC10
+0000026c l       .rodata.str1.4	00000000 $LC11
+000002b4 l       .rodata.str1.4	00000000 $LC12
+00000310 l       .rodata.str1.4	00000000 $LC13
+00000354 l       .rodata.str1.4	00000000 $LC14
+000003cc l       .rodata.str1.4	00000000 $LC15
+00000414 l       .rodata.str1.4	00000000 $LC16
+00000474 l       .rodata.str1.4	00000000 $LC19
+00000498 l       .rodata.str1.4	00000000 $LC20
+000004c0 l       .rodata.str1.4	00000000 $LC21
+000004f4 l       .rodata.str1.4	00000000 $LC22
+00000468 l       .rodata.str1.4	00000000 $LC18
+00000528 l       .rodata.str1.4	00000000 $LC23
+0000053c l       .rodata.str1.4	00000000 $LC24
+00000568 l       .rodata.str1.4	00000000 $LC25
+00000594 l       .rodata.str1.4	00000000 $LC26
+000005c0 l       .rodata.str1.4	00000000 $LC27
+000005ec l       .rodata.str1.4	00000000 $LC28
+00000614 l       .rodata.str1.4	00000000 $LC29
+00000634 l       .rodata.str1.4	00000000 $LC30
+00000654 l       .rodata.str1.4	00000000 $LC31
+00000674 l       .rodata.str1.4	00000000 $LC32
+00000694 l       .rodata.str1.4	00000000 $LC33
+000006c0 l       .rodata.str1.4	00000000 $LC34
+000006ec l       .rodata.str1.4	00000000 $LC35
+00000718 l       .rodata.str1.4	00000000 $LC36
+0000045c l       .rodata.str1.4	00000000 $LC17
+00000744 l       .rodata.str1.4	00000000 $LC37
+00000778 l       .rodata.str1.4	00000000 $LC38
+0000077c l       .rodata.str1.4	00000000 $LC39
+000007a4 l       .rodata.str1.4	00000000 $LC40
+000007cc l       .rodata.str1.4	00000000 $LC41
+000007f4 l       .rodata.str1.4	00000000 $LC42
+0000081c l       .rodata.str1.4	00000000 $LC43
+0000083c l       .rodata.str1.4	00000000 $LC44
+0000085c l       .rodata.str1.4	00000000 $LC45
+0000087c l       .rodata.str1.4	00000000 $LC46
+000008b0 l       .rodata.str1.4	00000000 $LC47
+000008dc l       .rodata.str1.4	00000000 $LC48
+00000908 l       .rodata.str1.4	00000000 $LC49
+00000934 l       .rodata.str1.4	00000000 $LC50
+00000950 l       .rodata.str1.4	00000000 $LC51
+00000990 l       .rodata.str1.4	00000000 $LC52
+000009d8 l       .rodata.str1.4	00000000 $LC53
+000009f0 l       .rodata.str1.4	00000000 $LC54
+00000a2c l       .rodata.str1.4	00000000 $LC55
+00000a5c l       .rodata.str1.4	00000000 $LC56
+00000a7c l       .rodata.str1.4	00000000 $LC57
+00000a98 l       .rodata.str1.4	00000000 $LC58
+00000ac8 l       .rodata.str1.4	00000000 $LC59
+00000b18 l       .rodata.str1.4	00000000 $LC60
+00000bd4 l       .rodata.str1.4	00000000 $LC61
+00000b5c l       .rodata.str1.4	00000000 $LC62
+00000b94 l       .rodata.str1.4	00000000 $LC63
+00000000 l    d  .reginfo	00000000 .reginfo
+00000000 l    d  .MIPS.abiflags	00000000 .MIPS.abiflags
+00000000 l    d  .pdr	00000000 .pdr
+00000000 l    d  .comment	00000000 .comment
+00000000 l    d  .gnu.attributes	00000000 .gnu.attributes
+00000000 g     F .text	0000001c bm_off_photo_burst_hook
+00000000         *UND*	00000000 IRLedOff
+00000000         *UND*	00000000 dslr_LEDOff
+0000001c g     F .text	00000008 bm_off_photo_burst
+00000024 g     F .text	00000008 bm_HceCommon_SetCaptureImage_hook
+00000000         *UND*	00000000 HceCommon_SetCaptureImag
+0000002c g     F .text	00000064 bm_get_video_flash_intensity_color_p
+00000000         *UND*	00000000 getCameraConfigStructPtr
+00000000         *UND*	00000000 get_g_cold_item_led_power
+00000090 g     F .text	00000064 bm_get_photo_flash_intensity_color_p
+000000f4 g     F .text	00000008 bm_video_off_hook
+000000fc g     F .text	00000008 bm_off_video
+00000104 g     F .text	0000006c bm_get_initial_battery_capacity
+00000000         *UND*	00000000 set_pre_printf_state
+00000000         *UND*	00000000 tty_printf
+00000000         *UND*	00000000 check_post_printf_state_set_sio_params
+00000170 g     F .text	00000090 bm_get_current_battery_level
+00000000         *UND*	00000000 setDigitalEffectswitchdataD_table
+00000000         *UND*	00000000 get_battery_percent_from_voltage
+00000200 g     F .text	000001b4 bm_bilinear_interpolate
+000003b4 g     F .text	00000148 bm_accrue_cold_battery_energy
+00000000         *UND*	00000000 memcpy
+000004fc g     F .text	0000016c bm_increment_energy_consumed
+00000000         *UND*	00000000 get_power_supply_mode
+00000000         *UND*	00000000 get_cold_item_temperature_unit_celsius_p
+00000000         *UND*	00000000 get_temperatureForC
+00000668 g     F .text	000000c0 bm_increment_photos
+00000728 g     F .text	00000138 bm_on_photo_burst
+00000000         *UND*	00000000 dslr_LEDOn
+00000860 g     F .text	0000002c bm_RapidFirePhotos_printf_hook
+0000088c g     F .text	00000110 bm_on_photo
+0000099c g     F .text	0000009c bm_increment_video
+00000a38 g     F .text	000000fc bm_on_video
+00000000         *UND*	00000000 get_current_video_duration_in_seconds
+00000b34 g     F .text	0000001c bm_video_log_printf_hook
+00000000         *UND*	00000000 log_printf
+00000b50 g     F .text	0000006c bm_get_ui_energy
+00000bbc g     F .text	000000e8 bm_get_delta_short_time
+00000ca4 g     F .text	00000038 bm_short_to_byte_rtc_time
+00000cdc g     F .text	00000034 bm_get_byte_rtc_time
+00000000         *UND*	00000000 get_short_rtc_time
+00000d10 g     F .text	00000024 bm_hal_set_rtc_hook
+00000000         *UND*	00000000 hal_set_rtc
+00000d34 g     F .text	000000e8 bm_get_delta_byte_time
+00000e1c g     F .text	0000006c bm_seconds_to_hms
+00000e88 g     F .text	0000055c bm_fprint_battery_telemetry
+00000000         *UND*	00000000 local_sprintf
+00000000         *UND*	00000000 btc_fwrite
+00000000         *UND*	00000000 get_battery_voltage_x100
+00000000         *UND*	00000000 btc_fclose
+000013e4 g     F .text	00000454 bm_print_battery_telemetry
+00000000         *UND*	00000000 tty_printf_battery_stats
+00001838 g     F .text	00000084 bm_initialize
+000018bc g     F .text	00000028 bm_set_g_cold_item_battery_type
+00000000         *UND*	00000000 set_g_cold_item_battery_type
+000018e4 g     F .text	00000020 bm_HceCommon_RestoreDefaultColdItem_hook
+00000000         *UND*	00000000 HceCommon_RestoreDefaultColdItem
+00001904 g     F .text	000001d8 bm_StoreBatteryMonitorFile
+00000000         *UND*	00000000 get_current_operating_time_ms
+00000000         *UND*	00000000 btc_fopen
+00000000         *UND*	00000000 seekToSpecifiedFileLocation
+00000000         *UND*	00000000 positive_diff
+00001adc g     F .text	0000001c store_pressure_bm_hook
+00000000         *UND*	00000000 store_pressure_trend
+00001af8 g     F .text	00000190 bm_LoadBatteryMonitorFile
+00000000         *UND*	00000000 btc_fread
+00001c88 g     F .text	0000001c bm_Volt_Calib_Bat_hook
+00000000         *UND*	00000000 Volt_Calib_Bat
+00001ca4 g     F .text	00000088 bm_write_summary_file
+00001d2c g     F .text	00000228 bm_handleBatteryTypeMenu
+00000000         *UND*	00000000 get_g_cold_item_battery_type
+00000000         *UND*	00000000 g_menu_root
+00000000         *UND*	00000000 menu_draw_selected_item
+00000000         *UND*	00000000 ui_cursor_key_pressed_p
+00000000         *UND*	00000000 g_up_button_enable
+00000000         *UND*	00000000 g_down_button_enable
+00000000         *UND*	00000000 g_right_button_enable
+00000000         *UND*	00000000 g_left_button_enable
+00000000         *UND*	00000000 g_enter_button_enable
+00000000         *UND*	00000000 g_camera_setup_menu_item_array
+00000000         *UND*	00000000 get_next_state_from_menu_enter
+00000000         *UND*	00000000 setBatteryCalibConfig
+00000000         *UND*	00000000 set_fsm_state_absolute
+00000000         *UND*	00000000 menu_get_next_menu_selection
+00000000         *UND*	00000000 menu_redraw_items
+00000000         *UND*	00000000 g_mode_button_enable
+00000000         *UND*	00000000 get_next_state_from_menu_mode
+
+

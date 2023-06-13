@@ -1,0 +1,35 @@
+
+volume-file-naming.o:     file format elf32-tradlittlemips
+
+SYMBOL TABLE:
+00000000 l    df *ABS*	00000000 volume-file-naming.c
+00000000 l    d  .text	00000000 .text
+00000000 l    d  .data	00000000 .data
+00000000 l    d  .bss	00000000 .bss
+00000000 l    d  .mdebug.abi32	00000000 .mdebug.abi32
+00000000 l    d  .rodata.str1.4	00000000 .rodata.str1.4
+00000000 l       .rodata.str1.4	00000000 $LC0
+00000008 l       .rodata.str1.4	00000000 $LC1
+00000010 l       .rodata.str1.4	00000000 $LC2
+00000000 l    d  .reginfo	00000000 .reginfo
+00000000 l    d  .MIPS.abiflags	00000000 .MIPS.abiflags
+00000000 l    d  .pdr	00000000 .pdr
+00000000 l    d  .comment	00000000 .comment
+00000000 l    d  .gnu.attributes	00000000 .gnu.attributes
+00000000 g     F .text	00000058 wbwl_fatVolLabSet
+00000000         *UND*	00000000 get_cold_item_camera_name
+00000000         *UND*	00000000 fatVolLabSet
+00000000         *UND*	00000000 fatVolLabSet_wrapper
+00000058 g     F .text	00000104 vfn_get_dir_suffix_file_prefix_from_camera_name
+00000000         *UND*	00000000 btc_init_directory_suffix_file_prefix
+00000000         *UND*	00000000 btc_strcpy
+0000015c g     F .text	00000070 wbwl_init_directory_suffix_file_prefix
+00000000         *UND*	00000000 g_dcfapi_loaded_p
+00000000         *UND*	00000000 g_btc_init_directory_suffix_prefix_dyn
+00000000         *UND*	00000000 function_with_syscall_zero
+000001cc g     F .text	00000058 wbwl_alt_init_directory_suffix_file_prefix
+00000000         *UND*	00000000 init_directory_suffix_file_prefix
+00000224 g     F .text	0000007c wbwl_temp_file_path_sprintf
+00000000         *UND*	00000000 local_sprintf
+
+

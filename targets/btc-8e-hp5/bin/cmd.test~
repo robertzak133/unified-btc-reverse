@@ -1,0 +1,50 @@
+/* Command File for Gcc Loader */
+/*    Created automatically by Ghidra.UnifiedCreateLdScript.java */
+/*    2023-02-08 04:20:48 */
+
+/* Symbol definitions */
+   btc_strcpy = 0x80033558;
+   get_cold_item_sd_management_p = 0x800e5434;
+   g_left_button_enable = 0x8031a5a2;
+   g_ColdItemData = 0x8032d4c0;
+   get_current_video_duration_in_seconds = 0x800f2764;
+   set_fsm_state_absolute = 0x800fd4f8;
+   hal_set_rtc = 0x8005b364;
+   g_battery_type_menu = 0x803127f0;
+   get_cold_item_timelapse_frequency = 0x800e53b0;
+   g_photo_sensor_value = 0x8031a618;
+   g_menu_root = 0x8031a818;
+   g_HceTaskMenuMultiItem_fsm_function_array = 0x802cbc44;
+   positive_diff = 0x8005c7ec;
+   menu_redraw_items = 0x8010ca68;
+   draw_rectangle_wrapper = 0x800f9048;
+   tty_printf_battery_stats = 0x800db878;
+   TaskTimeLapseFSM_task13 = 0x80104edc;
+   TaskTimeLapseFSM_task12 = 0x80104f08;
+   :
+   :
+
+/* Memory */
+MEMORY {
+  Entry_0(WXAI) : ORIGIN = 0x800dc9c4, LENGTH = 0x17b4
+  Entry_1(WXAI) : ORIGIN = 0x8016c96c, LENGTH = 0x11b8
+  Entry_2(WXAI) : ORIGIN = 0x80177fa0, LENGTH = 0x1058
+}
+
+/* Sections */
+SECTIONS {
+	entry0 0x<Entry 0 Address>:
+	{
+		entry0.o
+		*
+	}
+	entry1 0x<Entry 1 Address>:
+	{
+		entry1.o
+		*
+	}
+	entry2 0x<Entry 2 Address>:
+	{
+		entry2.o
+		* 
+	}

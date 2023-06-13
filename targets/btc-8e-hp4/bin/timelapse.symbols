@@ -1,0 +1,63 @@
+
+timelapse.o:     file format elf32-tradlittlemips
+
+SYMBOL TABLE:
+00000000 l    df *ABS*	00000000 timelapse.c
+00000000 l    d  .text	00000000 .text
+00000000 l    d  .data	00000000 .data
+00000000 l    d  .bss	00000000 .bss
+00000000 l    d  .mdebug.abi32	00000000 .mdebug.abi32
+00000000 l    d  .rodata.str1.4	00000000 .rodata.str1.4
+00000000 l       .rodata.str1.4	00000000 $LC0
+00000000 l    d  .reginfo	00000000 .reginfo
+00000000 l    d  .MIPS.abiflags	00000000 .MIPS.abiflags
+00000000 l    d  .pdr	00000000 .pdr
+00000000 l    d  .comment	00000000 .comment
+00000000 l    d  .gnu.attributes	00000000 .gnu.attributes
+00000000 g     F .text	00000284 tlps_TaskTimeLapseFSM_task4
+00000000         *UND*	00000000 getCameraConfigStructPtr
+00000000         *UND*	00000000 get_current_date_time_short
+00000000         *UND*	00000000 get_tod_in_timelapse_region
+00000000         *UND*	00000000 update_timelapse_sunrise
+00000000         *UND*	00000000 update_timelapse_sunset
+00000000         *UND*	00000000 get_cold_item_timelapse_frequency
+00000000         *UND*	00000000 encoded_timelapse_frequency_to_seconds
+00000000         *UND*	00000000 get_cold_item_tod_last_photo_in_seconds
+00000000         *UND*	00000000 get_cold_item_timelapse_period
+00000000         *UND*	00000000 set_fsm_state_absolute
+00000000         *UND*	00000000 set_fsm_state_relative
+00000284 g     F .text	00000018 tlps_encoded_timelapse_frequency_to_seconds
+00000040 g     O .data	00000018 g_wbwl_timelapse_frequency_lookup_table
+0000029c g     F .text	00000018 tlps_execute_if_not_null
+00000000 g     O .data	00000040 g_wbwl_TaskTimeLapseFSM_function_array
+00000000         *UND*	00000000 execute_if_not_null
+000002b4 g     F .text	0000002c tlps_update_system_measurements
+00000000         *UND*	00000000 Volt_Calib_Bat
+00000000         *UND*	00000000 update_global_pressure_temperature
+00000000         *UND*	00000000 store_pressure_trend
+00000000         *UND*	00000000 update_timelapse_rise_set_times
+000002e0 g     F .text	000000bc tlps_TaskTimeLapseFSM_task12a
+00000000         *UND*	00000000 get_power_switch_on_p
+00000000         *UND*	00000000 HceCommon_SetCaptureImag
+00000000         *UND*	00000000 get_current_operating_time_ms
+00000000         *UND*	00000000 g_last_timelapse_time_in_ms
+00000000         *UND*	00000000 thread_sleep
+0000039c g     F .text	00000008 tlps_Pressure_sensor_getReading
+00000000         *UND*	00000000 Pressure_sensor_getReading
+00000000         *UND*	00000000 TaskTimeLapseFSM_task0
+00000000         *UND*	00000000 TaskTimeLapseFSM_task1
+00000000         *UND*	00000000 TaskTimeLapseFSM_task2
+00000000         *UND*	00000000 TaskTimeLapseFSM_task3_ae_set
+00000000         *UND*	00000000 TaskTimeLapseFSM_task5
+00000000         *UND*	00000000 TaskTimeLapseFSM_task6
+00000000         *UND*	00000000 TaskTimeLapseFSM_task7
+00000000         *UND*	00000000 TaskTimeLapseFSM_task8_CopyJPGFromRAM
+00000000         *UND*	00000000 TaskTimeLapseFSM_task9
+00000000         *UND*	00000000 TaskTimeLapseFSM_task10_WaitMountSD
+00000000         *UND*	00000000 TaskTimeLapseFSM_task11_openTLfile
+00000000         *UND*	00000000 TaskTimeLapseFSM_task12
+00000000         *UND*	00000000 TaskTimeLapseFSM_task13
+00000000         *UND*	00000000 TaskTimeLapseFSM_task14_end
+00000058 g     O .data	0000016c g_wbwl_timelapse_frequency_menu
+
+

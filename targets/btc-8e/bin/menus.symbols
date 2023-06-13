@@ -1,0 +1,62 @@
+
+menus.o:     file format elf32-tradlittlemips
+
+SYMBOL TABLE:
+00000000 l    df *ABS*	00000000 menus.c
+00000000 l    d  .text	00000000 .text
+00000000 l    d  .data	00000000 .data
+00000000 l    d  .bss	00000000 .bss
+00000000 l    d  .mdebug.abi32	00000000 .mdebug.abi32
+00000000 l    d  .reginfo	00000000 .reginfo
+00000000 l    d  .MIPS.abiflags	00000000 .MIPS.abiflags
+00000000 l    d  .pdr	00000000 .pdr
+00000000 l    d  .comment	00000000 .comment
+00000000 l    d  .gnu.attributes	00000000 .gnu.attributes
+00000000 g     F .text	00000008 menus_handleCommitUpdates_menu
+00000000         *UND*	00000000 handleCommitUpdates_menu
+00000008 g     F .text	00000034 menus_execute_if_not_null
+00000000         *UND*	00000000 g_HceTaskMenuMultiItem_fsm_function_array
+00000000         *UND*	00000000 execute_if_not_null
+00000000 g     O .data	00000018 g_wbwl_menu_handler_function_array_extensions
+0000003c g     F .text	0000001c wbwl_get_next_state_from_menu_enter
+00000018 g     O .data	000000f0 g_wbwl_camera_setup_selector_array
+00000000         *UND*	00000000 get_next_state_from_menu_enter
+00000070       O *COM*	00000004 g_ifm_ir_led_power_menu
+00000018       O *COM*	00000004 g_apt_nightmode_threshold_lookup_table
+00000070       O *COM*	00000004 g_apt_aperture_menu
+00000018       O *COM*	00000004 g_wbwl_timelapse_frequency_lookup_table
+0000016c       O *COM*	00000004 g_wbwl_timelapse_frequency_menu
+00000054       O *COM*	00000004 g_dlsr_led_enable_menu
+00000054       O *COM*	00000004 g_rtc_time_format_menu
+00000070       O *COM*	00000004 g_rtc_date_format_menu
+00000054       O *COM*	00000004 g_evsd_extended_sd_power_menu
+00000000         *UND*	00000000 evsd_handle_extended_sd_power_menu
+00000000         *UND*	00000000 rtc_handle_date_format_menu
+00000000         *UND*	00000000 rtc_handle_time_format_menu
+00000000         *UND*	00000000 dslr_handle_led_enable_menu
+00000000         *UND*	00000000 apt_handle_aperture_menu
+00000000         *UND*	00000000 g_set_date_time_menu
+00000000         *UND*	00000000 g_operation_mode_menu
+00000000         *UND*	00000000 g_photo_quality_menu
+00000000         *UND*	00000000 g_video_length_menu
+00000000         *UND*	00000000 g_video_quality_menu
+00000000         *UND*	00000000 g_photo_delay_menu
+00000000         *UND*	00000000 g_multi_shot_mode_menu
+00000000         *UND*	00000000 g_temp_unit_menu
+00000000         *UND*	00000000 g_camera_name_menu
+00000000         *UND*	00000000 g_image_data_strip_menu
+00000000         *UND*	00000000 g_motion_test_menu
+00000000         *UND*	00000000 g_pir_range_menu
+00000000         *UND*	00000000 g_battery_type_menu
+00000000         *UND*	00000000 g_trigger_speed_menu
+00000000         *UND*	00000000 g_restore_default_menu
+00000000         *UND*	00000000 g_timelapse_period_menu
+00000000         *UND*	00000000 g_delete_all_menu
+00000000         *UND*	00000000 g_smart_ir_video_menu
+00000000         *UND*	00000000 g_sd_management_menu
+00000000         *UND*	00000000 g_language_menu
+00000000         *UND*	00000000 g_capture_timer_menu
+00000000         *UND*	00000000 g_firmware_upgrade_menu
+00000108 g     O .data	00000348 g_wbwl_camera_setup_menu_item_array
+
+

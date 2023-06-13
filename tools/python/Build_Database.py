@@ -1,0 +1,126 @@
+#
+# Build_Database.py
+#
+# An enumeration of all the supported cameras and whether to build,
+#    and where to find their pieces
+
+# Multi-language Strings
+
+g_btc_7e_strings = {'ENGLISH.SST': ["SHORT RANGE",    "EXTENDED SD POWER",   "TIME FORMAT",        "24-HOUR",    "12-HOUR" ,   "DATE FORMAT", \
+                                    "MM/DD/YYYY", "DD/MM/YYYY", "YYYYMMDD", "DSLR TRIGGER",    "2 SECS", "ALL DAY/NIGHT",     "DAY THRESHOLD", "STANDARD", "LOW LIGHT", "NO LIGHT"],
+                    'ESPANOL.sst': ["ALCANCE CORTI",  "POTENCIA SD EXT.",    "FORMATO DE TIEMPO" , "24-HORA",    "12-HORA",    "FORMATO DE FECHA", \
+                                    "MM/DD/AAAA", "DD/MM/AAAA", "AAAAMMDD", "DISPARADOR DSLR", "2 SEGS", "TODO EL DIA/NOCHE", "UMBRAL DE DIA", "ESTANDAR", "LUZ BAJA", "SIN LUZ" ],
+                    'DEUTSCH.sst': ["KURZER BEREICH", "ERWEITERTE SD",       "ZEITFORMAT",         "24-STUDEN",  "12-STUDEN",  "DATUMSFORMAT", \
+                                    "MM/TT/JJJJ", "TT/MM/JJJJ", "JJJJMMTT", "DSLR-TRIGGER",    "2 SEK",  "GANZEN TAG/NACHT",  "TAGESSCHWELLE", "STANDARD", "GEDIMMTES LICHT", "KEIN LICHT"],
+                    'DUTCH.sst':   ["KORT BEREIK",    "UITGEBREID SD",       "TIJD FORMAAT",       "24-UUR",     "12-UUR",     "DATUMNOTATIE", \
+                                    "MM/DD/JJJJ", "DD/MM/JJJJ", "JJJJMMDD", "DSLR-TRIGGER",    "2 SEC.", "HELE TAG/NACHT",    "DAGDREMPEL",    "STANDAARD", "WEINIG LICHT", "GEEN LICHT"],
+                    'FRANCIS.sst': ["COURTE PORTEE",  "SD ETENDUE",          "FORMAT de L'HEURE",  "24-HUERES",  "12-HUERES",  "FORMAT DE DATE", \
+                                    "MM/JJ/AAAA", "JJ/MM/AAAA", "AAAAMMJJ", "DECLENCHEUR DSLR","2 SECS", "JOURNEE/NUIT",      "SEUIL DE JOUR", "STANDARD","LUMIERE FAIBLE", "PAS DE LUMIERE"],
+                    'ITALIANO.sst':["CORTO RAGGIO",   "POTENZA SD ESTESA",   "FORMATO ORARIO",     "24-ORE"   ,  "12-ORE",     "FORMATO DATA", \
+                                    "MM/JJ/AAAA", "JJ/MM/AAAA", "AAAAMMJJ", "TRIGGER DSLR",    "2 SEC",  "GIORNO/NOTTE",      "SOGLIA DEL GIORNO", "STANDARD", "LUCE BASSA", "SENZA LUCE"],
+                    'POLISH.sst':  ["KROTKI ZASIEG",  "ROZSZERZONA SD",      "FORMAT CZASU",       "24-GODZINY", "12-GODZINY", "FORMAT DATY", \
+                                    "MM/DD/RRRR", "DD/MM/RRRR", "RRRRMMDD", "WYZWALACZ DSLR",  "2 SEK",  "CALY DZIEN/NOC",    "PROG DNIA",  "STANDARD", "SLABE OSWIETLENIE", "BRAK SWIATLA"] }
+
+g_btc_8e_strings = g_btc_7e_strings 
+
+g_btc_7e_hp4_strings = g_btc_7e_strings
+
+g_btc_8e_hp4_strings = g_btc_7e_hp4_strings 
+
+
+g_btc_7e_hp5_strings = g_btc_7e_strings
+
+g_btc_8e_hp5_strings = g_btc_7e_hp5_strings 
+
+
+g_wbwl_btc_targets = {}
+# 7A
+g_wbwl_btc_targets['BTC-7A'] = {}
+g_wbwl_btc_targets['BTC-7A'] ['Target Directory'] = 'btc-7a'
+g_wbwl_btc_targets['BTC-7A'] ['Model'] = 'Recon Force Advantage'
+g_wbwl_btc_targets['BTC-7A'] ['EEPROM Dir'] = 'factory-baseline-I04030C'
+g_wbwl_btc_targets['BTC-7A'] ['EEPROM Filename'] = 'manufacturer-baseline-BTC-7A_I04030C.bin'
+g_wbwl_btc_targets['BTC-7A'] ['Factory BRN Dir'] = 'Baseline'
+g_wbwl_btc_targets['BTC-7A'] ['Factory BRN Filename'] = 'brnbtc70.BRN'
+g_wbwl_btc_targets['BTC-7A'] ['Carve'] = True
+g_wbwl_btc_targets['BTC-7A'] ['Build'] = True
+# 8A
+g_wbwl_btc_targets['BTC-8A'] = {}
+g_wbwl_btc_targets['BTC-8A'] ['Target Directory'] = 'btc-8a'
+g_wbwl_btc_targets['BTC-8A'] ['Model'] = 'Spec Ops Advantage'
+g_wbwl_btc_targets['BTC-8A'] ['EEPROM Dir'] = 'factory-baseline'
+g_wbwl_btc_targets['BTC-8A'] ['EEPROM Filename'] = 'Baseline-BTC-8A-EEPROM-Image.bin'
+g_wbwl_btc_targets['BTC-8A'] ['Factory BRN Dir'] = 'BTC-8A-Baseline'
+g_wbwl_btc_targets['BTC-8A'] ['Factory BRN Filename'] = 'brnbtc80.BRN'
+g_wbwl_btc_targets['BTC-8A'] ['Carve'] = True
+g_wbwl_btc_targets['BTC-8A'] ['Build'] = True
+# 7E
+g_wbwl_btc_targets['BTC-7E'] = {}
+g_wbwl_btc_targets['BTC-7E'] ['Target Directory'] = 'btc-7e'
+g_wbwl_btc_targets['BTC-7E'] ['Model'] = 'Recon Force Edge'
+g_wbwl_btc_targets['BTC-7E'] ['Strings'] = g_btc_7e_strings
+g_wbwl_btc_targets['BTC-7E'] ['LA File'] = '2023-03-01-BTC-7E-70ms'
+g_wbwl_btc_targets['BTC-7E'] ['EEPROM Dir'] = '2023-03-01-Synthesized-Baseline'
+g_wbwl_btc_targets['BTC-7E'] ['EEPROM Filename'] = '2022-03-01-BTC-7E-EEPROM-Image.bin'
+g_wbwl_btc_targets['BTC-7E'] ['Factory BRN Dir'] = 'BTC7E_2021_10_07'
+g_wbwl_btc_targets['BTC-7E'] ['Factory BRN Filename'] = 'brnbtc70.BRN'
+g_wbwl_btc_targets['BTC-7E'] ['Carve'] = True
+g_wbwl_btc_targets['BTC-7E'] ['Build'] = True
+# 8E
+g_wbwl_btc_targets['BTC-8E'] = {}
+g_wbwl_btc_targets['BTC-8E'] ['Target Directory'] = 'btc-8e'
+g_wbwl_btc_targets['BTC-8E'] ['Model'] = 'Spec Ops Edge'
+g_wbwl_btc_targets['BTC-8E'] ['Strings'] = g_btc_8e_strings
+g_wbwl_btc_targets['BTC-8E'] ['EEPROM Dir'] = '2023-01-03-Factory-Baseline'
+g_wbwl_btc_targets['BTC-8E'] ['EEPROM Filename'] = '2021-10-07-Factory-Image-Derived.bin'
+g_wbwl_btc_targets['BTC-8E'] ['Factory BRN Dir'] = 'BTC8E_2021_10_07'
+g_wbwl_btc_targets['BTC-8E'] ['Factory BRN Filename'] = 'brnbtc80.BRN'
+g_wbwl_btc_targets['BTC-8E'] ['Carve'] = True
+g_wbwl_btc_targets['BTC-8E'] ['Build'] = True
+# 7E-HP4
+g_wbwl_btc_targets['BTC-7E-HP4'] = {}
+g_wbwl_btc_targets['BTC-7E-HP4'] ['Target Directory'] = 'btc-7e-hp4'
+g_wbwl_btc_targets['BTC-7E-HP4'] ['Model'] = 'Recon Force Elite HP4'
+g_wbwl_btc_targets['BTC-7E-HP4'] ['Strings'] = g_btc_7e_hp4_strings
+#g_wbwl_btc_targets['BTC-7E-HP4'] ['LA File'] = '2023-03-01-BTC-7E-HP4-200ms'
+g_wbwl_btc_targets['BTC-7E-HP4'] ['LA File'] = '2023-03-02-BTC-7E-HP4-180_240ms'
+g_wbwl_btc_targets['BTC-7E-HP4'] ['EEPROM Dir'] = '2023-03-01-Synthesized-Factory-Baseline'
+g_wbwl_btc_targets['BTC-7E-HP4'] ['EEPROM Filename'] = '2023-03-01-BTC-7E-HP4-EEPROM-Image.bin'
+g_wbwl_btc_targets['BTC-7E-HP4'] ['Factory BRN Dir'] = '2023-02-01-ns'
+g_wbwl_btc_targets['BTC-7E-HP4'] ['Factory BRN Filename'] = 'brnbtc71.BRN'
+g_wbwl_btc_targets['BTC-7E-HP4'] ['Carve'] = True
+g_wbwl_btc_targets['BTC-7E-HP4'] ['Build'] = True
+# 8E-HP4
+g_wbwl_btc_targets['BTC-8E-HP4'] = {}
+g_wbwl_btc_targets['BTC-8E-HP4'] ['Target Directory'] = 'btc-8e-hp4'
+g_wbwl_btc_targets['BTC-8E-HP4'] ['Model'] = 'Spec Ops Elite HP4'
+g_wbwl_btc_targets['BTC-8E-HP4'] ['Strings'] = g_btc_8e_hp4_strings
+g_wbwl_btc_targets['BTC-8E-HP4'] ['LA File'] = '2023-02-28-BTC-8E-HP4-70ms'
+g_wbwl_btc_targets['BTC-8E-HP4'] ['EEPROM Dir'] = '2023-03-01-Synthesized-Factory-Baseline'
+g_wbwl_btc_targets['BTC-8E-HP4'] ['EEPROM Filename'] = '2023-03-01-BTC-8E-HP4-EEPROM-Image.bin'
+g_wbwl_btc_targets['BTC-8E-HP4'] ['Factory BRN Dir'] = '2023-02-01-ns'
+g_wbwl_btc_targets['BTC-8E-HP4'] ['Factory BRN Filename'] = 'brnbtc81.BRN'
+g_wbwl_btc_targets['BTC-8E-HP4'] ['Carve'] = True
+g_wbwl_btc_targets['BTC-8E-HP4'] ['Build'] = True
+# 7E-HP5
+g_wbwl_btc_targets['BTC-7E-HP5'] = {}
+g_wbwl_btc_targets['BTC-7E-HP5'] ['Target Directory'] = 'btc-7e-hp5'
+g_wbwl_btc_targets['BTC-7E-HP5'] ['Model'] = 'Recon Force Elite HP5'
+g_wbwl_btc_targets['BTC-7E-HP5'] ['Strings'] = g_btc_7e_hp5_strings
+g_wbwl_btc_targets['BTC-7E-HP5'] ['EEPROM Dir'] = '2022-10-14-Factory-Firmware-Image'
+g_wbwl_btc_targets['BTC-7E-HP5'] ['EEPROM Filename'] = '2022-10-17-BTC-7E-Factory-Firmware.bin'
+g_wbwl_btc_targets['BTC-7E-HP5'] ['Factory BRN Dir'] = 'BTC7EH5_L10200F'
+g_wbwl_btc_targets['BTC-7E-HP5'] ['Factory BRN Filename'] = 'brnbtc72.BRN'
+g_wbwl_btc_targets['BTC-7E-HP5'] ['Carve'] = True
+g_wbwl_btc_targets['BTC-7E-HP5'] ['Build'] = True
+# 8E-HP5
+g_wbwl_btc_targets['BTC-8E-HP5'] = {}
+g_wbwl_btc_targets['BTC-8E-HP5'] ['Target Directory'] = 'btc-8e-hp5'
+g_wbwl_btc_targets['BTC-8E-HP5'] ['Model'] = 'Spec Ops Elite HP5'
+g_wbwl_btc_targets['BTC-8E-HP5'] ['Strings'] = g_btc_8e_hp5_strings
+g_wbwl_btc_targets['BTC-8E-HP5'] ['EEPROM Dir'] = '2022-09-04-Factory-Baseline'
+g_wbwl_btc_targets['BTC-8E-HP5'] ['EEPROM Filename'] = '2020-09-04-Post-L10200F.bin'
+g_wbwl_btc_targets['BTC-8E-HP5'] ['Factory BRN Dir'] = 'BTC8EH5_L10200F'
+g_wbwl_btc_targets['BTC-8E-HP5'] ['Factory BRN Filename'] = 'brnbtc82.BRN'
+g_wbwl_btc_targets['BTC-8E-HP5'] ['Carve'] = True
+g_wbwl_btc_targets['BTC-8E-HP5'] ['Build'] = True

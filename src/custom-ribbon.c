@@ -1,0 +1,202 @@
+// custom-ribbon.c
+//     Routines which print the creation date and time of the current image/video
+//     on the playback screen so that a person can read them without a magnifying glass
+
+#include "BTC.h"
+#include "custom-ribbon.h"
+#include "rtc-formats.h"
+
+//#define DEBUG
+
+// wbwl_custom_ribbon_sprintf
+//     replaces a call to "local_sprintf" used to build string printed in the
+//     bottom right corner of photo/video review window
+//     A hand patch is require to point current call to local_sprintf to this 
+//     function
+//     This version adds creation date to the bottom ribbon
+
+void wbwl_custom_ribbon_sprintf(char *buffer, char * format, 
+				unsigned int current_media_index, 
+				unsigned int total_num_media) {
+
+  unsigned int ms_creation_date_time;
+  unsigned int ms_modified_date_time;
+  unsigned int ms_accessed_date_time;
+
+  struct_DateTime creation_date_time;
+  struct_CameraConfig *camera_config;
+
+  struct_PosixFinfo finfo; 
+
+  camera_config = getCameraConfigStructPtr();
+
+  // Find the name of the file currently being viewed
+#ifdef DEBUG
+  set_pre_printf_state();      
+  tty_printf("WBWLDebug:: opening file: %s\n", camera_config->current_filename);
+  check_post_printf_state_set_sio_params();
+#endif
+
+  // Open the File
+  unsigned int file_ptr = vfsOpen(camera_config->current_filename, 0x10);
+
+  if (wbwlFileCTimeGet(file_ptr, &creation_date_time) == 0) {
+    // if we successfully got the date/time -- print it out
+
+    vfsClose(file_ptr);
+
+#ifdef DEBUG
+    set_pre_printf_state();      
+    tty_printf("WBWLDebug:: creation_date_time %02d/%02d/%04d %02d:%02d:%02d\n",
+	       creation_date_time.month + 1, creation_date_time.day, creation_date_time.year + 1900,
+	       creation_date_time.hour, creation_date_time.minute, creation_date_time.second);
+    check_post_printf_state_set_sio_params();
+#endif
+
+    enum_rtc_time_format_options time_format = (enum_rtc_time_format_options) rtc_get_cold_item_time_format();
+    enum_rtc_date_format_options date_format = (enum_rtc_date_format_options) rtc_get_cold_item_date_format();
+    char time_buffer[32];
+  
+    int hour;
+    char *time_format_string; 
+
+    switch(time_format) {
+    case rtc_twelve_hour:
+    default:
+      if (creation_date_time.hour > 12) {
+	time_format_string = "%d:%02d:%02d PM";
+	hour = creation_date_time.hour - 12;
+      } else {
+	hour = creation_date_time.hour;
+	if (hour == 0) {
+	  hour = 12;
+	}
+	time_format_string = "%d:%02d:%02d AM";
+      }
+      break;
+    case rtc_twenty_four_hour:
+      time_format_string = "%d:%02d:%02d";
+      hour = creation_date_time.hour;
+      break;
+    }
+    
+    local_sprintf(time_buffer, time_format_string, 
+		  hour, creation_date_time.minute, creation_date_time.second);
+
+    
+    switch(date_format) {
+    case rtc_mm_dd_yyyy:
+    default:
+      local_sprintf(buffer,"%02d/%02d/%04d %s  %d/%d", 
+		    creation_date_time.month + 1, creation_date_time.day, creation_date_time.year + 1900,
+		    time_buffer, current_media_index, total_num_media);
+      break;
+    case rtc_dd_mm_yyyy:
+      local_sprintf(buffer,"%02d/%02d/%04d %s  %d/%d", 
+		    creation_date_time.day, creation_date_time.month + 1, creation_date_time.year + 1900,
+		    time_buffer, current_media_index, total_num_media);
+      break;
+    case rtc_yyyymmdd:
+      local_sprintf(buffer,"%04d%02d%02d %s  %d/%d", 
+		    creation_date_time.year + 1900, creation_date_time.month + 1, creation_date_time.day,
+		    time_buffer, current_media_index, total_num_media);
+      break;
+    }
+
+    // fill up the buffer 
+    
+    return;
+    }
+#ifdef DEBUG
+  set_pre_printf_state();      
+  tty_printf("WBWLDebug:: Could not open file %s", camera_config->current_filename);
+  check_post_printf_state_set_sio_params();
+#endif
+
+  // Else, default to the old string
+  local_sprintf(buffer,"%d/%d", current_media_index, total_num_media);
+  return;
+}
+
+
+
+// like vfsFileCTimeGet, but returning the DateTime structure (in addition to Unix time)
+//
+int wbwlFileCTimeGet(unsigned int file_ptr, struct struct_DateTime *creation_date_time) {
+  struct_PosixFinfo *finfo;
+  unsigned int unix_creation_time;
+  int temp; 
+  
+  if (file_ptr != 0) {
+    finfo = (struct_PosixFinfo *)memoryAllocate(0x438);
+    if (finfo == (struct_PosixFinfo *)0x0) {
+      return -1;
+    } else {
+      temp = posix_finfo(file_ptr,finfo);
+      if (-1 < temp) {
+        unix_creation_time = get_unix_time(finfo->created_time, creation_date_time);
+#ifdef DEBUG
+	set_pre_printf_state();      
+        tty_printf("WBWLDebug:: raw_creation_time = 0x%08x \n", finfo->created_time);
+	check_post_printf_state_set_sio_params();
+#endif
+        free(finfo);
+        return 0;
+      }
+      free(finfo);
+      return -1;
+    }
+  }
+  return -1;
+}
+
+
+
+// Fix the scroll bar displayed during video review
+//     so that it doesn't cover up the new date/time information
+//     Just move it up 10 pixels or so
+
+// Hook to redirect call to draw the video scroll bar
+//    In HandleReplayMenuVideo()
+// Replace
+// 80027464 d7 9a 00 08     j          draw_video_scroll_bar
+// with bm_draw_video_scroll_bar 
+// this function that does the same thing, except moving the whole thing up by 10 pixels
+void ld_draw_video_scroll_bar(unsigned int percent_complete)
+{
+  // We don't want to ever call the real draw_video_scroll_bar but I need it in here
+  //    to the tool picks up its symbol.  This statement should never be executed
+  if (percent_complete == 0x100) {
+    draw_video_scroll_bar(0xfe);
+  }
+
+  // back to the real work at hand
+  draw_rectangle_wrapper(2,224-20,180,10,13);
+  draw_rectangle_wrapper(4,226-20,176,6,0);
+  if (percent_complete != 0xff) {
+    if (100 < percent_complete) {
+      percent_complete = 100;
+    }
+    draw_rectangle_wrapper(4,226-20,(percent_complete * 0xb0) / 100,6,2);
+  }
+  return;
+}
+
+
+// Hook to redirect call to draw the video scroll bar
+//    In HandleReplayMenuVideo()
+// Replace
+//  800271b8 52 1c 00 0c     jal        draw_rectangle_wrapper
+// with call to function below
+//  which does the same thing, but moves the cleared window up 10 pixels
+void ld_clear_video_scroll_bar(unsigned int right_x,
+			       unsigned int bottom_y,
+			       unsigned int width,
+			       unsigned int height,
+			       char color) {
+
+  draw_rectangle_wrapper(right_x, bottom_y - 20 , width, height, color);
+}
+
+
+

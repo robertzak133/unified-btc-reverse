@@ -1,0 +1,9 @@
+//
+// fix-ir-led-settings.c
+//    In the BTC HP5, there are three IR settings in the menu (L, M, H)
+//    but they only seem to result in two IR LED setting (L, L, H)
+//    this file attempts to fix this
+
+#define DEBUG
+
+void fils_set_cold_item_led_power(uint setting);

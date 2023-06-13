@@ -1,0 +1,14 @@
+//
+// low-pir-senstivity.h
+// 
+// 2022-11-12 Zak: Created
+// code that adds a "short range" setting below "normal" and "long" range PIR sensitivyt
+//      setting.
+
+
+#define DEBUG
+
+
+void lps_handlePIRRangeMenu(void);
+
+void lps_set_pir_sensor_range(enum_pir_range_options pir_range_option);

@@ -1,0 +1,23 @@
+//
+// volume-file-nameing.h
+//
+// Functions to replace the naming of the volume and 
+//     file prefixes
+
+
+// This is the function that normally labels a drive after 
+//      it's been formatted/erased
+//      we've hijacked it, discarded *volume_name (typically "BROWNING")
+//      and replaced with the camera name
+
+fatVolLabSet_wrapper_hook(char *drive_letter, char *volume_name) {
+
+  char camera_name[16];
+  get_g_cold_item_camera_name(cameara_name);
+ 
+  // make sure we have a string terminator
+  camera_name[10] = (char)0x00;
+
+  fatVolLabSet_wrapper(drive_letter, camera_name);
+
+}
