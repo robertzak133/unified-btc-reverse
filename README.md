@@ -10,7 +10,7 @@ and
 ## Released Firmware Images
 If you are here for RELEASE'd firmware images themselves, you can find them below:
 
-##Option Summary
+##Factory Firmware and WBWL Customer Firmware Locations
 
 
 | Camera Model | Factory Baseline  | Current WBWL | Version  | Build Date |
@@ -21,6 +21,32 @@ If you are here for RELEASE'd firmware images themselves, you can find them belo
 | BTC-8E-HP4   | [brnbtc81.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-8e-hp4/factory-firmware-images/2023-02-01-ns/brnbtc81.BRN) | [brnbtc81.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-8e-hp4/created-burn-images/RELEASE/brnbtc81.BRN) | WWL8EH4_230409E  | 2023-07-03 |
 | BTC-7E-HP5   | [brnbtc72.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-7e-hp5/factory-firmware-images/BTC7EH5_L10200F/brnbtc72.BRN) | [brnbtc72.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-7e-hp5/created-burn-images/RELEASE/brnbtc72.BRN) | WWL7EH5_230409E  | 2023-07-03 |
 | BTC-8E-HP5   | [brnbtc82.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-8e-hp5/factory-firmware-images/BTC8EH5_L10200F/brnbtc82.BRN) | [brnbtc82.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-8e-hp5/created-burn-images/RELEASE/brnbtc82.BRN) | WWL8EH5_230409E  | 2023-07-03 |
+
+## Download Instructions
+- Find the copy of brnbtc7x.BRN (Recon Force) or brnbtc8x.BRN (Spec Ops) file for your camera above
+- Click "Download"
+- Copy this file onto an SD card at the "top level" (not into a folder on SD card).  
+- Note -- the file must be named "brnbtc7x.BRN" (for Recon Force) or "brnbtc8x.BRN" (for Spec Ops), where "x" is model dependent.  Sometimes downloading from your browser will add extra characters to distinguish it from previous downloads -- e.g. "brnbtc72(1).BRN".  If this happens, rename file to eliminate the extra character. In this case, to  "brnbtc72.BRN". 
+
+## FW install Instructions
+
+Before installing new firmware, make sure you have batteries that will easily power the camera for the several minutes it takes for firmware upgrade. Losing power during firmware upgrade is bad, requiring that the camera be reprogrammed by the manufacturer.  
+
+On the Camera:
+- Press "Mode" button 
+- Select "CAMERA SETUP"
+- Select "FW UPGRADE"
+- Select "YES"
+
+Display should show "UPGRADING".  Loading the firmware should take about 20 seoconds. DO NOT TURN OFF OR REMOVE BATTERIES DURING THIS TIME! (this will "brick" the camera).  
+
+Camera will then "Reboot" with new firmware.
+
+Note that updating firmware resets the camera configuration settings, including the date and time. 
+
+## Reinstalling Factory Firmware
+If, for any reason, you want to get back to the factory firmware, choose the "Factory Baseline" entry in the table above to get the baseline factory image, and install that
+
 
 
 ## Feature Summary
