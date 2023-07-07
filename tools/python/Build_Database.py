@@ -32,6 +32,7 @@ g_btc_7e_hp5_strings = g_btc_7e_strings
 
 g_btc_8e_hp5_strings = g_btc_7e_hp5_strings 
 
+g_btc_major_version = "230704A"
 
 g_wbwl_btc_targets = {}
 # 7A
@@ -64,6 +65,7 @@ g_wbwl_btc_targets['BTC-7E'] ['EEPROM Dir'] = '2023-03-01-Synthesized-Baseline'
 g_wbwl_btc_targets['BTC-7E'] ['EEPROM Filename'] = '2022-03-01-BTC-7E-EEPROM-Image.bin'
 g_wbwl_btc_targets['BTC-7E'] ['Factory BRN Dir'] = 'BTC7E_2021_10_07'
 g_wbwl_btc_targets['BTC-7E'] ['Factory BRN Filename'] = 'brnbtc70.BRN'
+g_wbwl_btc_targets['BTC-7E'] ['Version'] = 'WWL7E_' + g_btc_major_version
 g_wbwl_btc_targets['BTC-7E'] ['Carve'] = True
 g_wbwl_btc_targets['BTC-7E'] ['Build'] = True
 # 8E
@@ -75,6 +77,7 @@ g_wbwl_btc_targets['BTC-8E'] ['EEPROM Dir'] = '2023-01-03-Factory-Baseline'
 g_wbwl_btc_targets['BTC-8E'] ['EEPROM Filename'] = '2021-10-07-Factory-Image-Derived.bin'
 g_wbwl_btc_targets['BTC-8E'] ['Factory BRN Dir'] = 'BTC8E_2021_10_07'
 g_wbwl_btc_targets['BTC-8E'] ['Factory BRN Filename'] = 'brnbtc80.BRN'
+g_wbwl_btc_targets['BTC-8E'] ['Version'] = 'WWL8E_' + g_btc_major_version
 g_wbwl_btc_targets['BTC-8E'] ['Carve'] = True
 g_wbwl_btc_targets['BTC-8E'] ['Build'] = True
 # 7E-HP4
@@ -88,6 +91,7 @@ g_wbwl_btc_targets['BTC-7E-HP4'] ['EEPROM Dir'] = '2023-03-01-Synthesized-Factor
 g_wbwl_btc_targets['BTC-7E-HP4'] ['EEPROM Filename'] = '2023-03-01-BTC-7E-HP4-EEPROM-Image.bin'
 g_wbwl_btc_targets['BTC-7E-HP4'] ['Factory BRN Dir'] = '2023-02-01-ns'
 g_wbwl_btc_targets['BTC-7E-HP4'] ['Factory BRN Filename'] = 'brnbtc71.BRN'
+g_wbwl_btc_targets['BTC-7E-HP4'] ['Version'] = 'WWL7EH4_' + g_btc_major_version
 g_wbwl_btc_targets['BTC-7E-HP4'] ['Carve'] = True
 g_wbwl_btc_targets['BTC-7E-HP4'] ['Build'] = True
 # 8E-HP4
@@ -100,6 +104,7 @@ g_wbwl_btc_targets['BTC-8E-HP4'] ['EEPROM Dir'] = '2023-03-01-Synthesized-Factor
 g_wbwl_btc_targets['BTC-8E-HP4'] ['EEPROM Filename'] = '2023-03-01-BTC-8E-HP4-EEPROM-Image.bin'
 g_wbwl_btc_targets['BTC-8E-HP4'] ['Factory BRN Dir'] = '2023-02-01-ns'
 g_wbwl_btc_targets['BTC-8E-HP4'] ['Factory BRN Filename'] = 'brnbtc81.BRN'
+g_wbwl_btc_targets['BTC-8E-HP4'] ['Version'] = 'WWL8EH4_' + g_btc_major_version
 g_wbwl_btc_targets['BTC-8E-HP4'] ['Carve'] = True
 g_wbwl_btc_targets['BTC-8E-HP4'] ['Build'] = True
 # 7E-HP5
@@ -111,6 +116,7 @@ g_wbwl_btc_targets['BTC-7E-HP5'] ['EEPROM Dir'] = '2022-10-14-Factory-Firmware-I
 g_wbwl_btc_targets['BTC-7E-HP5'] ['EEPROM Filename'] = '2022-10-17-BTC-7E-Factory-Firmware.bin'
 g_wbwl_btc_targets['BTC-7E-HP5'] ['Factory BRN Dir'] = 'BTC7EH5_L10200F'
 g_wbwl_btc_targets['BTC-7E-HP5'] ['Factory BRN Filename'] = 'brnbtc72.BRN'
+g_wbwl_btc_targets['BTC-7E-HP5'] ['Version'] = 'WWL7EH5_' + g_btc_major_version
 g_wbwl_btc_targets['BTC-7E-HP5'] ['Carve'] = True
 g_wbwl_btc_targets['BTC-7E-HP5'] ['Build'] = True
 # 8E-HP5
@@ -122,5 +128,6 @@ g_wbwl_btc_targets['BTC-8E-HP5'] ['EEPROM Dir'] = '2022-09-04-Factory-Baseline'
 g_wbwl_btc_targets['BTC-8E-HP5'] ['EEPROM Filename'] = '2020-09-04-Post-L10200F.bin'
 g_wbwl_btc_targets['BTC-8E-HP5'] ['Factory BRN Dir'] = 'BTC8EH5_L10200F'
 g_wbwl_btc_targets['BTC-8E-HP5'] ['Factory BRN Filename'] = 'brnbtc82.BRN'
+g_wbwl_btc_targets['BTC-8E-HP5'] ['Version'] = 'WWL8EH5_' + g_btc_major_version
 g_wbwl_btc_targets['BTC-8E-HP5'] ['Carve'] = True
 g_wbwl_btc_targets['BTC-8E-HP5'] ['Build'] = True

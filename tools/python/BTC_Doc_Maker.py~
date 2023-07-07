@@ -1,0 +1,24 @@
+
+
+class BTC_Doc_Maker:
+    ''' A class for printing some docuntation for firware images
+    '''
+    firmware_table_filename = "firmware_table.md"
+
+
+
+def fprint_banner(file):
+  print(f'| Camera Model | Factory Baseline  | Current WBWL | Version  | Build Date |')
+  print(f'|--------------|-------------------|--------------|----------|------------|')
+  return
+
+def fprint_camera_line(file, camera_model, factory_baseline, current_wbwl, version, build_date):
+  print(f'| {camera_model} | {factory_baseline} | {current_wbwl} | {version} | {build_date} |')
+  return
+
+def fprint_version_table(file):
+  fprint_banner(file)
+  fprint_camera_line(file, "BTC-8E", "(brnbtc81.BRN)[https:\\\\foo]", "(brnbtc81.BRN)[https:\\\\bar]", "WBWL20230409A", "2023-06-03")
+  return
+
+fprint_version_table(5)

@@ -54,6 +54,14 @@ firmware_bundle_a_patch_list['firmware_ID1']['change_to_bytes']['BTC-8E-HP4']   
 firmware_bundle_a_patch_list['firmware_ID1']['change_to_bytes']['BTC-7E-HP5']   = bytes("WWL7EH5_230409A", 'utf-8');
 firmware_bundle_a_patch_list['firmware_ID1']['change_to_bytes']['BTC-8E-HP5']   = bytes("WWL8EH5_230409A", 'utf-8');
 
+def set_version_string(build_database):
+    for camera_type in build_database:
+        if build_database[camera_type].get('Version') is not None:
+            version_string = build_database[camera_type]['Version']
+            firmware_bundle_a_patch_list['firmware_ID0']['change_to_bytes'][camera_type]  = bytes(version_string, 'utf-8')
+            firmware_bundle_a_patch_list['firmware_ID1']['change_to_bytes'][camera_type]  = bytes(version_string, 'utf-8')
+    return
+
 
 ############# Feature Patches ################################
 

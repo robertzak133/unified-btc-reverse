@@ -24,12 +24,12 @@ firmware_bundle_a_patch_list['firmware_ID0']['change_from_bytes']['BTC-8E-HP4'] 
 firmware_bundle_a_patch_list['firmware_ID0']['change_from_bytes']['BTC-7E-HP5'] = bytes("BTC7EH5_M05100F", 'utf-8');
 firmware_bundle_a_patch_list['firmware_ID0']['change_from_bytes']['BTC-8E-HP5'] = bytes("BTC8EH5_L10200F", 'utf-8');
 firmware_bundle_a_patch_list['firmware_ID0']['change_to_bytes']   = {} 
-firmware_bundle_a_patch_list['firmware_ID0']['change_to_bytes']['BTC-7E']       = bytes("WWL7E_230320E", 'utf-8');
-firmware_bundle_a_patch_list['firmware_ID0']['change_to_bytes']['BTC-8E']       = bytes("WWL8E_230320E", 'utf-8');
-firmware_bundle_a_patch_list['firmware_ID0']['change_to_bytes']['BTC-7E-HP4']   = bytes("WWL7EH4_230320A", 'utf-8');
-firmware_bundle_a_patch_list['firmware_ID0']['change_to_bytes']['BTC-8E-HP4']   = bytes("WWL8EH4_230320A", 'utf-8');
-firmware_bundle_a_patch_list['firmware_ID0']['change_to_bytes']['BTC-7E-HP5']   = bytes("WWL7EH5_230320A", 'utf-8');
-firmware_bundle_a_patch_list['firmware_ID0']['change_to_bytes']['BTC-8E-HP5']   = bytes("WWL8EH5_230320A", 'utf-8');
+firmware_bundle_a_patch_list['firmware_ID0']['change_to_bytes']['BTC-7E']       = bytes("WWL7E_230409E", 'utf-8');
+firmware_bundle_a_patch_list['firmware_ID0']['change_to_bytes']['BTC-8E']       = bytes("WWL8E_230409E", 'utf-8');
+firmware_bundle_a_patch_list['firmware_ID0']['change_to_bytes']['BTC-7E-HP4']   = bytes("WWL7EH4_230409A", 'utf-8');
+firmware_bundle_a_patch_list['firmware_ID0']['change_to_bytes']['BTC-8E-HP4']   = bytes("WWL8EH4_230409A", 'utf-8');
+firmware_bundle_a_patch_list['firmware_ID0']['change_to_bytes']['BTC-7E-HP5']   = bytes("WWL7EH5_230409A", 'utf-8');
+firmware_bundle_a_patch_list['firmware_ID0']['change_to_bytes']['BTC-8E-HP5']   = bytes("WWL8EH5_230409A", 'utf-8');
 
 firmware_bundle_a_patch_list['firmware_ID1'] = {}
 firmware_bundle_a_patch_list['firmware_ID1']['start_offset'] = {}
@@ -47,12 +47,12 @@ firmware_bundle_a_patch_list['firmware_ID1']['change_from_bytes']['BTC-8E-HP4'] 
 firmware_bundle_a_patch_list['firmware_ID1']['change_from_bytes']['BTC-7E-HP5'] = bytes("BTC7EH5_M05100F", 'utf-8');
 firmware_bundle_a_patch_list['firmware_ID1']['change_from_bytes']['BTC-8E-HP5'] = bytes("BTC8EH5_L10200F", 'utf-8');
 firmware_bundle_a_patch_list['firmware_ID1']['change_to_bytes'] = {}
-firmware_bundle_a_patch_list['firmware_ID1']['change_to_bytes']['BTC-7E']       = bytes("WWL7E_230320E", 'utf-8');
-firmware_bundle_a_patch_list['firmware_ID1']['change_to_bytes']['BTC-8E']       = bytes("WWL8E_230320E", 'utf-8');
-firmware_bundle_a_patch_list['firmware_ID1']['change_to_bytes']['BTC-7E-HP4']   = bytes("WWL7EH5_230320A", 'utf-8');
-firmware_bundle_a_patch_list['firmware_ID1']['change_to_bytes']['BTC-8E-HP4']   = bytes("WWL8EH5_230320A", 'utf-8');
-firmware_bundle_a_patch_list['firmware_ID1']['change_to_bytes']['BTC-7E-HP5']   = bytes("WWL7EH5_230320A", 'utf-8');
-firmware_bundle_a_patch_list['firmware_ID1']['change_to_bytes']['BTC-8E-HP5']   = bytes("WWL8EH5_230320A", 'utf-8');
+firmware_bundle_a_patch_list['firmware_ID1']['change_to_bytes']['BTC-7E']       = bytes("WWL7E_230409E", 'utf-8');
+firmware_bundle_a_patch_list['firmware_ID1']['change_to_bytes']['BTC-8E']       = bytes("WWL8E_230409E", 'utf-8');
+firmware_bundle_a_patch_list['firmware_ID1']['change_to_bytes']['BTC-7E-HP4']   = bytes("WWL7EH5_230409A", 'utf-8');
+firmware_bundle_a_patch_list['firmware_ID1']['change_to_bytes']['BTC-8E-HP4']   = bytes("WWL8EH5_230409A", 'utf-8');
+firmware_bundle_a_patch_list['firmware_ID1']['change_to_bytes']['BTC-7E-HP5']   = bytes("WWL7EH5_230409A", 'utf-8');
+firmware_bundle_a_patch_list['firmware_ID1']['change_to_bytes']['BTC-8E-HP5']   = bytes("WWL8EH5_230409A", 'utf-8');
 
 
 ############# Feature Patches ################################
@@ -2315,14 +2315,14 @@ ir_flash_power_patch_list['set_ir_led_power_pwm']['line_number'] = {}
 # # #ir_flash_power_patch_list['set_ir_led_power_pwm']['line_number']['BTC-8E'] = 
 # # #ir_flash_power_patch_list['set_ir_led_power_pwm']['line_number']['BTC-7E-HP4'] =
 # # #ir_flash_power_patch_list['set_ir_led_power_pwm']['line_number']['BTC-8E-HP4'] =
-# # #ir_flash_power_patch_list['set_ir_led_power_pwm']['line_number']['BTC-7E-HP5'] =
+ir_flash_power_patch_list['set_ir_led_power_pwm']['line_number']['BTC-7E-HP5'] = 8
 ir_flash_power_patch_list['set_ir_led_power_pwm']['line_number']['BTC-8E-HP5'] = 8
 ir_flash_power_patch_list['set_ir_led_power_pwm']['start_offset'] = {}
 # # #ir_flash_power_patch_list['set_ir_led_power_pwm']['start_offset']['BTC-7E'] = 0x
 # # #ir_flash_power_patch_list['set_ir_led_power_pwm']['start_offset']['BTC-8E'] = 0x
 # # #ir_flash_power_patch_list['set_ir_led_power_pwm']['start_offset']['BTC-7E-HP4'] = 0x
 # # #ir_flash_power_patch_list['set_ir_led_power_pwm']['start_offset']['BTC-8E-HP4'] = 0x
-# # #ir_flash_power_patch_list['set_ir_led_power_pwm']['start_offset']['BTC-7E-HP5'] = 0x
+ir_flash_power_patch_list['set_ir_led_power_pwm']['start_offset']['BTC-7E-HP5'] = 0x005e25c
 ir_flash_power_patch_list['set_ir_led_power_pwm']['start_offset']['BTC-8E-HP5'] = 0x005e22c
 ir_flash_power_patch_list['set_ir_led_power_pwm']['change_from_jump'] = 'jal.power_on_IR_LED'
 ir_flash_power_patch_list['set_ir_led_power_pwm']['change_to_jump']   = 'jal.ifm_power_on_IR_LED'
@@ -2336,178 +2336,16 @@ ir_flash_power_patch_list['power_on_IR_LED']['line_number'] = {}
 # #ir_flash_power_patch_list['power_on_IR_LED']['line_number']['BTC-8E'] = 
 # #ir_flash_power_patch_list['power_on_IR_LED']['line_number']['BTC-7E-HP4'] = 
 # #ir_flash_power_patch_list['power_on_IR_LED']['line_number']['BTC-8E-HP4'] = 
-# #ir_flash_power_patch_list['power_on_IR_LED']['line_number']['BTC-7E-HP5'] = 
+ir_flash_power_patch_list['power_on_IR_LED']['line_number']['BTC-7E-HP5'] = 11
 ir_flash_power_patch_list['power_on_IR_LED']['line_number']['BTC-8E-HP5'] = 15
 ir_flash_power_patch_list['power_on_IR_LED']['start_offset'] = {}
 # #ir_flash_power_patch_list['power_on_IR_LED']['start_offset']['BTC-7E'] = 0x
 # #ir_flash_power_patch_list['power_on_IR_LED']['start_offset']['BTC-8E'] = 0x
 # #ir_flash_power_patch_list['power_on_IR_LED']['start_offset']['BTC-7E-HP4'] = 0x
 # #ir_flash_power_patch_list['power_on_IR_LED']['start_offset']['BTC-8E-HP4'] = 0x
-# #ir_flash_power_patch_list['power_on_IR_LED']['start_offset']['BTC-7E-HP5'] = 0x
+ir_flash_power_patch_list['power_on_IR_LED']['start_offset']['BTC-7E-HP5'] = 0x005e3f4
 ir_flash_power_patch_list['power_on_IR_LED']['start_offset']['BTC-8E-HP5'] = 0x005e3c4
 ir_flash_power_patch_list['power_on_IR_LED']['change_from_jump'] = 'jal.power_on_IR_LED'
 ir_flash_power_patch_list['power_on_IR_LED']['change_to_jump']   = 'jal.ifm_power_on_IR_LED'
-
-
-# # # in HceSmartIRAlg_ChgLEDStHdl_Do()
-# ir_flash_power_patch_list['hce_smart_ir_alg0'] = {}
-# ir_flash_power_patch_list['hce_smart_ir_alg0']['function'] = 'HceSmartIRAlg_ChgLEDStHdl_Do'
-# ir_flash_power_patch_list['hce_smart_ir_alg0']['line_number'] = {}
-# # #ir_flash_power_patch_list['hce_smart_ir_alg0']['line_number']['BTC-7E'] = 
-# # #ir_flash_power_patch_list['hce_smart_ir_alg0']['line_number']['BTC-8E'] = 
-# # #ir_flash_power_patch_list['hce_smart_ir_alg0']['line_number']['BTC-7E-HP4'] = 
-# # #ir_flash_power_patch_list['hce_smart_ir_alg0']['line_number']['BTC-8E-HP4'] = 
-# # #ir_flash_power_patch_list['hce_smart_ir_alg0']['line_number']['BTC-7E-HP5'] = 
-# ir_flash_power_patch_list['hce_smart_ir_alg0']['line_number']['BTC-8E-HP5'] = 24
-# ir_flash_power_patch_list['hce_smart_ir_alg0']['start_offset'] = {}
-# # #ir_flash_power_patch_list['hce_smart_ir_alg0']['start_offset']['BTC-7E'] = 0x
-# # #ir_flash_power_patch_list['hce_smart_ir_alg0']['start_offset']['BTC-8E'] = 0x
-# # #ir_flash_power_patch_list['hce_smart_ir_alg0']['start_offset']['BTC-7E-HP4'] = 0x
-# # #ir_flash_power_patch_list['hce_smart_ir_alg0']['start_offset']['BTC-8E-HP4'] = 0x
-# # #ir_flash_power_patch_list['hce_smart_ir_alg0']['start_offset']['BTC-7E-HP5'] = 0x
-# # ir_flash_power_patch_list['hce_smart_ir_alg0']['start_offset']['BTC-8E-HP5'] = 0x0ec5d0
-# ir_flash_power_patch_list['hce_smart_ir_alg0']['change_from_jump'] = 'jal.setIRLedOn'
-# ir_flash_power_patch_list['hce_smart_ir_alg0']['change_to_jump']   = 'jal.ifm_setIRLedOn'
-
-# # # in HceSmartIRAlg_ChgLEDStHdl_Do()
-# ir_flash_power_patch_list['hce_smart_ir_alg1'] = {}
-# ir_flash_power_patch_list['hce_smart_ir_alg1']['function'] = 'HceSmartIRAlg_ChgLEDStHdl_Do'
-# ir_flash_power_patch_list['hce_smart_ir_alg1']['line_number'] = {}
-# # #ir_flash_power_patch_list['hce_smart_ir_alg1']['line_number']['BTC-7E'] = 
-# # #ir_flash_power_patch_list['hce_smart_ir_alg1']['line_number']['BTC-8E'] = 
-# # #ir_flash_power_patch_list['hce_smart_ir_alg1']['line_number']['BTC-7E-HP4'] = 
-# # #ir_flash_power_patch_list['hce_smart_ir_alg1']['line_number']['BTC-8E-HP4'] = 
-# # #ir_flash_power_patch_list['hce_smart_ir_alg1']['line_number']['BTC-7E-HP5'] = 
-# ir_flash_power_patch_list['hce_smart_ir_alg1']['line_number']['BTC-8E-HP5'] = 142
-# ir_flash_power_patch_list['hce_smart_ir_alg1']['start_offset'] = {}
-# # #ir_flash_power_patch_list['hce_smart_ir_alg1']['start_offset']['BTC-7E'] = 0x
-# # #ir_flash_power_patch_list['hce_smart_ir_alg1']['start_offset']['BTC-8E'] = 0x
-# # #ir_flash_power_patch_list['hce_smart_ir_alg1']['start_offset']['BTC-7E-HP4'] = 0x
-# # #ir_flash_power_patch_list['hce_smart_ir_alg1']['start_offset']['BTC-8E-HP4'] = 0x
-# # #ir_flash_power_patch_list['hce_smart_ir_alg1']['start_offset']['BTC-7E-HP5'] = 0x
-# ir_flash_power_patch_list['hce_smart_ir_alg1']['start_offset']['BTC-8E-HP5'] = 0x00ec85c
-# ir_flash_power_patch_list['hce_smart_ir_alg1']['change_from_jump'] = 'jal.setIRLedOn'
-# ir_flash_power_patch_list['hce_smart_ir_alg1']['change_to_jump']   = 'jal.ifm_setIRLedOn'
-
-# # # in SmartIRThreadEntryFunction()
-# ir_flash_power_patch_list['smart_ir_thread'] = {}
-# ir_flash_power_patch_list['smart_ir_thread']['function'] = 'SmartIRThreadEntryFunction'
-# ir_flash_power_patch_list['smart_ir_thread']['line_number'] = {}
-# # #ir_flash_power_patch_list['smart_ir_thread']['line_number']['BTC-7E'] = 
-# # #ir_flash_power_patch_list['smart_ir_thread']['line_number']['BTC-8E'] = 
-# # #ir_flash_power_patch_list['smart_ir_thread']['line_number']['BTC-7E-HP4'] = 
-# # #ir_flash_power_patch_list['smart_ir_thread']['line_number']['BTC-8E-HP4'] = 
-# # #ir_flash_power_patch_list['smart_ir_thread']['line_number']['BTC-7E-HP5'] = 
-# ir_flash_power_patch_list['smart_ir_thread']['line_number']['BTC-8E-HP5'] = 95
-# ir_flash_power_patch_list['smart_ir_thread']['start_offset'] = {}
-# # #ir_flash_power_patch_list['smart_ir_thread']['start_offset']['BTC-7E'] = 0x
-# # #ir_flash_power_patch_list['smart_ir_thread']['start_offset']['BTC-8E'] = 0x
-# # #ir_flash_power_patch_list['smart_ir_thread']['start_offset']['BTC-7E-HP4'] = 0x
-# # #ir_flash_power_patch_list['smart_ir_thread']['start_offset']['BTC-8E-HP4'] = 0x
-# # #ir_flash_power_patch_list['smart_ir_thread']['start_offset']['BTC-7E-HP5'] = 0x
-# ir_flash_power_patch_list['smart_ir_thread']['start_offset']['BTC-8E-HP5'] = 0x00ecd5c
-# ir_flash_power_patch_list['smart_ir_thread']['change_from_jump'] = 'jal.setIRLedOn'
-# ir_flash_power_patch_list['smart_ir_thread']['change_to_jump']   = 'jal.ifm_setIRLedOn'
-
-# # # in HceTaskRecording_RecVideoInit
-# ir_flash_power_patch_list['hce_task_recording'] = {}
-# ir_flash_power_patch_list['hce_task_recording']['function'] = 'HceTaskRecording_RecVideoInit'
-# ir_flash_power_patch_list['hce_task_recording']['line_number'] = {}
-# # #ir_flash_power_patch_list['hce_task_recording']['line_number']['BTC-7E'] = 
-# # #ir_flash_power_patch_list['hce_task_recording']['line_number']['BTC-8E'] = 
-# # #ir_flash_power_patch_list['hce_task_recording']['line_number']['BTC-7E-HP4'] = 
-# # #ir_flash_power_patch_list['hce_task_recording']['line_number']['BTC-8E-HP4'] = 
-# # #ir_flash_power_patch_list['hce_task_recording']['line_number']['BTC-7E-HP5'] = 
-# ir_flash_power_patch_list['hce_task_recording']['line_number']['BTC-8E-HP5'] = 169
-# ir_flash_power_patch_list['hce_task_recording']['start_offset'] = {}
-# # #ir_flash_power_patch_list['hce_task_recording']['start_offset']['BTC-7E'] = 0x
-# # #ir_flash_power_patch_list['hce_task_recording']['start_offset']['BTC-8E'] = 0x
-# # #ir_flash_power_patch_list['hce_task_recording']['start_offset']['BTC-7E-HP4'] = 0x
-# # #ir_flash_power_patch_list['hce_task_recording']['start_offset']['BTC-8E-HP4'] = 0x
-# # #ir_flash_power_patch_list['hce_task_recording']['start_offset']['BTC-7E-HP5'] = 0x
-# ir_flash_power_patch_list['hce_task_recording']['start_offset']['BTC-8E-HP5'] = 0x0100248
-# ir_flash_power_patch_list['hce_task_recording']['change_from_jump'] = 'jal.setIRLedOn'
-# ir_flash_power_patch_list['hce_task_recording']['change_to_jump']   = 'jal.ifm_setIRLedOn'
-
-# # # HceTaskStill_ToView()
-# ir_flash_power_patch_list['hce_task_still'] = {}
-# ir_flash_power_patch_list['hce_task_still']['function'] = 'HceTaskStill_ToView'
-# ir_flash_power_patch_list['hce_task_still']['line_number'] = {}
-# # #ir_flash_power_patch_list['hce_task_still']['line_number']['BTC-7E'] = 
-# # #ir_flash_power_patch_list['hce_task_still']['line_number']['BTC-8E'] = 
-# # #ir_flash_power_patch_list['hce_task_still']['line_number']['BTC-7E-HP4'] = 
-# # #ir_flash_power_patch_list['hce_task_still']['line_number']['BTC-8E-HP4'] = 
-# # #ir_flash_power_patch_list['hce_task_still']['line_number']['BTC-7E-HP5'] = 
-# ir_flash_power_patch_list['hce_task_still']['line_number']['BTC-8E-HP5'] = 30
-# ir_flash_power_patch_list['hce_task_still']['start_offset'] = {}
-# # #ir_flash_power_patch_list['hce_task_still']['start_offset']['BTC-7E'] = 0x
-# # #ir_flash_power_patch_list['hce_task_still']['start_offset']['BTC-8E'] = 0x
-# # #ir_flash_power_patch_list['hce_task_still']['start_offset']['BTC-7E-HP4'] = 0x
-# # #ir_flash_power_patch_list['hce_task_still']['start_offset']['BTC-8E-HP4'] = 0x
-# # #ir_flash_power_patch_list['hce_task_still']['start_offset']['BTC-7E-HP5'] = 0x
-# ir_flash_power_patch_list['hce_task_still']['start_offset']['BTC-8E-HP5'] = 0x0101780
-# ir_flash_power_patch_list['hce_task_still']['change_from_jump'] = 'jal.setIRLedOn'
-# ir_flash_power_patch_list['hce_task_still']['change_to_jump']   = 'jal.ifm_setIRLedOn'
-
-# # # HceTaskStillBurst_task1
-# ir_flash_power_patch_list['hce_task_still_burst'] = {}
-# ir_flash_power_patch_list['hce_task_still_burst']['function'] = 'HceTaskStill_ToView'
-# ir_flash_power_patch_list['hce_task_still_burst']['line_number'] = {}
-# # #ir_flash_power_patch_list['hce_task_still_burst']['line_number']['BTC-7E'] = 
-# # #ir_flash_power_patch_list['hce_task_still_burst']['line_number']['BTC-8E'] = 
-# # #ir_flash_power_patch_list['hce_task_still_burst']['line_number']['BTC-7E-HP4'] = 
-# # #ir_flash_power_patch_list['hce_task_still_burst']['line_number']['BTC-8E-HP4'] = 
-# # #ir_flash_power_patch_list['hce_task_still_burst']['line_number']['BTC-7E-HP5'] = 
-# ir_flash_power_patch_list['hce_task_still_burst']['line_number']['BTC-8E-HP5'] = 21
-# ir_flash_power_patch_list['hce_task_still_burst']['start_offset'] = {}
-# # #ir_flash_power_patch_list['hce_task_still_burst']['start_offset']['BTC-7E'] = 0x
-# # #ir_flash_power_patch_list['hce_task_still_burst']['start_offset']['BTC-8E'] = 0x
-# # #ir_flash_power_patch_list['hce_task_still_burst']['start_offset']['BTC-7E-HP4'] = 0x
-# # #ir_flash_power_patch_list['hce_task_still_burst']['start_offset']['BTC-8E-HP4'] = 0x
-# # #ir_flash_power_patch_list['hce_task_still_burst']['start_offset']['BTC-7E-HP5'] = 0x
-# ir_flash_power_patch_list['hce_task_still_burst']['start_offset']['BTC-8E-HP5'] = 0x010368c
-# ir_flash_power_patch_list['hce_task_still_burst']['change_from_jump'] = 'jal.setIRLedOn'
-# ir_flash_power_patch_list['hce_task_still_burst']['change_to_jump']   = 'jal.ifm_setIRLedOn'
-
-# # # systech_snap_IR_flash
-# ir_flash_power_patch_list['systech_snap_ir_flash'] = {}
-# ir_flash_power_patch_list['systech_snap_ir_flash']['function'] = 'systech_snap_ir_flash'
-# ir_flash_power_patch_list['systech_snap_ir_flash']['line_number'] = {}
-# # #ir_flash_power_patch_list['systech_snap_ir_flash']['line_number']['BTC-7E'] = 
-# # #ir_flash_power_patch_list['systech_snap_ir_flash']['line_number']['BTC-8E'] = 
-# # #ir_flash_power_patch_list['systech_snap_ir_flash']['line_number']['BTC-7E-HP4'] = 
-# # #ir_flash_power_patch_list['systech_snap_ir_flash']['line_number']['BTC-8E-HP4'] = 
-# # #ir_flash_power_patch_list['systech_snap_ir_flash']['line_number']['BTC-7E-HP5'] = 
-# ir_flash_power_patch_list['systech_snap_ir_flash']['line_number']['BTC-8E-HP5'] = 6
-# ir_flash_power_patch_list['systech_snap_ir_flash']['start_offset'] = {}
-# # #ir_flash_power_patch_list['systech_snap_ir_flash']['start_offset']['BTC-7E'] = 0x
-# # #ir_flash_power_patch_list['systech_snap_ir_flash']['start_offset']['BTC-8E'] = 0x
-# # #ir_flash_power_patch_list['systech_snap_ir_flash']['start_offset']['BTC-7E-HP4'] = 0x
-# # #ir_flash_power_patch_list['systech_snap_ir_flash']['start_offset']['BTC-8E-HP4'] = 0x
-# # #ir_flash_power_patch_list['systech_snap_ir_flash']['start_offset']['BTC-7E-HP5'] = 0x
-# ir_flash_power_patch_list['systech_snap_ir_flash']['start_offset']['BTC-8E-HP5'] = 0x006aa78
-# ir_flash_power_patch_list['systech_snap_ir_flash']['change_from_jump'] = 'jal.setIRLedOn'
-# ir_flash_power_patch_list['systech_snap_ir_flash']['change_to_jump']   = 'jal.ifm_setIRLedOn'
-
-# # #HceModeInitFSM_task0
-# # #   no auto IR mode -- don't even enable it!
-# #ir_flash_power_patch_list['hce_mode_init_fsm_task0'] = {}
-# #ir_flash_power_patch_list['hce_mode_init_fsm_task0']['function'] = 'HceModeInitFSM_task0'
-# #ir_flash_power_patch_list['hce_mode_init_fsm_task0']['line_number'] = {}
-# # #ir_flash_power_patch_list['hce_mode_init_fsm_task0']['line_number']['BTC-7E'] = 
-# # #ir_flash_power_patch_list['hce_mode_init_fsm_task0']['line_number']['BTC-8E'] = 
-# # #ir_flash_power_patch_list['hce_mode_init_fsm_task0']['line_number']['BTC-7E-HP4'] = 
-# # #ir_flash_power_patch_list['hce_mode_init_fsm_task0']['line_number']['BTC-8E-HP4'] = 
-# # #ir_flash_power_patch_list['hce_mode_init_fsm_task0']['line_number']['BTC-7E-HP5'] = 
-# #ir_flash_power_patch_list['hce_mode_init_fsm_task0']['line_number']['BTC-8E-HP5'] = 45
-# #ir_flash_power_patch_list['hce_mode_init_fsm_task0']['start_offset'] = {}
-# # #ir_flash_power_patch_list['hce_mode_init_fsm_task0']['start_offset']['BTC-7E'] = 0x
-# # #ir_flash_power_patch_list['hce_mode_init_fsm_task0']['start_offset']['BTC-8E'] = 0x
-# # #ir_flash_power_patch_list['hce_mode_init_fsm_task0']['start_offset']['BTC-7E-HP4'] = 0x
-# # #ir_flash_power_patch_list['hce_mode_init_fsm_task0']['start_offset']['BTC-8E-HP4'] = 0x
-# # #ir_flash_power_patch_list['hce_mode_init_fsm_task0']['start_offset']['BTC-7E-HP5'] = 0x
-# #ir_flash_power_patch_list['hce_mode_init_fsm_task0']['start_offset']['BTC-8E-HP5'] = 0x010aeb0
-# #ir_flash_power_patch_list['hce_mode_init_fsm_task0']['change_from_jump'] = 'jal.initSmartIRQueueThread'
-# #ir_flash_power_patch_list['hce_mode_init_fsm_task0']['change_to_jump']   = 'jal.ifm_initSmartIRQueueThread'
 
 
