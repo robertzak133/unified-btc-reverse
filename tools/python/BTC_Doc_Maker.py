@@ -26,8 +26,8 @@ class BTC_Doc_Maker:
                 current_date = now.strftime("%Y-%m-%d")
                 target_directory =  btc_targets[camera_target]['Target Directory']
                 factory_BRN_directory = btc_targets[camera_target]['Factory BRN Dir']
-                factory_url = "https:\\\\" + repository_base + target_directory + "/factory-firmware-images/"+ factory_BRN_directory + "/" + brn_filename
-                wbwl_release_url = "https:\\\\" + repository_base + target_directory + "/created-burn-images/RELEASE/" + brn_filename
+                factory_url = "https://" + repository_base + target_directory + "/factory-firmware-images/"+ factory_BRN_directory + "/" + brn_filename
+                wbwl_release_url = "https://" + repository_base + target_directory + "/created-burn-images/RELEASE/" + brn_filename
                 self.fprint_camera_line(file, camera_target, "[" + brn_filename + "](" + factory_url + ")","["+ brn_filename + "](" + wbwl_release_url+ ")", firmware_version, current_date)
         return
 
