@@ -116,7 +116,8 @@ g_wbwl_btc_targets['BTC-7E-HP5'] ['EEPROM Dir'] = '2022-10-14-Factory-Firmware-I
 g_wbwl_btc_targets['BTC-7E-HP5'] ['EEPROM Filename'] = '2022-10-17-BTC-7E-Factory-Firmware.bin'
 g_wbwl_btc_targets['BTC-7E-HP5'] ['Factory BRN Dir'] = 'BTC7EH5_L10200F'
 g_wbwl_btc_targets['BTC-7E-HP5'] ['Factory BRN Filename'] = 'brnbtc72.BRN'
-g_wbwl_btc_targets['BTC-7E-HP5'] ['Version'] = 'WWL7EH5_' + g_btc_major_version
+#g_wbwl_btc_targets['BTC-7E-HP5'] ['Version'] = 'WWL7EH5_' + g_btc_major_version
+g_wbwl_btc_targets['BTC-7E-HP5'] ['Version'] = 'WWL7EH5_' + "230707T"
 g_wbwl_btc_targets['BTC-7E-HP5'] ['Carve'] = True
 g_wbwl_btc_targets['BTC-7E-HP5'] ['Build'] = True
 # 8E-HP5

@@ -1539,6 +1539,7 @@ extern uint          photo_sensor_hysteresis(void);
 
 extern uint  positive_diff(uint end_time_ms, uint start_time_ms);
 extern int           posix_finfo(uint file_ptr, struct_PosixFinfo *finfo);
+extern void          power_on_IR_LED(void);
 
 extern uint          read_photo_sensor_value();
 extern int           seekToSpecifiedFileLocation(uint file_ptr, uint offset, uint whence);

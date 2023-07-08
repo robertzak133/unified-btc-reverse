@@ -1,6 +1,6 @@
 /* Command File for Gcc Loader */
 /*    Created automatically by Ghidra.UnifiedCreateLdScript.java */
-/*    2023-04-09 07:27:45 */
+/*    2023-07-07 06:30:23 */
 
   /* Symbol Definitions */
    btc_strcpy = 0x80033558;
@@ -37,9 +37,9 @@
    g_smart_ir_video_menu = 0x803107a8;
    HceIQ_CheckNightMode = 0x8005c51c;
    HceCommon_RestoreDefaultColdItem = 0x8005c850;
+   set_rtc_extra_byte_range = 0x80060c7c;
    get_cold_item_sensor_digital_effect = 0x800e55d8;
    fatVolLabSet = 0x80032990;
-   get_extra_rtc_alt_ir_led_intensity = 0x8005b6dc;
    vfsClose = 0x8003084c;
    g_operation_mode_menu = 0x8030fd28;
    g_video_length_menu = 0x8030fe24;
@@ -122,6 +122,7 @@
    g_photo_detector_hysteresis = 0x80318216;
    g_btc_init_directory_suffix_prefix_dyn = 0x80316300;
    btc_fclose = 0x80061784;
+   get_rtc_extra_byte_range = 0x80060cc4;
    g_up_button_enable = 0x803181a0;
    setDigitalEffectswitchdataD_table = 0x802ca35c;
    TaskTimeLapseFSM_task9 = 0x8010466c;

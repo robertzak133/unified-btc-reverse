@@ -632,7 +632,7 @@ typedef struct struct_ColdBinData {
   byte                 video_resolution;
   byte                 field_33_1;
   byte                 field_34_1;
-  byte                 wbwl_encoded_aperture;
+  byte                 field_35_1;
   enum_video_length    video_duration;
   short                field_40_2;
   byte                 field_42_1;
@@ -888,7 +888,7 @@ typedef struct struct_ColdBinData {
   byte                 video_resolution;
   byte                 field_33_1;
   byte                 field_34_1;
-  byte                 wbwl_encoded_aperture;
+  byte                 field_35_1;
   enum_video_length    video_length;
   byte                 field_40_1;
   byte                 field_41_1;
@@ -1139,7 +1139,7 @@ typedef struct struct_ColdBinData {
   byte                 video_resolution;
   byte                 field_25_1;
   byte                 field_26_1;
-  byte                 wbwl_encoded_aperture;
+  byte                 field_27_1;
   enum_video_length    video_length;
   byte                 field_32_1;
   byte                 field_33_1;
@@ -1476,6 +1476,7 @@ extern uint          get_cold_item_operation_mode(void);
 extern void          get_cold_item_short_rtc_time(struct_short_RTCTime *short_rtc_time);
 extern int           get_power_supply_mode(void);
 extern byte          get_power_switch_on_p();
+extern void          get_rtc_extra_byte_range(byte *buffer, uint start_byte, uint size);          
 extern void          get_rtc_time_or_alarm(int flag, struct_RTCTime *current_rtc_time);
 extern void          get_rtc_time(struct_RTCTime *current_rtc_time);
 extern void          get_short_rtc_time(struct_short_RTCTime *short_rtc_time);
@@ -1570,6 +1571,7 @@ extern void          set_pre_printf_state(void);
 
 extern void          set_ir_led_power_pwm(enum_alt_ir_led_intensity);
 extern void          set_ir_led_intensity_from_cold_item(enum_cold_item_ir_led_intensity ir_led_intensity);
+extern void          set_rtc_extra_byte_range(byte *buffer, uint start_byte, uint size);
 extern void          smart_IR_log_printf(char * format_string, uint arg1);
 extern void          smart_IR_log_sub_printf(char *format_string, uint arg1);
 extern void          sp5kIqBlockEnable(char, ...);

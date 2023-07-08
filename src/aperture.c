@@ -4,6 +4,8 @@
 // Code to support different aperture lenses by changing the threshold at which
 //      day and night mode is detected.  Larger aperture means lower theshold 
 //      (and more opportunity for color shots)
+//      2023-07-07: terminology changed to "Daylight threshold", which allows
+//      easy inclusione "no light" (awkwardly an infinite aperture)
 //
 //
 
@@ -12,8 +14,8 @@
 #include "menus.h"
 #include "aperture.h"
 
-#define DEBUG
-#define DEBUG1
+//#define DEBUG
+//#define DEBUG1
 
 // Global Variables
 
@@ -40,26 +42,49 @@ struct_night_mode_min_max g_apt_nightmode_threshold_lookup_table[3] = {
 #endif
 
 
-// 
-byte apt_get_cold_item_aperture() {
-  byte result = g_ColdItemData.wbwl_encoded_aperture;
-  result = GET_BYTE_N_BIT(result,
-			  WBWL_APERTURE_N_BITS,
-			  WBWL_APERTURE_LSBIT);
+// Returns the current value of aperture (daylight threshold)
+//      Note that because we need this information quickly,
+//      we can't wait for the ColdItem file to be read in
+//      This means we need to store the 2-bit encoded state
+//      in an area of NVRAM.  This is a little tricky, since
+//      we have to find two bits that aren't already being used
+//      
+//      Note -- future factory firmware may wreck this
+ 
+uint apt_get_cold_item_aperture() {
+  byte result = apt_get_rtc_extra_short3_bits15_14();
   return(result);
 
 }
 
-void apt_set_cold_item_aperture(byte aperture) {
-  byte temp_byte = g_ColdItemData.wbwl_encoded_aperture;
-  temp_byte = SET_BYTE_N_BIT(temp_byte, aperture,
-			     WBWL_APERTURE_N_BITS,
-			     WBWL_APERTURE_LSBIT);
-
-  g_ColdItemData.wbwl_encoded_aperture = temp_byte;
+void apt_set_cold_item_aperture(uint aperture) {
+  apt_set_rtc_extra_short3_bits15_14(aperture);
 }
 
 
+// Setting bits 15:14 in the short 3 of the non-volatile
+//     RAM associated with RTC
+void apt_set_rtc_extra_short3_bits15_14(uint param_1)
+{
+  uint buffer [2];
+  
+  buffer[0] = buffer[0] & 0xffff0000;
+  get_rtc_extra_byte_range((byte *)buffer,6,2);
+  buffer[0] = buffer[0] & 0xffff3fff | (param_1 & 3) << 14;
+  set_rtc_extra_byte_range((byte *)buffer,6,2);
+  return;
+}
+
+// Getting bits 15:14 in the short 3 of the non-volatile
+//     RAM associated with RTC
+uint apt_get_rtc_extra_short3_bits15_14(void)
+{
+  uint buffer[2];
+  
+  buffer[0] = buffer[0] & 0xffff0000;
+  get_rtc_extra_byte_range((byte *)buffer,6,2);
+  return (buffer[0] << 16) >> 30;
+}
 
 
 // get_night_mode_threhold_mix_max

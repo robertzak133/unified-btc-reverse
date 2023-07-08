@@ -27,9 +27,12 @@ struct_hp5_menu_item g_apt_aperture_menu[4];
 struct_night_mode_min_max g_apt_nightmode_threshold_lookup_table[3];
 
 
-byte apt_get_cold_item_aperture();
+uint apt_get_cold_item_aperture();
 
-void apt_set_cold_item_aperture(byte aperture);
+void apt_set_cold_item_aperture(uint aperture);
+
+void apt_set_rtc_extra_short3_bits15_14(uint param_1);
+uint apt_get_rtc_extra_short3_bits15_14(void);
 
 void apt_handle_aperture_menu();
 
