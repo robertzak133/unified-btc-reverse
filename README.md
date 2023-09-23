@@ -13,12 +13,12 @@ If you are here for RELEASE'd firmware images themselves, you can find them belo
 ##Factory Firmware and WBWL Customer Firmware Locations
 | Camera Model | Factory Baseline  | Current WBWL | Version  | Build Date |
 |--------------|-------------------|--------------|----------|------------|
-| BTC-7E | [brnbtc70.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-7e/factory-firmware-images/BTC7E_2021_10_07/brnbtc70.BRN) | [brnbtc70.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-7e/created-burn-images/RELEASE/brnbtc70.BRN) | WWL7E_230704A | 2023-07-07 |
-| BTC-8E | [brnbtc80.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-8e/factory-firmware-images/BTC8E_2021_10_07/brnbtc80.BRN) | [brnbtc80.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-8e/created-burn-images/RELEASE/brnbtc80.BRN) | WWL8E_230704A | 2023-07-07 |
-| BTC-7E-HP4 | [brnbtc71.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-7e-hp4/factory-firmware-images/2023-02-01-ns/brnbtc71.BRN) | [brnbtc71.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-7e-hp4/created-burn-images/RELEASE/brnbtc71.BRN) | WWL7EH4_230704A | 2023-07-07 |
-| BTC-8E-HP4 | [brnbtc81.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-8e-hp4/factory-firmware-images/2023-02-01-ns/brnbtc81.BRN) | [brnbtc81.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-8e-hp4/created-burn-images/RELEASE/brnbtc81.BRN) | WWL8EH4_230704A | 2023-07-07 |
-| BTC-7E-HP5 | [brnbtc72.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-7e-hp5/factory-firmware-images/BTC7EH5_L10200F/brnbtc72.BRN) | [brnbtc72.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-7e-hp5/created-burn-images/RELEASE/brnbtc72.BRN) | WWL7EH5_230704A | 2023-07-07 |
-| BTC-8E-HP5 | [brnbtc82.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-8e-hp5/factory-firmware-images/BTC8EH5_L10200F/brnbtc82.BRN) | [brnbtc82.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-8e-hp5/created-burn-images/RELEASE/brnbtc82.BRN) | WWL8EH5_230704A | 2023-07-07 |
+| BTC-7E | [brnbtc70.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-7e/factory-firmware-images/BTC7E_2021_10_07/brnbtc70.BRN) | [brnbtc70.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-7e/created-burn-images/RELEASE/brnbtc70.BRN) | WWL7E_230914P | 2023-09-22 |
+| BTC-8E | [brnbtc80.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-8e/factory-firmware-images/BTC8E_2021_10_07/brnbtc80.BRN) | [brnbtc80.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-8e/created-burn-images/RELEASE/brnbtc80.BRN) | WWL8E_230914P | 2023-09-22 |
+| BTC-7E-HP4 | [brnbtc71.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-7e-hp4/factory-firmware-images/2023-02-01-ns/brnbtc71.BRN) | [brnbtc71.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-7e-hp4/created-burn-images/RELEASE/brnbtc71.BRN) | WWL7EH4_230914P | 2023-09-22 |
+| BTC-8E-HP4 | [brnbtc81.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-8e-hp4/factory-firmware-images/2023-02-01-ns/brnbtc81.BRN) | [brnbtc81.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-8e-hp4/created-burn-images/RELEASE/brnbtc81.BRN) | WWL8EH4_230914P | 2023-09-22 |
+| BTC-7E-HP5 | [brnbtc72.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-7e-hp5/factory-firmware-images/BTC7EH5_L10200F/brnbtc72.BRN) | [brnbtc72.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-7e-hp5/created-burn-images/RELEASE/brnbtc72.BRN) | WWL7EH5_230914P | 2023-09-22 |
+| BTC-8E-HP5 | [brnbtc82.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-8e-hp5/factory-firmware-images/BTC8EH5_L10200F/brnbtc82.BRN) | [brnbtc82.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-8e-hp5/created-burn-images/RELEASE/brnbtc82.BRN) | WWL8EH5_230914P | 2023-09-22 |
 
 ## Download Instructions
 - Find the copy of brnbtc7x.BRN (Recon Force) or brnbtc8x.BRN (Spec Ops) file for your camera above
@@ -56,7 +56,7 @@ If, for any reason, you want to get back to the factory firmware, choose the "Fa
  * Extended SD Power: Causes the CPU and SD card to remain powered on for 30 seconds after each photo or video.  This to allow shared SD card to be read by another device.  Note that during this time, the camera will not trigger.
  * Time and Date Format Options: Added options for time format -- 12H/24H; and date formats MM/DD/YYYY; DD/MM/YYYY; YYYYMMDD
  * IR Flash Power: Added an "Off" option to IR Flash power.  When in "Off", the IR Flash is not used, even for night photos.  Intended for use in sets with another source of IR illumination. 
- * Night Threshold: Not Yet implemented
+ * Night Threshold: Lowers the amount of light required to take a color image.  Defaults to "Standard".  In "No light" setting, the camera will take color photos even in darkness.  Useful with external illumination. 
  
 ## Build environment and Source Code
 
