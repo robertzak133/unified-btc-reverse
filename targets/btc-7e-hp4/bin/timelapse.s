@@ -534,4 +534,4 @@ g_wbwl_timelapse_frequency_menu:
 	.word	1
 	.word	3
 	.word	3
-	.ident	"GCC: (Ubuntu 9.4.0-1ubuntu1~20.04) 9.4.0"
+	.ident	"GCC: (Ubuntu 9.4.0-1ubuntu1) 9.4.0"

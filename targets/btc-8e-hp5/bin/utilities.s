@@ -459,4 +459,4 @@ utilities_check_post_printf_hook:
 	.set	reorder
 	.end	utilities_check_post_printf_hook
 	.size	utilities_check_post_printf_hook, .-utilities_check_post_printf_hook
-	.ident	"GCC: (Ubuntu 9.4.0-1ubuntu1~20.04) 9.4.0"
+	.ident	"GCC: (Ubuntu 9.4.0-1ubuntu1) 9.4.0"

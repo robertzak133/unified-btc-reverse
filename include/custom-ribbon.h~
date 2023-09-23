@@ -1,0 +1,17 @@
+// cutom-ribbon.h
+
+extern void cr_expand_date_time(uint compressed_date_time, struct_DateTime *expanded_date_time);
+
+extern void wbwl_custom_ribbon_sprintf(char *buffer, char * format, 
+				       unsigned int current_media_index, 
+				       unsigned int total_num_media);
+
+extern int wbwlFileCTimeGet(char *filename, struct struct_DateTime *creation_date_time);
+
+extern void ld_draw_video_scroll_bar(unsigned int percent_complete);
+
+extern void ld_clear_video_scroll_bar(unsigned int right_x,
+				      unsigned int bottom_y,
+				      unsigned int width,
+				      unsigned int height,
+				      char color);

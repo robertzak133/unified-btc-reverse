@@ -88,79 +88,56 @@ $LC3:
 	.ent	wbwl_custom_info_strip_time_sprintf
 	.type	wbwl_custom_info_strip_time_sprintf, @function
 wbwl_custom_info_strip_time_sprintf:
-	.frame	$sp,80,$31		# vars= 40, regs= 4/0, args= 24, gp= 0
-	.mask	0x80070000,-4
+	.frame	$sp,80,$31		# vars= 40, regs= 3/0, args= 24, gp= 0
+	.mask	0x80030000,-4
 	.fmask	0x00000000,0
 	.set	noreorder
 	.set	nomacro
 	addiu	$sp,$sp,-80
 	addiu	$5,$sp,24
-	sw	$16,64($sp)
+	sw	$16,68($sp)
 	move	$16,$4
 	move	$4,$0
-	sw	$6,88($sp)
-	sw	$7,92($sp)
 	sw	$31,76($sp)
-	sw	$18,72($sp)
-	sw	$17,68($sp)
+	sw	$17,72($sp)
+	sw	$6,88($sp)
 	jal	get_rtc_time_or_alarm
-	lw	$18,96($sp)
+	sw	$7,92($sp)
 
 	jal	rtc_get_cold_item_time_format
 	lw	$17,24($sp)
 
 	li	$3,1			# 0x1
-	lw	$7,92($sp)
 	beq	$2,$3,$L8
-	lw	$6,88($sp)
+	lw	$7,92($sp)
 
+	lw	$2,96($sp)
+	lw	$6,88($sp)
 	lui	$5,%hi($LC2)
-	sw	$18,20($sp)
+	sw	$2,20($sp)
 	sw	$17,16($sp)
 	addiu	$5,$5,%lo($LC2)
 	jal	local_sprintf
 	move	$4,$16
 
 	lw	$31,76($sp)
-$L14:
-	lw	$18,72($sp)
-	lw	$17,68($sp)
-	lw	$16,64($sp)
+$L11:
+	lw	$17,72($sp)
+	lw	$16,68($sp)
 	jr	$31
 	addiu	$sp,$sp,80
 
 $L8:
-	lb	$2,0($18)
-	li	$3,112			# 0x70
-	bne	$2,$3,$L10
-	li	$3,97			# 0x61
-
-	slt	$2,$6,12
-	bnel	$2,$0,$L11
-	addiu	$6,$6,12
-
-$L11:
+	lw	$7,28($sp)
+	lw	$6,32($sp)
 	lui	$5,%hi($LC3)
-$L15:
 	sw	$17,16($sp)
-$L16:
 	addiu	$5,$5,%lo($LC3)
 	jal	local_sprintf
 	move	$4,$16
 
-	b	$L14
+	b	$L11
 	lw	$31,76($sp)
-
-$L10:
-	bne	$2,$3,$L15
-	lui	$5,%hi($LC3)
-
-	li	$2,12			# 0xc
-	beql	$6,$2,$L15
-	move	$6,$0
-
-	b	$L16
-	sw	$17,16($sp)
 
 	.set	macro
 	.set	reorder
@@ -196,7 +173,7 @@ wbwl_custom_info_strip_strlen:
 	jal	get_power_supply_mode
 	move	$16,$2
 
-	bne	$2,$0,$L18
+	bne	$2,$0,$L13
 	addu	$4,$17,$16
 
 	jal	get_battery_percent
@@ -209,19 +186,19 @@ wbwl_custom_info_strip_strlen:
 	addiu	$5,$5,%lo($LC4)
 
 	lw	$31,36($sp)
-$L21:
+$L16:
 	lw	$16,28($sp)
 	move	$4,$17
 	lw	$17,32($sp)
 	j	btc_strlen
 	addiu	$sp,$sp,40
 
-$L18:
+$L13:
 	lui	$5,%hi($LC5)
 	jal	local_sprintf
 	addiu	$5,$5,%lo($LC5)
 
-	b	$L21
+	b	$L16
 	lw	$31,36($sp)
 
 	.set	macro
@@ -251,4 +228,4 @@ wbwl_StampDrawLogo:
 	.comm	g_rtc_time_format_menu,84,4
 
 	.comm	g_rtc_date_format_menu,112,4
-	.ident	"GCC: (Ubuntu 9.4.0-1ubuntu1~20.04) 9.4.0"
+	.ident	"GCC: (Ubuntu 9.4.0-1ubuntu1) 9.4.0"

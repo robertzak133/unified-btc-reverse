@@ -953,6 +953,44 @@ aperture_patch_list['apt_mode_auto_do_capture']['start_offset']['BTC-8E-HP5'] = 
 aperture_patch_list['apt_mode_auto_do_capture']['change_from_jump'] = 'jal.HceIQ_CheckNightMode'
 aperture_patch_list['apt_mode_auto_do_capture']['change_to_jump']   = 'jal.apt_HceIQ_CheckNightMode'
 
+
+# in HcePower_CommonPowerOff
+# For BTC-7E/8E/7E-HP4/8E-HP4: Change call to set_rtc_extra_operation_mode() to allow for more space 
+#
+aperture_patch_list['apt_set_operation_mode'] = {}
+aperture_patch_list['apt_set_operation_mode']['function'] = 'HcePower_CommonPowerOff'
+aperture_patch_list['apt_set_operation_mode']['line_number'] = {}
+aperture_patch_list['apt_set_operation_mode']['line_number']['BTC-7E'] = 46
+aperture_patch_list['apt_set_operation_mode']['line_number']['BTC-8E'] = 46
+aperture_patch_list['apt_set_operation_mode']['line_number']['BTC-7E-HP4'] = 63
+aperture_patch_list['apt_set_operation_mode']['line_number']['BTC-8E-HP4'] = 62
+aperture_patch_list['apt_set_operation_mode']['start_offset'] = {}
+aperture_patch_list['apt_set_operation_mode']['start_offset']['BTC-7E'] = 0x011344c
+aperture_patch_list['apt_set_operation_mode']['start_offset']['BTC-8E'] = 0x01136a4
+aperture_patch_list['apt_set_operation_mode']['start_offset']['BTC-7E-HP4'] = 0x010e550
+aperture_patch_list['apt_set_operation_mode']['start_offset']['BTC-8E-HP4'] = 0x010ea50
+aperture_patch_list['apt_set_operation_mode']['change_from_jump'] = 'jal.set_rtc_extra_operation_mode'
+aperture_patch_list['apt_set_operation_mode']['change_to_jump']   = 'jal.apt_set_rtc_extra_operation_mode'
+
+
+# in HceFastCap_PreDo
+# For BTC-7E/8E/7E-HP4/8E-HP4: Change call to set_rtc_extra_operation_mode() to allow for more space 
+#
+aperture_patch_list['apt_get_operation_mode'] = {}
+aperture_patch_list['apt_get_operation_mode']['function'] = 'HceFastCap_PreDo'
+aperture_patch_list['apt_get_operation_mode']['line_number'] = {}
+aperture_patch_list['apt_get_operation_mode']['line_number']['BTC-7E'] = 48
+aperture_patch_list['apt_get_operation_mode']['line_number']['BTC-8E'] = 50
+aperture_patch_list['apt_get_operation_mode']['line_number']['BTC-7E-HP4'] = 50
+aperture_patch_list['apt_get_operation_mode']['line_number']['BTC-8E-HP4'] = 50
+aperture_patch_list['apt_get_operation_mode']['start_offset'] = {}
+aperture_patch_list['apt_get_operation_mode']['start_offset']['BTC-7E'] = 0x007409c
+aperture_patch_list['apt_get_operation_mode']['start_offset']['BTC-8E'] = 0x007409c
+aperture_patch_list['apt_get_operation_mode']['start_offset']['BTC-7E-HP4'] = 0x0069f70
+aperture_patch_list['apt_get_operation_mode']['start_offset']['BTC-8E-HP4'] = 0x0069e80
+aperture_patch_list['apt_get_operation_mode']['change_from_jump'] = 'jal.get_rtc_extra_operation_mode'
+aperture_patch_list['apt_get_operation_mode']['change_to_jump']   = 'jal.apt_get_rtc_extra_operation_mode'
+
 ##################################################################################
 # Patches for creating new menu(s)
 #    - menu_handler_function_array
@@ -2319,17 +2357,17 @@ ir_flash_power_patch_list = {}
 ir_flash_power_patch_list['set_ir_led_power_pwm'] = {}
 ir_flash_power_patch_list['set_ir_led_power_pwm']['function'] = 'setIRLedOn'
 ir_flash_power_patch_list['set_ir_led_power_pwm']['line_number'] = {}
-# # #ir_flash_power_patch_list['set_ir_led_power_pwm']['line_number']['BTC-7E'] = 
-# # #ir_flash_power_patch_list['set_ir_led_power_pwm']['line_number']['BTC-8E'] = 
-# # #ir_flash_power_patch_list['set_ir_led_power_pwm']['line_number']['BTC-7E-HP4'] =
-# # #ir_flash_power_patch_list['set_ir_led_power_pwm']['line_number']['BTC-8E-HP4'] =
+ir_flash_power_patch_list['set_ir_led_power_pwm']['line_number']['BTC-7E'] = 7
+ir_flash_power_patch_list['set_ir_led_power_pwm']['line_number']['BTC-8E'] = 7
+ir_flash_power_patch_list['set_ir_led_power_pwm']['line_number']['BTC-7E-HP4'] = 7
+ir_flash_power_patch_list['set_ir_led_power_pwm']['line_number']['BTC-8E-HP4'] = 7
 ir_flash_power_patch_list['set_ir_led_power_pwm']['line_number']['BTC-7E-HP5'] = 8
 ir_flash_power_patch_list['set_ir_led_power_pwm']['line_number']['BTC-8E-HP5'] = 8
 ir_flash_power_patch_list['set_ir_led_power_pwm']['start_offset'] = {}
-# # #ir_flash_power_patch_list['set_ir_led_power_pwm']['start_offset']['BTC-7E'] = 0x
-# # #ir_flash_power_patch_list['set_ir_led_power_pwm']['start_offset']['BTC-8E'] = 0x
-# # #ir_flash_power_patch_list['set_ir_led_power_pwm']['start_offset']['BTC-7E-HP4'] = 0x
-# # #ir_flash_power_patch_list['set_ir_led_power_pwm']['start_offset']['BTC-8E-HP4'] = 0x
+ir_flash_power_patch_list['set_ir_led_power_pwm']['start_offset']['BTC-7E'] = 0x0111858
+ir_flash_power_patch_list['set_ir_led_power_pwm']['start_offset']['BTC-8E'] = 0x0111ad0
+ir_flash_power_patch_list['set_ir_led_power_pwm']['start_offset']['BTC-7E-HP4'] = 0x005e130
+ir_flash_power_patch_list['set_ir_led_power_pwm']['start_offset']['BTC-8E-HP4'] = 0x005e100
 ir_flash_power_patch_list['set_ir_led_power_pwm']['start_offset']['BTC-7E-HP5'] = 0x005e25c
 ir_flash_power_patch_list['set_ir_led_power_pwm']['start_offset']['BTC-8E-HP5'] = 0x005e22c
 ir_flash_power_patch_list['set_ir_led_power_pwm']['change_from_jump'] = 'jal.power_on_IR_LED'
@@ -2340,20 +2378,162 @@ ir_flash_power_patch_list['set_ir_led_power_pwm']['change_to_jump']   = 'jal.ifm
 ir_flash_power_patch_list['power_on_IR_LED'] = {}
 ir_flash_power_patch_list['power_on_IR_LED']['function'] = 'set_IRLedOn_PweLvl_protected'
 ir_flash_power_patch_list['power_on_IR_LED']['line_number'] = {}
-# #ir_flash_power_patch_list['power_on_IR_LED']['line_number']['BTC-7E'] = 
-# #ir_flash_power_patch_list['power_on_IR_LED']['line_number']['BTC-8E'] = 
-# #ir_flash_power_patch_list['power_on_IR_LED']['line_number']['BTC-7E-HP4'] = 
-# #ir_flash_power_patch_list['power_on_IR_LED']['line_number']['BTC-8E-HP4'] = 
+ir_flash_power_patch_list['power_on_IR_LED']['line_number']['BTC-7E'] = 11
+ir_flash_power_patch_list['power_on_IR_LED']['line_number']['BTC-8E'] = 11
+ir_flash_power_patch_list['power_on_IR_LED']['line_number']['BTC-7E-HP4'] = 11
+ir_flash_power_patch_list['power_on_IR_LED']['line_number']['BTC-8E-HP4'] = 11
 ir_flash_power_patch_list['power_on_IR_LED']['line_number']['BTC-7E-HP5'] = 11
 ir_flash_power_patch_list['power_on_IR_LED']['line_number']['BTC-8E-HP5'] = 15
 ir_flash_power_patch_list['power_on_IR_LED']['start_offset'] = {}
-# #ir_flash_power_patch_list['power_on_IR_LED']['start_offset']['BTC-7E'] = 0x
-# #ir_flash_power_patch_list['power_on_IR_LED']['start_offset']['BTC-8E'] = 0x
-# #ir_flash_power_patch_list['power_on_IR_LED']['start_offset']['BTC-7E-HP4'] = 0x
-# #ir_flash_power_patch_list['power_on_IR_LED']['start_offset']['BTC-8E-HP4'] = 0x
+ir_flash_power_patch_list['power_on_IR_LED']['start_offset']['BTC-7E'] = 0x01119e4
+ir_flash_power_patch_list['power_on_IR_LED']['start_offset']['BTC-8E'] = 0x0111c5c
+ir_flash_power_patch_list['power_on_IR_LED']['start_offset']['BTC-7E-HP4'] = 0x005e2bc
+ir_flash_power_patch_list['power_on_IR_LED']['start_offset']['BTC-8E-HP4'] = 0x005e28c
 ir_flash_power_patch_list['power_on_IR_LED']['start_offset']['BTC-7E-HP5'] = 0x005e3f4
 ir_flash_power_patch_list['power_on_IR_LED']['start_offset']['BTC-8E-HP5'] = 0x005e3c4
 ir_flash_power_patch_list['power_on_IR_LED']['change_from_jump'] = 'jal.power_on_IR_LED'
 ir_flash_power_patch_list['power_on_IR_LED']['change_to_jump']   = 'jal.ifm_power_on_IR_LED'
 
+# Custom Date/Time Menu formats
+cdt_menu_patch_list = {}
+# replace call to  handleSetTimeMenu in g_HceTaskMenuMultiItem_fsm_function_array
+cdt_menu_patch_list['handle_set_time_menu'] = {}
+cdt_menu_patch_list['handle_set_time_menu']['function'] = 'g_HceTaskMenuMultiItem_fsm_function_array'
+cdt_menu_patch_list['handle_set_time_menu']['line_number'] = {}
+cdt_menu_patch_list['handle_set_time_menu']['line_number']['BTC-7E'] = 5
+cdt_menu_patch_list['handle_set_time_menu']['line_number']['BTC-8E'] = 5
+cdt_menu_patch_list['handle_set_time_menu']['line_number']['BTC-7E-HP4'] = 5
+cdt_menu_patch_list['handle_set_time_menu']['line_number']['BTC-8E-HP4'] = 5
+cdt_menu_patch_list['handle_set_time_menu']['line_number']['BTC-7E-HP5'] = 5
+cdt_menu_patch_list['handle_set_time_menu']['line_number']['BTC-8E-HP5'] = 5
+cdt_menu_patch_list['handle_set_time_menu']['start_offset'] = {}
+cdt_menu_patch_list['handle_set_time_menu']['start_offset']['BTC-7E'] = 0x0355290
+cdt_menu_patch_list['handle_set_time_menu']['start_offset']['BTC-8E'] = 0x03552e8
+cdt_menu_patch_list['handle_set_time_menu']['start_offset']['BTC-7E-HP4'] = 0x03582e8
+cdt_menu_patch_list['handle_set_time_menu']['start_offset']['BTC-8E-HP4'] = 0x035c518
+cdt_menu_patch_list['handle_set_time_menu']['start_offset']['BTC-7E-HP5'] = 0x02c9aa0
+cdt_menu_patch_list['handle_set_time_menu']['start_offset']['BTC-8E-HP5'] = 0x02cbc58
+cdt_menu_patch_list['handle_set_time_menu']['change_from_ptr'] = 'handleSetTimeMenu'
+cdt_menu_patch_list['handle_set_time_menu']['change_to_ptr']   = 'cdt_handleSetTimeMenu'
 
+cdt_menu_patch_list['cdt_btc_strcpy'] = {}
+cdt_menu_patch_list['cdt_btc_strcpy']['function'] = 'draw_set_time_screen'
+cdt_menu_patch_list['cdt_btc_strcpy']['line_number'] = {}
+cdt_menu_patch_list['cdt_btc_strcpy']['line_number']['BTC-7E'] = 126
+cdt_menu_patch_list['cdt_btc_strcpy']['line_number']['BTC-8E'] = 126
+cdt_menu_patch_list['cdt_btc_strcpy']['line_number']['BTC-7E-HP4'] = 124
+cdt_menu_patch_list['cdt_btc_strcpy']['line_number']['BTC-8E-HP4'] = 124
+cdt_menu_patch_list['cdt_btc_strcpy']['line_number']['BTC-7E-HP5'] = 119 
+cdt_menu_patch_list['cdt_btc_strcpy']['line_number']['BTC-8E-HP5'] = 124
+cdt_menu_patch_list['cdt_btc_strcpy']['start_offset'] = {}
+cdt_menu_patch_list['cdt_btc_strcpy']['start_offset']['BTC-7E'] = 0x0135550
+cdt_menu_patch_list['cdt_btc_strcpy']['start_offset']['BTC-8E'] = 0x013614c
+cdt_menu_patch_list['cdt_btc_strcpy']['start_offset']['BTC-7E-HP4'] = 0x0131e20
+cdt_menu_patch_list['cdt_btc_strcpy']['start_offset']['BTC-8E-HP4'] = 0x0134950
+cdt_menu_patch_list['cdt_btc_strcpy']['start_offset']['BTC-7E-HP5'] = 0x0110604
+cdt_menu_patch_list['cdt_btc_strcpy']['start_offset']['BTC-8E-HP5'] = 0x0110e18
+cdt_menu_patch_list['cdt_btc_strcpy']['change_from_jump'] = 'jal.btc_strcpy'
+cdt_menu_patch_list['cdt_btc_strcpy']['change_to_jump']   = 'jal.cdt_btc_strcpy'
+
+
+
+## Patches to fix access to the pressure/temperature sensor
+##   2023-09-17 -- my first hypothesis is that it's somehow at the
+##                 wrong I2C address
+
+pt_patch_list = {}
+
+# read in Pressure_sensor_init()
+pt_patch_list['pressure_sensor_init'] = {}
+pt_patch_list['pressure_sensor_init']['function'] = 'Pressure_sensor_init'
+pt_patch_list['pressure_sensor_init']['line_number'] = {}
+pt_patch_list['pressure_sensor_init']['line_number']['BTC-8E'] = 33
+pt_patch_list['pressure_sensor_init']['start_offset'] = {}
+pt_patch_list['pressure_sensor_init']['start_offset']['BTC-8E'] = 0x012e220
+pt_patch_list['pressure_sensor_init']['change_from_bytes'] = bytes([0xee,0x00,0x04,0x24])
+pt_patch_list['pressure_sensor_init']['change_to_bytes']   = bytes([0xec,0x00,0x04,0x24])
+
+## read in Pressure_sensor_getReading'
+pt_patch_list['ps_get_reading'] = {}
+pt_patch_list['ps_get_reading']['function'] = 'Pressure_sensor_getReading'
+pt_patch_list['ps_get_reading']['line_number'] = {}
+pt_patch_list['ps_get_reading']['line_number']['BTC-8E'] = 41
+pt_patch_list['ps_get_reading']['start_offset'] = {}
+pt_patch_list['ps_get_reading']['start_offset']['BTC-8E'] = 0x012de94
+pt_patch_list['ps_get_reading']['change_from_bytes'] = bytes([0xee,0x00,0x04,0x24])
+pt_patch_list['ps_get_reading']['change_to_bytes']   = bytes([0xec,0x00,0x04,0x24])
+
+## read in read_pressure_temperature_device'
+pt_patch_list['ps_read_pressure'] = {}
+pt_patch_list['ps_read_pressure']['function'] = 'read_pressure_temperature_device'
+pt_patch_list['ps_read_pressure']['line_number'] = {}
+pt_patch_list['ps_read_pressure']['line_number']['BTC-8E'] = 7
+pt_patch_list['ps_read_pressure']['start_offset'] = {}
+pt_patch_list['ps_read_pressure']['start_offset']['BTC-8E'] = 0x012dd9c
+pt_patch_list['ps_read_pressure']['change_from_bytes'] = bytes([0xee,0x00,0x04,0x24])
+pt_patch_list['ps_read_pressure']['change_to_bytes']   = bytes([0xec,0x00,0x04,0x24])
+
+## write in write_pressure_temperature_sensor
+pt_patch_list['write_pt_sensor'] = {}
+pt_patch_list['write_pt_sensor']['function'] = 'write_pressure_temperature_sensor'
+pt_patch_list['write_pt_sensor']['line_number'] = {}
+pt_patch_list['write_pt_sensor']['line_number']['BTC-8E'] = 10
+pt_patch_list['write_pt_sensor']['start_offset'] = {}
+pt_patch_list['write_pt_sensor']['start_offset']['BTC-8E'] = 0x012dcb0
+pt_patch_list['write_pt_sensor']['change_from_bytes'] = bytes([0xee,0x00,0x04,0x24])
+pt_patch_list['write_pt_sensor']['change_to_bytes']   = bytes([0xec,0x00,0x04,0x24])
+
+## write in write_pressure_temperature_sensor
+pt_patch_list['write_pt_sensor_wait'] = {}
+pt_patch_list['write_pt_sensor_wait']['function'] = 'write_pressure_temperature_sensor_wait'
+pt_patch_list['write_pt_sensor_wait']['line_number'] = {}
+pt_patch_list['write_pt_sensor_wait']['line_number']['BTC-8E'] = 7
+pt_patch_list['write_pt_sensor_wait']['start_offset'] = {}
+pt_patch_list['write_pt_sensor_wait']['start_offset']['BTC-8E'] = 0x012dd54
+pt_patch_list['write_pt_sensor_wait']['change_from_bytes'] = bytes([0xee,0x00,0x04,0x24])
+pt_patch_list['write_pt_sensor_wait']['change_to_bytes']   = bytes([0xec,0x00,0x04,0x24])
+
+## in Pressure_sensor_init() -- select the "external" temp sensor 
+##    Select external sensor, and lower sample rate in all cases
+pt_patch_list['pt_ext_temp_sensor'] = {}
+pt_patch_list['pt_ext_temp_sensor']['function'] = 'Pressure_sensor_init'
+pt_patch_list['pt_ext_temp_sensor']['line_number'] = {}
+pt_patch_list['pt_ext_temp_sensor']['line_number']['BTC-8E'] = 83
+pt_patch_list['pt_ext_temp_sensor']['start_offset'] = {}
+pt_patch_list['pt_ext_temp_sensor']['start_offset']['BTC-8E'] = 0x012e4ac
+pt_patch_list['pt_ext_temp_sensor']['change_from_bytes'] = bytes([0x31,0x00,0x05,0x24])
+pt_patch_list['pt_ext_temp_sensor']['change_to_bytes']   = bytes([0xb1,0x00,0x05,0x24])
+
+
+## Debug -- in update_global_pressure_temperature()
+# pt_patch_list['pt_get_sensor'] = {}
+# pt_patch_list['pt_get_sensor']['function'] = 'update_global_pressure_temperature'
+# pt_patch_list['pt_get_sensor']['line_number'] = {}
+# pt_patch_list['pt_get_sensor']['line_number']['BTC-8E'] = 10
+# pt_patch_list['pt_get_sensor']['start_offset'] = {}
+# pt_patch_list['pt_get_sensor']['start_offset']['BTC-8E'] = 0x010db18
+# pt_patch_list['pt_get_sensor']['change_from_jump'] = 'j.Pressure_sensor_getReading'
+# pt_patch_list['pt_get_sensor']['change_to_jump']   = 'j.cr_Pressure_sensor_getReading'
+
+
+## Debug -- in g_pressure_temperature_functions_B
+# pt_patch_list['pt_get_sensor_hp4'] = {}
+# pt_patch_list['pt_get_sensor_hp4']['function'] = 'g_pressure_temperature_functions_B'
+# pt_patch_list['pt_get_sensor_hp4']['line_number'] = {}
+# pt_patch_list['pt_get_sensor_hp4']['line_number']['BTC-8E-HP4'] = 1
+# pt_patch_list['pt_get_sensor_hp4']['start_offset'] = {}
+# pt_patch_list['pt_get_sensor_hp4']['start_offset']['BTC-8E-HP4'] = 0x035a760
+# pt_patch_list['pt_get_sensor_hp4']['change_from_ptr'] = 'Pressure_sensor_getReading'
+# pt_patch_list['pt_get_sensor_hp4']['change_to_ptr']   = 'cr_Pressure_sensor_getReading'
+
+## Debug -- in Pressure_sensor_init()
+# pt_patch_list['pt_pressure_sensor_init'] = {}
+# pt_patch_list['pt_pressure_sensor_init']['function'] = 'Pressure_sensor_init'
+# pt_patch_list['pt_pressure_sensor_init']['line_number'] = {}
+# pt_patch_list['pt_pressure_sensor_init']['line_number']['BTC-8E'] = 86
+# pt_patch_list['pt_pressure_sensor_init']['line_number']['BTC-8E-HP4'] = 88
+# pt_patch_list['pt_pressure_sensor_init']['start_offset'] = {}
+# pt_patch_list['pt_pressure_sensor_init']['start_offset']['BTC-8E'] = 0x012e4c0
+# pt_patch_list['pt_pressure_sensor_init']['start_offset']['BTC-8E-HP4'] = 0x012b764
+# pt_patch_list['pt_pressure_sensor_init']['change_from_jump'] = 'jal.log_printf'
+# pt_patch_list['pt_pressure_sensor_init']['change_to_jump']   = 'jal.cr_log_printf'

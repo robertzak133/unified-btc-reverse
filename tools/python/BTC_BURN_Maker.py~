@@ -61,8 +61,9 @@ class BTC_BURN_Maker:
     #   Our growing list of supported camera types
     def set_camera_target(self, target):
         if ((target == 'BTC-7A') or (target == 'BTC-8A') or
-            (target == 'BTC-7E-HP5') or (target == 'BTC-8E-HP5') or
-	    (target == 'BTC-7E') or (target == 'BTC-8E')):
+            (target == 'BTC-7E') or (target == 'BTC-8E') or
+            (target == 'BTC-7E-HP4') or (target == 'BTC-8E-HP4') or
+            (target == 'BTC-7E-HP5') or (target == 'BTC-8E-HP5')):
             self.camera_target = target
         else:
             print(f'Error::set_camera_target: unrecognized target device {target}')
@@ -175,6 +176,10 @@ class BTC_BURN_Maker:
             magic_string = 'Prometheus5BTC70'
         elif self.camera_target == 'BTC-8E':
             magic_string = 'Prometheus5BTC80'
+        elif self.camera_target == 'BTC-7E-HP4':
+            magic_string = 'Prometheus5BTC71'
+        elif self.camera_target == 'BTC-8E-HP4':
+            magic_string = 'Prometheus5BTC81'
         elif self.camera_target == 'BTC-7E-HP5':
             magic_string = 'Prometheus5BTC72'
         elif self.camera_target == 'BTC-8E-HP5':
@@ -300,7 +305,8 @@ class BTC_BURN_Maker:
         self.set_camera_target(target);
 
         # Don't count the "prometheus" file when calculating file sizes
-        if (self.camera_target == 'BTC-7E') or (self.camera_target == 'BTC-8E'):
+        if (self.camera_target == 'BTC-7E') or (self.camera_target == 'BTC-8E') or \
+           (self.camera_target == 'BTC-7E-HP4') or (self.camera_target == 'BTC-8E-HP4'):
             size_files = ["SPHOST.header", "offset0", "offset1", "offset2.header", "offset2.A",
 			  "offset2.B", "offset3", "offset5"]
         else:
@@ -324,7 +330,7 @@ class BTC_BURN_Maker:
             dest_directory = self.default_dest_directory
         # Do nothing if directory or outfile are not valid
         if not os.path.isdir(dest_directory):
-            print("Error::combine_firmware -- dest_directory not valid") 
+            print(f"Error::combine_firmware -- dest_directory not valid: {dest_directory}") 
             return
 
         if not ref_eeprom_directory:
@@ -461,7 +467,8 @@ class BTC_BURN_Maker:
             self.fprint_sphost_header(header, header_file, checksum, '<')
 
         # now calculate the checksum of all the files
-        if (self.camera_target == 'BTC-7E') or (self.camera_target == 'BTC-8E'):
+        if (self.camera_target == 'BTC-7E') or (self.camera_target == 'BTC-8E') or \
+           (self.camera_target == 'BTC-7E-HP4') or (self.camera_target == 'BTC-8E-HP4'):
             file_list = [ "offset0", "offset1", "offset2.A", "offset2.B", "offset2.header",
                           "offset3", "offset5", "SPHOST.header"]
         else:

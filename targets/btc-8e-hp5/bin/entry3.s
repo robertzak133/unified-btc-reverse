@@ -40,4 +40,4 @@ build_panorama:
 	.set	reorder
 	.end	build_panorama
 	.size	build_panorama, .-build_panorama
-	.ident	"GCC: (Ubuntu 9.4.0-1ubuntu1~20.04) 9.4.0"
+	.ident	"GCC: (Ubuntu 9.4.0-1ubuntu1) 9.4.0"

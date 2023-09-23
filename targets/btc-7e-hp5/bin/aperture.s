@@ -6,35 +6,61 @@
 	.module	nooddspreg
 	.text
 	.align	2
-	.globl	apt_set_rtc_extra_short3_bits15_14
+	.globl	apt_get_cold_item_aperture
 	.set	nomips16
 	.set	nomicromips
-	.ent	apt_set_rtc_extra_short3_bits15_14
-	.type	apt_set_rtc_extra_short3_bits15_14, @function
-apt_set_rtc_extra_short3_bits15_14:
-	.frame	$sp,40,$31		# vars= 8, regs= 3/0, args= 16, gp= 0
-	.mask	0x80030000,-4
+	.ent	apt_get_cold_item_aperture
+	.type	apt_get_cold_item_aperture, @function
+apt_get_cold_item_aperture:
+	.frame	$sp,40,$31		# vars= 16, regs= 1/0, args= 16, gp= 0
+	.mask	0x80000000,-4
 	.fmask	0x00000000,0
 	.set	noreorder
 	.set	nomacro
 	addiu	$sp,$sp,-40
-	lw	$2,16($sp)
-	sw	$17,32($sp)
-	li	$17,-65536			# 0xffffffffffff0000
-	sw	$16,28($sp)
-	and	$2,$2,$17
-	move	$16,$4
-	li	$6,2			# 0x2
 	addiu	$4,$sp,16
-	li	$5,6			# 0x6
+	li	$6,2			# 0x2
 	sw	$31,36($sp)
 	jal	get_rtc_extra_byte_range
-	sw	$2,16($sp)
+	li	$5,6			# 0x6
 
 	lw	$2,16($sp)
-	addiu	$17,$17,16383
+	lw	$31,36($sp)
+	addiu	$sp,$sp,40
+	sll	$2,$2,16
+	jr	$31
+	srl	$2,$2,30
+
+	.set	macro
+	.set	reorder
+	.end	apt_get_cold_item_aperture
+	.size	apt_get_cold_item_aperture, .-apt_get_cold_item_aperture
+	.align	2
+	.globl	apt_set_cold_item_aperture
+	.set	nomips16
+	.set	nomicromips
+	.ent	apt_set_cold_item_aperture
+	.type	apt_set_cold_item_aperture, @function
+apt_set_cold_item_aperture:
+	.frame	$sp,40,$31		# vars= 16, regs= 2/0, args= 16, gp= 0
+	.mask	0x80010000,-4
+	.fmask	0x00000000,0
+	.set	noreorder
+	.set	nomacro
+	addiu	$sp,$sp,-40
+	li	$6,2			# 0x2
+	li	$5,6			# 0x6
+	sw	$16,32($sp)
+	move	$16,$4
+	sw	$31,36($sp)
+	jal	get_rtc_extra_byte_range
+	addiu	$4,$sp,16
+
+	lw	$2,16($sp)
+	li	$3,-65536			# 0xffffffffffff0000
+	addiu	$3,$3,16383
 	sll	$16,$16,14
-	and	$2,$2,$17
+	and	$2,$2,$3
 	andi	$16,$16,0xffff
 	or	$16,$2,$16
 	addiu	$4,$sp,16
@@ -44,111 +70,31 @@ apt_set_rtc_extra_short3_bits15_14:
 	sw	$16,16($sp)
 
 	lw	$31,36($sp)
-	lw	$17,32($sp)
-	lw	$16,28($sp)
+	lw	$16,32($sp)
 	jr	$31
 	addiu	$sp,$sp,40
-
-	.set	macro
-	.set	reorder
-	.end	apt_set_rtc_extra_short3_bits15_14
-	.size	apt_set_rtc_extra_short3_bits15_14, .-apt_set_rtc_extra_short3_bits15_14
-	.align	2
-	.globl	apt_set_cold_item_aperture
-	.set	nomips16
-	.set	nomicromips
-	.ent	apt_set_cold_item_aperture
-	.type	apt_set_cold_item_aperture, @function
-apt_set_cold_item_aperture:
-	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
-	.mask	0x00000000,0
-	.fmask	0x00000000,0
-	.set	noreorder
-	.set	nomacro
-	j	apt_set_rtc_extra_short3_bits15_14
-	nop
 
 	.set	macro
 	.set	reorder
 	.end	apt_set_cold_item_aperture
 	.size	apt_set_cold_item_aperture, .-apt_set_cold_item_aperture
 	.align	2
-	.globl	apt_get_rtc_extra_short3_bits15_14
+	.globl	apt_get_night_mode_threshold_min_max
 	.set	nomips16
 	.set	nomicromips
-	.ent	apt_get_rtc_extra_short3_bits15_14
-	.type	apt_get_rtc_extra_short3_bits15_14, @function
-apt_get_rtc_extra_short3_bits15_14:
-	.frame	$sp,32,$31		# vars= 8, regs= 1/0, args= 16, gp= 0
-	.mask	0x80000000,-4
-	.fmask	0x00000000,0
-	.set	noreorder
-	.set	nomacro
-	addiu	$sp,$sp,-32
-	lw	$2,16($sp)
-	li	$3,-65536			# 0xffffffffffff0000
-	addiu	$4,$sp,16
-	and	$2,$2,$3
-	li	$6,2			# 0x2
-	li	$5,6			# 0x6
-	sw	$31,28($sp)
-	jal	get_rtc_extra_byte_range
-	sw	$2,16($sp)
-
-	lw	$2,16($sp)
-	lw	$31,28($sp)
-	addiu	$sp,$sp,32
-	sll	$2,$2,16
-	jr	$31
-	srl	$2,$2,30
-
-	.set	macro
-	.set	reorder
-	.end	apt_get_rtc_extra_short3_bits15_14
-	.size	apt_get_rtc_extra_short3_bits15_14, .-apt_get_rtc_extra_short3_bits15_14
-	.align	2
-	.globl	apt_get_cold_item_aperture
-	.set	nomips16
-	.set	nomicromips
-	.ent	apt_get_cold_item_aperture
-	.type	apt_get_cold_item_aperture, @function
-apt_get_cold_item_aperture:
-	.frame	$sp,24,$31		# vars= 0, regs= 1/0, args= 16, gp= 0
-	.mask	0x80000000,-4
-	.fmask	0x00000000,0
-	.set	noreorder
-	.set	nomacro
-	addiu	$sp,$sp,-24
-	sw	$31,20($sp)
-	jal	apt_get_rtc_extra_short3_bits15_14
-	nop
-
-	lw	$31,20($sp)
-	andi	$2,$2,0x00ff
-	jr	$31
-	addiu	$sp,$sp,24
-
-	.set	macro
-	.set	reorder
-	.end	apt_get_cold_item_aperture
-	.size	apt_get_cold_item_aperture, .-apt_get_cold_item_aperture
-	.align	2
-	.globl	apt_get_night_mode_theshold_min_max
-	.set	nomips16
-	.set	nomicromips
-	.ent	apt_get_night_mode_theshold_min_max
-	.type	apt_get_night_mode_theshold_min_max, @function
-apt_get_night_mode_theshold_min_max:
+	.ent	apt_get_night_mode_threshold_min_max
+	.type	apt_get_night_mode_threshold_min_max, @function
+apt_get_night_mode_threshold_min_max:
 	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
 	.mask	0x00000000,0
 	.fmask	0x00000000,0
 	.set	noreorder
 	.set	nomacro
 	sltu	$2,$6,3
-	beql	$2,$0,$L9
+	beql	$2,$0,$L6
 	move	$6,$0
 
-$L9:
+$L6:
 	lui	$2,%hi(g_apt_nightmode_threshold_lookup_table)
 	addiu	$2,$2,%lo(g_apt_nightmode_threshold_lookup_table)
 	sll	$6,$6,3
@@ -161,16 +107,8 @@ $L9:
 
 	.set	macro
 	.set	reorder
-	.end	apt_get_night_mode_theshold_min_max
-	.size	apt_get_night_mode_theshold_min_max, .-apt_get_night_mode_theshold_min_max
-	.section	.rodata.str1.4,"aMS",@progbits,1
-	.align	2
-$LC0:
-	.ascii	"PhotoSensor ADC = %d\000"
-	.align	2
-$LC1:
-	.ascii	"aptHceIQ_CheckNightMode : Value = %d \012\000"
-	.text
+	.end	apt_get_night_mode_threshold_min_max
+	.size	apt_get_night_mode_threshold_min_max, .-apt_get_night_mode_threshold_min_max
 	.align	2
 	.globl	apt_HceIQ_CheckNightMode
 	.set	nomips16
@@ -184,22 +122,22 @@ apt_HceIQ_CheckNightMode:
 	.set	noreorder
 	.set	nomacro
 	addiu	$sp,$sp,-48
-	sw	$16,28($sp)
+	sw	$17,32($sp)
 	sw	$31,44($sp)
 	sw	$19,40($sp)
 	sw	$18,36($sp)
 	jal	read_photo_sensor_value
-	sw	$17,32($sp)
+	sw	$16,28($sp)
 
-	move	$16,$2
-	sltu	$2,$2,10001
-	bne	$2,$0,$L11
-	lui	$5,%hi($LC0)
+	move	$17,$2
+	sltu	$2,$2,1001
+	bne	$2,$0,$L8
+	lui	$2,%hi(g_photo_sensor_value)
 
 	jal	HceIQ_CheckNightMode
 	nop
 
-$L12:
+$L9:
 	lw	$31,44($sp)
 	lw	$19,40($sp)
 	lw	$18,36($sp)
@@ -208,52 +146,40 @@ $L12:
 	jr	$31
 	addiu	$sp,$sp,48
 
-$L11:
-	lui	$2,%hi(g_photo_sensor_value)
-	move	$6,$16
-	addiu	$5,$5,%lo($LC0)
-	move	$4,$0
+$L8:
 	lui	$19,%hi(g_new_check_night_mode_p)
-	jal	log_printf
-	sw	$16,%lo(g_photo_sensor_value)($2)
-
+	sw	$17,%lo(g_photo_sensor_value)($2)
 	lbu	$2,%lo(g_new_check_night_mode_p)($19)
-	bne	$2,$0,$L13
+	bne	$2,$0,$L10
 	lui	$18,%hi(g_night_mode_p)
 
-	lbu	$17,%lo(g_night_mode_p)($18)
-$L14:
+	lbu	$16,%lo(g_night_mode_p)($18)
+$L11:
 	jal	apt_get_cold_item_aperture
 	nop
 
 	move	$6,$2
 	addiu	$5,$sp,16
-	jal	apt_get_night_mode_theshold_min_max
+	jal	apt_get_night_mode_threshold_min_max
 	addiu	$4,$sp,20
 
-	bne	$17,$0,$L15
-	lw	$2,16($sp)
+	bne	$16,$0,$L12
+	lw	$3,16($sp)
 
-	lw	$2,20($sp)
-$L15:
-	sltu	$2,$16,$2
-	lui	$4,%hi($LC1)
+	lw	$3,20($sp)
+$L12:
+	sltu	$2,$17,$3
+	lui	$3,%hi(g_photo_detector_hysteresis)
 	sb	$2,%lo(g_night_mode_p)($18)
-	move	$5,$16
-	lui	$2,%hi(g_photo_detector_hysteresis)
-	addiu	$4,$4,%lo($LC1)
-	jal	tty_printf
-	sb	$17,%lo(g_photo_detector_hysteresis)($2)
+	b	$L9
+	sb	$16,%lo(g_photo_detector_hysteresis)($3)
 
-	b	$L12
-	lbu	$2,%lo(g_night_mode_p)($18)
-
-$L13:
+$L10:
 	jal	photo_sensor_hysteresis
 	nop
 
-	move	$17,$2
-	b	$L14
+	move	$16,$2
+	b	$L11
 	sb	$0,%lo(g_new_check_night_mode_p)($19)
 
 	.set	macro
@@ -273,11 +199,9 @@ g_apt_nightmode_threshold_lookup_table:
 	.word	0
 	.word	0
 
-	.comm	g_apt_aperture_menu,112,4
-
 	.comm	g_wbwl_menu_handler_function_array_extensions,24,4
 
 	.comm	g_wbwl_camera_setup_selector_array,248,4
 
 	.comm	g_wbwl_camera_setup_menu_item_array,868,4
-	.ident	"GCC: (Ubuntu 9.4.0-1ubuntu1~20.04) 9.4.0"
+	.ident	"GCC: (Ubuntu 9.4.0-1ubuntu1) 9.4.0"

@@ -31,7 +31,9 @@ SYMBOL TABLE:
 00000000         *UND*	00000000 menu_redraw_items
 00000000         *UND*	00000000 g_mode_button_enable
 00000000         *UND*	00000000 get_next_state_from_menu_mode
-00000018       O *COM*	00000004 g_apt_nightmode_threshold_lookup_table
+0000020c g     F .text	00000020 apt_dummy
+00000000         *UND*	00000000 get_rtc_extra_operation_mode
+00000000         *UND*	00000000 set_rtc_extra_operation_mode
 00000000 g     O .data	00000070 g_apt_aperture_menu
 00000018       O *COM*	00000004 g_wbwl_menu_handler_function_array_extensions
 00000348       O *COM*	00000004 g_wbwl_camera_setup_menu_item_array

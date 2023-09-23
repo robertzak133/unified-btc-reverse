@@ -1,6 +1,6 @@
 /* Command File for Gcc Loader */
 /*    Created automatically by Ghidra.UnifiedCreateLdScript.java */
-/*    2023-04-09 08:17:20 */
+/*    2023-09-15 08:40:14 */
 
   /* Symbol Definitions */
    btc_strcpy = 0x8002d36c;
@@ -17,30 +17,39 @@
    g_photo_sensor_value = 0x803be91c;
    g_menu_root = 0x803bea94;
    g_HceTaskMenuMultiItem_fsm_function_array = 0x8035527c;
+   get_capture_timer_rtc_time = 0x8010fa88;
    positive_diff = 0x80055ed8;
    menu_redraw_items = 0x80131384;
    draw_rectangle_wrapper = 0x8011ecf8;
    tty_printf_battery_stats = 0x800e3134;
    TaskTimeLapseFSM_task13 = 0x80129bac;
    TaskTimeLapseFSM_task12 = 0x80129bd8;
+   set_rtc_extra_operation_mode = 0x8005573c;
    g_video_quality_menu = 0x803b3714;
    set_cold_item_language_id = 0x8010fa24;
    g_photo_delay_menu = 0x803b3768;
    ui_cursor_key_pressed_p = 0x80112150;
+   get_max_hour = 0x80131ab8;
    IRLedOff = 0x80111874;
    get_next_state_from_menu_enter = 0x801318e8;
    get_power_supply_mode = 0x801134fc;
    get_temperatureForC = 0x8010f004;
+   get_g_menu_temp_hour = 0x80131aa4;
    local_sprintf = 0x800209e0;
    g_dcfapi_loaded_p = 0x804a4314;
    sp5kIqBlockEnable = 0x801a9320;
+   get_am_pm_max_value = 0x80131aec;
    get_battery_voltage_x100 = 0x80113554;
+   fsm_getCurrentState = 0x80122dd0;
    update_timelapse_rise_set_times = 0x80113130;
    g_smart_ir_video_menu = 0x803b3f64;
    HceIQ_CheckNightMode = 0x80055c28;
+   HceTask_ToNextNChar = 0x801359d0;
    HceCommon_RestoreDefaultColdItem = 0x80055f3c;
+   set_rtc_extra_byte_range = 0x8005c5d0;
    get_cold_item_sensor_digital_effect = 0x8010e650;
    fatVolLabSet = 0x8002c7a4;
+   get_rtc_extra_operation_mode = 0x80055764;
    vfsClose = 0x8002a660;
    g_operation_mode_menu = 0x803b3554;
    g_video_length_menu = 0x803b3650;
@@ -49,19 +58,21 @@
    get_battery_percent = 0x801137e4;
    encoded_timelapse_frequency_to_seconds = 0x80110158;
    memoryAllocate = 0x800125bc;
+   get_am_pm_current_value = 0x80131adc;
    get_tod_in_timelapse_region = 0x80112b38;
    HceStampDrawLogo = 0x8011e064;
-   g_last_timelapse_time_in_ms = 0x80364bb0;
+   g_last_timelapse_time_in_ms = 0x8037bbb4;
    read_photo_sensor_value = 0x80055c00;
    vfsFileDel = 0x8002af6c;
    menu_get_next_menu_selection = 0x801315e8;
    btc_strlen = 0x80012bd8;
-   get_unix_time = 0x80029f6c;
    g_delete_all_menu = 0x803b3ea0;
    get_cold_item_camera_name = 0x8010e47c;
    cold_item_led_power_blur_reduction_p = 0x8010e4d4;
+   reset_capture_timer = 0x8010df40;
    temperature_sensor_getReading = 0x8010f01c;
    g_new_check_night_mode_p = 0x803bd2f4;
+   get_min_hour = 0x80131ab0;
    photo_sensor_hysteresis = 0x80055714;
    set_g_ae_parameter = 0x800ffbf0;
    tty_printf = 0x80003c9c;
@@ -69,9 +80,14 @@
    vfsFileCopy = 0x8002bca4;
    get_power_switch_on_p = 0x80055be8;
    TaskTimeLapseFSM_task14_end = 0x801288c0;
+   posix_fileinfo = 0x8002fd04;
    set_aaa_ae_pipeline_wrapper = 0x800c5a34;
+   handleSetTimeMenu = 0x801360c4;
    memcpy = 0x8000a420;
    TaskTimeLapseFSM_task3_ae_set = 0x801298cc;
+   get_min_day = 0x80131a30;
+   get_min_minute = 0x80131acc;
+   get_g_menu_temp_minute = 0x80131ac0;
    set_g_temperature_forc = 0x8010eff4;
    btc_fwrite = 0x8005ce1c;
    g_sd_management_menu = 0x803b3fb8;
@@ -80,13 +96,19 @@
    setSensor_configB = 0x801a94e4;
    setSensor_configA = 0x801a9498;
    btc_fread = 0x8005c12c;
+   get_max_year = 0x80131a00;
    function_with_syscall_zero = 0x80007f40;
    HceCommon_SetCaptureImag = 0x8010e74c;
    g_timelapse_period_menu = 0x803b3df8;
    draw_video_scroll_bar = 0x80136910;
    TaskTimeLapseFSM_task8_CopyJPGFromRAM = 0x801293d0;
    get_rtc_time_or_alarm = 0x8005c660;
+   get_g_temp_day_number = 0x80131a24;
+   get_cold_item_capture_timer_p = 0x8010fa5c;
+   get_g_menu_temp_year = 0x801319ec;
+   get_max_day = 0x80131a38;
    set_pre_printf_state = 0x80057bd4;
+   get_min_month = 0x80131a14;
    Write_LEDOn = 0x80115f00;
    getCameraConfigStructPtr = 0x80122eb8;
    seekToSpecifiedFileLocation = 0x8005be58;
@@ -111,11 +133,13 @@
    get_current_operating_time_ms = 0x80003488;
    setBatteryCalibConfig = 0x80113e6c;
    g_restore_default_menu = 0x803b3c70;
+   get_min_year = 0x801319f8;
    g_set_date_time_menu = 0x803b3538;
    dispatch_IQ_function = 0x8019c934;
-   get_short_rtc_time = 0x801056d8;
+   get_short_rtc_time = 0x8010ec1c;
    vfsOpen = 0x8002a558;
    get_next_state_from_menu_mode = 0x8013183c;
+   g_set_time_buffer = 0x803b3394;
    g_camera_name_menu = 0x803b3ab0;
    g_photo_mode_p = 0x803bd2fa;
    g_mode_button_enable = 0x803be8b1;
@@ -125,13 +149,17 @@
    g_photo_detector_hysteresis = 0x803be91a;
    g_btc_init_directory_suffix_prefix_dyn = 0x803bc98c;
    btc_fclose = 0x8005c340;
+   get_rtc_extra_byte_range = 0x8005c618;
    g_up_button_enable = 0x803be8ac;
    setDigitalEffectswitchdataD_table = 0x80355ad0;
+   get_am_pm_min_value = 0x80131ae4;
    TaskTimeLapseFSM_task9 = 0x801293a0;
    menu_draw_selected_item = 0x8013167c;
    TaskTimeLapseFSM_task7 = 0x801294b4;
    TaskTimeLapseFSM_task6 = 0x8012963c;
    TaskTimeLapseFSM_task5 = 0x80129740;
+   g_temp_am_pm_p = 0x803bd340;
+   get_g_menu_temp_month = 0x80131a08;
    TaskTimeLapseFSM_task2 = 0x80129eec;
    TaskTimeLapseFSM_task1 = 0x80129a50;
    TaskTimeLapseFSM_task0 = 0x80129ac0;
@@ -142,24 +170,29 @@
    g_temp_unit_menu = 0x803b3a5c;
    g_night_mode_p = 0x803be919;
    set_fsm_state_relative = 0x80122e44;
+   get_max_month = 0x80131a1c;
    sp5kIqCfgSet = 0x801a9200;
    vfsFileSizeGet = 0x8002b77c;
    btc_fopen = 0x8005bde0;
+   update_time_field = 0x801315b8;
    g_iq_init_function_param = 0x803f4989;
    get_g_cold_item_battery_type = 0x8010e570;
    g_photo_quality_menu = 0x803b35c4;
+   get_max_minute = 0x80131ad4;
    get_current_date_time_short = 0x8010eba8;
    store_pressure_trend = 0x8010ef0c;
    g_camera_setup_menu_item_array = 0x803b41b0;
-   posix_finfo = 0x8002fc00;
    fatVolLabSet_wrapper = 0x802fbdc4;
+   draw_set_time_screen = 0x80135234;
    Write_LEDOff = 0x80115f94;
+   fsm_getNextState = 0x80122e20;
    g_down_button_enable = 0x803be8ad;
    g_run_iq_init_function_p = 0x803f4988;
    get_cold_item_timelapse_period = 0x8010e45c;
    set_aaa_awb_pipeline_wrapper = 0x80197d04;
    exif_remove_and_add_wrapper = 0x80107c1c;
    g_trigger_speed_menu = 0x803b3c1c;
+   g_set_date_time_menu_state = 0x803ef25c;
    appAWBALGLib_WBParamSet = 0x8013a584;
    g_enter_button_enable = 0x803be8b0;
    check_remaining_sd_capacity = 0x801150e8;
@@ -168,17 +201,17 @@
 
 /* Memory */
 MEMORY {
-  entry0_ram(WXAI) : ORIGIN = 0x80076dec, LENGTH = 0x62c
+  entry0_ram(WXAI) : ORIGIN = 0x800459b4, LENGTH = 0x4b8
   entry1_ram(WXAI) : ORIGIN = 0x8017630c, LENGTH = 0x6198
 }
 /* Sections */
 SECTIONS {
-       entry0_section 0x80076dec: {
+       entry0_section 0x800459b4 : {
                 entry0.o
                 aperture.o
                 ir-flash-menu-early.o
       } >entry0_ram
-       entry1_section 0x8017630c: {
+       entry1_section 0x8017630c : {
                 entry1.o
                 custom-ribbon.o
                 custom-info-strip.o
@@ -190,5 +223,6 @@ SECTIONS {
                 timelapse.o
                 aperture-menu.o
                 ir-flash-menu.o
+                custom-set-date-time.o
       } >entry1_ram
 }

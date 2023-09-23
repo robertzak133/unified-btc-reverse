@@ -197,8 +197,32 @@ $L11:
 	.set	reorder
 	.end	apt_handle_aperture_menu
 	.size	apt_handle_aperture_menu, .-apt_handle_aperture_menu
+	.align	2
+	.globl	apt_dummy
+	.set	nomips16
+	.set	nomicromips
+	.ent	apt_dummy
+	.type	apt_dummy, @function
+apt_dummy:
+	.frame	$sp,24,$31		# vars= 0, regs= 1/0, args= 16, gp= 0
+	.mask	0x80000000,-4
+	.fmask	0x00000000,0
+	.set	noreorder
+	.set	nomacro
+	addiu	$sp,$sp,-24
+	sw	$31,20($sp)
+	jal	get_rtc_extra_operation_mode
+	nop
 
-	.comm	g_apt_nightmode_threshold_lookup_table,24,4
+	lw	$31,20($sp)
+	move	$4,$2
+	j	set_rtc_extra_operation_mode
+	addiu	$sp,$sp,24
+
+	.set	macro
+	.set	reorder
+	.end	apt_dummy
+	.size	apt_dummy, .-apt_dummy
 	.globl	g_apt_aperture_menu
 	.data
 	.align	2
@@ -239,4 +263,4 @@ g_apt_aperture_menu:
 	.comm	g_wbwl_camera_setup_selector_array,240,4
 
 	.comm	g_wbwl_camera_setup_menu_item_array,840,4
-	.ident	"GCC: (Ubuntu 9.4.0-1ubuntu1~20.04) 9.4.0"
+	.ident	"GCC: (Ubuntu 9.4.0-1ubuntu1) 9.4.0"

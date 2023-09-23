@@ -78,3 +78,10 @@ EXIT1:
   set_fsm_state_absolute(iVar1);
   return;
 }
+
+// Never called, but here to get some local functions in the lookup table
+void apt_dummy(void) {
+  byte result;
+  result = get_rtc_extra_operation_mode();
+  set_rtc_extra_operation_mode(result);
+}

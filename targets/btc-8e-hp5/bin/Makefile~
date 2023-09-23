@@ -16,7 +16,7 @@ LDFLAGS=--warn-multiple-gp -G65535 -nostartfiles --warn-section-align -EL
 OBJCPFLAGS=-S -O binary 
 
 ##_DEPS = WBWL.h
-_DEPS = WBWL.h BTC.h battery-monitor.h white-flash.h custom-ribbon.h custom-info-strip.h volume-file-naming.h dslr.h extend-event-SD-card.h rtc-formats.h timelapse.h aperture.h utilities.h aperture.h ir-flash-menu.h
+_DEPS = WBWL.h BTC.h SST-strings.h battery-monitor.h white-flash.h custom-ribbon.h custom-info-strip.h volume-file-naming.h dslr.h extend-event-SD-card.h rtc-formats.h timelapse.h aperture.h utilities.h aperture.h ir-flash-menu.h
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
 ##_SRC = entry.c

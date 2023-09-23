@@ -40,4 +40,4 @@ cli_test_dispatch:
 	.set	reorder
 	.end	cli_test_dispatch
 	.size	cli_test_dispatch, .-cli_test_dispatch
-	.ident	"GCC: (Ubuntu 9.4.0-1ubuntu1~20.04) 9.4.0"
+	.ident	"GCC: (Ubuntu 9.4.0-1ubuntu1) 9.4.0"

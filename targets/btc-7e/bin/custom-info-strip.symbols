@@ -22,14 +22,14 @@ SYMBOL TABLE:
 00000000 g     F .text	00000088 wbwl_custom_info_strip_date_sprintf
 00000000         *UND*	00000000 rtc_get_cold_item_date_format
 00000000         *UND*	00000000 local_sprintf
-00000088 g     F .text	000000cc wbwl_custom_info_strip_time_sprintf
+00000088 g     F .text	00000094 wbwl_custom_info_strip_time_sprintf
 00000000         *UND*	00000000 get_rtc_time_or_alarm
 00000000         *UND*	00000000 rtc_get_cold_item_time_format
-00000154 g     F .text	00000070 wbwl_custom_info_strip_strlen
+0000011c g     F .text	00000070 wbwl_custom_info_strip_strlen
 00000000         *UND*	00000000 btc_strlen
 00000000         *UND*	00000000 get_power_supply_mode
 00000000         *UND*	00000000 get_battery_percent
-000001c4 g     F .text	00000008 wbwl_StampDrawLogo
+0000018c g     F .text	00000008 wbwl_StampDrawLogo
 00000000         *UND*	00000000 HceStampDrawLogo
 00000054       O *COM*	00000004 g_rtc_time_format_menu
 00000070       O *COM*	00000004 g_rtc_date_format_menu

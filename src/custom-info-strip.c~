@@ -6,7 +6,7 @@
 #include "custom-info-strip.h"
 #include "rtc-formats.h"
 
-#define DEBUG
+//#define DEBUG
 
 // wbwl_custom_info_strip_date_sprintf
 //     replaces a call to "local_sprintf"

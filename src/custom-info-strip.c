@@ -40,8 +40,10 @@ int wbwl_custom_info_strip_date_sprintf(char *buffer, char *format_string,
 // wbwl_custom_info_strip_time_sprintf
 //     replaces a call to "local_sprintf" used to build string printed in the
 //     info strip.  Add the "seconds" field, from the clock
-//     Awkwardly, we have to recreate the rtc strucuture because the original 
+//     Awkwardly, we have to recreate the rtc structure because the original 
 //        call that we're hijacking doesn't pass "seconds" as an argument
+//        2023-07-08: On the other hand, since rtc_time is natively 24 hour format
+//        we can just use it directly in 24 hour mode. 
 
 int wbwl_custom_info_strip_time_sprintf(char *buffer, char *format_string, 
 					int hour, int minute, char* am_pm_string) { 
@@ -60,13 +62,7 @@ int wbwl_custom_info_strip_time_sprintf(char *buffer, char *format_string,
     local_sprintf(buffer, "%02d:%02d:%02d %s ", hour, minute, second, am_pm_string);
     break;
   case rtc_twenty_four_hour:
-    if ((am_pm_string[0] == 'p') && (hour < 12)) {
-      hour += 12;
-    } 
-    if ((am_pm_string[0] == 'a') && (hour == 12)) {
-      hour = 0;
-    }
-    local_sprintf(buffer, "%02d:%02d:%02d ", hour, minute, second);
+    local_sprintf(buffer, "%02d:%02d:%02d ", rtc_time.hour, rtc_time.minute, second);
     break;
   }
 

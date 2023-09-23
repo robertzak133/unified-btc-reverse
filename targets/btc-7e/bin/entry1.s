@@ -40,4 +40,4 @@ cmdFPGA_CdspPV:
 	.set	reorder
 	.end	cmdFPGA_CdspPV
 	.size	cmdFPGA_CdspPV, .-cmdFPGA_CdspPV
-	.ident	"GCC: (Ubuntu 9.4.0-1ubuntu1~20.04) 9.4.0"
+	.ident	"GCC: (Ubuntu 9.4.0-1ubuntu1) 9.4.0"

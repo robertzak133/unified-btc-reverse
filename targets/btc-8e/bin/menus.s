@@ -85,10 +85,6 @@ wbwl_get_next_state_from_menu_enter:
 
 	.comm	g_ifm_ir_led_power_menu,112,4
 
-	.comm	g_apt_nightmode_threshold_lookup_table,24,4
-
-	.comm	g_apt_aperture_menu,112,4
-
 	.comm	g_wbwl_timelapse_frequency_lookup_table,24,4
 
 	.comm	g_wbwl_timelapse_frequency_menu,364,4
@@ -392,4 +388,4 @@ g_wbwl_camera_setup_menu_item_array:
 	.word	1
 	.word	3
 	.word	3
-	.ident	"GCC: (Ubuntu 9.4.0-1ubuntu1~20.04) 9.4.0"
+	.ident	"GCC: (Ubuntu 9.4.0-1ubuntu1) 9.4.0"

@@ -45,4 +45,4 @@ $L1:
 	.comm	g_wbwl_camera_setup_selector_array,240,4
 
 	.comm	g_wbwl_camera_setup_menu_item_array,840,4
-	.ident	"GCC: (Ubuntu 9.4.0-1ubuntu1~20.04) 9.4.0"
+	.ident	"GCC: (Ubuntu 9.4.0-1ubuntu1) 9.4.0"

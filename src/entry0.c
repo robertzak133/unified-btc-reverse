@@ -18,8 +18,23 @@
 
 #include "BTC.h"
 #include "WBWL.h"
-#define ERROR_PRINT
+//#define ERROR_PRINT
 // 
+
+#if (defined BTC_7E) || (defined BTC_8E)
+// This function is smaller, but it's earlier in the binary, necessary in the 7E/8E to avoid
+//      executing out of uninitialized memory
+uint MakeShortNameByLongName(char *param1, int *param2, char *dest_string, char *src_string) {
+#ifdef ERROR_PRINT
+  set_pre_printf_state();
+  tty_printf("Error::WBWL - MakeShortNameByLongName() not implemented in this patched firmware version");
+  check_post_printf_state_set_sio_params();
+#endif
+
+  btc_strcpy(dest_string, "WBWL");
+  return 1; 
+}    
+#else
 
 uint          get_VideoFormatStructure(int param_1, void* unknown_structure_pointer){
 
@@ -30,5 +45,9 @@ uint          get_VideoFormatStructure(int param_1, void* unknown_structure_poin
 #endif
   return 0;
 }
+
+#endif
+
+
 
 

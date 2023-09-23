@@ -31,7 +31,9 @@
 
 #if (defined BTC_7E) || (defined BTC_8E)
 #define WBWL_NUM_BTC_SETUP_MENU_FUNCTIONS   25 
-#elif (defined BTC_7E_HP4) || (defined BTC_8E_HP4) || (defined BTC_7E_HP5) || (defined BTC_8E_HP5) 
+#elif (defined BTC_7E_HP4) || (defined BTC_8E_HP4) 
+#define WBWL_NUM_BTC_SETUP_MENU_FUNCTIONS   25 
+#elif (defined BTC_7E_HP5) || (defined BTC_8E_HP5) 
 #define WBWL_NUM_BTC_SETUP_MENU_FUNCTIONS   26 
 #endif 
 

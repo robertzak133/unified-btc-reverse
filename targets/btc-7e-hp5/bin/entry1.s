@@ -40,4 +40,4 @@ cli_command_function:
 	.set	reorder
 	.end	cli_command_function
 	.size	cli_command_function, .-cli_command_function
-	.ident	"GCC: (Ubuntu 9.4.0-1ubuntu1~20.04) 9.4.0"
+	.ident	"GCC: (Ubuntu 9.4.0-1ubuntu1) 9.4.0"

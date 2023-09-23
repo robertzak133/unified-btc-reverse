@@ -22,8 +22,6 @@ SYMBOL TABLE:
 00000018 g     O .data	000000f0 g_wbwl_camera_setup_selector_array
 00000000         *UND*	00000000 get_next_state_from_menu_enter
 0000008c       O *COM*	00000004 g_ifm_ir_led_power_menu
-00000018       O *COM*	00000004 g_apt_nightmode_threshold_lookup_table
-00000070       O *COM*	00000004 g_apt_aperture_menu
 00000018       O *COM*	00000004 g_wbwl_timelapse_frequency_lookup_table
 0000016c       O *COM*	00000004 g_wbwl_timelapse_frequency_menu
 00000054       O *COM*	00000004 g_dlsr_led_enable_menu
@@ -57,6 +55,7 @@ SYMBOL TABLE:
 00000000         *UND*	00000000 g_language_menu
 00000000         *UND*	00000000 g_capture_timer_menu
 00000000         *UND*	00000000 g_firmware_upgrade_menu
+00000000         *UND*	00000000 g_apt_aperture_menu
 00000108 g     O .data	00000348 g_wbwl_camera_setup_menu_item_array
 
 

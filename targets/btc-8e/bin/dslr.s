@@ -43,4 +43,4 @@ dslr_LEDOff:
 	.set	reorder
 	.end	dslr_LEDOff
 	.size	dslr_LEDOff, .-dslr_LEDOff
-	.ident	"GCC: (Ubuntu 9.4.0-1ubuntu1~20.04) 9.4.0"
+	.ident	"GCC: (Ubuntu 9.4.0-1ubuntu1) 9.4.0"

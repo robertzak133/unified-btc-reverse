@@ -400,4 +400,4 @@ $L13:
 	.set	reorder
 	.end	cp_setSensorDigitalEffectVideo
 	.size	cp_setSensorDigitalEffectVideo, .-cp_setSensorDigitalEffectVideo
-	.ident	"GCC: (Ubuntu 9.4.0-1ubuntu1~20.04) 9.4.0"
+	.ident	"GCC: (Ubuntu 9.4.0-1ubuntu1) 9.4.0"

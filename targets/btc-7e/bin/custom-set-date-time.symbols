@@ -1,0 +1,81 @@
+
+custom-set-date-time.o:     file format elf32-tradlittlemips
+
+SYMBOL TABLE:
+00000000 l    df *ABS*	00000000 custom-set-date-time.c
+00000000 l    d  .text	00000000 .text
+00000000 l    d  .data	00000000 .data
+00000000 l    d  .bss	00000000 .bss
+00000000 l    d  .mdebug.abi32	00000000 .mdebug.abi32
+00000000 l    d  .rodata.str1.4	00000000 .rodata.str1.4
+00000000 l    d  .rodata	00000000 .rodata
+00000000 l       .rodata.str1.4	00000000 $LC0
+00000000 l    d  .reginfo	00000000 .reginfo
+00000000 l    d  .MIPS.abiflags	00000000 .MIPS.abiflags
+00000000 l    d  .pdr	00000000 .pdr
+00000000 l    d  .comment	00000000 .comment
+00000000 l    d  .gnu.attributes	00000000 .gnu.attributes
+00000000 g     F .text	00000008 cdt_get_max_hour
+00000008 g     F .text	00000008 cdt_get_min_hour
+00000010 g     F .text	0000011c cdt_get_set_date_time_functions
+00000000         *UND*	00000000 get_g_menu_temp_month
+00000000         *UND*	00000000 get_min_month
+00000000         *UND*	00000000 get_max_month
+00000000         *UND*	00000000 get_g_temp_day_number
+00000000         *UND*	00000000 get_min_day
+00000000         *UND*	00000000 get_max_day
+00000000         *UND*	00000000 get_g_menu_temp_year
+00000000         *UND*	00000000 get_min_year
+00000000         *UND*	00000000 get_max_year
+00000000         *UND*	00000000 get_g_menu_temp_hour
+00000000         *UND*	00000000 get_min_hour
+00000000         *UND*	00000000 get_max_hour
+00000000         *UND*	00000000 get_g_menu_temp_minute
+00000000         *UND*	00000000 get_min_minute
+00000000         *UND*	00000000 get_max_minute
+00000000         *UND*	00000000 get_am_pm_current_value
+00000000         *UND*	00000000 get_am_pm_min_value
+00000000         *UND*	00000000 get_am_pm_max_value
+0000012c g     F .text	00000074 cdt_handle_left_right_buttons
+00000000         *UND*	00000000 g_set_date_time_menu_state
+00000000         *UND*	00000000 g_set_time_buffer
+00000000         *UND*	00000000 update_time_field
+000001a0 g     F .text	00000038 cdt_twelve_to_twenty_four
+000001d8 g     F .text	00000078 cdt_menu_draw_selected_item
+00000000         *UND*	00000000 rtc_get_cold_item_time_format
+00000000         *UND*	00000000 get_current_date_time_short
+00000000         *UND*	00000000 g_temp_am_pm_p
+00000000         *UND*	00000000 menu_draw_selected_item
+00000250 g     F .text	00000044 cdt_twenty_four_to_twelve
+00000294 g     F .text	000000d8 cdt_handle_enter_mode_buttons
+00000000         *UND*	00000000 hal_set_rtc
+00000000         *UND*	00000000 get_cold_item_capture_timer_p
+00000000         *UND*	00000000 get_capture_timer_rtc_time
+00000000         *UND*	00000000 reset_capture_timer
+00000000         *UND*	00000000 g_menu_root
+00000000         *UND*	00000000 get_next_state_from_menu_mode
+00000000         *UND*	00000000 set_fsm_state_absolute
+0000036c g     F .text	0000005c cdt_btc_strcpy
+00000000         *UND*	00000000 btc_strcpy
+000003c8 g     F .text	0000006c cdt_get_date_time_current_field_value
+00000434 g     F .text	00000094 cdt_handle_up_down_buttons
+00000000         *UND*	00000000 rtc_get_cold_item_date_format
+00000000         *UND*	00000000 HceTask_ToNextNChar
+000004c8 g     F .text	0000017c cdt_check_keyboard
+00000000         *UND*	00000000 ui_cursor_key_pressed_p
+00000000         *UND*	00000000 g_up_button_enable
+00000000         *UND*	00000000 g_down_button_enable
+00000000         *UND*	00000000 g_left_button_enable
+00000000         *UND*	00000000 g_right_button_enable
+00000000         *UND*	00000000 g_enter_button_enable
+00000000         *UND*	00000000 g_mode_button_enable
+00000644 g     F .text	00000108 cdt_handleSetTimeMenu
+00000000         *UND*	00000000 getCameraConfigStructPtr
+00000000         *UND*	00000000 handleSetTimeMenu
+00000000         *UND*	00000000 draw_set_time_screen
+00000000         *UND*	00000000 fsm_getNextState
+00000000         *UND*	00000000 fsm_getCurrentState
+00000054       O *COM*	00000004 g_rtc_time_format_menu
+00000070       O *COM*	00000004 g_rtc_date_format_menu
+
+

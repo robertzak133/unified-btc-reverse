@@ -3439,4 +3439,4 @@ $L192:
 	.set	reorder
 	.end	bm_handleBatteryTypeMenu
 	.size	bm_handleBatteryTypeMenu, .-bm_handleBatteryTypeMenu
-	.ident	"GCC: (Ubuntu 9.4.0-1ubuntu1~20.04) 9.4.0"
+	.ident	"GCC: (Ubuntu 9.4.0-1ubuntu1) 9.4.0"

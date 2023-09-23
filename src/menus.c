@@ -13,7 +13,6 @@
 #include "aperture.h"
 #include "ir-flash-menu.h"
 
-
 //#define DEBUG
 
 #if (defined BTC_7E) || (defined BTC_8E)

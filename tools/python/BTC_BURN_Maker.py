@@ -218,10 +218,16 @@ class BTC_BURN_Maker:
     ## Checksum Utilities
 
     # Calculate checksum of a single file
-    def calculate_file_checksum(self, filename):
+    #   if buffer_size == -1; checksum the whole file
+    #      else Only calculate first buffer_size bytes, 
+    def calculate_file_checksum(self, filename, buffer_size=-1):
         checksum = 0
 
-        file_size = os.path.getsize(filename)
+        if (buffer_size == -1):
+            file_size = os.path.getsize(filename)
+        else:
+            file_size = file_len
+            
         if (file_size %4) != 0:
             print(f'File {filename} length is {file_size}')
             padded_filename = filename + ".padded"

@@ -59,6 +59,10 @@ class BTC_EEPROM_Writer:
             app_offset = 0x3000 
             fsa_offset  = 0x744000
             fsb_offset  = 0x7F6000
+          elif (camera_type == 'BTC-7E-HP4') or (camera_type == 'BTC-8E-HP4'):
+            app_offset = 0x3000 
+            fsa_offset  = 0x680000
+            fsb_offset  = 0x7e0000
           elif (camera_type == 'BTC-7E') or (camera_type == 'BTC-8E'):
             app_offset = 0x3000 
             fsa_offset  = 0x680000

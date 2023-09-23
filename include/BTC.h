@@ -275,8 +275,56 @@ typedef enum enum_photo_delay_encoding {
 // Structures w/ typedefs
 
 
+typedef struct struct_pressure_temperature_coefficients {
+  uint c0;
+  uint c1;
+  uint c00;
+  uint c10;
+  uint c01;
+  uint c11;
+  uint c20;
+  uint c21;
+  uint c30;
+} struct_pressure_temperature_coefficients;
+
+typedef struct struct_i2c_pressure_temperature_coefficients {
+  byte address;
+  byte c0_11_4;            // 0x10
+  byte c0_3_0_c1_11_8;     // 0x11
+  byte c1_7_0;             // 0x12
+  byte c00_19_12;          // 0x13
+  byte c00_11_4;           // 0x14
+  byte c00_3_0_c10_19_16;  // 0x15
+  byte c10_15_8;           // 0x16
+  byte c10_7_0;            // 0x17
+  byte c01_15_8;           // 0x18
+  byte c01_7_0;            // 0x19
+  byte c11_15_8;           // 0x1a
+  byte c11_7_0;            // 0x1b
+  byte c20_15_8;           // 0x1c
+  byte c20_7_0;            // 0x1d
+  byte c21_15_8;           // 0x1e
+  byte c21_7_0;            // 0x1f
+  byte c30_15_8;           // 0x20
+  byte c30_7_0;            // 0x21
+} struct_i2c_pressure_temperature_coefficients;
 // Menu-related structures
 
+typedef enum enum_date_time_menu_item {
+  dtm_nominal_month = 0,
+  dtm_nominal_day   = 2,
+  dtm_nominal_year  = 4,
+  dtm_nominal_hour  = 5,
+  dtm_nominal_minute = 7,
+  dtm_nominal_am_pm = 9
+}  enum_date_time_menu_item;
+
+
+typedef struct struct_menu_functions {
+  uint (*current_value_function)();
+  uint (*min_value_function)();
+  uint (*max_value_function)();
+} struct_menu_functions;
 
 typedef struct struct_hp5_menu_item {
   enum_jpg_icon_index   icon_index;
@@ -357,6 +405,12 @@ typedef struct struct_short_RTCTime {
   short  second;
 } struct_short_RTCTime;
 
+typedef struct struct_short_RTC_as_uints {
+  uint year_month;
+  uint day_hour;
+  uint minute_second;
+} struct_short_RTC_as_uints;
+
 typedef struct struct_DateTime {
   uint second;
   uint minute;
@@ -376,40 +430,40 @@ typedef struct struct_DateTime {
 
 #if (defined BTC_7E) || (defined BTC_8E) 
 typedef struct struct_CameraConfig {
-  byte exit_menu_p_or_ir_led_on;
-  byte field_1;
-  byte menu_selection_1;
-  byte menu_selection_2;
+  byte exit_menu_p_or_ir_led_on; // 0
+  byte field_1;                  // 1
+  byte menu_selection_1;         // 2
+  byte menu_selection_2;         // 3
   // a bunch of unknown ints
-  byte unknown_byte_5;
-  byte ae_value0;
-  byte commit_menu_change;
-  byte ae_value1;
-  byte field_8;
-  byte ae_value2;
-  byte field_10;
-  byte field_11;
-  uint unknown_uint_12;
-  uint unknown_uint_16;
-  byte field_20;
-  byte field_21;
-  byte field_22;
-  byte field_23;
-  byte current_video_runtime; //24
-  byte field_25;
-  byte current_video_length; //26
-  byte field_27;
-  uint video_length; // 28
-  byte unknown_byte_32;
-  byte still_flash_on;
-  byte unknown_byte_34;
-  byte unknown_byte_35;
-  byte unknown_byte_36;
-  byte image_strip_enable_p; // 37
-  byte some_timelapse_field; // 38
-  byte abort_current_image_p; // 39
-  uint jpg_file_id; // 40
-  uint jpg_file_size; // 44
+  byte unknown_byte_5;           // 4
+  byte ae_value0;                // 5
+  byte commit_menu_change;       // 6
+  byte ae_value1;                // 7
+  byte field_8;                  // 8
+  byte ae_value2;                // 9
+  byte field_10;                 // 10
+  byte field_11;                 // 11
+  uint unknown_uint_12;          // 12
+  uint unknown_uint_16;          // 16
+  byte field_20;                 // 20
+  byte field_21;                 // 21
+  byte field_22;                 // 22
+  byte field_23;                 // 23
+  byte current_video_runtime;    // 24
+  byte field_25;                 // 25
+  byte current_video_length;     // 26
+  byte field_27;                 // 27
+  uint video_length;             // 28
+  byte unknown_byte_32;          // 32
+  byte still_flash_on;           // 33
+  byte unknown_byte_34;          // 34
+  byte unknown_byte_35;          // 35
+  byte unknown_byte_36;          // 36
+  byte image_strip_enable_p;    // 37
+  byte some_timelapse_field;    // 38
+  byte abort_current_image_p;   // 39
+  uint jpg_file_id;             // 40
+  uint jpg_file_size;           // 44
   byte unknown_byte_48;
   byte unknown_byte_49;
   byte unknown_byte_50;
@@ -427,11 +481,11 @@ typedef struct struct_CameraConfig {
   short video_end_time_us; // 62
   short photo_end_time_us; // 64
   short unknown_short_66; 
-  uint still_led_turned_on_time_us;
+  uint still_led_turned_on_time_us; // 68
   uint unknown_uint_72;
-  int total_images;
-  int current_image;
-  char current_filename[200];
+  int total_images; // 76
+  int current_image; //80
+  char current_filename[200]; //84
 } struct_CameraConfig;
 #elif (defined BTC_7E_HP4) || (defined BTC_8E_HP4)
 typedef struct struct_CameraConfig {
@@ -1302,6 +1356,8 @@ typedef struct struct_ColdBinData {
 
 extern struct_ColdBinData g_ColdItemData;
 
+
+extern struct_pressure_temperature_coefficients g_pressure_temperature_coefficients;
 // Menu Item Arrays
 extern struct_hp5_menu_item g_set_date_time_menu[1];
 extern struct_hp5_menu_item g_operation_mode_menu[4];
@@ -1344,6 +1400,7 @@ extern struct_hp5_menu_item g_firmware_upgrade_menu[4];
 
 extern byte g_dcfapi_loaded_p;
 
+extern struct_short_RTCTime g_set_date_time_menu_state;
 
 // White Flash Unlabeled Data Items
 extern byte           g_run_iq_init_function_p;
@@ -1368,6 +1425,12 @@ extern byte         g_mode_button_enable;
 
 extern byte         g_sensor_config_table_A[4];
 extern byte         g_sensor_config_table_B[4];
+
+extern int          g_SPL06_007_compensation_scale_table[8];
+
+extern byte         g_set_time_buffer[10];
+
+extern short        g_temp_am_pm_p;
 
 extern short        g_timelapse_frequency_lookup_table[11];
 extern struct_hp5_menu_item g_timelapse_frequency_menu[11];
@@ -1419,6 +1482,7 @@ extern void          draw_rectangle_wrapper(uint right_x,
 					    uint height,
 					    char color);
 
+extern void          draw_set_time_screen(uint selected_item);
 extern void          draw_video_scroll_bar(uint percent_complete);
 
 extern uint          encoded_timelapse_frequency_to_seconds(uint);
@@ -1449,7 +1513,10 @@ extern int           getMCURegisterByte(uint param_1,byte *data);
 
 extern enum_cold_item_ir_led_intensity get_extra_rtc_alt_ir_led_intensity();
 
+extern void          get_capture_timer_rtc_time(struct_short_RTCTime *short_rtc_time);
+
 extern void          get_cold_item_camera_name(char * camera_name);
+extern byte          get_cold_item_capture_timer_p(void);
 extern byte          get_cold_item_sd_management_p();
 extern enum_battery_type  get_g_cold_item_battery_type(void);
 extern char          get_cold_item_sensor_digital_effect(void);
@@ -1470,6 +1537,25 @@ extern void          get_directory_suffix_file_prefix_indirect(char *directory_s
 extern ushort        get_g_cold_item_video_duration(void);
 extern int           get_g_cold_item_led_power(void);
 extern uint          get_cold_item_temperature_unit_celsius_p(void);
+extern uint          get_g_menu_temp_minute(void);
+extern uint          get_g_menu_temp_hour(void);
+extern uint          get_g_menu_temp_month(void);
+extern uint          get_g_menu_temp_year(void);
+extern uint          get_am_pm_current_value(void);
+extern uint          get_am_pm_max_value(void);
+extern uint          get_am_pm_min_value(void);
+extern uint          get_max_minute(void);
+extern uint          get_min_minute(void);
+extern uint          get_max_hour(void);
+extern uint          get_min_hour(void);
+extern uint          get_max_day(void);
+extern uint          get_min_day(void);
+extern uint          get_max_month(void);
+extern uint          get_min_month(void);
+extern uint          get_max_year(void);
+extern uint          get_min_year(void);
+extern uint          get_g_temp_day_number(void);
+
 extern int           get_g_temperature_value(void);
 extern byte          get_DAT_80357b60_at_global_index(void);
 extern uint          get_cold_item_operation_mode(void);
@@ -1477,6 +1563,7 @@ extern void          get_cold_item_short_rtc_time(struct_short_RTCTime *short_rt
 extern int           get_power_supply_mode(void);
 extern byte          get_power_switch_on_p();
 extern void          get_rtc_extra_byte_range(byte *buffer, uint start_byte, uint size);          
+extern byte          get_rtc_extra_operation_mode(void);
 extern void          get_rtc_time_or_alarm(int flag, struct_RTCTime *current_rtc_time);
 extern void          get_rtc_time(struct_RTCTime *current_rtc_time);
 extern void          get_short_rtc_time(struct_short_RTCTime *short_rtc_time);
@@ -1504,6 +1591,12 @@ extern int           HceStampLoadFont(uint font_id,
 extern void          HceStampDrawLogo(struct_video_page_descriptor *video_page_desciptor, 
 				      uint font_scale);
 
+extern uint          HceTask_ToNextNChar(int up_button_p,
+					 uint (*current_value_function)(), 
+					 uint (*min_value_function)(), 
+					 uint (*max_value_function)(),
+					 ushort some_value);
+
 extern void          initCodeSentry(uint);
 extern void          IRLedOff(void);
 extern void          setIRLedOn(void);
@@ -1518,6 +1611,8 @@ extern uint          get_next_state_from_menu_enter(uint param_1,struct_hp5_menu
 extern int           local_sprintf(char*, char*, ...);
 extern void          log_printf(uint, char *, ...);
 
+
+extern uint          MakeShortNameByLongName(char *, int *, char *, char *);        
 extern void *        memcpy(void *__dest,void *__src,uint __n); // don't change the name -- C needs this
                                                                 // just the way it is
 
@@ -1536,13 +1631,15 @@ extern void          menu_redraw_items(uint menu_selection,struct_menu_root **me
 
 extern void          noop_function(void);
 
-extern uint          photo_sensor_hysteresis(void);
+extern byte          photo_sensor_hysteresis(void);
 
-extern uint  positive_diff(uint end_time_ms, uint start_time_ms);
-extern int           posix_finfo(uint file_ptr, struct_PosixFinfo *finfo);
+extern uint          positive_diff(uint end_time_ms, uint start_time_ms);
+extern int           posix_fileinfo(char * filename, struct_PosixFinfo *finfo);
 extern void          power_on_IR_LED(void);
 
 extern uint          read_photo_sensor_value();
+extern int           read_pressure_temperature_device(byte *, byte);
+extern bool          reset_capture_timer(uint year_month, uint day_hour);
 extern int           seekToSpecifiedFileLocation(uint file_ptr, uint offset, uint whence);
 
 #if (defined BTC_8E) || (defined BTC_8E_HP4) || (defined BTC_8E_HP5)
@@ -1562,6 +1659,8 @@ extern void          setCodeSentryAddressRegion(int filter_index,int dev_type,vo
 
 extern void          set_cold_item_led_power(uint);
 extern int           set_cold_item_language_id(byte param_1);
+extern void          set_cold_item_rtc_device_set_p(byte rtc_time_set);
+extern void          set_cold_item_137_1(byte param_1);
 extern void          set_g_ae_parameter(byte ae_parameter);
 extern void          set_g_cold_item_battery_type(uint battery_type);
 extern void          set_cold_item_pir_range(enum_pir_range_options pir_range_option);
@@ -1572,6 +1671,7 @@ extern void          set_pre_printf_state(void);
 extern void          set_ir_led_power_pwm(enum_alt_ir_led_intensity);
 extern void          set_ir_led_intensity_from_cold_item(enum_cold_item_ir_led_intensity ir_led_intensity);
 extern void          set_rtc_extra_byte_range(byte *buffer, uint start_byte, uint size);
+extern void          set_rtc_extra_operation_mode(byte);
 extern void          smart_IR_log_printf(char * format_string, uint arg1);
 extern void          smart_IR_log_sub_printf(char *format_string, uint arg1);
 extern void          sp5kIqBlockEnable(char, ...);
@@ -1591,11 +1691,12 @@ extern void          tty_printf_battery_stats();
 
 extern bool          ui_cursor_key_pressed_p(enum_ui_cursor_button button_code);
 
-extern void update_timelapse_sunset(int *pre_sunset_start_time_in_minutes,uint *sunset_time_in_minutes);
-extern void update_timelapse_sunrise(int *sunrise_time_in_minutes,int *post_sunrise_time_in_minutes);
+extern void          update_timelapse_sunset(int *pre_sunset_start_time_in_minutes,uint *sunset_time_in_minutes);
+extern void          update_timelapse_sunrise(int *sunrise_time_in_minutes,int *post_sunrise_time_in_minutes);
 
 extern void          update_global_pressure_temperature();
 extern void          update_timelapse_rise_set_times();
+extern void          update_time_field(byte right_p,byte *menu_selection,byte one,byte *buffer,byte menu_fields);
 extern void          store_pressure_trend();
 
 extern uint          vfsClose(uint file_ptr);

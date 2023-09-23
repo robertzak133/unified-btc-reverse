@@ -271,4 +271,4 @@ wbwl_temp_file_path_sprintf:
 	.set	reorder
 	.end	wbwl_temp_file_path_sprintf
 	.size	wbwl_temp_file_path_sprintf, .-wbwl_temp_file_path_sprintf
-	.ident	"GCC: (Ubuntu 9.4.0-1ubuntu1~20.04) 9.4.0"
+	.ident	"GCC: (Ubuntu 9.4.0-1ubuntu1) 9.4.0"

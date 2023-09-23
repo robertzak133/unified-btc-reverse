@@ -14,9 +14,7 @@ SYMBOL TABLE:
 00000000 l    d  .pdr	00000000 .pdr
 00000000 l    d  .comment	00000000 .comment
 00000000 l    d  .gnu.attributes	00000000 .gnu.attributes
-00000000 g     F .text	00000034 get_VideoFormatStructure
-00000000         *UND*	00000000 set_pre_printf_state
-00000000         *UND*	00000000 tty_printf
-00000000         *UND*	00000000 check_post_printf_state_set_sio_params
+00000000 g     F .text	00000028 MakeShortNameByLongName
+00000000         *UND*	00000000 btc_strcpy
 
 

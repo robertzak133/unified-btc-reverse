@@ -12,22 +12,22 @@ OBJCOPY=mips-linux-gnu-objcopy
 
 CFLAGS=-I$(CIDIR) -Os -nostdlib -mno-abicalls -march=r4000 -EL -S
 ASFLAGS=-march=r4000 -mno-abicalls  -c -EL
-LDFLAGS=--warn-multiple-gp -G65535 -nostartfiles --warn-section-align -EL 
+LDFLAGS=--warn-multiple-gp -G65535 --warn-section-align -EL 
 OBJCPFLAGS=-S -O binary 
 
 ##_DEPS = WBWL.h
-_DEPS = WBWL.h BTC.h SST-strings.h battery-monitor.h white-flash.h custom-ribbon.h custom-info-strip.h volume-file-naming.h dslr.h extend-event-SD-card.h rtc-formats.h timelapse.h aperture.h utilities.h aperture.h ir-flash-menu.h
+_DEPS = WBWL.h BTC.h SST-strings.h battery-monitor.h white-flash.h custom-ribbon.h custom-info-strip.h volume-file-naming.h dslr.h extend-event-SD-card.h rtc-formats.h timelapse.h aperture.h utilities.h aperture.h ir-flash-menu.h custom-set-date-time.h
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
 ##_SRC = entry.c
-_SRC = entry0.c entry1.c entry2.c entry3.c battery-monitor.c white-flash.c custom-ribbon.c custom-info-strip.c volume-file-naming.c dslr-trigger.c dslr.c no-dslr.c extend-event-SD-card.c rtc-formats.c menus.c timelapse.c utilities.c aperture.c aperture-menu.c ir-flash-menu.c ir-flash-menu-early.c
+_SRC = entry0.c entry1.c entry2.c entry3.c battery-monitor.c white-flash.c custom-ribbon.c custom-info-strip.c volume-file-naming.c dslr-trigger.c dslr.c no-dslr.c extend-event-SD-card.c rtc-formats.c menus.c timelapse.c utilities.c aperture.c aperture-menu.c ir-flash-menu.c ir-flash-menu-early.c custom-set-date-time.c
 SRC = $(patsubst %,$(SRCDIR)/%,$(_SRC))
 
 _SYMBOLS = $(_SRC:.c=.symbols)
 SYMBOLS = $(SRC:.c=.symbols)
 
-_release_OBJ = entry0.o entry1.o custom-ribbon.o custom-info-strip.o volume-file-naming.o extend-event-SD-card.o rtc-formats.o dslr-trigger.o menus.o timelapse.o aperture.o aperture-menu.o ir-flash-menu.o ir-flash-menu-early.o
-_test_OBJ = entry0.o entry1.o custom-ribbon.o custom-info-strip.o volume-file-naming.o extend-event-SD-card.o rtc-formats.o dslr-trigger.o menus.o timelapse.o aperture.o aperture-menu.o ir-flash-menu.o ir-flash-menu-early.o
+_release_OBJ = entry0.o entry1.o custom-ribbon.o custom-info-strip.o volume-file-naming.o extend-event-SD-card.o rtc-formats.o dslr-trigger.o menus.o timelapse.o aperture.o aperture-menu.o ir-flash-menu.o ir-flash-menu-early.o custom-set-date-time.o
+_test_OBJ = entry0.o entry1.o custom-ribbon.o custom-info-strip.o volume-file-naming.o extend-event-SD-card.o rtc-formats.o dslr-trigger.o menus.o timelapse.o aperture.o aperture-menu.o ir-flash-menu.o ir-flash-menu-early.o custom-set-date-time.o
 
 
 # all the different binary bundles

@@ -23,8 +23,8 @@ typedef enum enum_aperature_encoding {
 
 
 
-struct_hp5_menu_item g_apt_aperture_menu[4];
-struct_night_mode_min_max g_apt_nightmode_threshold_lookup_table[3];
+extern struct_hp5_menu_item g_apt_aperture_menu[4];
+//struct_night_mode_min_max g_apt_nightmode_threshold_lookup_table[3];
 
 
 uint apt_get_cold_item_aperture();
@@ -36,7 +36,9 @@ uint apt_get_rtc_extra_short3_bits15_14(void);
 
 void apt_handle_aperture_menu();
 
-void apt_get_night_mode_theshold_min_max(uint *min, uint *max, uint aperture);
+void apt_get_night_mode_threshold_min_max(uint *min, uint *max, 
+					 enum_aperture_encoding encoded_aperture);
+
 bool apt_HceIQ_CheckNightMode(void);
 
 
