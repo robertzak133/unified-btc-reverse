@@ -1,0 +1,26 @@
+//
+// format-debug.c
+//
+// Code to help debug "corrupt SD" card problem
+//     wherein camears (HP5s only?) rarely corrupt SD card
+//
+
+
+
+// Hook the call to start the SD Card Format FSm
+//     Insead of doing it once, do it many times, looking for a case where the
+//     mount fails. 
+
+fdbg_startHceTaskFormat_FSM(int param_1,uint param_2) {
+  int i;
+  int fsm_valid;
+
+  for (i = 0; i < 100; i++) {
+    tty_printf("DEBUG::fdbg_startHceTaskFormat_FSM -- spawning SD card format %d \n", i);
+    startHceTaskFormat_FSM(int param_1,uint param_2);
+    // wait until current FSM has run it's course
+    do {
+      fsm_valid = fsm_get_valid(HceTaskFormat_fsm_iterator);
+    } while (fsm_valid != -1)
+    tty_printf("DEBUG::fdbg_startHceTaskFormat_FSM -- successfully completed %d iterations \n", i);
+}

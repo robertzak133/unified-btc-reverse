@@ -449,7 +449,7 @@ g_wbwl_timelapse_frequency_lookup_table:
 	.half	2
 	.half	5
 	.half	10
-	.half	2
+	.half	20
 	.half	30
 	.half	60
 	.half	120
@@ -498,7 +498,7 @@ g_wbwl_timelapse_frequency_menu:
 	.word	1
 	.word	1
 	.word	31
-	.word	15
+	.word	16
 	.word	0
 	.word	1
 	.word	0

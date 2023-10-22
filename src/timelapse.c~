@@ -10,7 +10,7 @@
 #include "WBWL.h"
 #include "timelapse.h"
 
-#define DEBUG
+//#define DEBUG
 
 // Updated State Machine Table
 
@@ -82,7 +82,7 @@ struct_hp5_menu_item g_wbwl_timelapse_frequency_menu[13] = {
   { no_icon, SST_5_SP_SECS,          0, 1, 0, 1, 1},    // 5 SECS
   { no_icon, SST_10_SP_SECS,         0, 1, 0, 1, 1},    // 10 SECS
   { no_icon, SST_20_SP_SECS,         0, 1, 0, 1, 1},    // 20 SECS
-  { no_icon, SST_20_SP_SECS,         0, 1, 0, 1, 1},    // 30 SECS
+  { no_icon, SST_30_SP_SECS,         0, 1, 0, 1, 1},    // 30 SECS
   { no_icon, SST_1_SP_MIN,           0, 1, 0, 1, 1},    // 1 MIN
   { no_icon, SST_2_SP_MINS,          0, 1, 0, 1, 1},    // 2 MINS
   { no_icon, SST_5_SP_MINS,          0, 1, 0, 1, 1},    // 5 MINS

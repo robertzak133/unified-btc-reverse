@@ -82,7 +82,7 @@ struct_hp5_menu_item g_wbwl_timelapse_frequency_menu[13] = {
   { no_icon, SST_5_SP_SECS,          0, 1, 0, 1, 1},    // 5 SECS
   { no_icon, SST_10_SP_SECS,         0, 1, 0, 1, 1},    // 10 SECS
   { no_icon, SST_20_SP_SECS,         0, 1, 0, 1, 1},    // 20 SECS
-  { no_icon, SST_20_SP_SECS,         0, 1, 0, 1, 1},    // 30 SECS
+  { no_icon, SST_30_SP_SECS,         0, 1, 0, 1, 1},    // 30 SECS
   { no_icon, SST_1_SP_MIN,           0, 1, 0, 1, 1},    // 1 MIN
   { no_icon, SST_2_SP_MINS,          0, 1, 0, 1, 1},    // 2 MINS
   { no_icon, SST_5_SP_MINS,          0, 1, 0, 1, 1},    // 5 MINS
@@ -95,7 +95,7 @@ struct_hp5_menu_item g_wbwl_timelapse_frequency_menu[13] = {
 // Converts from encoded timelapse frequency to a frequency 
 //   (actualy an interval) in seconds
 short g_wbwl_timelapse_frequency_lookup_table[12] = {
-  1, 2, 5, 10, 2, 30, 60, 120, 300, 600, 1800, 3600
+  1, 2, 5, 10, 20, 30, 60, 120, 300, 600, 1800, 3600
 };
 
 #ifdef TLPS_NIGHT_DAY

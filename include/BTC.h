@@ -1597,6 +1597,7 @@ extern uint          HceTask_ToNextNChar(int up_button_p,
 					 uint (*max_value_function)(),
 					 ushort some_value);
 
+extern void          HceTaskFormat_fsm_iterator(void);
 extern void          initCodeSentry(uint);
 extern void          IRLedOff(void);
 extern void          setIRLedOn(void);

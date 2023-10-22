@@ -275,6 +275,39 @@ typedef enum enum_photo_delay_encoding {
 // Structures w/ typedefs
 
 
+typedef struct struct_pressure_temperature_coefficients {
+  uint c0;
+  uint c1;
+  uint c00;
+  uint c10;
+  uint c01;
+  uint c11;
+  uint c20;
+  uint c21;
+  uint c30;
+} struct_pressure_temperature_coefficients;
+
+typedef struct struct_i2c_pressure_temperature_coefficients {
+  byte address;
+  byte c0_11_4;            // 0x10
+  byte c0_3_0_c1_11_8;     // 0x11
+  byte c1_7_0;             // 0x12
+  byte c00_19_12;          // 0x13
+  byte c00_11_4;           // 0x14
+  byte c00_3_0_c10_19_16;  // 0x15
+  byte c10_15_8;           // 0x16
+  byte c10_7_0;            // 0x17
+  byte c01_15_8;           // 0x18
+  byte c01_7_0;            // 0x19
+  byte c11_15_8;           // 0x1a
+  byte c11_7_0;            // 0x1b
+  byte c20_15_8;           // 0x1c
+  byte c20_7_0;            // 0x1d
+  byte c21_15_8;           // 0x1e
+  byte c21_7_0;            // 0x1f
+  byte c30_15_8;           // 0x20
+  byte c30_7_0;            // 0x21
+} struct_i2c_pressure_temperature_coefficients;
 // Menu-related structures
 
 typedef enum enum_date_time_menu_item {
@@ -1323,6 +1356,8 @@ typedef struct struct_ColdBinData {
 
 extern struct_ColdBinData g_ColdItemData;
 
+
+extern struct_pressure_temperature_coefficients g_pressure_temperature_coefficients;
 // Menu Item Arrays
 extern struct_hp5_menu_item g_set_date_time_menu[1];
 extern struct_hp5_menu_item g_operation_mode_menu[4];
@@ -1390,6 +1425,8 @@ extern byte         g_mode_button_enable;
 
 extern byte         g_sensor_config_table_A[4];
 extern byte         g_sensor_config_table_B[4];
+
+extern int          g_SPL06_007_compensation_scale_table[8];
 
 extern byte         g_set_time_buffer[10];
 
@@ -1601,6 +1638,7 @@ extern int           posix_fileinfo(char * filename, struct_PosixFinfo *finfo);
 extern void          power_on_IR_LED(void);
 
 extern uint          read_photo_sensor_value();
+extern int           read_pressure_temperature_device(byte *, byte);
 extern bool          reset_capture_timer(uint year_month, uint day_hour);
 extern int           seekToSpecifiedFileLocation(uint file_ptr, uint offset, uint whence);
 
