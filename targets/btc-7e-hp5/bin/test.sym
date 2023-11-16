@@ -12,6 +12,7 @@ SYMBOL TABLE:
 00000000 l    df *ABS*	00000000 entry1.c
 00000000 l    df *ABS*	00000000 custom-ribbon.c
 00000000 l    df *ABS*	00000000 custom-info-strip.c
+00000000 l    df *ABS*	00000000 reduce-sd-clock.c
 00000000 l    df *ABS*	00000000 entry2.c
 00000000 l    df *ABS*	00000000 extend-event-SD-card.c
 00000000 l    df *ABS*	00000000 rtc-formats.c
@@ -116,6 +117,7 @@ SYMBOL TABLE:
 8006d750 g     F entry0_section	000000b4 apt_HceIQ_CheckNightMode
 80036068 g       *ABS*	00000000 posix_fileinfo
 800e56d4 g       *ABS*	00000000 HceCommon_SetCaptureImag
+8026cf24 g       *ABS*	00000000 initialize_sd_card_to_data
 800d7f4c g     F entry1_section	00000008 wbwl_StampDrawLogo
 800e5b78 g       *ABS*	00000000 get_short_rtc_time
 80135bf8 g       *ABS*	00000000 setSensor_configA
@@ -138,10 +140,12 @@ SYMBOL TABLE:
 803102d8 g       *ABS*	00000000 g_camera_name_menu
 80310850 g       *ABS*	00000000 g_language_menu
 800d7980 g     F entry1_section	0000005c cr_expand_date_time
+8001ad98 g       *ABS*	00000000 get_sd_clock_kHz
 80030744 g       *ABS*	00000000 vfsOpen
 80032990 g       *ABS*	00000000 fatVolLabSet
 800eae7c g       *ABS*	00000000 get_battery_voltage_x100
 80026758 g       *ABS*	00000000 thread_sleep
+8026afe4 g       *ABS*	00000000 reduce_SD_clock
 8006d720 g     F entry0_section	00000030 apt_get_night_mode_threshold_min_max
 8006d810 g     O entry0_section	00000018 g_apt_nightmode_threshold_lookup_table
 800e5ef0 g       *ABS*	00000000 set_g_temperature_forc
@@ -173,11 +177,13 @@ SYMBOL TABLE:
 8006129c g       *ABS*	00000000 seekToSpecifiedFileLocation
 8011de50 g       *ABS*	00000000 setDigitalEffect
 800dd7e0 g     O entry2_section	00000054 g_dlsr_led_enable_menu
+8038a708 g       *ABS*	00000000 g_sd_card_descriptor
 800e5450 g       *ABS*	00000000 get_cold_item_sd_management_p
 801155c0 g       *ABS*	00000000 appAWBALGLib_WBParamSet
 802d6fac g       *ABS*	00000000 g_last_timelapse_time_in_ms
 8018ae58 g     F entry3_section	00000008 cdt_get_min_hour
 8010c804 g       *ABS*	00000000 get_min_month
+800d8050 g     F entry1_section	00000050 rsc_initialize_sd_card_to_data
 803834d4 g       *ABS*	00000000 g_dcfapi_loaded_p
 80104ebc g       *ABS*	00000000 TaskTimeLapseFSM_task12
 80316ecc g       *ABS*	00000000 g_photo_mode_p

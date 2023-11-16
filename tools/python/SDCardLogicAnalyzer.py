@@ -154,6 +154,31 @@ class EXFATFileSystem:
     c_logfile = None
     c_block_device = None
 
+    #         'field_name': [ first_byte, num_byte_bytes]
+    # from https://learn.microsoft.com/en-us/windows/win32/fileio/exfat-specification
+    c_exfat_header_struct = {
+        'JumpBoot':         [ 0,  3, 'int24'], #This field is mandatory and Section 3.1.1 defines its contents.
+        'FileSystemName':   [ 3,  8, 'string'], #This field is mandatory and Section 3.1.2 defines its contents.
+        'MustBeZero':       [11, 53, 'bytes'], #This field is mandatory and Section 3.1.3 defines its contents.
+        'PartitionOffset':  [64,  8, 'int64'], #This field is mandatory and Section 3.1.4 defines its contents.
+        'VolumeLength':	    [72,  8, 'int64'], #This field is mandatory and Section 3.1.5 defines its contents.
+        'FatOffset':	       [80,	 4, 'int32'], #This field is mandatory and Section 3.1.6 defines its contents.
+        'FatLength':	       [84,	 4, 'int32'], #This field is mandatory and Section 3.1.7 defines its contents.
+        'ClusterHeapOffset':[88,	 4, 'int32'], #This field is mandatory and Section 3.1.8 defines its contents.
+        'ClusterCount':	    [92,	 4, 'int32'], #This field is mandatory and Section 3.1.9 defines its contents.
+        'FirstClusterOfRootDirectory': [ 96,	4, 'int32'], #This field is mandatory and Section 3.1.10 defines its contents.
+        'VolumeSerialNumber':          [100,	4, 'int32'], #This field is mandatory and Section 3.1.11 defines its contents.
+        'FileSystemRevision':          [104,	2, 'int16'], #This field is mandatory and Section 3.1.12 defines its contents.
+        'VolumeFlags':	               [106,	2, 'int16'], #This field is mandatory and Section 3.1.13 defines its contents.
+        'BytesPerSectorShift':	      [108,	1, 'int8'], #This field is mandatory and Section 3.1.14 defines its contents.
+        'SectorsPerClusterShift':	   [109,	1, 'int8'], #This field is mandatory and Section 3.1.15 defines its contents.
+        'NumberOfFats':	               [110,	1, 'int8'], #This field is mandatory and Section 3.1.16 defines its contents.
+        'DriveSelect':	               [111,	1, 'int8'], #This field is mandatory and Section 3.1.17 defines its contents.
+        'PercentInUse':	               [112,	1, 'int8'], #This field is mandatory and Section 3.1.18 defines its contents.
+        'Reserved':                    [113,	7, 'int8'], #This field is mandatory and its contents are reserved.
+        'BootCode':                    [120,	390, 'bytes'], #This field is mandatory and Section 3.1.19 defines its contents.
+        'BootSignature':	            [510,	2, 'int16']	   #This field is mandatory and Section 3.1.20 defines its contents.
+        }
     # Debug
     def debug_print(self, formatted_string, newline=True):
         if (newline == True):
@@ -173,10 +198,73 @@ class EXFATFileSystem:
         self.c_block_device = block_device
 
 
+    def print_field(self, field_name, field_dict, data_dict) :
+        if  field_name in field_dict:
+            field_start = field_dict[field_name][0]
+            field_size  = field_dict[field_name][1]
+            field_type  = field_dict[field_name][2]
+            self.debug_print(f'{field_name} ', newline=False)
+
+            self.print_field_data(data_dict, field_start, field_size, field_type)
+
+    def print_field_data(self, data_dict, field_start, field_size, field_type):
+        data = 0
+        if field_type == 'int8':
+            data = data_dict[field_start]
+            self.debug_print(f'0x{data:02x} ; {data}')
+        elif field_type == 'int16':
+            for i in range(2):
+                data = (data << 8) | data_dict[field_start + i]
+            self.debug_print(f'0x{data:04x}; {data}')
+        elif field_type == 'int24':
+            for i in range(3):
+                data = (data << 8) | data_dict[field_start + i]
+            self.debug_print(f'0x{data:06x}; {data}')
+        elif field_type == 'int32':
+            for i in range(4):
+                data |= data_dict[field_start + i] << (8*i)
+            self.debug_print(f'0x{data:08x}; {data}')
+        elif field_type == 'int64':
+            for i in range(8):
+                data |= data_dict[field_start + i] << (8*i)
+            self.debug_print(f'0x{data:016x}; {data}')
+        elif field_type == 'string':
+            for i in range(field_start, field_start + field_size):
+                data = data_dict[i]
+                if (data >= 32) and (data < 127):
+                    ascii_char = chr(data)
+                else:
+                    ascii_char = '.'
+                self.debug_print(f'{ascii_char}', newline=False)
+            self.debug_print(' ')
+        # if field_type == 'bytes':
+        else: # defaults to  'bytes':
+            for i in range(field_start, field_start + field_size):
+                data = data_dict[field_start + i]
+                self.debug_print(f'0x{data:02x} ', newline=False)
+            self.debug_print(' ')
+
+
+    def print_all_fields(self, field_dict, data_dict) :
+        for field_name in field_dict:
+            self.print_field(field_name, field_dict, data_dict)
+
+    def print_boot_block(
+        self):
+        data_dict = self.c_block_device.get_block(0x8000)
+        if (data_dict == None):
+            data_dict = self.c_block_device.get_block(0x10000)
+            if (data_dict == None):
+                self.debug_print("Block 0x8000 and 0x10000 are empty")
+            else:
+                self.print_all_fields(self.c_exfat_header_struct, data_dict)
+        else:
+            self.print_all_fields(self.c_exfat_header_struct, data_dict)
+
     # Simple
     def check_file_system(self):
         # given
-        self.debug_print(f'"DEBUG::check_file_system: not yet implemented')
+        self.print_boot_block()
         return
 
 

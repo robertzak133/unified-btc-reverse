@@ -1,6 +1,6 @@
 /* Command File for Gcc Loader */
 /*    Created automatically by Ghidra.UnifiedCreateLdScript.java */
-/*    2023-09-15 08:40:14 */
+/*    2023-11-14 08:08:13 */
 
   /* Symbol Definitions */
    btc_strcpy = 0x8002d36c;
@@ -35,6 +35,7 @@
    get_power_supply_mode = 0x801134fc;
    get_temperatureForC = 0x8010f004;
    get_g_menu_temp_hour = 0x80131aa4;
+   get_sd_clock_kHz = 0x8001ad98;
    local_sprintf = 0x800209e0;
    g_dcfapi_loaded_p = 0x804a4314;
    sp5kIqBlockEnable = 0x801a9320;
@@ -43,6 +44,7 @@
    fsm_getCurrentState = 0x80122dd0;
    update_timelapse_rise_set_times = 0x80113130;
    g_smart_ir_video_menu = 0x803b3f64;
+   initialize_sd_card_to_data = 0x80061e70;
    HceIQ_CheckNightMode = 0x80055c28;
    HceTask_ToNextNChar = 0x801359d0;
    HceCommon_RestoreDefaultColdItem = 0x80055f3c;
@@ -52,6 +54,7 @@
    get_rtc_extra_operation_mode = 0x80055764;
    vfsClose = 0x8002a660;
    g_operation_mode_menu = 0x803b3554;
+   g_sd_card_descriptor = 0x803d4798;
    g_video_length_menu = 0x803b3650;
    get_battery_percent_from_voltage = 0x80113718;
    g_firmware_upgrade_menu = 0x803b4140;
@@ -162,6 +165,7 @@
    get_g_menu_temp_month = 0x80131a08;
    TaskTimeLapseFSM_task2 = 0x80129eec;
    TaskTimeLapseFSM_task1 = 0x80129a50;
+   reduce_SD_clock = 0x8005ff30;
    TaskTimeLapseFSM_task0 = 0x80129ac0;
    Volt_Calib_Bat = 0x80113ca0;
    execute_if_not_null = 0x8010df8c;
@@ -215,6 +219,7 @@ SECTIONS {
                 entry1.o
                 custom-ribbon.o
                 custom-info-strip.o
+                reduce-sd-clock.o
                 volume-file-naming.o
                 extend-event-SD-card.o
                 rtc-formats.o

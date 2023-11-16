@@ -12,7 +12,7 @@ OBJCOPY=mips-linux-gnu-objcopy
 
 CFLAGS=-I$(CIDIR) -Os -nostdlib -mno-abicalls -march=r4000 -EL -S
 ASFLAGS=-march=r4000 -mno-abicalls  -c -EL
-LDFLAGS=--warn-multiple-gp -G65535 --warn-section-align -EL -M
+LDFLAGS=--warn-multiple-gp -G65535 --warn-section-align -EL
 OBJCPFLAGS=-S -O binary 
 
 ##_DEPS = WBWL.h

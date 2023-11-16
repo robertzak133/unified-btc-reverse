@@ -32,7 +32,7 @@ g_btc_7e_hp5_strings = g_btc_7e_strings
 
 g_btc_8e_hp5_strings = g_btc_7e_hp5_strings 
 
-g_btc_major_version = "230914P"
+g_btc_major_version = "231021P"
 
 g_wbwl_btc_targets = {}
 # 7A

@@ -2424,13 +2424,205 @@ cdt_menu_patch_list['cdt_btc_strcpy']['line_number']['BTC-8E'] = 126
 cdt_menu_patch_list['cdt_btc_strcpy']['line_number']['BTC-7E-HP4'] = 124
 cdt_menu_patch_list['cdt_btc_strcpy']['line_number']['BTC-8E-HP4'] = 124
 cdt_menu_patch_list['cdt_btc_strcpy']['line_number']['BTC-7E-HP5'] = 119 
-#cdt_menu_patch_list['cdt_btc_strcpy']['line_number']['BTC-8E-HP5'] = 124
+cdt_menu_patch_list['cdt_btc_strcpy']['line_number']['BTC-8E-HP5'] = 124
 cdt_menu_patch_list['cdt_btc_strcpy']['start_offset'] = {}
 cdt_menu_patch_list['cdt_btc_strcpy']['start_offset']['BTC-7E'] = 0x0135550
 cdt_menu_patch_list['cdt_btc_strcpy']['start_offset']['BTC-8E'] = 0x013614c
 cdt_menu_patch_list['cdt_btc_strcpy']['start_offset']['BTC-7E-HP4'] = 0x0131e20
 cdt_menu_patch_list['cdt_btc_strcpy']['start_offset']['BTC-8E-HP4'] = 0x0134950
 cdt_menu_patch_list['cdt_btc_strcpy']['start_offset']['BTC-7E-HP5'] = 0x0110604
-#cdt_menu_patch_list['cdt_btc_strcpy']['start_offset']['BTC-8E-HP5'] = 0x0110e18
+cdt_menu_patch_list['cdt_btc_strcpy']['start_offset']['BTC-8E-HP5'] = 0x0110e18
 cdt_menu_patch_list['cdt_btc_strcpy']['change_from_jump'] = 'jal.btc_strcpy'
 cdt_menu_patch_list['cdt_btc_strcpy']['change_to_jump']   = 'jal.cdt_btc_strcpy'
+
+
+
+## Patches to fix access to the pressure/temperature sensor
+##   2023-09-17 -- my first hypothesis is that it's somehow at the
+##                 wrong I2C address
+
+pt_patch_list = {}
+
+# read in Pressure_sensor_init()
+pt_patch_list['pressure_sensor_init'] = {}
+pt_patch_list['pressure_sensor_init']['function'] = 'Pressure_sensor_init'
+pt_patch_list['pressure_sensor_init']['line_number'] = {}
+pt_patch_list['pressure_sensor_init']['line_number']['BTC-8E'] = 33
+pt_patch_list['pressure_sensor_init']['start_offset'] = {}
+pt_patch_list['pressure_sensor_init']['start_offset']['BTC-8E'] = 0x012e220
+pt_patch_list['pressure_sensor_init']['change_from_bytes'] = bytes([0xee,0x00,0x04,0x24])
+pt_patch_list['pressure_sensor_init']['change_to_bytes']   = bytes([0xec,0x00,0x04,0x24])
+
+## read in Pressure_sensor_getReading'
+pt_patch_list['ps_get_reading'] = {}
+pt_patch_list['ps_get_reading']['function'] = 'Pressure_sensor_getReading'
+pt_patch_list['ps_get_reading']['line_number'] = {}
+pt_patch_list['ps_get_reading']['line_number']['BTC-8E'] = 41
+pt_patch_list['ps_get_reading']['start_offset'] = {}
+pt_patch_list['ps_get_reading']['start_offset']['BTC-8E'] = 0x012de94
+pt_patch_list['ps_get_reading']['change_from_bytes'] = bytes([0xee,0x00,0x04,0x24])
+pt_patch_list['ps_get_reading']['change_to_bytes']   = bytes([0xec,0x00,0x04,0x24])
+
+## read in read_pressure_temperature_device'
+pt_patch_list['ps_read_pressure'] = {}
+pt_patch_list['ps_read_pressure']['function'] = 'read_pressure_temperature_device'
+pt_patch_list['ps_read_pressure']['line_number'] = {}
+pt_patch_list['ps_read_pressure']['line_number']['BTC-8E'] = 7
+pt_patch_list['ps_read_pressure']['start_offset'] = {}
+pt_patch_list['ps_read_pressure']['start_offset']['BTC-8E'] = 0x012dd9c
+pt_patch_list['ps_read_pressure']['change_from_bytes'] = bytes([0xee,0x00,0x04,0x24])
+pt_patch_list['ps_read_pressure']['change_to_bytes']   = bytes([0xec,0x00,0x04,0x24])
+
+## write in write_pressure_temperature_sensor
+pt_patch_list['write_pt_sensor'] = {}
+pt_patch_list['write_pt_sensor']['function'] = 'write_pressure_temperature_sensor'
+pt_patch_list['write_pt_sensor']['line_number'] = {}
+pt_patch_list['write_pt_sensor']['line_number']['BTC-8E'] = 10
+pt_patch_list['write_pt_sensor']['start_offset'] = {}
+pt_patch_list['write_pt_sensor']['start_offset']['BTC-8E'] = 0x012dcb0
+pt_patch_list['write_pt_sensor']['change_from_bytes'] = bytes([0xee,0x00,0x04,0x24])
+pt_patch_list['write_pt_sensor']['change_to_bytes']   = bytes([0xec,0x00,0x04,0x24])
+
+## write in write_pressure_temperature_sensor
+pt_patch_list['write_pt_sensor_wait'] = {}
+pt_patch_list['write_pt_sensor_wait']['function'] = 'write_pressure_temperature_sensor_wait'
+pt_patch_list['write_pt_sensor_wait']['line_number'] = {}
+pt_patch_list['write_pt_sensor_wait']['line_number']['BTC-8E'] = 7
+pt_patch_list['write_pt_sensor_wait']['start_offset'] = {}
+pt_patch_list['write_pt_sensor_wait']['start_offset']['BTC-8E'] = 0x012dd54
+pt_patch_list['write_pt_sensor_wait']['change_from_bytes'] = bytes([0xee,0x00,0x04,0x24])
+pt_patch_list['write_pt_sensor_wait']['change_to_bytes']   = bytes([0xec,0x00,0x04,0x24])
+
+## in Pressure_sensor_init() -- select the "external" temp sensor 
+##    Select external sensor, and lower sample rate in all cases
+pt_patch_list['pt_ext_temp_sensor'] = {}
+pt_patch_list['pt_ext_temp_sensor']['function'] = 'Pressure_sensor_init'
+pt_patch_list['pt_ext_temp_sensor']['line_number'] = {}
+pt_patch_list['pt_ext_temp_sensor']['line_number']['BTC-8E'] = 83
+pt_patch_list['pt_ext_temp_sensor']['start_offset'] = {}
+pt_patch_list['pt_ext_temp_sensor']['start_offset']['BTC-8E'] = 0x012e4ac
+pt_patch_list['pt_ext_temp_sensor']['change_from_bytes'] = bytes([0x31,0x00,0x05,0x24])
+pt_patch_list['pt_ext_temp_sensor']['change_to_bytes']   = bytes([0xb1,0x00,0x05,0x24])
+
+
+## Debug -- in update_global_pressure_temperature()
+# pt_patch_list['pt_get_sensor'] = {}
+# pt_patch_list['pt_get_sensor']['function'] = 'update_global_pressure_temperature'
+# pt_patch_list['pt_get_sensor']['line_number'] = {}
+# pt_patch_list['pt_get_sensor']['line_number']['BTC-8E'] = 10
+# pt_patch_list['pt_get_sensor']['start_offset'] = {}
+# pt_patch_list['pt_get_sensor']['start_offset']['BTC-8E'] = 0x010db18
+# pt_patch_list['pt_get_sensor']['change_from_jump'] = 'j.Pressure_sensor_getReading'
+# pt_patch_list['pt_get_sensor']['change_to_jump']   = 'j.cr_Pressure_sensor_getReading'
+
+
+## Debug -- in g_pressure_temperature_functions_B
+# pt_patch_list['pt_get_sensor_hp4'] = {}
+# pt_patch_list['pt_get_sensor_hp4']['function'] = 'g_pressure_temperature_functions_B'
+# pt_patch_list['pt_get_sensor_hp4']['line_number'] = {}
+# pt_patch_list['pt_get_sensor_hp4']['line_number']['BTC-8E-HP4'] = 1
+# pt_patch_list['pt_get_sensor_hp4']['start_offset'] = {}
+# pt_patch_list['pt_get_sensor_hp4']['start_offset']['BTC-8E-HP4'] = 0x035a760
+# pt_patch_list['pt_get_sensor_hp4']['change_from_ptr'] = 'Pressure_sensor_getReading'
+# pt_patch_list['pt_get_sensor_hp4']['change_to_ptr']   = 'cr_Pressure_sensor_getReading'
+
+## Debug -- in Pressure_sensor_init()
+# pt_patch_list['pt_pressure_sensor_init'] = {}
+# pt_patch_list['pt_pressure_sensor_init']['function'] = 'Pressure_sensor_init'
+# pt_patch_list['pt_pressure_sensor_init']['line_number'] = {}
+# pt_patch_list['pt_pressure_sensor_init']['line_number']['BTC-8E'] = 86
+# pt_patch_list['pt_pressure_sensor_init']['line_number']['BTC-8E-HP4'] = 88
+# pt_patch_list['pt_pressure_sensor_init']['start_offset'] = {}
+# pt_patch_list['pt_pressure_sensor_init']['start_offset']['BTC-8E'] = 0x012e4c0
+# pt_patch_list['pt_pressure_sensor_init']['start_offset']['BTC-8E-HP4'] = 0x012b764
+# pt_patch_list['pt_pressure_sensor_init']['change_from_jump'] = 'jal.log_printf'
+# pt_patch_list['pt_pressure_sensor_init']['change_to_jump']   = 'jal.cr_log_printf'
+
+
+
+##
+## Debugging SD Card Corruption
+
+fdb_patch_list = {}
+
+# Loop through lots of Format/Mount 
+fdb_patch_list['format_fsm'] = {}
+fdb_patch_list['format_fsm']['function'] = 'g_HceTaskMenuMultiItem_fsm_function_array'
+fdb_patch_list['format_fsm']['line_number'] = {}
+fdb_patch_list['format_fsm']['line_number']['BTC-8E-HP5'] = 23
+fdb_patch_list['format_fsm']['start_offset'] = {}
+fdb_patch_list['format_fsm']['start_offset']['BTC-8E-HP5'] = 0x02cbca0
+fdb_patch_list['format_fsm']['change_from_ptr'] = 'handleDeleteAll_menu'
+fdb_patch_list['format_fsm']['change_to_ptr']   = 'fdb_handleDeleteAll_menu'
+
+# # Debug -- FSM Start
+fdb_patch_list['format_fsm_0'] = {}
+fdb_patch_list['format_fsm_0']['function'] = 'g_HCETaskFormat_FunctionArray'
+fdb_patch_list['format_fsm_0']['line_number'] = {}
+fdb_patch_list['format_fsm_0']['line_number']['BTC-8E-HP5'] = 0
+fdb_patch_list['format_fsm_0']['start_offset'] = {}
+fdb_patch_list['format_fsm_0']['start_offset']['BTC-8E-HP5'] = 0x002cb3dc
+fdb_patch_list['format_fsm_0']['change_from_ptr'] = 'HceTaskFormat_task0'
+fdb_patch_list['format_fsm_0']['change_to_ptr']   = 'fdb_HceTaskFormat_task0'
+
+# # Debug -- FSM Start
+fdb_patch_list['format_fsm_1'] = {}
+fdb_patch_list['format_fsm_1']['function'] = 'g_HCETaskFormat_FunctionArray'
+fdb_patch_list['format_fsm_1']['line_number'] = {}
+fdb_patch_list['format_fsm_1']['line_number']['BTC-8E-HP5'] = 1
+fdb_patch_list['format_fsm_1']['start_offset'] = {}
+fdb_patch_list['format_fsm_1']['start_offset']['BTC-8E-HP5'] = 0x02cb3e0
+fdb_patch_list['format_fsm_1']['change_from_ptr'] = 'HceTaskFormat_task1_Mount'
+fdb_patch_list['format_fsm_1']['change_to_ptr']   = 'fdb_HceTaskFormat_task1_Mount'
+
+# # Debug -- FSM Start
+fdb_patch_list['format_fsm_2'] = {}
+fdb_patch_list['format_fsm_2']['function'] = 'g_HCETaskFormat_FunctionArray'
+fdb_patch_list['format_fsm_2']['line_number'] = {}
+fdb_patch_list['format_fsm_2']['line_number']['BTC-8E-HP5'] = 2
+fdb_patch_list['format_fsm_2']['start_offset'] = {}
+fdb_patch_list['format_fsm_2']['start_offset']['BTC-8E-HP5'] = 0x002cb3e4
+fdb_patch_list['format_fsm_2']['change_from_ptr'] = 'HceTaskFormat_task2_mount_complete'
+fdb_patch_list['format_fsm_2']['change_to_ptr']   = 'fdb_HceTaskFormat_task2_mount_complete'
+
+# # Debug -- FSM Start
+fdb_patch_list['format_fsm_3'] = {}
+fdb_patch_list['format_fsm_3']['function'] = 'g_HCETaskFormat_FunctionArray'
+fdb_patch_list['format_fsm_3']['line_number'] = {}
+fdb_patch_list['format_fsm_3']['line_number']['BTC-8E-HP5'] = 3
+fdb_patch_list['format_fsm_3']['start_offset'] = {}
+fdb_patch_list['format_fsm_3']['start_offset']['BTC-8E-HP5'] = 0x002cb3e8
+fdb_patch_list['format_fsm_3']['change_from_ptr'] = 'HceTaskFormat_task3_format_drive'
+fdb_patch_list['format_fsm_3']['change_to_ptr']   = 'fdb_HceTaskFormat_task3_format_drive'
+
+# # Debug -- FSM Start
+fdb_patch_list['format_fsm_4'] = {}
+fdb_patch_list['format_fsm_4']['function'] = 'g_HCETaskFormat_FunctionArray'
+fdb_patch_list['format_fsm_4']['line_number'] = {}
+fdb_patch_list['format_fsm_4']['line_number']['BTC-8E-HP5'] = 4
+fdb_patch_list['format_fsm_4']['start_offset'] = {}
+fdb_patch_list['format_fsm_4']['start_offset']['BTC-8E-HP5'] = 0x02cb3ec
+fdb_patch_list['format_fsm_4']['change_from_ptr'] = 'HceTaskFormat_task4_Init_DCF'
+fdb_patch_list['format_fsm_4']['change_to_ptr']   = 'fdb_HceTaskFormat_task4_Init_DCF'
+
+# # Debug -- FSM Start
+fdb_patch_list['format_fsm_5'] = {}
+fdb_patch_list['format_fsm_5']['function'] = 'g_HCETaskFormat_FunctionArray'
+fdb_patch_list['format_fsm_5']['line_number'] = {}
+fdb_patch_list['format_fsm_5']['line_number']['BTC-8E-HP5'] = 5
+fdb_patch_list['format_fsm_5']['start_offset'] = {}
+fdb_patch_list['format_fsm_5']['start_offset']['BTC-8E-HP5'] = 0x02cb3f0
+fdb_patch_list['format_fsm_5']['change_from_ptr'] = 'HceTaskFormat_task5'
+fdb_patch_list['format_fsm_5']['change_to_ptr']   = 'fdb_HceTaskFormat_task5'
+
+
+# # Debug -- FSM End
+fdb_patch_list['format_fsm_6'] = {}
+fdb_patch_list['format_fsm_6']['function'] = 'g_HCETaskFormat_FunctionArray'
+fdb_patch_list['format_fsm_6']['line_number'] = {}
+fdb_patch_list['format_fsm_6']['line_number']['BTC-8E-HP5'] = 6
+fdb_patch_list['format_fsm_6']['start_offset'] = {}
+fdb_patch_list['format_fsm_6']['start_offset']['BTC-8E-HP5'] = 0x02cb3f4
+fdb_patch_list['format_fsm_6']['change_from_ptr'] = 'HceTaskFormat_task6'
+fdb_patch_list['format_fsm_6']['change_to_ptr']   = 'fdb_HceTaskFormat_task6'
+

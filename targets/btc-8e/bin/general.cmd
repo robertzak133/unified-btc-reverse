@@ -1,6 +1,6 @@
 /* Command File for Gcc Loader */
 /*    Created automatically by Ghidra.UnifiedCreateLdScript.java */
-/*    2023-09-19 02:42:19 */
+/*    2023-11-14 08:08:53 */
 
   /* Symbol Definitions */
    btc_strcpy = 0x8002d36c;
@@ -20,9 +20,9 @@
    get_capture_timer_rtc_time = 0x8010fcb8;
    positive_diff = 0x80055ed8;
    menu_redraw_items = 0x80131f80;
-   TaskTimeLapseFSM_task13 = 0x80129f4c;
    draw_rectangle_wrapper = 0x8011ef5c;
    tty_printf_battery_stats = 0x800e31d8;
+   TaskTimeLapseFSM_task13 = 0x80129f4c;
    TaskTimeLapseFSM_task12 = 0x80129f78;
    set_rtc_extra_operation_mode = 0x8005573c;
    g_video_quality_menu = 0x803b3914;
@@ -35,7 +35,7 @@
    get_power_supply_mode = 0x80113754;
    get_temperatureForC = 0x8010f16c;
    get_g_menu_temp_hour = 0x801326a0;
-   read_pressure_temperature_device = 0x8012dd90;
+   get_sd_clock_kHz = 0x8001ad98;
    local_sprintf = 0x800209e0;
    g_dcfapi_loaded_p = 0x804a4554;
    sp5kIqBlockEnable = 0x801aa5ac;
@@ -44,6 +44,7 @@
    fsm_getCurrentState = 0x80123190;
    update_timelapse_rise_set_times = 0x80113388;
    g_smart_ir_video_menu = 0x803b4148;
+   initialize_sd_card_to_data = 0x80061e70;
    HceIQ_CheckNightMode = 0x80055c28;
    HceTask_ToNextNChar = 0x801365cc;
    HceCommon_RestoreDefaultColdItem = 0x80055f3c;
@@ -53,6 +54,7 @@
    get_rtc_extra_operation_mode = 0x80055764;
    vfsClose = 0x8002a660;
    g_operation_mode_menu = 0x803b3754;
+   g_sd_card_descriptor = 0x803d49d8;
    g_video_length_menu = 0x803b3850;
    get_battery_percent_from_voltage = 0x80113970;
    g_firmware_upgrade_menu = 0x803b4324;
@@ -84,7 +86,6 @@
    set_aaa_ae_pipeline_wrapper = 0x800c5a34;
    handleSetTimeMenu = 0x80136cc0;
    memcpy = 0x8000a420;
-   g_SPL06_007_compensation_scale_table = 0x803550fc;
    TaskTimeLapseFSM_task3_ae_set = 0x80129c6c;
    get_min_day = 0x8013262c;
    get_min_minute = 0x801326c8;
@@ -118,7 +119,6 @@
    free = 0x800126f0;
    g_iq_init_color_param = 0x803b4cf4;
    TaskTimeLapseFSM_task11_openTLfile = 0x80128cb0;
-   g_pressure_temperature_coefficients = 0x803bec90;
    set_g_cold_item_battery_type = 0x8010e6cc;
    get_cold_item_tod_last_photo_in_seconds = 0x8010ef34;
    get_cold_item_temperature_unit_celsius_p = 0x8010e5b8;
@@ -163,6 +163,7 @@
    get_g_menu_temp_month = 0x80132604;
    TaskTimeLapseFSM_task2 = 0x8012a28c;
    TaskTimeLapseFSM_task1 = 0x80129df0;
+   reduce_SD_clock = 0x8005ff30;
    TaskTimeLapseFSM_task0 = 0x80129e60;
    Volt_Calib_Bat = 0x80113ef8;
    execute_if_not_null = 0x8010e118;
@@ -191,9 +192,9 @@
    fsm_getNextState = 0x801231e0;
    g_down_button_enable = 0x803beaad;
    g_run_iq_init_function_p = 0x803f4bc8;
-   get_cold_item_timelapse_period = 0x8010e5e8;
    set_aaa_awb_pipeline_wrapper = 0x80198f90;
    exif_remove_and_add_wrapper = 0x80107d60;
+   get_cold_item_timelapse_period = 0x8010e5e8;
    g_trigger_speed_menu = 0x803b3e1c;
    g_set_date_time_menu_state = 0x803ef49c;
    appAWBALGLib_WBParamSet = 0x8013b810;
@@ -218,6 +219,7 @@ SECTIONS {
                 entry1.o
                 custom-ribbon.o
                 custom-info-strip.o
+                reduce-sd-clock.o
                 volume-file-naming.o
                 extend-event-SD-card.o
                 rtc-formats.o

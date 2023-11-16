@@ -1,6 +1,6 @@
 /* Command File for Gcc Loader */
 /*    Created automatically by Ghidra.UnifiedCreateLdScript.java */
-/*    2023-09-20 02:15:20 */
+/*    2023-11-14 08:10:27 */
 
   /* Symbol Definitions */
    btc_strcpy = 0x8003360c;
@@ -34,7 +34,7 @@
    get_power_supply_mode = 0x8010eb0c;
    get_temperatureForC = 0x8010a018;
    get_g_menu_temp_hour = 0x80130e98;
-   read_pressure_temperature_device = 0x8012afd0;
+   get_sd_clock_kHz = 0x8001ad98;
    local_sprintf = 0x800209e8;
    g_dcfapi_loaded_p = 0x804adc94;
    sp5kIqBlockEnable = 0x801a9284;
@@ -43,6 +43,7 @@
    fsm_getCurrentState = 0x8011ef38;
    update_timelapse_rise_set_times = 0x8010e6d0;
    g_smart_ir_video_menu = 0x803bda04;
+   initialize_sd_card_to_data = 0x802fbb14;
    HceIQ_CheckNightMode = 0x8005c1d0;
    HceTask_ToNextNChar = 0x80134dd0;
    HceCommon_RestoreDefaultColdItem = 0x8005c4f4;
@@ -52,6 +53,7 @@
    get_rtc_extra_operation_mode = 0x8005bc8c;
    vfsClose = 0x80030900;
    g_operation_mode_menu = 0x803bcfd8;
+   g_sd_card_descriptor = 0x804b4ec8;
    g_video_length_menu = 0x803bd0d4;
    get_battery_percent_from_voltage = 0x8010ed28;
    g_firmware_upgrade_menu = 0x803bdbe0;
@@ -83,7 +85,6 @@
    set_aaa_ae_pipeline_wrapper = 0x800b98f8;
    handleSetTimeMenu = 0x801354c4;
    memcpy = 0x8000a420;
-   g_SPL06_007_compensation_scale_table = 0x8035c324;
    TaskTimeLapseFSM_task3_ae_set = 0x801264b8;
    get_min_day = 0x80130e24;
    get_min_minute = 0x80130ec0;
@@ -117,7 +118,6 @@
    free = 0x80012820;
    g_iq_init_color_param = 0x803be5b0;
    TaskTimeLapseFSM_task11_openTLfile = 0x801254f4;
-   g_pressure_temperature_coefficients = 0x803c85c0;
    set_g_cold_item_battery_type = 0x80109580;
    get_cold_item_tod_last_photo_in_seconds = 0x80109de0;
    get_cold_item_temperature_unit_celsius_p = 0x80109448;
@@ -162,6 +162,7 @@
    get_g_menu_temp_month = 0x80130dfc;
    TaskTimeLapseFSM_task2 = 0x80126ad8;
    TaskTimeLapseFSM_task1 = 0x8012663c;
+   reduce_SD_clock = 0x802f9bd4;
    TaskTimeLapseFSM_task0 = 0x801266ac;
    Volt_Calib_Bat = 0x8010f310;
    execute_if_not_null = 0x80108eb0;
@@ -190,9 +191,9 @@
    fsm_getNextState = 0x8011ef88;
    g_down_button_enable = 0x803c836d;
    g_run_iq_init_function_p = 0x803fe2fc;
-   get_cold_item_timelapse_period = 0x80109478;
    set_aaa_awb_pipeline_wrapper = 0x80197c68;
    exif_remove_and_add_wrapper = 0x801026f8;
+   get_cold_item_timelapse_period = 0x80109478;
    g_trigger_speed_menu = 0x803bd6bc;
    g_set_date_time_menu_state = 0x803f8bd0;
    appAWBALGLib_WBParamSet = 0x801399ec;
@@ -217,6 +218,7 @@ SECTIONS {
                 entry1.o
                 custom-ribbon.o
                 custom-info-strip.o
+                reduce-sd-clock.o
                 volume-file-naming.o
                 extend-event-SD-card.o
                 rtc-formats.o

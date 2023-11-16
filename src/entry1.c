@@ -33,6 +33,7 @@ void cli_command_function(uint param_1,char **param_2) {
   set_pre_printf_state();
   tty_printf("Error::WBWL -  cli_command_function() not implemented in this patched firmware version");
   check_post_printf_state_set_sio_params();
+
 #endif
 }
 

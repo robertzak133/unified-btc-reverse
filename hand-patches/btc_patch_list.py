@@ -2537,3 +2537,115 @@ pt_patch_list['pt_ext_temp_sensor']['change_to_bytes']   = bytes([0xb1,0x00,0x05
 # pt_patch_list['pt_pressure_sensor_init']['start_offset']['BTC-8E-HP4'] = 0x012b764
 # pt_patch_list['pt_pressure_sensor_init']['change_from_jump'] = 'jal.log_printf'
 # pt_patch_list['pt_pressure_sensor_init']['change_to_jump']   = 'jal.cr_log_printf'
+
+##
+## Reduce SD Clock Speed Patches
+rsc_patch_list = {}
+
+# Loop through lots of Format/Mount 
+rsc_patch_list['init_sd_to_data'] = {}
+rsc_patch_list['init_sd_to_data']['function'] = 'initialize_default_sd_card_to_data'
+rsc_patch_list['init_sd_to_data']['line_number'] = {}
+rsc_patch_list['init_sd_to_data']['line_number']['BTC-7E'] = 7
+rsc_patch_list['init_sd_to_data']['line_number']['BTC-8E'] = 7
+rsc_patch_list['init_sd_to_data']['line_number']['BTC-7E-HP4'] = 7
+rsc_patch_list['init_sd_to_data']['line_number']['BTC-8E-HP4'] = 7
+rsc_patch_list['init_sd_to_data']['line_number']['BTC-7E-HP5'] = 7
+rsc_patch_list['init_sd_to_data']['line_number']['BTC-8E-HP5'] = 7
+rsc_patch_list['init_sd_to_data']['start_offset'] = {}
+rsc_patch_list['init_sd_to_data']['start_offset']['BTC-7E'] = 0x02f5fc8
+rsc_patch_list['init_sd_to_data']['start_offset']['BTC-8E'] = 0x02f7254
+rsc_patch_list['init_sd_to_data']['start_offset']['BTC-7E-HP4'] = 0x02f3418
+rsc_patch_list['init_sd_to_data']['start_offset']['BTC-8E-HP4'] = 0x02f5f48
+rsc_patch_list['init_sd_to_data']['start_offset']['BTC-7E-HP5'] = 0x0267358
+rsc_patch_list['init_sd_to_data']['start_offset']['BTC-8E-HP5'] = 0x02681f4
+rsc_patch_list['init_sd_to_data']['change_from_jump'] = 'jal.initialize_sd_card_to_data'
+rsc_patch_list['init_sd_to_data']['change_to_jump']   = 'jal.rsc_initialize_sd_card_to_data'
+
+##
+## Debugging SD Card Corruption
+## These patches are for debugging only; not for release
+
+fdb_patch_list = {}
+
+# Loop through lots of Format/Mount 
+fdb_patch_list['format_fsm'] = {}
+fdb_patch_list['format_fsm']['function'] = 'g_HceTaskMenuMultiItem_fsm_function_array'
+fdb_patch_list['format_fsm']['line_number'] = {}
+fdb_patch_list['format_fsm']['line_number']['BTC-8E-HP5'] = 23
+fdb_patch_list['format_fsm']['start_offset'] = {}
+fdb_patch_list['format_fsm']['start_offset']['BTC-8E-HP5'] = 0x02cbca0
+fdb_patch_list['format_fsm']['change_from_ptr'] = 'handleDeleteAll_menu'
+fdb_patch_list['format_fsm']['change_to_ptr']   = 'fdb_handleDeleteAll_menu'
+
+#Debug -- FSM Start
+fdb_patch_list['format_fsm_0'] = {}
+fdb_patch_list['format_fsm_0']['function'] = 'g_HCETaskFormat_FunctionArray'
+fdb_patch_list['format_fsm_0']['line_number'] = {}
+fdb_patch_list['format_fsm_0']['line_number']['BTC-8E-HP5'] = 0
+fdb_patch_list['format_fsm_0']['start_offset'] = {}
+fdb_patch_list['format_fsm_0']['start_offset']['BTC-8E-HP5'] = 0x002cb3dc
+fdb_patch_list['format_fsm_0']['change_from_ptr'] = 'HceTaskFormat_task0'
+fdb_patch_list['format_fsm_0']['change_to_ptr']   = 'fdb_HceTaskFormat_task0'
+
+#Debug -- FSM Start
+fdb_patch_list['format_fsm_1'] = {}
+fdb_patch_list['format_fsm_1']['function'] = 'g_HCETaskFormat_FunctionArray'
+fdb_patch_list['format_fsm_1']['line_number'] = {}
+fdb_patch_list['format_fsm_1']['line_number']['BTC-8E-HP5'] = 1
+fdb_patch_list['format_fsm_1']['start_offset'] = {}
+fdb_patch_list['format_fsm_1']['start_offset']['BTC-8E-HP5'] = 0x02cb3e0
+fdb_patch_list['format_fsm_1']['change_from_ptr'] = 'HceTaskFormat_task1_Mount'
+fdb_patch_list['format_fsm_1']['change_to_ptr']   = 'fdb_HceTaskFormat_task1_Mount'
+
+#Debug -- FSM Start
+fdb_patch_list['format_fsm_2'] = {}
+fdb_patch_list['format_fsm_2']['function'] = 'g_HCETaskFormat_FunctionArray'
+fdb_patch_list['format_fsm_2']['line_number'] = {}
+fdb_patch_list['format_fsm_2']['line_number']['BTC-8E-HP5'] = 2
+fdb_patch_list['format_fsm_2']['start_offset'] = {}
+fdb_patch_list['format_fsm_2']['start_offset']['BTC-8E-HP5'] = 0x002cb3e4
+fdb_patch_list['format_fsm_2']['change_from_ptr'] = 'HceTaskFormat_task2_mount_complete'
+fdb_patch_list['format_fsm_2']['change_to_ptr']   = 'fdb_HceTaskFormat_task2_mount_complete'
+
+#Debug -- FSM Start
+fdb_patch_list['format_fsm_3'] = {}
+fdb_patch_list['format_fsm_3']['function'] = 'g_HCETaskFormat_FunctionArray'
+fdb_patch_list['format_fsm_3']['line_number'] = {}
+fdb_patch_list['format_fsm_3']['line_number']['BTC-8E-HP5'] = 3
+fdb_patch_list['format_fsm_3']['start_offset'] = {}
+fdb_patch_list['format_fsm_3']['start_offset']['BTC-8E-HP5'] = 0x002cb3e8
+fdb_patch_list['format_fsm_3']['change_from_ptr'] = 'HceTaskFormat_task3_format_drive'
+fdb_patch_list['format_fsm_3']['change_to_ptr']   = 'fdb_HceTaskFormat_task3_format_drive'
+
+#Debug -- FSM Start
+fdb_patch_list['format_fsm_4'] = {}
+fdb_patch_list['format_fsm_4']['function'] = 'g_HCETaskFormat_FunctionArray'
+fdb_patch_list['format_fsm_4']['line_number'] = {}
+fdb_patch_list['format_fsm_4']['line_number']['BTC-8E-HP5'] = 4
+fdb_patch_list['format_fsm_4']['start_offset'] = {}
+fdb_patch_list['format_fsm_4']['start_offset']['BTC-8E-HP5'] = 0x02cb3ec
+fdb_patch_list['format_fsm_4']['change_from_ptr'] = 'HceTaskFormat_task4_Init_DCF'
+fdb_patch_list['format_fsm_4']['change_to_ptr']   = 'fdb_HceTaskFormat_task4_Init_DCF'
+
+#Debug -- FSM Start
+fdb_patch_list['format_fsm_5'] = {}
+fdb_patch_list['format_fsm_5']['function'] = 'g_HCETaskFormat_FunctionArray'
+fdb_patch_list['format_fsm_5']['line_number'] = {}
+fdb_patch_list['format_fsm_5']['line_number']['BTC-8E-HP5'] = 5
+fdb_patch_list['format_fsm_5']['start_offset'] = {}
+fdb_patch_list['format_fsm_5']['start_offset']['BTC-8E-HP5'] = 0x02cb3f0
+fdb_patch_list['format_fsm_5']['change_from_ptr'] = 'HceTaskFormat_task5'
+fdb_patch_list['format_fsm_5']['change_to_ptr']   = 'fdb_HceTaskFormat_task5'
+
+
+#Debug -- FSM End
+fdb_patch_list['format_fsm_6'] = {}
+fdb_patch_list['format_fsm_6']['function'] = 'g_HCETaskFormat_FunctionArray'
+fdb_patch_list['format_fsm_6']['line_number'] = {}
+fdb_patch_list['format_fsm_6']['line_number']['BTC-8E-HP5'] = 6
+fdb_patch_list['format_fsm_6']['start_offset'] = {}
+fdb_patch_list['format_fsm_6']['start_offset']['BTC-8E-HP5'] = 0x02cb3f4
+fdb_patch_list['format_fsm_6']['change_from_ptr'] = 'HceTaskFormat_task6'
+fdb_patch_list['format_fsm_6']['change_to_ptr']   = 'fdb_HceTaskFormat_task6'
+

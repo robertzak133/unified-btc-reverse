@@ -12,7 +12,7 @@ OBJCOPY=mips-linux-gnu-objcopy
 
 CFLAGS=-I$(CIDIR) -Os -nostdlib -mno-abicalls -march=r4000 -EL -S
 ASFLAGS=-march=r4000 -mno-abicalls  -c -EL
-LDFLAGS=--warn-multiple-gp -G65535 -nostartfiles --warn-section-align -EL 
+LDFLAGS=--warn-multiple-gp -G65535 --warn-section-align -EL 
 OBJCPFLAGS=-S -O binary 
 
 ##_DEPS = WBWL.h
@@ -26,7 +26,7 @@ SRC = $(patsubst %,$(SRCDIR)/%,$(_SRC))
 _SYMBOLS = $(_SRC:.c=.symbols)
 SYMBOLS = $(SRC:.c=.symbols)
 
-_release_OBJ = entry0.o entry1.o entry2.o entry3.o custom-ribbon.o custom-info-strip.o volume-file-naming.o extend-event-SD-card.o rtc-formats.o dslr-trigger.o menus.o timelapse.o aperture.o aperture-menu.o ir-flash-menu.o ir-flash-menu-early.o
+_release_OBJ = entry0.o entry1.o entry2.o entry3.o custom-ribbon.o custom-info-strip.o volume-file-naming.o extend-event-SD-card.o rtc-formats.o dslr-trigger.o menus.o timelapse.o aperture.o aperture-menu.o ir-flash-menu.o ir-flash-menu-early.o custom-set-date-time.o
 _test_OBJ = entry0.o entry1.o entry2.o entry3.o custom-ribbon.o custom-info-strip.o volume-file-naming.o extend-event-SD-card.o rtc-formats.o dslr-trigger.o menus.o timelapse.o aperture.o aperture-menu.o ir-flash-menu.o ir-flash-menu-early.o custom-set-date-time.o
 
 

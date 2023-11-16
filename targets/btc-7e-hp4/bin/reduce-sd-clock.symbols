@@ -1,0 +1,21 @@
+
+reduce-sd-clock.o:     file format elf32-tradlittlemips
+
+SYMBOL TABLE:
+00000000 l    df *ABS*	00000000 reduce-sd-clock.c
+00000000 l    d  .text	00000000 .text
+00000000 l    d  .data	00000000 .data
+00000000 l    d  .bss	00000000 .bss
+00000000 l    d  .mdebug.abi32	00000000 .mdebug.abi32
+00000000 l    d  .reginfo	00000000 .reginfo
+00000000 l    d  .MIPS.abiflags	00000000 .MIPS.abiflags
+00000000 l    d  .pdr	00000000 .pdr
+00000000 l    d  .comment	00000000 .comment
+00000000 l    d  .gnu.attributes	00000000 .gnu.attributes
+00000000 g     F .text	00000050 rsc_initialize_sd_card_to_data
+00000000         *UND*	00000000 initialize_sd_card_to_data
+00000000         *UND*	00000000 get_sd_clock_kHz
+00000000         *UND*	00000000 g_sd_card_descriptor
+00000000         *UND*	00000000 reduce_SD_clock
+
+

@@ -274,6 +274,12 @@ typedef enum enum_photo_delay_encoding {
 
 // Structures w/ typedefs
 
+typedef struct struct_system_device_entry {
+  uint field_0;
+  uint field_4;
+  uint field_8;
+  uint num_sectors;
+} struct_system_device_entry;
 
 typedef struct struct_pressure_temperature_coefficients {
   uint c0;
@@ -1356,6 +1362,7 @@ typedef struct struct_ColdBinData {
 
 extern struct_ColdBinData g_ColdItemData;
 
+extern void * g_sd_card_descriptor;  // this is not really a void*, but I don't understand the data structure well enough to put in here
 
 extern struct_pressure_temperature_coefficients g_pressure_temperature_coefficients;
 // Menu Item Arrays
@@ -1397,6 +1404,8 @@ extern struct_hp5_menu_item g_language_menu[8];
 extern struct_hp5_menu_item g_capture_timer_menu[3];
 extern struct_hp5_menu_item g_firmware_upgrade_menu[4];
 
+
+extern uint                 g_current_on_time_in_seconds;
 
 extern byte g_dcfapi_loaded_p;
 
@@ -1533,6 +1542,7 @@ extern uint  get_current_operating_time_ms(void);
 extern void          get_directory_suffix_file_prefix(char *directory_suffix, char *file_prefix);
 extern void          get_directory_suffix_file_prefix_indirect(char *directory_suffix, char *file_prefix);
 
+extern struct_system_device_entry *get_system_device_entry(uint dev_id);
 //extern int           getHceTaskMenuMultiItem2_FSM_valid(void);
 extern ushort        get_g_cold_item_video_duration(void);
 extern int           get_g_cold_item_led_power(void);
@@ -1597,7 +1607,15 @@ extern uint          HceTask_ToNextNChar(int up_button_p,
 					 uint (*max_value_function)(),
 					 ushort some_value);
 
+extern void          HceTaskUnMount_fsm_iterator(void);
 extern void          HceTaskFormat_fsm_iterator(void);
+extern void          HceTaskFormat_task0(void);
+extern void          HceTaskFormat_task1_Mount(void);
+extern void          HceTaskFormat_task2_mount_complete(void);
+extern void          HceTaskFormat_task3_format_drive(void);
+extern void          HceTaskFormat_task4_Init_DCF(void);
+extern void          HceTaskFormat_task5(void);
+extern void          HceTaskFormat_task6(void);
 extern void          initCodeSentry(uint);
 extern void          IRLedOff(void);
 extern void          setIRLedOn(void);
@@ -1640,6 +1658,7 @@ extern void          power_on_IR_LED(void);
 
 extern uint          read_photo_sensor_value();
 extern int           read_pressure_temperature_device(byte *, byte);
+extern int           read_sd_blocks(uint dev_id,uint current_sector,uint operation_size, byte *buffer);
 extern bool          reset_capture_timer(uint year_month, uint day_hour);
 extern int           seekToSpecifiedFileLocation(uint file_ptr, uint offset, uint whence);
 
@@ -1657,6 +1676,20 @@ extern void          setBatteryCalibConfig(void);
 
 extern void          setCodeSentryCSR(int address,int flag);
 extern void          setCodeSentryAddressRegion(int filter_index,int dev_type,void *base,void *bounds);
+
+extern int           sdRead(void *param_1,uint start_block,uint num_blocks,byte *buffer);
+extern int           RdSdAddr(void *param_1,uint start_block,uint num_blocks,byte *buffer);
+extern int           sdWrite(void *param_1,uint start_block,uint num_blocks,byte *buffer);
+extern int           WrSdAddr(void *param_1,uint start_block,uint num_blocks,byte *buffer);
+extern void          HceFastboot_SDPwrRecycle(void);
+extern int           initialize_sd_card_to_data(uint device_id);
+extern bool          initialize_default_sd_card_to_data(void);
+extern int           reduce_SD_clock(void*);
+extern void          put_fmDma1_semaphore(void);
+extern void          get_fmDma1_semaphore(void);
+extern void          flush_processor_cache(byte *buffer,uint size);
+extern void          flush_processor_cache2(byte *buffer,uint size);
+extern uint          get_sd_clock_kHz(void);
 
 extern void          set_cold_item_led_power(uint);
 extern int           set_cold_item_language_id(byte param_1);
@@ -1679,9 +1712,11 @@ extern void          sp5kIqBlockEnable(char, ...);
 extern void          sp5kIqCfgSet(uint, uint);
 extern int           sp5kModeSet(int next_mode);
 
+extern void          startHceTaskUnMount_FSM(uint param_1,uint param_2);
+extern void          startHceTaskFormat_FSM(int param_1, uint param_2);
 extern void          store_pressure_trend(void);
 
-extern uint  btc_strlen(char* string);
+extern uint          btc_strlen(char* string);
 extern char *        btc_strcpy(char *dest, char *source);
 
 extern void          function_with_syscall_zero(char *sys_file, uint line_number,int param_3);
@@ -1709,11 +1744,11 @@ extern void          vfsFileCopy(char *source_filename, char *dest_filename);
 
 extern void          Volt_Calib_Bat(void);
 
+extern int           write_sd_blocks(uint dev_id,uint current_sector,uint operation_size, byte *buffer);
+extern int           Write_LEDOn();
+extern int           Write_LEDOff();
 
-extern int          Write_LEDOn();
-extern int          Write_LEDOff();
-
-extern int          WrappedMPUSpi_WriteNPacketByManualPWM(struct_mpu_spi_address *mpu_spi_address,
+extern int           WrappedMPUSpi_WriteNPacketByManualPWM(struct_mpu_spi_address *mpu_spi_address,
 							  struct_mpu_spi_data *mpu_spi_data,
 							  uint num_bytes);
 
