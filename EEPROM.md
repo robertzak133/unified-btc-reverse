@@ -1,6 +1,6 @@
-# unified-btc-reverse -- EEPROM Images
+# unified-btc-reverse -- EEPROM PCB Location and Images
 
-The table below inluces poitners to files in this repository which contain EEPROM images for several Browning Trail camera models.
+The table below includes the PCB locator for EEPROM devices and pointers to files in this repository which contain EEPROM images for several Browning Trail camera models.
 
 | Camera Model | PCB Locator  | EEPROM Image |
 |--------------|--------------|--------------|
