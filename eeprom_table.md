@@ -1,6 +1,8 @@
 | Camera Model | PCB Locator  | EEPROM Image |
 |--------------|--------------|--------------|
 | BTC-PATRIOT-FHD | U9 | [factory-baseline-BTC6PBM.bin](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-patriot-fhd/eeprom-images/2023-12-27-factory-baseline/factory-baseline-BTC6PBM.bin) |
+| BTC-7A | U12 | [manufacturer-baseline-BTC-7A_I04030C.bin](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-7a/eeprom-images/factory-baseline-I04030C/manufacturer-baseline-BTC-7A_I04030C.bin) |
+| BTC-8A | U12 | [Baseline-BTC-8A-EEPROM-Image.bin](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-8a/eeprom-images/factory-baseline/Baseline-BTC-8A-EEPROM-Image.bin) |
 | BTC-7E | U6 | [2023-08-13-BTC-7E-EEPROM-Image.bin](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-7e/eeprom-images/2023-08-13-Synthesized-Baseline/2023-08-13-BTC-7E-EEPROM-Image.bin) |
 | BTC-8E | U6 | [2021-10-07-Factory-Image-Derived.bin](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-8e/eeprom-images/2023-01-03-Factory-Baseline/2021-10-07-Factory-Image-Derived.bin) |
 | BTC-7E-HP4 | U6 | [2023-03-01-BTC-7E-HP4-EEPROM-Image.bin](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-7e-hp4/eeprom-images/2023-03-01-Synthesized-Factory-Baseline/2023-03-01-BTC-7E-HP4-EEPROM-Image.bin) |
