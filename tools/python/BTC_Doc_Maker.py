@@ -65,13 +65,12 @@ class BTC_Doc_Maker:
         repository_base = "github.com/robertzak133/unified-btc-reverse/blob/main/targets/"
         self.fprint_eeprom_banner(file)
         for camera_target in btc_targets:
-            print(f'btc_camera_target: {camera_target}')
             if camera_targets.count(camera_target) != 0:
                 print(f'camera_target: {camera_target}')
                 eeprom_filename = btc_targets[camera_target]['EEPROM Filename']
                 pcb_locator = btc_targets[camera_target]['EEPROM PCB Locator']
                 target_directory =  btc_targets[camera_target]['Target Directory']
-                eeprom_url = "https://" + repository_base + target_directory + "/created-burn-images/RELEASE/" + eeprom_filename
+                eeprom_url = "https://" + repository_base + target_directory + "/eeprom-images/" + eeprom_filename
                 self.fprint_camera_eeprom_line(file, camera_target, pcb_locator, "[" + eeprom_filename + "](" + eeprom_url + ")")
         return
 
