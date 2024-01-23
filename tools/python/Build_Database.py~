@@ -32,9 +32,21 @@ g_btc_7e_hp5_strings = g_btc_7e_strings
 
 g_btc_8e_hp5_strings = g_btc_7e_hp5_strings 
 
-g_btc_major_version = "231021P"
+g_btc_major_version = "231114P"
 
 g_wbwl_btc_targets = {}
+# PATRIOT-FHD
+g_wbwl_btc_targets['BTC-PATRIOT-FHD'] = {}
+g_wbwl_btc_targets['BTC-PATRIOT-FHD'] ['Target Directory'] = 'btc-patriot-fhd'
+g_wbwl_btc_targets['BTC-PATRIOT-FHD'] ['Model'] = 'Patriot FHD'
+g_wbwl_btc_targets['BTC-PATRIOT-FHD'] ['LA File'] = '2023-12-27-PATRIOT-EEPROM-BOOT'
+g_wbwl_btc_targets['BTC-PATRIOT-FHD'] ['EEPROM Dir'] = '2023-12-27-factory-baseline'
+g_wbwl_btc_targets['BTC-PATRIOT-FHD'] ['EEPROM Filename'] = 'factory-baseline-BTC6PBM.bin'
+g_wbwl_btc_targets['BTC-PATRIOT-FHD'] ['Factory BRN Dir'] = '2021-11-04-Baseline'
+g_wbwl_btc_targets['BTC-PATRIOT-FHD'] ['Factory BRN Filename'] = 'BTC6PBM.BRN'
+g_wbwl_btc_targets['BTC-PATRIOT-FHD'] ['Carve'] = True
+g_wbwl_btc_targets['BTC-PATRIOT-FHD'] ['Build'] = False
+
 # 7A
 g_wbwl_btc_targets['BTC-7A'] = {}
 g_wbwl_btc_targets['BTC-7A'] ['Target Directory'] = 'btc-7a'

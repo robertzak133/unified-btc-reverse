@@ -15,7 +15,7 @@ class BTC_EEPROM_Writer:
      # Calculate checksum of a single file
     #   if buffer_size == -1; checksum the whole file
     #      else Only calculate first buffer_size bytes, 
-    def calculate_file_checksum(self, filename, buffer_size=-1):
+    def calculate_file_checksum(self, filename, buffer_size=-1, buffer_start = 0):
         checksum = 0
 
         if (buffer_size == -1):
@@ -28,7 +28,7 @@ class BTC_EEPROM_Writer:
             padded_filename = filename + ".padded"
             shutil.copy(filename, padded_filename)
             with open(padded_filename, 'rb+') as fptr:
-                fptr.seek(0,2)
+                fptr.seek(buffer_start,2)
                 for i in range(0, 4 - file_size%4):
                     fptr.write(b'\x00')
                     print(f'{i} writing 0x00')
@@ -76,10 +76,11 @@ class BTC_EEPROM_Writer:
 
 
     ### write the eeprom header
-    def write_eeprom_header(self, eeprom_input_filename, epo_file_ptr, camera_type):
+    def write_eeprom_header(self, eeprom_input_filename, epo_file_ptr, camera_type, eeprom_type = 'MX25L12835F'):
         eeprom_header_length = 0x3000
-        header_checksum = self.calculate_file_checksum(eeprom_input_filename, buffer_size=256)
-        print(f'info::write_eeprom_header -- checksum is 0x{header_checksum:08x}')
+        header_checksum = self.calculate_file_checksum(eeprom_input_filename, buffer_size=240, buffer_start = 16)
+        inverted_checksum = header_checksum ^ 0xffffffff
+        print(f'info::write_eeprom_header -- checksum is 0x{header_checksum:08x}; inverted checksum: 0x{inverted_checksum:08x}')
         with open(eeprom_input_filename, 'rb') as epi_file:
           print(f'eeprom_header_length = {eeprom_header_length}')
           epi_file.seek(0) 
@@ -88,7 +89,11 @@ class BTC_EEPROM_Writer:
           ## patch up the device id
           device_id_offset = 0x40
           ## this is for Macronix 16 GB part
-          device_id = bytearray([0x18, 0x20, 0xc2, 0x00])
+          if (eeprom_type == 'MX25L12835F') :
+              device_id = bytearray([0x18, 0x20, 0xc2, 0x00])
+          else:
+              print(f'ERROR: unsupported eeprom_type (eeprom_type)')
+              return
           epo_file_ptr.seek(device_id_offset)
           epo_file_ptr.write(device_id)
           ## parse the header to figure out where the segments go
@@ -112,6 +117,10 @@ class BTC_EEPROM_Writer:
             app_offset = 0x303000
             fsa_offset = 0x3000
             fsb_offset = 0x283000
+          elif (camera_type == 'BTC-PATRIOT-FHD'):
+            app_offset = 0x3000
+            fsa_offset = 0x380000
+            fsb_offset = 0x3c0000
           else:
             print(f'write_eeprom_header::Error -- unrecognized camera {camera_type}')
             

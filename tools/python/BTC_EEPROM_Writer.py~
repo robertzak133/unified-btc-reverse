@@ -1,4 +1,6 @@
 from Struct import Struct
+import os
+import numpy as np
 
 class BTC_EEPROM_Writer:
     ''' Class for writing binary information inot BTC EEPROM binary file
@@ -9,6 +11,42 @@ class BTC_EEPROM_Writer:
     Writes the data from EEPROM into offset{6,3, 2.A, 2.B, 1} files
     '''
 
+    ## Utility: checksum calculate
+     # Calculate checksum of a single file
+    #   if buffer_size == -1; checksum the whole file
+    #      else Only calculate first buffer_size bytes, 
+    def calculate_file_checksum(self, filename, buffer_size=-1):
+        checksum = 0
+
+        if (buffer_size == -1):
+            file_size = os.path.getsize(filename)
+        else:
+            file_size = buffer_size
+            
+        if (file_size %4) != 0:
+            print(f'File {filename} length is {file_size}')
+            padded_filename = filename + ".padded"
+            shutil.copy(filename, padded_filename)
+            with open(padded_filename, 'rb+') as fptr:
+                fptr.seek(0,2)
+                for i in range(0, 4 - file_size%4):
+                    fptr.write(b'\x00')
+                    print(f'{i} writing 0x00')
+                    pfile_size = os.path.getsize(padded_filename)
+                    print(f'File {padded_filename} length is {pfile_size}')
+                    file_size = pfile_size
+                    adjusted_filename = padded_filename
+        else:
+            adjusted_filename = filename
+
+        with open (adjusted_filename, 'rb') as fptr:
+            array_of_ints = np.fromfile(fptr, dtype='<u4', count=file_size>>2)
+
+        checksum = np.sum(array_of_ints, dtype='<u4')
+        num_elements = len(array_of_ints)
+        print(f'Checksum for {filename} is {checksum:08X}; Num elements = {num_elements}; Size/4 = {file_size/4}')
+        return checksum
+    
     ### Take the binary pieces and put them together into an eeprom image
     def write_eeprom_binary(self, eeprom_in_filename, offset_directory, eeprom_out_filename, camera_type):
       ## Let's assume that we know the structure of the .BRN file segments
@@ -40,6 +78,8 @@ class BTC_EEPROM_Writer:
     ### write the eeprom header
     def write_eeprom_header(self, eeprom_input_filename, epo_file_ptr, camera_type):
         eeprom_header_length = 0x3000
+        header_checksum = self.calculate_file_checksum(eeprom_input_filename, buffer_size=256)
+        print(f'info::write_eeprom_header -- checksum is 0x{header_checksum:08x}')
         with open(eeprom_input_filename, 'rb') as epi_file:
           print(f'eeprom_header_length = {eeprom_header_length}')
           epi_file.seek(0) 
@@ -47,6 +87,7 @@ class BTC_EEPROM_Writer:
           epo_file_ptr.write(eeprom_header)
           ## patch up the device id
           device_id_offset = 0x40
+          ## this is for Macronix 16 GB part
           device_id = bytearray([0x18, 0x20, 0xc2, 0x00])
           epo_file_ptr.seek(device_id_offset)
           epo_file_ptr.write(device_id)
@@ -71,6 +112,10 @@ class BTC_EEPROM_Writer:
             app_offset = 0x303000
             fsa_offset = 0x3000
             fsb_offset = 0x283000
+          elif (camera_type == 'BTC-PATRIOT-FHD'):
+            app_offset = 0x3000
+            fsa_offset = 0x680000
+            fsb_offset = 0x7e0000
           else:
             print(f'write_eeprom_header::Error -- unrecognized camera {camera_type}')
             

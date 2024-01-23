@@ -50,6 +50,7 @@ class Mx25EepromParser:
                    "0x04": ["WRDI", 0, False, 0, 0, False],
                    "0x05": ["RDSR", 0, True, 1, 1, False],
                    "0x06": ["WREN", 0, False, 0, 0, False],
+                   "0x35": ["EQIO", 0, False, 0, 4, False], 
                    "0x38": ["4PP", 3, False, 1, 4, False],
                    "0x9f": ["RDID", 0, True, 4, 1, False],
                    "0xe1": ["WRDPB", 4, False, 1, 1, False],
@@ -290,15 +291,19 @@ class Mx25EepromParser:
       if (rising_sclk):
         if(self.update_command_bits(RESET_SIO3Value, WP_SIO2Value, SO_SIO1Value, SI_SIO0Value)):
           self.opcode = "{0:#0{1}x}".format(self.command_byte,4)
-          self.mnemonic = self.command_table[self.opcode][0]
-          self.address_bytes = self.command_table[self.opcode][1]
-          self.read_command = self.command_table[self.opcode][2]
-          self.min_data_bytes = self.command_table[self.opcode][3]
-          self.data_bit_width = self.command_table[self.opcode][4]
-          self.dummy_cycle_p = self.command_table[self.opcode][5]
-          print("@T=", TimeValue, " command: " + self.opcode + " : " + self.mnemonic)
-          outfile.write("command: " + self.opcode + " : " + self.mnemonic)
-          outfile.write("\n")
+          if (self.opcode in self.command_table):
+              self.mnemonic = self.command_table[self.opcode][0]
+              self.address_bytes = self.command_table[self.opcode][1]
+              self.read_command = self.command_table[self.opcode][2]
+              self.min_data_bytes = self.command_table[self.opcode][3]
+              self.data_bit_width = self.command_table[self.opcode][4]
+              self.dummy_cycle_p = self.command_table[self.opcode][5]
+              print("@T=", TimeValue, " command: " + self.opcode + " : " + self.mnemonic)
+              outfile.write("command: " + self.opcode + " : " + self.mnemonic)
+              outfile.write("\n")
+          else:
+              print("@T=", TimeValue, " opcode not recognized ", self.opcode)
+              return('error')
           self.binary_data = bytearray()
           if (self.address_bytes > 0):
             return('address')
@@ -490,6 +495,7 @@ class Mx25EepromParser:
     self.binary_data = bytearray()
 
     currentState = 'idle'
+    timeValue = 0.0
 
     full_input_filename = file_path + input_filename
     print("Opening input filename" +  full_input_filename)

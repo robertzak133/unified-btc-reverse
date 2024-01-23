@@ -26,6 +26,7 @@ class Mx25EepromParser:
   command_byte = 0
   command_bit_count = 0
   address_word = 0
+  address_bit_width = 1
   address_bit_count = 0
   address_bytes = 0
   next_data_byte = 0
@@ -43,17 +44,19 @@ class Mx25EepromParser:
 
   # dictionary for commands
   #   indexed by hex opcode
-  #   0: Mnemmonic; Number of address cycles; read_command; min_data bytes; bit_width; dummy_cycle_p
-  command_table = {"0x01": ["WRSR", 0, False, 1, 1, False],
-                   "0x02": ["PP", 0, False, 1, 1, False],
-                   "0x03": ["READ", 3, True, 1, 1, False],
-                   "0x04": ["WRDI", 0, False, 0, 0, False],
-                   "0x05": ["RDSR", 0, True, 1, 1, False],
-                   "0x06": ["WREN", 0, False, 0, 0, False],
-                   "0x38": ["4PP", 3, False, 1, 4, False],
-                   "0x9f": ["RDID", 0, True, 4, 1, False],
-                   "0xe1": ["WRDPB", 4, False, 1, 1, False],
-                   "0xeb": ["4READ", 3, True, 1, 4, True]
+  #   0: Mnemmonic; Number of address cycles; read_command; min_data bytes; data_bit_width; addr_bit_width, dummy_cycle_p; num_dummy_cyles
+  command_table = {"0x01": ["WRSR", 0, False, 1, 1, 1, False, 0],
+                   "0x02": ["PP",   0, False, 1, 1, 1, False, 0],
+                   "0x03": ["READ", 3, True,  1, 1, 1, False, 0],
+                   "0x04": ["WRDI", 0, False, 0, 0, 0, False, 0],
+                   "0x05": ["RDSR", 0, True,  1, 1, 1, False, 0],
+                   "0x06": ["WREN", 0, False, 0, 0, 0, False, 0],
+                   "0x35": ["EQIO", 0, False, 0, 1, 0, False, 0], 
+                   "0x38": ["4PP",  3, False, 1, 4, 4, False, 0],
+                   "0x6b": ["QREAD",3, True,  1, 4, 1, True,  8],
+                   "0x9f": ["RDID", 0, True,  4, 0, 1, False, 0],
+                   "0xe1": ["WRDPB",4, False, 1, 1, 1, False, 0],
+                   "0xeb": ["4READ",3, True,  1, 4, 4, True,  6]
                    }
   
   # Initialize binary file
@@ -169,7 +172,7 @@ class Mx25EepromParser:
   ## Build an Address byte from serial input
   ## Return True when we have the whole address_word
   def update_address_bits(self, SIO3, SIO2, SO_SIO1, SI_SIO0):
-    if (self.qpi_mode or (self.data_bit_width == 4)):
+    if (self.qpi_mode or (self.address_bit_width == 4)):
       self.address_word = (self.address_word << 1) | SIO3
       self.address_word = (self.address_word << 1) | SIO2
       self.address_word = (self.address_word << 1) | SO_SIO1
@@ -177,7 +180,7 @@ class Mx25EepromParser:
       self.address_bit_count = self.address_bit_count + 4
       if self.debug:
         print("update_address_bits: address_bit_count = ", self.address_bit_count)
-    elif (self.data_bit_width == 2):
+    elif (self.address_bit_width == 2):
       self.address_word = (self.address_word << 1) | SO_SIO1
       self.address_word = (self.address_word << 1) | SI_SIO0 
       self.address_bit_count = self.address_bit_count + 2
@@ -194,6 +197,8 @@ class Mx25EepromParser:
     if(self.dummy_cycle_p):
       self.dummy_cycle_count = self.dummy_cycle_count + 1
       if (self.dummy_cycle_count == self.dummy_cycles) :
+        print("debug::update_dummy_bits -- dummy_cycle_count = ", self.dummy_cycle_count)
+        self.dummy_cycle_count = 0
         return(True)
       else:
         return(False)
@@ -290,15 +295,21 @@ class Mx25EepromParser:
       if (rising_sclk):
         if(self.update_command_bits(RESET_SIO3Value, WP_SIO2Value, SO_SIO1Value, SI_SIO0Value)):
           self.opcode = "{0:#0{1}x}".format(self.command_byte,4)
-          self.mnemonic = self.command_table[self.opcode][0]
-          self.address_bytes = self.command_table[self.opcode][1]
-          self.read_command = self.command_table[self.opcode][2]
-          self.min_data_bytes = self.command_table[self.opcode][3]
-          self.data_bit_width = self.command_table[self.opcode][4]
-          self.dummy_cycle_p = self.command_table[self.opcode][5]
-          print("@T=", TimeValue, " command: " + self.opcode + " : " + self.mnemonic)
-          outfile.write("command: " + self.opcode + " : " + self.mnemonic)
-          outfile.write("\n")
+          if (self.opcode in self.command_table):
+              self.mnemonic = self.command_table[self.opcode][0]
+              self.address_bytes = self.command_table[self.opcode][1]
+              self.read_command = self.command_table[self.opcode][2]
+              self.min_data_bytes = self.command_table[self.opcode][3]
+              self.data_bit_width = self.command_table[self.opcode][4]
+              self.address_bit_width = self.command_table[self.opcode][5]
+              self.dummy_cycle_p = self.command_table[self.opcode][6]
+              self.dummy_cycles = self.command_table[self.opcode][7]
+              print("@T=", TimeValue, " command: " + self.opcode + " : " + self.mnemonic)
+              outfile.write("command: " + self.opcode + " : " + self.mnemonic)
+              outfile.write("\n")
+          else:
+              print("@T=", TimeValue, " opcode not recognized ", self.opcode)
+              return('error')
           self.binary_data = bytearray()
           if (self.address_bytes > 0):
             return('address')
@@ -354,7 +365,7 @@ class Mx25EepromParser:
       if (CSValue == 1):
         return('idle')
       elif (rising_sclk):
-        print("Warning -- did not expect rising SCLK in state: ", currentState)
+        print("Warning @T=", TimeValue, "-- did not expect rising SCLK in state: ", currentState)
         return(currentState)
       else:
         return(currentState)
@@ -375,6 +386,8 @@ class Mx25EepromParser:
             else:
               outfile.write(chr(self.next_data_byte))
           self.data_byte_count = self.data_byte_count + 1
+          if ((self.data_byte_count % 65536) == 0):
+              print('@T=', TimeValue, ' -- read ', self.data_byte_count,  ' bytes')
           if ((self.data_byte_count % 16) == 0) and (self.data_byte_count < max_data_bytes):
             if self.debug:
               print('')
@@ -389,7 +402,7 @@ class Mx25EepromParser:
 
     if (currentState == 'read_done'):
       if (CSValue == 1):
-        if (self.mnemonic == 'READ') or (self.mnemonic == '4READ'):
+        if (self.mnemonic == 'READ') or (self.mnemonic == '4READ') or (self.mnemonic == 'QREAD'):
           # save the data, re-initialize the data structure
           self.update_memory_map(self.address_word, self.data_byte_count, self.binary_data)
         if (self.data_byte_count > max_data_bytes):
@@ -410,6 +423,8 @@ class Mx25EepromParser:
             else:
               outfile.write(chr(self.next_data_byte))
           self.data_byte_count = self.data_byte_count + 1
+          if ((self.data_byte_count % 65536) == 0):
+              print('@T=', TimeValue, ' -- read ', self.data_byte_count, ' bytes')
           if ((self.data_byte_count % 16) == 0) and (self.data_byte_count < max_data_bytes):
             if self.debug:
               print('')
@@ -473,7 +488,7 @@ class Mx25EepromParser:
     return('idle')
 
   def image_file_from_la_trace(self, file_path, input_filename, output_filename, binary_output_filename,
-                               maxCommands=10000000, maxDataBytes=8192000, hex_not_ascii=True,
+                               maxCommands=100000000, maxDataBytes=8192000, hex_not_ascii=True,
                                debug_start = 0.0, debug_end =0.0):
     self.qpi_mode = False
     self.read_command = True
