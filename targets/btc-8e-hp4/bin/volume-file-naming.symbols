@@ -29,5 +29,8 @@ SYMBOL TABLE:
 00000000         *UND*	00000000 function_with_syscall_zero
 000001cc g     F .text	0000007c wbwl_temp_file_path_sprintf
 00000000         *UND*	00000000 local_sprintf
+00000018       O *COM*	00000004 g_wbwl_timelapse_frequency_lookup_table
+00000054       O *COM*	00000004 g_tlps_file_type_menu
+0000016c       O *COM*	00000004 g_wbwl_timelapse_frequency_menu
 
 

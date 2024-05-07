@@ -1,6 +1,6 @@
 /* Command File for Gcc Loader */
 /*    Created automatically by Ghidra.UnifiedCreateLdScript.java */
-/*    2023-11-14 08:05:34 */
+/*    2024-04-08 04:57:08 */
 
   /* Symbol Definitions */
    btc_strcpy = 0x8003360c;
@@ -18,12 +18,15 @@
    g_HceTaskMenuMultiItem_fsm_function_array = 0x803582d4;
    get_capture_timer_rtc_time = 0x8010a6f0;
    positive_diff = 0x8005c490;
+   checkForSDCard = 0x80110120;
    menu_redraw_items = 0x8012dc48;
+   set_camera_photo_resolution = 0x8010b3b8;
+   TaskTimeLapseFSM_task13 = 0x80126260;
    draw_rectangle_wrapper = 0x8011a780;
    tty_printf_battery_stats = 0x800ddc58;
-   TaskTimeLapseFSM_task13 = 0x80126260;
    TaskTimeLapseFSM_task12 = 0x8012628c;
    set_rtc_extra_operation_mode = 0x8005bc64;
+   still_low_battery_display_function = 0x8011dd1c;
    g_video_quality_menu = 0x803b8b98;
    set_cold_item_language_id = 0x8010a68c;
    g_photo_delay_menu = 0x803b8bec;
@@ -34,7 +37,6 @@
    get_power_supply_mode = 0x8010e60c;
    get_temperatureForC = 0x80109bd8;
    get_g_menu_temp_hour = 0x8012e368;
-   get_sd_clock_kHz = 0x8001ad98;
    local_sprintf = 0x800209e8;
    g_dcfapi_loaded_p = 0x804a9614;
    sp5kIqBlockEnable = 0x801a6754;
@@ -51,6 +53,7 @@
    get_cold_item_sensor_digital_effect = 0x8010922c;
    fatVolLabSet = 0x80032a44;
    get_rtc_extra_operation_mode = 0x8005bc8c;
+   spawnIRCutFSM_per_mode = 0x8010b5ac;
    vfsClose = 0x80030900;
    g_operation_mode_menu = 0x803b89d8;
    g_sd_card_descriptor = 0x804b0848;
@@ -63,6 +66,7 @@
    get_am_pm_current_value = 0x8012e3a0;
    get_tod_in_timelapse_region = 0x8010dbcc;
    HceStampDrawLogo = 0x80119ae0;
+   get_within_operating_hours_p = 0x80108a00;
    g_last_timelapse_time_in_ms = 0x80367dec;
    read_photo_sensor_value = 0x8005c1a8;
    vfsFileDel = 0x8003120c;
@@ -79,9 +83,11 @@
    set_g_ae_parameter = 0x800fa678;
    tty_printf = 0x80003c9c;
    check_post_printf_state_set_sio_params = 0x8005df74;
+   register_low_battery_display_function = 0x801238b4;
    vfsFileCopy = 0x80031f44;
    get_power_switch_on_p = 0x8005c190;
    TaskTimeLapseFSM_task14_end = 0x80124f6c;
+   HceTaskStillFSM_valid_p = 0x801238c8;
    posix_fileinfo = 0x8003611c;
    set_aaa_ae_pipeline_wrapper = 0x800b99e8;
    handleSetTimeMenu = 0x80132994;
@@ -116,10 +122,12 @@
    seekToSpecifiedFileLocation = 0x80061ed8;
    set_cold_item_sd_management_p = 0x80109098;
    g_pir_range_menu = 0x803b8ff8;
+   startHceTaskStill_FSM = 0x801238ec;
    g_capture_timer_menu = 0x803b958c;
    free = 0x80012820;
    g_iq_init_color_param = 0x803b9fb0;
    TaskTimeLapseFSM_task11_openTLfile = 0x80124fb4;
+   get_cold_item_photo_resolution = 0x80108ebc;
    set_g_cold_item_battery_type = 0x80109140;
    get_cold_item_tod_last_photo_in_seconds = 0x801099a0;
    get_cold_item_temperature_unit_celsius_p = 0x80109008;
@@ -156,8 +164,8 @@
    setDigitalEffectswitchdataD_table = 0x80358b80;
    get_am_pm_min_value = 0x8012e3a8;
    TaskTimeLapseFSM_task9 = 0x80125a4c;
-   menu_draw_selected_item = 0x8012df40;
    TaskTimeLapseFSM_task7 = 0x80125b60;
+   menu_draw_selected_item = 0x8012df40;
    TaskTimeLapseFSM_task6 = 0x80125ce8;
    TaskTimeLapseFSM_task5 = 0x80125df4;
    g_temp_am_pm_p = 0x803c27e8;
@@ -171,6 +179,7 @@
    g_multi_shot_mode_menu = 0x803b8d20;
    power_on_IR_LED = 0x8005e09c;
    g_temp_unit_menu = 0x803b8ee0;
+   set_exif_time_of_capture = 0x8010d4c0;
    g_night_mode_p = 0x803c3de9;
    set_fsm_state_relative = 0x8011ea54;
    get_max_month = 0x8012e2e0;
@@ -178,15 +187,20 @@
    vfsFileSizeGet = 0x80031a1c;
    btc_fopen = 0x80061e60;
    update_time_field = 0x8012de7c;
+   HceIRCut_SetIRCutClosed = 0x8010ca24;
    g_iq_init_function_param = 0x803f9c99;
+   get_cold_item_operation_mode = 0x80108e70;
    get_g_cold_item_battery_type = 0x8010914c;
    g_photo_quality_menu = 0x803b8a48;
+   set_cold_item_current_tod_in_seconds = 0x801099f4;
    get_max_minute = 0x8012e398;
    get_current_date_time_short = 0x8010977c;
    store_pressure_trend = 0x80109ae0;
    g_camera_setup_menu_item_array = 0x803b9650;
    fatVolLabSet_wrapper = 0x80302f70;
    draw_set_time_screen = 0x80131af4;
+   get_photo_size_factor = 0x8010b544;
+   HceTaskBoot2Cap_Task0 = 0x8011de08;
    Write_LEDOff = 0x801116c0;
    fsm_getNextState = 0x8011ea30;
    g_down_button_enable = 0x803c3d6d;

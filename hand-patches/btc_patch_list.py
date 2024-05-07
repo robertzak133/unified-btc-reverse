@@ -870,6 +870,48 @@ timelapse_patch_list['tlps_t12_next_state_2']['start_offset']['BTC-8E-HP5'] = 0x
 timelapse_patch_list['tlps_t12_next_state_2']['change_from_bytes'] = bytes([0x02, 0x00, 0x04, 0x24])
 timelapse_patch_list['tlps_t12_next_state_2']['change_to_bytes']   = bytes([0x03, 0x00, 0x04, 0x24])
 
+
+## Timelapse file mode patch(es)
+# replace call to  handleSetTimeMenu in g_HceTaskMenuMultiItem_fsm_function_array
+timelapse_patch_list['hce_task_boot_2_cap_task0'] = {}
+timelapse_patch_list['hce_task_boot_2_cap_task0']['function'] = 'g_HceTaskBoot2Cap_FSM_FunctionArray'
+timelapse_patch_list['hce_task_boot_2_cap_task0']['line_number'] = {}
+timelapse_patch_list['hce_task_boot_2_cap_task0']['line_number']['BTC-7E'] = 0
+timelapse_patch_list['hce_task_boot_2_cap_task0']['line_number']['BTC-8E'] = 0
+timelapse_patch_list['hce_task_boot_2_cap_task0']['line_number']['BTC-7E-HP4'] = 0
+timelapse_patch_list['hce_task_boot_2_cap_task0']['line_number']['BTC-8E-HP4'] = 0
+timelapse_patch_list['hce_task_boot_2_cap_task0']['line_number']['BTC-7E-HP5'] = 0
+timelapse_patch_list['hce_task_boot_2_cap_task0']['line_number']['BTC-8E-HP5'] = 0
+timelapse_patch_list['hce_task_boot_2_cap_task0']['start_offset'] = {}
+timelapse_patch_list['hce_task_boot_2_cap_task0']['start_offset']['BTC-7E'] = 0x0354b28
+timelapse_patch_list['hce_task_boot_2_cap_task0']['start_offset']['BTC-8E'] = 0x0354b34
+timelapse_patch_list['hce_task_boot_2_cap_task0']['start_offset']['BTC-7E-HP4'] = 0x0357ad0
+timelapse_patch_list['hce_task_boot_2_cap_task0']['start_offset']['BTC-8E-HP4'] = 0x035bcb4
+timelapse_patch_list['hce_task_boot_2_cap_task0']['start_offset']['BTC-7E-HP5'] = 0x02c9210
+timelapse_patch_list['hce_task_boot_2_cap_task0']['start_offset']['BTC-8E-HP5'] = 0x02cb37c
+timelapse_patch_list['hce_task_boot_2_cap_task0']['change_from_ptr'] = 'HceTaskBoot2Cap_Task0'
+timelapse_patch_list['hce_task_boot_2_cap_task0']['change_to_ptr']   = 'tls_HceTaskBoot2Cap_Task0'
+
+# Replace the call to HceIRCut_SetIRCutClosed()
+timelapse_patch_list['tlps_HceIRCut'] = {}
+timelapse_patch_list['tlps_HceIRCut']['function'] = 'TaskTimelapseFSM_task0'
+timelapse_patch_list['tlps_HceIRCut']['line_number'] = {}
+timelapse_patch_list['tlps_HceIRCut']['line_number']['BTC-7E'] = 33
+timelapse_patch_list['tlps_HceIRCut']['line_number']['BTC-8E'] = 36
+timelapse_patch_list['tlps_HceIRCut']['line_number']['BTC-7E-HP4'] = 33
+timelapse_patch_list['tlps_HceIRCut']['line_number']['BTC-8E-HP4'] = 33
+timelapse_patch_list['tlps_HceIRCut']['line_number']['BTC-7E-HP5'] = 33
+timelapse_patch_list['tlps_HceIRCut']['line_number']['BTC-8E-HP5'] = 33
+timelapse_patch_list['tlps_HceIRCut']['start_offset'] = {}
+timelapse_patch_list['tlps_HceIRCut']['start_offset']['BTC-7E'] = 0x0129b5c
+timelapse_patch_list['tlps_HceIRCut']['start_offset']['BTC-8E'] = 0x0129efc
+timelapse_patch_list['tlps_HceIRCut']['start_offset']['BTC-7E-HP4'] = 0x0126210
+timelapse_patch_list['tlps_HceIRCut']['start_offset']['BTC-8E-HP4'] = 0x0126748
+timelapse_patch_list['tlps_HceIRCut']['start_offset']['BTC-7E-HP5'] = 0x0104e40
+timelapse_patch_list['tlps_HceIRCut']['start_offset']['BTC-8E-HP5'] = 0x0104e8c
+timelapse_patch_list['tlps_HceIRCut']['change_from_jump'] = 'jal.HceIRCut_SetIRCutClosed'
+timelapse_patch_list['tlps_HceIRCut']['change_to_jump']   = 'jal.tlps_HceIRCut_SetIRCutClosed'
+
 # Debugging Missing Temperature
 # in Unknown_Function()
 # unknown line number
@@ -1003,12 +1045,12 @@ menus_define_num_btc_setup_functions['BTC-8E-HP4'] = 25
 menus_define_num_btc_setup_functions['BTC-7E-HP5'] = 26
 menus_define_num_btc_setup_functions['BTC-8E-HP5'] = 26
 menus_define_num_wbwl_setup_functions = {}
-menus_define_num_wbwl_setup_functions['BTC-7E'] = 5
-menus_define_num_wbwl_setup_functions['BTC-8E'] = 5
-menus_define_num_wbwl_setup_functions['BTC-7E-HP4'] = 5
-menus_define_num_wbwl_setup_functions['BTC-8E-HP4'] = 5
-menus_define_num_wbwl_setup_functions['BTC-7E-HP5'] = 5
-menus_define_num_wbwl_setup_functions['BTC-8E-HP5'] = 5
+menus_define_num_wbwl_setup_functions['BTC-7E'] = 6
+menus_define_num_wbwl_setup_functions['BTC-8E'] = 6
+menus_define_num_wbwl_setup_functions['BTC-7E-HP4'] = 6
+menus_define_num_wbwl_setup_functions['BTC-8E-HP4'] = 6
+menus_define_num_wbwl_setup_functions['BTC-7E-HP5'] = 6
+menus_define_num_wbwl_setup_functions['BTC-8E-HP5'] = 6
 
 menus_define_expected_setup_menu_items = {}
 menus_define_new_setup_menu_items = {}
@@ -2542,7 +2584,7 @@ pt_patch_list['pt_ext_temp_sensor']['change_to_bytes']   = bytes([0xb1,0x00,0x05
 ## Reduce SD Clock Speed Patches
 rsc_patch_list = {}
 
-# Loop through lots of Format/Mount 
+# Intercept initialize_sd_card_to_data to always slow down SD card
 rsc_patch_list['init_sd_to_data'] = {}
 rsc_patch_list['init_sd_to_data']['function'] = 'initialize_default_sd_card_to_data'
 rsc_patch_list['init_sd_to_data']['line_number'] = {}
@@ -2561,6 +2603,25 @@ rsc_patch_list['init_sd_to_data']['start_offset']['BTC-7E-HP5'] = 0x0267358
 rsc_patch_list['init_sd_to_data']['start_offset']['BTC-8E-HP5'] = 0x02681f4
 rsc_patch_list['init_sd_to_data']['change_from_jump'] = 'jal.initialize_sd_card_to_data'
 rsc_patch_list['init_sd_to_data']['change_to_jump']   = 'jal.rsc_initialize_sd_card_to_data'
+
+rsc_patch_list['set_sd_log_printf'] = {}
+rsc_patch_list['set_sd_log_printf']['function'] = 'set_sd_iface_clock_bus_width_type'
+rsc_patch_list['set_sd_log_printf']['line_number'] = {}
+rsc_patch_list['set_sd_log_printf']['line_number']['BTC-7E'] = 6
+#rsc_patch_list['set_sd_log_printf']['line_number']['BTC-8E'] = 20
+#rsc_patch_list['set_sd_log_printf']['line_number']['BTC-7E-HP4'] = 20
+#rsc_patch_list['set_sd_log_printf']['line_number']['BTC-8E-HP4'] = 20
+rsc_patch_list['set_sd_log_printf']['line_number']['BTC-7E-HP5'] = 19
+rsc_patch_list['set_sd_log_printf']['line_number']['BTC-8E-HP5'] = 20
+rsc_patch_list['set_sd_log_printf']['start_offset'] = {}
+rsc_patch_list['set_sd_log_printf']['start_offset']['BTC-7E'] = 0x01b8d8
+#rsc_patch_list['set_sd_log_printf']['start_offset']['BTC-8E'] = 
+#rsc_patch_list['set_sd_log_printf']['start_offset']['BTC-7E-HP4'] = 
+#rsc_patch_list['set_sd_log_printf']['start_offset']['BTC-8E-HP4'] = 
+rsc_patch_list['set_sd_log_printf']['start_offset']['BTC-7E-HP5'] = 0x01b8d8
+rsc_patch_list['set_sd_log_printf']['start_offset']['BTC-8E-HP5'] = 0x01b8d8
+rsc_patch_list['set_sd_log_printf']['change_from_jump'] = 'jal.log_printf'
+rsc_patch_list['set_sd_log_printf']['change_to_jump']   = 'jal.rsc_log_printf'
 
 ##
 ## Debugging SD Card Corruption

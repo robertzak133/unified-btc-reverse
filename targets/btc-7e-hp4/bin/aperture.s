@@ -262,16 +262,16 @@ $L14:
 	.type	g_apt_nightmode_threshold_lookup_table, @object
 	.size	g_apt_nightmode_threshold_lookup_table, 24
 g_apt_nightmode_threshold_lookup_table:
-	.word	90
-	.word	190
-	.word	45
-	.word	95
+	.word	25
+	.word	40
+	.word	12
+	.word	20
 	.word	0
 	.word	0
 
-	.comm	g_wbwl_menu_handler_function_array_extensions,24,4
+	.comm	g_wbwl_menu_handler_function_array_extensions,28,4
 
-	.comm	g_wbwl_camera_setup_selector_array,240,4
+	.comm	g_wbwl_camera_setup_selector_array,248,4
 
-	.comm	g_wbwl_camera_setup_menu_item_array,840,4
+	.comm	g_wbwl_camera_setup_menu_item_array,868,4
 	.ident	"GCC: (Ubuntu 9.4.0-1ubuntu1) 9.4.0"

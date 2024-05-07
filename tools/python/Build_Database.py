@@ -7,19 +7,26 @@
 # Multi-language Strings
 
 g_btc_7e_strings = {'ENGLISH.SST': ["SHORT RANGE",    "EXTENDED SD POWER",   "TIME FORMAT",        "24-HOUR",    "12-HOUR" ,   "DATE FORMAT", \
-                                    "MM/DD/YYYY", "DD/MM/YYYY", "YYYYMMDD", "DSLR TRIGGER",    "2 SECS", "ALL DAY/NIGHT",     "DAY THRESHOLD", "STANDARD", "LOW LIGHT", "NO LIGHT"],
+                                    "MM/DD/YYYY", "DD/MM/YYYY", "YYYYMMDD", "DSLR TRIGGER",    "2 SECS", "ALL DAY/NIGHT",     "DAY THRESHOLD", "STANDARD", "LOW LIGHT", "NO LIGHT", \
+				    "TIMELAPSE FILE", ".TLS", ".JPG", ".MP4"],
                     'ESPANOL.sst': ["ALCANCE CORTI",  "POTENCIA SD EXT.",    "FORMATO DE TIEMPO" , "24-HORA",    "12-HORA",    "FORMATO DE FECHA", \
-                                    "MM/DD/AAAA", "DD/MM/AAAA", "AAAAMMDD", "DISPARADOR DSLR", "2 SEGS", "TODO EL DIA/NOCHE", "UMBRAL DE DIA", "ESTANDAR", "LUZ BAJA", "SIN LUZ" ],
+                                    "MM/DD/AAAA", "DD/MM/AAAA", "AAAAMMDD", "DISPARADOR DSLR", "2 SEGS", "TODO EL DIA/NOCHE", "UMBRAL DE DIA", "ESTANDAR", "LUZ BAJA", "SIN LUZ",
+				     "TIMELAPSE FILE", ".TLS", ".JPG" ],
                     'DEUTSCH.sst': ["KURZER BEREICH", "ERWEITERTE SD",       "ZEITFORMAT",         "24-STUDEN",  "12-STUDEN",  "DATUMSFORMAT", \
-                                    "MM/TT/JJJJ", "TT/MM/JJJJ", "JJJJMMTT", "DSLR-TRIGGER",    "2 SEK",  "GANZEN TAG/NACHT",  "TAGESSCHWELLE", "STANDARD", "GEDIMMTES LICHT", "KEIN LICHT"],
+                                    "MM/TT/JJJJ", "TT/MM/JJJJ", "JJJJMMTT", "DSLR-TRIGGER",    "2 SEK",  "GANZEN TAG/NACHT",  "TAGESSCHWELLE", "STANDARD", "GEDIMMTES LICHT", "KEIN LICHT",
+				     "TIMELAPSE FILE", ".TLS", ".JPG", ".MP4"],
                     'DUTCH.sst':   ["KORT BEREIK",    "UITGEBREID SD",       "TIJD FORMAAT",       "24-UUR",     "12-UUR",     "DATUMNOTATIE", \
-                                    "MM/DD/JJJJ", "DD/MM/JJJJ", "JJJJMMDD", "DSLR-TRIGGER",    "2 SEC.", "HELE TAG/NACHT",    "DAGDREMPEL",    "STANDAARD", "WEINIG LICHT", "GEEN LICHT"],
+                                    "MM/DD/JJJJ", "DD/MM/JJJJ", "JJJJMMDD", "DSLR-TRIGGER",    "2 SEC.", "HELE TAG/NACHT",    "DAGDREMPEL",    "STANDAARD", "WEINIG LICHT", "GEEN LICHT",
+				     "TIMELAPSE FILE", ".TLS", ".JPG", ".MP4"],
                     'FRANCIS.sst': ["COURTE PORTEE",  "SD ETENDUE",          "FORMAT de L'HEURE",  "24-HUERES",  "12-HUERES",  "FORMAT DE DATE", \
-                                    "MM/JJ/AAAA", "JJ/MM/AAAA", "AAAAMMJJ", "DECLENCHEUR DSLR","2 SECS", "JOURNEE/NUIT",      "SEUIL DE JOUR", "STANDARD","LUMIERE FAIBLE", "PAS DE LUMIERE"],
+                                    "MM/JJ/AAAA", "JJ/MM/AAAA", "AAAAMMJJ", "DECLENCHEUR DSLR","2 SECS", "JOURNEE/NUIT",      "SEUIL DE JOUR", "STANDARD","LUMIERE FAIBLE", "PAS DE LUMIERE",
+				     "TIMELAPSE FILE", ".TLS", ".JPG", ".MP4"],
                     'ITALIANO.sst':["CORTO RAGGIO",   "POTENZA SD ESTESA",   "FORMATO ORARIO",     "24-ORE"   ,  "12-ORE",     "FORMATO DATA", \
-                                    "MM/JJ/AAAA", "JJ/MM/AAAA", "AAAAMMJJ", "TRIGGER DSLR",    "2 SEC",  "GIORNO/NOTTE",      "SOGLIA DEL GIORNO", "STANDARD", "LUCE BASSA", "SENZA LUCE"],
+                                    "MM/JJ/AAAA", "JJ/MM/AAAA", "AAAAMMJJ", "TRIGGER DSLR",    "2 SEC",  "GIORNO/NOTTE",      "SOGLIA DEL GIORNO", "STANDARD", "LUCE BASSA", "SENZA LUCE",
+				     "TIMELAPSE FILE", ".TLS", ".JPG", ".MP4"],
                     'POLISH.sst':  ["KROTKI ZASIEG",  "ROZSZERZONA SD",      "FORMAT CZASU",       "24-GODZINY", "12-GODZINY", "FORMAT DATY", \
-                                    "MM/DD/RRRR", "DD/MM/RRRR", "RRRRMMDD", "WYZWALACZ DSLR",  "2 SEK",  "CALY DZIEN/NOC",    "PROG DNIA",  "STANDARD", "SLABE OSWIETLENIE", "BRAK SWIATLA"] }
+                                    "MM/DD/RRRR", "DD/MM/RRRR", "RRRRMMDD", "WYZWALACZ DSLR",  "2 SEK",  "CALY DZIEN/NOC",    "PROG DNIA",  "STANDARD", "SLABE OSWIETLENIE", "BRAK SWIATLA",
+				     "TIMELAPSE FILE", ".TLS", ".JPG", ".MP4"] }
 
 g_btc_8e_strings = g_btc_7e_strings 
 
@@ -32,7 +39,7 @@ g_btc_7e_hp5_strings = g_btc_7e_strings
 
 g_btc_8e_hp5_strings = g_btc_7e_hp5_strings 
 
-g_btc_major_version = "231114P"
+g_btc_major_version = "240506P"
 
 g_wbwl_btc_targets = {}
 # PATRIOT-FHD

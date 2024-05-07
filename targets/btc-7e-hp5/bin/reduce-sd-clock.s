@@ -23,21 +23,12 @@ rsc_initialize_sd_card_to_data:
 	jal	initialize_sd_card_to_data
 	sw	$16,16($sp)
 
-	jal	get_sd_clock_kHz
+	lui	$4,%hi(g_sd_card_descriptor)
+	addiu	$4,$4,%lo(g_sd_card_descriptor)
+	jal	reduce_SD_clock
 	move	$16,$2
 
-	li	$3,65536			# 0x10000
-	ori	$3,$3,0x86a0
-	sltu	$2,$2,$3
-	bne	$2,$0,$L4
 	lw	$31,20($sp)
-
-	lui	$4,%hi(g_sd_card_descriptor)
-	jal	reduce_SD_clock
-	addiu	$4,$4,%lo(g_sd_card_descriptor)
-
-	lw	$31,20($sp)
-$L4:
 	move	$2,$16
 	lw	$16,16($sp)
 	jr	$31
@@ -47,4 +38,23 @@ $L4:
 	.set	reorder
 	.end	rsc_initialize_sd_card_to_data
 	.size	rsc_initialize_sd_card_to_data, .-rsc_initialize_sd_card_to_data
+	.align	2
+	.globl	rsc_log_printf
+	.set	nomips16
+	.set	nomicromips
+	.ent	rsc_log_printf
+	.type	rsc_log_printf, @function
+rsc_log_printf:
+	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
+	.mask	0x00000000,0
+	.fmask	0x00000000,0
+	.set	noreorder
+	.set	nomacro
+	jr	$31
+	nop
+
+	.set	macro
+	.set	reorder
+	.end	rsc_log_printf
+	.size	rsc_log_printf, .-rsc_log_printf
 	.ident	"GCC: (Ubuntu 9.4.0-1ubuntu1) 9.4.0"

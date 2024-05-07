@@ -6,6 +6,7 @@
 
 #include "BTC.h"
 #include "volume-file-naming.h"
+#include "timelapse.h"
 
 //#define DEBUG
 
@@ -173,7 +174,12 @@ void wbwl_temp_file_path_sprintf(char *buffer, char *format_string, int dir_inde
 
   vfn_get_dir_suffix_file_prefix_from_camera_name(l_directory_suffix, l_file_prefix, camera_name);
 
-  
   local_sprintf(buffer,format_string,dir_index, l_directory_suffix, 
 		l_file_prefix, file_index);
+#ifdef DEBUG
+  set_pre_printf_state();
+  tty_printf("wbwl_temp_file_path_sprintf -- output file is %s\n",
+	     buffer);
+  check_post_printf_state_set_sio_params();  
+#endif
 }

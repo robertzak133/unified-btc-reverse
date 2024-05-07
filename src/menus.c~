@@ -13,7 +13,6 @@
 #include "aperture.h"
 #include "ir-flash-menu.h"
 
-
 //#define DEBUG
 
 #if (defined BTC_7E) || (defined BTC_8E)
@@ -48,9 +47,10 @@ struct_hp5_menu_item g_wbwl_camera_setup_menu_item_array[WBWL_NUM_BTC_SETUP_MENU
   { datetime,        SST_DATE_SP_FORMAT,           0x00, 0x01, 0x00, 0x02, 0x1f }, //25 -- date format
   { datetime,        SST_TIME_SP_FORMAT,           0x00, 0x01, 0x00, 0x02, 0x20 }, //26 -- time format
   { motion_test,     SST_DSLR_SP_TRIGGER,          0x00, 0x01, 0x00, 0x02, 0x21 }, //27 -- dslr_trigger
-  { ir_flash_power,  SST_DAY_SP_THRESHOLD,                 0x00, 0x01, 0x00, 0x02, 0x22 }, //28 -- aperture
+  { ir_flash_power,  SST_DAY_SP_THRESHOLD,         0x00, 0x01, 0x00, 0x02, 0x22 }, //28 -- aperture
+  { plot_frequency,  SST_TIMELAPSE_SP_FILE,        0x00, 0x01, 0x00, 0x02, 0x23 }, //29 -- timelapse file type
   // Last entry is menu title
-  { no_icon,         SST_CAMERA_SP_SETUP,          0x00, 0x00, 0x01, 0x03, 0x03 }  //29 -- Menu title "Camera Setup"
+  { no_icon,         SST_CAMERA_SP_SETUP,          0x00, 0x00, 0x01, 0x03, 0x03 }  //30 -- Menu title "Camera Setup"
 };
 
 #elif (defined BTC_7E_HP4) || (defined BTC_8E_HP4)
@@ -86,8 +86,9 @@ struct_hp5_menu_item g_wbwl_camera_setup_menu_item_array[WBWL_NUM_BTC_SETUP_MENU
   { datetime,        SST_TIME_SP_FORMAT,           0x00, 0x01, 0x00, 0x02, 0x20 }, //26 -- time format
   { motion_test,     SST_DSLR_SP_TRIGGER,          0x00, 0x01, 0x00, 0x02, 0x21 }, //27 -- dslr_trigger
   { ir_flash_power,  SST_DAY_SP_THRESHOLD,         0x00, 0x01, 0x00, 0x02, 0x22 }, //28 -- aperture
+  { plot_frequency,  SST_TIMELAPSE_SP_FILE,        0x00, 0x01, 0x00, 0x02, 0x23 }, //29 -- timelapse file type
   // Last entry is menu title
-  { no_icon,         SST_CAMERA_SP_SETUP,          0x00, 0x00, 0x01, 0x03, 0x03 }  //29 -- Menu title "Camera Setup"
+  { no_icon,         SST_CAMERA_SP_SETUP,          0x00, 0x00, 0x01, 0x03, 0x03 }  //30 -- Menu title "Camera Setup"
 };
 
 #elif (defined BTC_7E_HP5) || (defined BTC_8E_HP5)
@@ -124,8 +125,9 @@ struct_hp5_menu_item g_wbwl_camera_setup_menu_item_array[WBWL_NUM_BTC_SETUP_MENU
   { datetime,        SST_TIME_SP_FORMAT,           0x00, 0x01, 0x00, 0x02, 0x21 }, //27 -- time format
   { motion_test,     SST_DSLR_SP_TRIGGER,          0x00, 0x01, 0x00, 0x02, 0x22 }, //28 -- dslr_trigger
   { ir_flash_power,  SST_DAY_SP_THRESHOLD,         0x00, 0x01, 0x00, 0x02, 0x23 }, //29 -- aperture
+  { plot_frequency,  SST_TIMELAPSE_SP_FILE,        0x00, 0x01, 0x00, 0x02, 0x24 }, //30 -- timelapse file type
   // Last entry is menu title
-  { no_icon,         SST_CAMERA_SP_SETUP,          0x00, 0x00, 0x01, 0x03, 0x03 }  //30 -- Menu title "Camera Setup"
+  { no_icon,         SST_CAMERA_SP_SETUP,          0x00, 0x00, 0x01, 0x03, 0x03 }  //31 -- Menu title "Camera Setup"
 };
 #endif
 
@@ -165,8 +167,9 @@ struct_menu_selections_descriptor g_wbwl_camera_setup_selector_array[WBWL_NUM_BT
     { g_rtc_time_format_menu,        3 }, //0x1a
     { g_dlsr_led_enable_menu,        3 }, //0x1b
     { g_apt_aperture_menu,           4 }, //0x1c
+    { g_tlps_file_type_menu,         4 }, //0x1d
     // Null Terminator
-    { 0,                             0 }  //0x1d
+    { 0,                             0 }  //0x1e
   };
 #elif (defined BTC_7E_HP4) || (defined BTC_8E_HP4) 
 struct_menu_selections_descriptor g_wbwl_camera_setup_selector_array[WBWL_NUM_BTC_SETUP_MENU_FUNCTIONS + 
@@ -202,8 +205,9 @@ struct_menu_selections_descriptor g_wbwl_camera_setup_selector_array[WBWL_NUM_BT
     { g_rtc_time_format_menu,        3 }, //0x1a
     { g_dlsr_led_enable_menu,        3 }, //0x1b
     { g_apt_aperture_menu,           4 }, //0x1c
+    { g_tlps_file_type_menu,         4 }, //0x1d
     // Null Terminator
-    { 0,                             0 }  //0x1d
+    { 0,                             0 }  //0x1e
   };
 
 #elif (defined BTC_7E_HP5) || (defined BTC_8E_HP5)
@@ -241,8 +245,9 @@ struct_menu_selections_descriptor g_wbwl_camera_setup_selector_array[WBWL_NUM_BT
     { g_rtc_time_format_menu,        3 }, //0x1a
     { g_dlsr_led_enable_menu,        3 }, //0x1b
     { g_apt_aperture_menu,           4 }, //0x1c
-    // Null Terminator
-    { 0,                             0 }  //0x1d
+    { g_tlps_file_type_menu,         4 }, //0x1d
+   // Null Terminator
+    { 0,                             0 }  //0x1e
   };
 #endif
 
@@ -252,6 +257,7 @@ void *g_wbwl_menu_handler_function_array_extensions[WBWL_NUM_WBWL_SETUP_MENU_FUN
   rtc_handle_time_format_menu,
   dslr_handle_led_enable_menu,
   apt_handle_aperture_menu,
+  tlps_handle_file_type_menu, 
   menus_handleCommitUpdates_menu
 };
 

@@ -3,8 +3,7 @@
 // 
 // Prototype declaration for timelapse additions
 
-// 
-
+// Data Types
 
 // External Global Variables
 
@@ -33,6 +32,8 @@ extern void TaskTimeLapseFSM_task14_end();
 // Internal Global Variables
 struct_hp5_menu_item g_wbwl_timelapse_frequency_menu[13];
 
+struct_hp5_menu_item g_tlps_file_type_menu[3];
+
 #ifdef TLPS_NIGHT_DAY
 struct_hp5_menu_item g_wbwl_timelapse_period_menu[7];
 #endif
@@ -49,9 +50,20 @@ void tlps_TaskTimeLapseFSM_task4(void);
 #endif
 
 void tlps_TaskTimeLapseFSM_task12a(void);
+void tlps_TaskTimeLapseFSM_task6(void);
+void tlps_TaskTimeLapseFSM_task7(void);
 
 void tlps_update_system_measurements();
 
 
 int tlps_Pressure_sensor_getReading(int * pressure, int * temperature);
+
+
+void tlps_handle_file_type_menu();
+
+uint tlps_get_cold_item_file_type();
+void tlps_set_cold_item_file_type(uint file_type);
+
+void tlps_TaskTimeLapseFSM_task11_openTLfile();
+
 

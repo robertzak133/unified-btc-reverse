@@ -52,7 +52,7 @@ SYMBOL TABLE:
 00000000         *UND*	00000000 get_cold_item_capture_timer_p
 00000000         *UND*	00000000 get_capture_timer_rtc_time
 00000000         *UND*	00000000 reset_capture_timer
-00000000         *UND*	00000000 set_cold_item_rtc_device_set_p
+00000000         *UND*	00000000 set_cold_item_new_timelapse_file_p
 00000000         *UND*	00000000 set_cold_item_137_1
 00000000         *UND*	00000000 g_menu_root
 00000000         *UND*	00000000 get_next_state_from_menu_mode

@@ -32,7 +32,7 @@ SYMBOL TABLE:
 00000000         *UND*	00000000 g_left_button_enable
 00000000         *UND*	00000000 g_right_button_enable
 00000000         *UND*	00000000 g_enter_button_enable
-000000f8       O *COM*	00000004 g_wbwl_camera_setup_selector_array
+00000100       O *COM*	00000004 g_wbwl_camera_setup_selector_array
 00000000         *UND*	00000000 get_next_state_from_menu_enter
 00000000         *UND*	00000000 set_fsm_state_absolute
 00000000         *UND*	00000000 menu_get_next_menu_selection
@@ -40,7 +40,7 @@ SYMBOL TABLE:
 00000000         *UND*	00000000 g_mode_button_enable
 00000000         *UND*	00000000 get_next_state_from_menu_mode
 00000000 g     O .data	00000054 g_evsd_extended_sd_power_menu
-00000018       O *COM*	00000004 g_wbwl_menu_handler_function_array_extensions
-00000364       O *COM*	00000004 g_wbwl_camera_setup_menu_item_array
+0000001c       O *COM*	00000004 g_wbwl_menu_handler_function_array_extensions
+00000380       O *COM*	00000004 g_wbwl_camera_setup_menu_item_array
 
 

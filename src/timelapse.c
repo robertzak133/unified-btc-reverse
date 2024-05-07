@@ -8,70 +8,97 @@
 
 #include "BTC.h"
 #include "WBWL.h"
+#include "menus.h"
+#include "volume-file-naming.h"
 #include "timelapse.h"
 
 //#define DEBUG
+//#define DEBUG1
+//#define DEBUG2
+
+// TaskTimeLapseFSM
+
 
 // Updated State Machine Table
 
-#if (defined BTC_7E) || (defined BTC_8E)
+#if (defined BTC_7E) || (defined BTC_8E) || (defined BTC_7E_HP4) || (defined BTC_8E_HP4) 
 void (*g_wbwl_TaskTimeLapseFSM_function_array[16])() = {
-  TaskTimeLapseFSM_task0,
-  TaskTimeLapseFSM_task1,
-  TaskTimeLapseFSM_task2,
-  TaskTimeLapseFSM_task3_ae_set,
-  tlps_TaskTimeLapseFSM_task4,
-  TaskTimeLapseFSM_task5,
-  TaskTimeLapseFSM_task6,
-  TaskTimeLapseFSM_task7,
-  TaskTimeLapseFSM_task8_CopyJPGFromRAM,
-  TaskTimeLapseFSM_task9,
-  TaskTimeLapseFSM_task10_WaitMountSD,
-  TaskTimeLapseFSM_task11_openTLfile,
-  TaskTimeLapseFSM_task12,
-  tlps_TaskTimeLapseFSM_task12a,
-  TaskTimeLapseFSM_task13,
-  TaskTimeLapseFSM_task14_end
+  TaskTimeLapseFSM_task0,                // 0
+  TaskTimeLapseFSM_task1,                // 1
+  TaskTimeLapseFSM_task2,                // 2
+  TaskTimeLapseFSM_task3_ae_set,         // 3
+  tlps_TaskTimeLapseFSM_task4,           // 4
+  TaskTimeLapseFSM_task5,                // 5
+  tlps_TaskTimeLapseFSM_task6,           // 6
+  tlps_TaskTimeLapseFSM_task7,           // 7
+  TaskTimeLapseFSM_task8_CopyJPGFromRAM, // 8
+  TaskTimeLapseFSM_task9,                // 9
+  TaskTimeLapseFSM_task10_WaitMountSD,   // 10
+  TaskTimeLapseFSM_task11_openTLfile,    // 11
+  TaskTimeLapseFSM_task12,               // 12
+  tlps_TaskTimeLapseFSM_task12a,         // 13
+  TaskTimeLapseFSM_task13,               // 14
+  TaskTimeLapseFSM_task14_end            // 15
 };
-#elif (defined BTC_7E_HP4) || (defined BTC_8E_HP4) 
-
-void (*g_wbwl_TaskTimeLapseFSM_function_array[16])() = {
-  TaskTimeLapseFSM_task0,
-  TaskTimeLapseFSM_task1,
-  TaskTimeLapseFSM_task2,
-  TaskTimeLapseFSM_task3_ae_set,
-  tlps_TaskTimeLapseFSM_task4,
-  TaskTimeLapseFSM_task5,
-  TaskTimeLapseFSM_task6,
-  TaskTimeLapseFSM_task7,
-  TaskTimeLapseFSM_task8_CopyJPGFromRAM,
-  TaskTimeLapseFSM_task9,
-  TaskTimeLapseFSM_task10_WaitMountSD,
-  TaskTimeLapseFSM_task11_openTLfile,
-  TaskTimeLapseFSM_task12,
-  tlps_TaskTimeLapseFSM_task12a,
-  TaskTimeLapseFSM_task13,
-  TaskTimeLapseFSM_task14_end
-};
-
 #elif (defined BTC_7E_HP5) || (defined BTC_8E_HP5) 
+// Task 0: get snap buffer (a buffer to hold current JPG image?
+//     - snap buffer available: Goto Task1
+//     - snap buffer not available: Goto Task 14
+// Task 1: start HCETaskView_FSM
+//     - Goto Task2
+// Task 2: Stop Task View
+//     - if camera_config->field31_0x26 != 0: Goto Task 12
+//     - Goto Task 3
+// Task 3: Set Auto Exposure
+//     - if camera_config->field31_0x26 == 0: Goto Task 4
+//     - else Goto Task 12
+// Task 4: Calculate when to take the next photo
+//     - if uVar4 > 2: Goto Task12
+//     - else: Goto Task 5
+// Task 5: more tod calculations
+//     - Goto 6
+// Task 6: final AE; read env sensors; Snap a photo -- right here is where we snap the photo
+//     - Goto 7: 
+// Task 7: Mount RAM Drive
+//     - Ram Drive Mounted: Goto 8
+//     - else: Goto 12a
+// task 8: open JPG FIle: H:\DCIM\%03d%s\%s%04d.jpg
+//     - JPG file opened: Goto 9
+//     - else: Goto 12
+// task 9: spawn Mount of SD Card
+//     - Goto 10
+// task 10: check free space on SD Card
+//     - space Available: Goto 11
+//     - else:            Goto 12
+// task 11: append JPG file to TLS file
+//     - Goto 12a
+// task 12: change mode?
+//     - One Mode goto 13
+//     - Another mode goto 14
+// task 12a: Can we go to sleep between triggers?
+//     - yes -- goto 14
+//     - no  -- goto 1
+// Task 13: Mode switch complete? 
+//     - yes -- Goto 14
+// Task 14: End State
+// 
 void (*g_wbwl_TaskTimeLapseFSM_function_array[16])() = {
-  TaskTimeLapseFSM_task0,
-  TaskTimeLapseFSM_task1,
-  TaskTimeLapseFSM_task2,
-  TaskTimeLapseFSM_task3_ae_set,
-  TaskTimeLapseFSM_task4,
-  TaskTimeLapseFSM_task5,
-  TaskTimeLapseFSM_task6,
-  TaskTimeLapseFSM_task7,
-  TaskTimeLapseFSM_task8_CopyJPGFromRAM,
-  TaskTimeLapseFSM_task9,
-  TaskTimeLapseFSM_task10_WaitMountSD,
-  TaskTimeLapseFSM_task11_openTLfile,
-  TaskTimeLapseFSM_task12,
-  tlps_TaskTimeLapseFSM_task12a,
-  TaskTimeLapseFSM_task13,
-  TaskTimeLapseFSM_task14_end
+  TaskTimeLapseFSM_task0,                // 0
+  TaskTimeLapseFSM_task1,                // 1
+  TaskTimeLapseFSM_task2,                // 2
+  TaskTimeLapseFSM_task3_ae_set,         // 3
+  TaskTimeLapseFSM_task4,                // 4
+  TaskTimeLapseFSM_task5,                // 5
+  tlps_TaskTimeLapseFSM_task6,           // 6
+  tlps_TaskTimeLapseFSM_task7,           // 7
+  TaskTimeLapseFSM_task8_CopyJPGFromRAM, // 8
+  TaskTimeLapseFSM_task9,                // 9
+  TaskTimeLapseFSM_task10_WaitMountSD,   // 10
+  TaskTimeLapseFSM_task11_openTLfile,    // 11
+  TaskTimeLapseFSM_task12,               // 12
+  tlps_TaskTimeLapseFSM_task12a,         // 13
+  TaskTimeLapseFSM_task13,               // 14
+  TaskTimeLapseFSM_task14_end            // 15
 };
 #endif
 
@@ -91,6 +118,15 @@ struct_hp5_menu_item g_wbwl_timelapse_frequency_menu[13] = {
   { no_icon, SST_60_SP_MINS,         0, 1, 0, 1, 1},    // 60 MINS
   { no_icon, SST_TIMELAPSE_SP_FREQ , 0, 0, 1, 3, 3}     // TIMELAPSE_FREQUENCY
 };
+
+struct_hp5_menu_item g_tlps_file_type_menu[3] = {
+  { no_icon, SST__DOT_TLS,             0x00, 0x01, 0x00, 0x1, 0x1},
+  { no_icon, SST__DOT_JPG,             0x00, 0x01, 0x00, 0x1, 0x1},
+  // { no_icon, SST__DOT_MP4,             0x00, 0x01, 0x00, 0x1, 0x1},
+  { no_icon, SST_TIMELAPSE_SP_FILE,    0x00, 0x00, 0x01, 0x03, 0x03}
+};
+
+
 
 // Converts from encoded timelapse frequency to a frequency 
 //   (actualy an interval) in seconds
@@ -147,7 +183,9 @@ bool tlps_execute_if_not_null(unsigned int index) {
   return result;
 }
 
+void tlps_TaskTImeLapseFSM_task6(void) {
 
+}
 
 void tlps_TaskTimeLapseFSM_task12a(void) {
   unsigned int encoded_timelapse_frequency;
@@ -415,7 +453,7 @@ LAB_8012a244:
 #endif
 
 
-
+// Only the SpecOps models have a pressure sensor
 #if (defined BTC_8E_HP5) || (defined BTC_8E_HP4) || (defined BTC_8E)
 
 int tlps_Pressure_sensor_getReading(int * pressure, int * temperature) {
@@ -431,3 +469,236 @@ int tlps_Pressure_sensor_getReading(int * pressure, int * temperature) {
 }
 
 #endif
+
+// Timelapse File Type Support
+//    - Processes a new Menu for Timelapse File type -- (default, standard) .TLS, or new ".JPG"
+//    
+
+uint tlps_get_cold_item_file_type() {
+  byte result = g_ColdItemData.timelapse_file_type;
+  return (uint) result;
+}
+
+void tlps_set_cold_item_file_type(uint file_type) {
+  g_ColdItemData.timelapse_file_type = (byte) file_type;
+}
+
+void tlps_handle_file_type_menu() {
+  byte  encoded_file_type;
+  struct_CameraConfig *camera_config;
+  int iVar1;
+  int iVar2;
+  uint index;
+  
+  camera_config = getCameraConfigStructPtr();
+  if (camera_config->exit_menu_p_or_ir_led_on != 0) {
+    camera_config->exit_menu_p_or_ir_led_on = 0;
+    encoded_file_type = tlps_get_cold_item_file_type();
+    camera_config->menu_selection_1 = encoded_file_type;
+    menu_draw_selected_item(&camera_config->menu_selection_1,&g_menu_root);
+    return;
+  }
+  iVar1 = ui_cursor_key_pressed_p(up);
+  if (((iVar1 == 1) && (encoded_file_type = 0, g_up_button_enable == 2)) ||
+     ((iVar1 = ui_cursor_key_pressed_p(down), iVar1 == 1 &&
+      (encoded_file_type = 1, g_down_button_enable == 2)))) {
+    menu_get_next_menu_selection(encoded_file_type,&camera_config->menu_selection_1,1,&g_menu_root);
+    menu_redraw_items(camera_config->menu_selection_1,&g_menu_root);
+    return;
+  }
+  iVar1 = ui_cursor_key_pressed_p(left);
+  if (((iVar1 == 1) && (g_left_button_enable == 2)) ||
+     ((iVar1 = ui_cursor_key_pressed_p(right), iVar1 == 1 && (g_right_button_enable == 2)))) {
+    return;
+  }
+  iVar1 = ui_cursor_key_pressed_p(enter);
+  if ((iVar1 == 1) && (g_enter_button_enable == 2)) {
+    index = (uint)camera_config->menu_selection_1;
+    camera_config->exit_menu_p_or_ir_led_on = 1;
+    iVar2 = get_next_state_from_menu_enter(index,
+					   g_wbwl_camera_setup_selector_array[index].menu_item_array,
+					   g_wbwl_camera_setup_selector_array[index].num_array_entries,
+					   &g_menu_root);
+    if (iVar2 == 0xff) {
+      return;
+    }
+    tlps_set_cold_item_file_type(camera_config->menu_selection_1);
+    camera_config->commit_menu_change = 1;
+  }
+  else {
+    iVar1 = ui_cursor_key_pressed_p(mode);
+    if (iVar1 != 1) {
+      return;
+    }
+    if (g_mode_button_enable != 2) {
+      return;
+    }
+    camera_config->exit_menu_p_or_ir_led_on = 1;
+    iVar2 = get_next_state_from_menu_mode(1,&g_menu_root);
+    iVar1 = WBWL_NUM_BTC_SETUP_MENU_FUNCTIONS + WBWL_NUM_WBWL_SETUP_MENU_FUNCTIONS + 5;
+    if (iVar2 == 0xff) goto EXIT1;
+  }
+  iVar1 = iVar2;
+EXIT1:
+  set_fsm_state_absolute(iVar1);
+  return;
+}
+
+
+// Intercept the call to HceIRCut_SetIRCutClosed()
+//     if in .TLS mode -- call the native function
+//     else ignore (the capture still image will 
+//     set IR filter accordingly
+void tlps_HceIRCut_SetIRCutClosed() {
+ enum_tls_file_type tls_file_type = (enum_tls_file_type) tlps_get_cold_item_file_type();
+ if (tls_file_type == tls_file_type_tls) {
+   HceIRCut_SetIRCutClosed();
+ }
+}
+
+// Intercept the state in the TimeLapse FSM where
+//     it usually captures an image.  If not in .JPG mode
+//     spawn a state machine that takes and stores a photo
+//     instead
+void tlps_TaskTimeLapseFSM_task6() {
+  struct_photo_dimensions_int photo_dimensions; 
+  int burst_size = 1; // in timelapse mode, we only take one photo
+  int size_factor;
+  int resolution;
+  enum_tls_file_type tls_file_type = (enum_tls_file_type) tlps_get_cold_item_file_type();
+  if (tls_file_type == tls_file_type_tls) {
+    // Just do the regular thing
+    TaskTimeLapseFSM_task6();
+  } else {
+    // Spawn the single photo FSM
+    size_factor = get_photo_size_factor(0);
+    resolution = get_cold_item_photo_resolution();
+    register_low_battery_display_function(still_low_battery_display_function);
+    set_camera_photo_resolution(&photo_dimensions, resolution);
+    startHceTaskStill_FSM
+      (burst_size,size_factor,photo_dimensions.width,photo_dimensions.height,
+       photo_dimensions.field2_0x8,photo_dimensions.field3_0xc, 1);
+    set_fsm_state_relative(1);
+  }
+}
+
+// Intercept the state in the TimeLapse FSM where
+//     it usually cleans up after image cp.  If not in .JPG mode
+//     spawn a state machine that takes and stores a photo
+//     instead
+
+void tlps_TaskTimeLapseFSM_task7() {
+  enum_tls_file_type tls_file_type = (enum_tls_file_type) tlps_get_cold_item_file_type();
+  if (tls_file_type == tls_file_type_tls) {
+    // do the regular thing
+    TaskTimeLapseFSM_task7();
+  } else {
+    // if still_fsm is complete, goto 12a (index 13)
+    if (!HceTaskStillFSM_valid_p()) {
+      set_fsm_state_absolute(13);
+    }
+  }
+}
+
+// This handles the PIR triggered photos/videos/tls
+void tls_HceTaskBoot2Cap_Task0(void) {
+  bool sd_card_present;
+  int within_operating_hours;
+  enum_timelapse_period_encoding timelapse_period;
+  enum_tod_in_timelapse timelapse_region;
+  enum_operation_mode operation_mode;
+  uint tod_in_seconds;
+  int next_state = 7; // Abort by default
+  struct_short_RTCTime current_time;
+
+  spawnIRCutFSM_per_mode();
+  sd_card_present = checkForSDCard();
+  within_operating_hours = get_within_operating_hours_p();
+
+#ifdef DEBUG1
+  set_pre_printf_state();
+  tty_printf("tls_HceTaskBoot2Cap_task0: sd_card_present = %d; within_operating_hours = %d \n",
+	     sd_card_present, within_operating_hours);
+  check_post_printf_state_set_sio_params();  
+#endif
+  
+  // If we're not being woken up to take a photo or video, 
+  // or.. If we're not in the given operating hours, abort
+  if ((sd_card_present == 0) || (within_operating_hours == 0)) {  
+    set_fsm_state_absolute(7);  // 7 is the finish state
+    return;
+  }
+
+  get_current_date_time_short(&current_time);
+  set_exif_time_of_capture(&current_time);
+
+  // Next action depends on the operating mode
+  operation_mode = (enum_operation_mode) get_cold_item_operation_mode();
+  switch(operation_mode) {
+  case trail_camera:
+    next_state = 1;
+    break;
+  case video:
+    next_state = 3;
+    break;
+  case timelapse:
+  default:
+    tod_in_seconds =
+      (uint)current_time.minute * 60 + (uint)current_time.hour * 3600 +
+      (uint)current_time.second;
+    if (tod_in_seconds >= 100000) {
+      // Dummy call to get function into symbol list
+      HceTaskBoot2Cap_Task0();
+    }
+    if (86400 < tod_in_seconds) {
+      tod_in_seconds = 86399;
+    }
+    timelapse_region = (enum_tod_in_timelapse) get_tod_in_timelapse_region(&current_time);
+    timelapse_period = (enum_timelapse_period_encoding) get_cold_item_timelapse_period();
+      
+    switch(timelapse_region) {
+    case daylight_post_sunrise_region:
+    case daylight_pre_sunset_region:
+      // If we're in the active timelapse region, then invoke the TLS state machine
+      next_state = 5;
+      break;
+    case daylight_no_photo_region:
+      if (timelapse_period == all_day) {
+	// If we're in the daylight region and the period is all day; invoke TLS state machine
+	next_state = 5;
+      } else {
+	// Else, invoke the standard still state machine
+#if (defined BTC_7E_HP5) || (defined BTC_8E_HP5)
+	set_rtc_extra_current_tod_in_seconds(tod_in_seconds);
+#elif (defined BTC_7E) || (defined BTC_8E) || (defined BTC_7E_HP4) || (defined BTC_8E_HP4)
+	set_cold_item_current_tod_in_seconds(tod_in_seconds);
+#endif
+	next_state = 1;
+      }
+      break;
+    case night_no_photo_region:
+    default:
+      // If we trigger at night, then invoke the still image state machine
+      next_state = 1;
+#if (defined BTC_7E_HP5) || (defined BTC_8E_HP5) 
+      set_rtc_extra_current_tod_in_seconds(tod_in_seconds);
+#elif (defined BTC_7E) || (defined BTC_8E) || (defined BTC_7E_HP4) || (defined BTC_8E_HP4)
+      set_cold_item_current_tod_in_seconds(tod_in_seconds);
+#endif
+      break;
+    } 
+    break;
+  }
+
+  // Adjust of timelapse (next_state == 5) depending on the timelapse
+  //        file type.  
+  enum_tls_file_type tls_file_type = (enum_tls_file_type) tlps_get_cold_item_file_type();
+
+  if ((tls_file_type == tls_file_type_jpg) && (next_state == 5)) {
+    next_state = 1;
+  }
+
+  set_fsm_state_absolute(next_state);
+  return;
+}
+

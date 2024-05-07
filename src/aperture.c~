@@ -74,7 +74,7 @@ byte apt_get_rtc_extra_operation_mode(void) {
 }
 
 void apt_set_rtc_extra_operation_mode(uint operation_mode) {
-  ushort buffer [8]; // 8 bytes
+  ushort buffer [8]; // 8 shorts
   
   get_rtc_extra_byte_range((byte *)buffer,6,2);
   buffer[0] = buffer[0] & 0xc0ff | (operation_mode & 0x3f) << 8;
@@ -87,7 +87,7 @@ void apt_set_rtc_extra_operation_mode(uint operation_mode) {
 
 // get_night_mode_threhold_mix_max
 
-void apt_get_night_mode_theshold_min_max(uint *min, uint *max, 
+void apt_get_night_mode_threshold_min_max(uint *min, uint *max, 
 					 enum_aperture_encoding encoded_aperture) {
 
 
@@ -140,7 +140,7 @@ bool apt_HceIQ_CheckNightMode(void) {
 	     encoded_aperture);
   check_post_printf_state_set_sio_params();
 #endif
-  apt_get_night_mode_theshold_min_max(&min_threshold, &max_threshold, encoded_aperture);
+  apt_get_night_mode_threshold_min_max(&min_threshold, &max_threshold, encoded_aperture);
 
 #ifdef DEBUG1
   set_pre_printf_state();

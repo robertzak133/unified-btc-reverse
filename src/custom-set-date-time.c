@@ -388,7 +388,7 @@ void cdt_handle_enter_mode_buttons(struct_CameraConfig *camera_config,
 			  rtc_as_uints->day_hour);
     }
 #if (defined BTC_7E_HP5) || (defined BTC_8E_HP5)
-    set_cold_item_rtc_device_set_p(1);
+    set_cold_item_new_timelapse_file_p(1);
     set_cold_item_137_1(0);
 #endif
     camera_config->commit_menu_change = 1;

@@ -90,6 +90,29 @@ void wbwl_init_directory_suffix_file_prefix() {
 
 }
 
+#if (defined BTC_7E) || (defined BTC_8E)
+void wbwl_alt_init_directory_suffix_file_prefix(char *suffix, char *prefix, uint param2) {
+  char directory_suffix[16];
+  char file_prefix[16];
+  char camera_name[16];
+
+  get_cold_item_camera_name(camera_name);
+
+#ifdef DEBUG
+  set_pre_printf_state();
+  tty_printf("wbwl_alt_init_directory_suffix_file_prefix -s \n");
+  check_post_printf_state_set_sio_params();
+#endif
+
+  // I need a dummy call in here to get the symbol
+  if (camera_name[0] == (char) 0) {
+    init_directory_suffix_file_prefix(suffix, prefix, param2);
+  } else {
+    wbwl_init_directory_suffix_file_prefix();
+  }
+}
+#endif
+
 
 void vfn_get_dir_suffix_file_prefix_from_camera_name(char * directory_suffix, char *file_prefix, char *camera_name) {
   int i;

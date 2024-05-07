@@ -2,7 +2,9 @@
 //    Automatically generated file
 //    Includes an enum for naming language specific strings
 //
-#if (defined BTC_7A)
+#if (defined BTC_PATRIOT_FHD)
+// No SST Files for this Target
+#elif (defined BTC_7A)
 // No SST Files for this Target
 #elif (defined BTC_8A)
 // No SST Files for this Target
@@ -198,7 +200,11 @@ typedef enum enum_sst_string {
    SST_DAY_SP_THRESHOLD = 187,
    SST_STANDARD = 188,
    SST_LOW_SP_LIGHT = 189,
-   SST_NO_SP_LIGHT = 190
+   SST_NO_SP_LIGHT = 190,
+   SST_TIMELAPSE_SP_FILE = 191,
+   SST__DOT_TLS = 192,
+   SST__DOT_JPG = 193,
+   SST__DOT_MP4 = 194
 } enum_sst_string;
 #elif (defined BTC_8E)
 typedef enum enum_sst_string {
@@ -392,7 +398,11 @@ typedef enum enum_sst_string {
    SST_DAY_SP_THRESHOLD = 187,
    SST_STANDARD = 188,
    SST_LOW_SP_LIGHT = 189,
-   SST_NO_SP_LIGHT = 190
+   SST_NO_SP_LIGHT = 190,
+   SST_TIMELAPSE_SP_FILE = 191,
+   SST__DOT_TLS = 192,
+   SST__DOT_JPG = 193,
+   SST__DOT_MP4 = 194
 } enum_sst_string;
 #elif (defined BTC_7E_HP4)
 typedef enum enum_sst_string {
@@ -589,7 +599,11 @@ typedef enum enum_sst_string {
    SST_DAY_SP_THRESHOLD = 190,
    SST_STANDARD = 191,
    SST_LOW_SP_LIGHT = 192,
-   SST_NO_SP_LIGHT = 193
+   SST_NO_SP_LIGHT = 193,
+   SST_TIMELAPSE_SP_FILE = 194,
+   SST__DOT_TLS = 195,
+   SST__DOT_JPG = 196,
+   SST__DOT_MP4 = 197
 } enum_sst_string;
 #elif (defined BTC_8E_HP4)
 typedef enum enum_sst_string {
@@ -786,7 +800,11 @@ typedef enum enum_sst_string {
    SST_DAY_SP_THRESHOLD = 190,
    SST_STANDARD = 191,
    SST_LOW_SP_LIGHT = 192,
-   SST_NO_SP_LIGHT = 193
+   SST_NO_SP_LIGHT = 193,
+   SST_TIMELAPSE_SP_FILE = 194,
+   SST__DOT_TLS = 195,
+   SST__DOT_JPG = 196,
+   SST__DOT_MP4 = 197
 } enum_sst_string;
 #elif (defined BTC_7E_HP5)
 typedef enum enum_sst_string {
@@ -989,7 +1007,11 @@ typedef enum enum_sst_string {
    SST_DAY_SP_THRESHOLD = 196,
    SST_STANDARD = 197,
    SST_LOW_SP_LIGHT = 198,
-   SST_NO_SP_LIGHT = 199
+   SST_NO_SP_LIGHT = 199,
+   SST_TIMELAPSE_SP_FILE = 200,
+   SST__DOT_TLS = 201,
+   SST__DOT_JPG = 202,
+   SST__DOT_MP4 = 203
 } enum_sst_string;
 #elif (defined BTC_8E_HP5)
 typedef enum enum_sst_string {
@@ -1192,6 +1214,10 @@ typedef enum enum_sst_string {
    SST_DAY_SP_THRESHOLD = 196,
    SST_STANDARD = 197,
    SST_LOW_SP_LIGHT = 198,
-   SST_NO_SP_LIGHT = 199
+   SST_NO_SP_LIGHT = 199,
+   SST_TIMELAPSE_SP_FILE = 200,
+   SST__DOT_TLS = 201,
+   SST__DOT_JPG = 202,
+   SST__DOT_MP4 = 203
 } enum_sst_string;
 #endif

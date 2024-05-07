@@ -282,7 +282,7 @@ $L15:
 	move	$5,$2
 	li	$2,255			# 0xff
 	beql	$5,$2,$L16
-	li	$5,35			# 0x23
+	li	$5,36			# 0x24
 
 	b	$L18
 	lw	$31,28($sp)
@@ -474,7 +474,7 @@ $L32:
 	move	$17,$2
 	li	$2,255			# 0xff
 	beql	$17,$2,$L33
-	li	$17,35			# 0x23
+	li	$17,36			# 0x24
 
 	b	$L35
 	lw	$31,28($sp)
@@ -544,9 +544,9 @@ g_rtc_date_format_menu:
 	.word	3
 	.word	3
 
-	.comm	g_wbwl_menu_handler_function_array_extensions,24,4
+	.comm	g_wbwl_menu_handler_function_array_extensions,28,4
 
-	.comm	g_wbwl_camera_setup_selector_array,240,4
+	.comm	g_wbwl_camera_setup_selector_array,248,4
 
-	.comm	g_wbwl_camera_setup_menu_item_array,840,4
+	.comm	g_wbwl_camera_setup_menu_item_array,868,4
 	.ident	"GCC: (Ubuntu 9.4.0-1ubuntu1) 9.4.0"

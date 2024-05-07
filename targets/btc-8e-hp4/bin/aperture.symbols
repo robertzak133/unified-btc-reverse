@@ -28,8 +28,8 @@ SYMBOL TABLE:
 00000000         *UND*	00000000 g_night_mode_p
 00000000         *UND*	00000000 g_photo_detector_hysteresis
 00000000         *UND*	00000000 photo_sensor_hysteresis
-00000018       O *COM*	00000004 g_wbwl_menu_handler_function_array_extensions
-000000f0       O *COM*	00000004 g_wbwl_camera_setup_selector_array
-00000348       O *COM*	00000004 g_wbwl_camera_setup_menu_item_array
+0000001c       O *COM*	00000004 g_wbwl_menu_handler_function_array_extensions
+000000f8       O *COM*	00000004 g_wbwl_camera_setup_selector_array
+00000364       O *COM*	00000004 g_wbwl_camera_setup_menu_item_array
 
 

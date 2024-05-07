@@ -271,4 +271,10 @@ wbwl_temp_file_path_sprintf:
 	.set	reorder
 	.end	wbwl_temp_file_path_sprintf
 	.size	wbwl_temp_file_path_sprintf, .-wbwl_temp_file_path_sprintf
+
+	.comm	g_wbwl_timelapse_frequency_lookup_table,24,4
+
+	.comm	g_tlps_file_type_menu,84,4
+
+	.comm	g_wbwl_timelapse_frequency_menu,364,4
 	.ident	"GCC: (Ubuntu 9.4.0-1ubuntu1) 9.4.0"

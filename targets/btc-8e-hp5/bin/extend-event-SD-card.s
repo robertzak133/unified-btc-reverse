@@ -254,7 +254,7 @@ $L17:
 	jal	evsd_set_cold_item_extended_sd_power_p
 	lbu	$4,2($16)
 
-	sb	$18,4($16)
+	sb	$18,6($16)
 $L20:
 	lw	$31,28($sp)
 $L22:
@@ -319,7 +319,7 @@ $L19:
 	move	$17,$2
 	li	$2,255			# 0xff
 	beql	$17,$2,$L20
-	li	$17,36			# 0x24
+	li	$17,37			# 0x25
 
 	b	$L22
 	lw	$31,28($sp)
@@ -356,9 +356,9 @@ g_evsd_extended_sd_power_menu:
 	.word	3
 	.word	3
 
-	.comm	g_wbwl_menu_handler_function_array_extensions,24,4
+	.comm	g_wbwl_menu_handler_function_array_extensions,28,4
 
-	.comm	g_wbwl_camera_setup_selector_array,248,4
+	.comm	g_wbwl_camera_setup_selector_array,256,4
 
-	.comm	g_wbwl_camera_setup_menu_item_array,868,4
+	.comm	g_wbwl_camera_setup_menu_item_array,896,4
 	.ident	"GCC: (Ubuntu 9.4.0-1ubuntu1) 9.4.0"

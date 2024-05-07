@@ -13,11 +13,34 @@
 int rsc_initialize_sd_card_to_data(uint device_number) {
 
   int return_value;
+  int sd_clock_kHz;
 
   return_value = initialize_sd_card_to_data(2);
+ 
+#ifdef DEBUG
+  sd_clock_kHz = get_sd_clock_kHz(); 
+  set_pre_printf_state();
+  tty_printf("DEBUG: rsc_initialize_sd_card_to_data -- sd_clk_kHz = %d \n", sd_clock_kHz);
+  check_post_printf_state_set_sio_params();
+#endif
+  reduce_SD_clock(&g_sd_card_descriptor);
 
-  if (get_sd_clock_kHz() >= 100000) {
-    reduce_SD_clock(&g_sd_card_descriptor);
-  }
+#ifdef DEBUG
+  sd_clock_kHz = get_sd_clock_kHz(); 
+  set_pre_printf_state();
+  tty_printf("DEBUG: rsc_initialize_sd_card_to_data -- sd_clk_kHz = %d \n", sd_clock_kHz);
+  check_post_printf_state_set_sio_params();
+#endif
   return return_value;
 }
+
+
+
+void rsc_log_printf(uint debug_level, char* format_string, int sd_clock, int sd_bus_width, int sd_mtype) {
+#ifdef DEBUG
+  set_pre_printf_state();
+  tty_printf("DEBUG: rsc_set_sd_iface_clock -- sd_clk = %d, sd_bus_width = %d, sd_mtype = %d \n", sd_clock, sd_bus_width, sd_mtype);
+  check_post_printf_state_set_sio_params();
+#endif
+}
+

@@ -87,6 +87,8 @@ wbwl_get_next_state_from_menu_enter:
 
 	.comm	g_wbwl_timelapse_frequency_lookup_table,24,4
 
+	.comm	g_tlps_file_type_menu,84,4
+
 	.comm	g_wbwl_timelapse_frequency_menu,364,4
 
 	.comm	g_dlsr_led_enable_menu,84,4
@@ -100,18 +102,19 @@ wbwl_get_next_state_from_menu_enter:
 	.data
 	.align	2
 	.type	g_wbwl_menu_handler_function_array_extensions, @object
-	.size	g_wbwl_menu_handler_function_array_extensions, 24
+	.size	g_wbwl_menu_handler_function_array_extensions, 28
 g_wbwl_menu_handler_function_array_extensions:
 	.word	evsd_handle_extended_sd_power_menu
 	.word	rtc_handle_date_format_menu
 	.word	rtc_handle_time_format_menu
 	.word	dslr_handle_led_enable_menu
 	.word	apt_handle_aperture_menu
+	.word	tlps_handle_file_type_menu
 	.word	menus_handleCommitUpdates_menu
 	.globl	g_wbwl_camera_setup_selector_array
 	.align	2
 	.type	g_wbwl_camera_setup_selector_array, @object
-	.size	g_wbwl_camera_setup_selector_array, 240
+	.size	g_wbwl_camera_setup_selector_array, 248
 g_wbwl_camera_setup_selector_array:
 	.word	g_set_date_time_menu
 	.word	1
@@ -171,12 +174,14 @@ g_wbwl_camera_setup_selector_array:
 	.word	3
 	.word	g_apt_aperture_menu
 	.word	4
+	.word	g_tlps_file_type_menu
+	.word	3
 	.word	0
 	.word	0
 	.globl	g_wbwl_camera_setup_menu_item_array
 	.align	2
 	.type	g_wbwl_camera_setup_menu_item_array, @object
-	.size	g_wbwl_camera_setup_menu_item_array, 840
+	.size	g_wbwl_camera_setup_menu_item_array, 868
 g_wbwl_camera_setup_menu_item_array:
 	.word	3
 	.word	31
@@ -381,6 +386,13 @@ g_wbwl_camera_setup_menu_item_array:
 	.word	0
 	.word	2
 	.word	34
+	.word	18
+	.word	194
+	.word	0
+	.word	1
+	.word	0
+	.word	2
+	.word	35
 	.word	31
 	.word	110
 	.word	0

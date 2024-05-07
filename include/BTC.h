@@ -250,6 +250,13 @@ typedef enum enum_operation_mode {
   timelapse
 } enum_operation_mode;
 
+typedef enum enum_tls_file_type {
+  tls_file_type_tls = 0,
+  tls_file_type_jpg,
+  tls_file_type_mp4
+} enum_tls_file_type;
+
+
 typedef enum enum_video_length {
   vl_two_minutes = 0,
   vl_one_minute, 
@@ -273,6 +280,35 @@ typedef enum enum_photo_delay_encoding {
 } enum_photo_delay_encoding;
 
 // Structures w/ typedefs
+
+typedef struct struct_photo_dimensions_int {
+  uint width;
+  uint height;
+  uint field2_0x8;
+  uint field3_0xc;
+} struct_photo_dimensions_int;
+
+typedef struct struct_image_descriptor {
+  uint field0x0;
+  uint rounded_width;
+  uint rounded_height;
+  uint field0xc;
+  uint field0x10;
+  uint alt_width;
+  uint alt_height;
+  uint jpg_width;
+  uint jpg_height;
+  uint field_0x24;
+  uint field_0x28;
+  uint field_0x2c;
+  uint field_0x30;
+  uint width;
+  uint height;
+  uint field_0x3c;
+  uint field_0x40;
+  uint num_ushort_pixels;
+} struct_image_descriptor;
+
 
 typedef struct struct_system_device_entry {
   uint field_0;
@@ -437,7 +473,7 @@ typedef struct struct_DateTime {
 #if (defined BTC_7E) || (defined BTC_8E) 
 typedef struct struct_CameraConfig {
   byte exit_menu_p_or_ir_led_on; // 0
-  byte field_1;                  // 1
+  byte video_p;
   byte menu_selection_1;         // 2
   byte menu_selection_2;         // 3
   // a bunch of unknown ints
@@ -496,7 +532,7 @@ typedef struct struct_CameraConfig {
 #elif (defined BTC_7E_HP4) || (defined BTC_8E_HP4)
 typedef struct struct_CameraConfig {
   byte exit_menu_p_or_ir_led_on;
-  byte field_1;
+  byte video_p;
   byte menu_selection_1;
   byte menu_selection_2;
   // a bunch of unknown ints
@@ -576,35 +612,67 @@ typedef struct struct_CameraConfig {
 #elif (defined BTC_7E_HP5) || (defined BTC_8E_HP5)
 typedef struct struct_CameraConfig {
   byte exit_menu_p_or_ir_led_on;
-  byte field_1;
+  byte video_p;
   byte menu_selection_1;
   byte menu_selection_2;
-  // a bunch of unknown ints
+  byte pir_detector_triggered;
+  byte field_0x05;
   byte commit_menu_change;
-  byte unknown_byte_5;
-  byte field_6;
-  byte unknown_byte_7;
-  unsigned int unknown_uint_8;
-  unsigned int unknown_uint_12;
-  unsigned int unknown_uint_16;
-  unsigned int unknown_uint_20;
-  unsigned int unknown_uint_24;
-  unsigned int unknown_uint_28;
-  byte unknown_byte_32;
+  byte field_0x07;
+  byte field_0x08;
+  byte field_0x09;
+  byte field_0x0a;
+  byte field_0x0b;
+  byte field_0x0c;
+  byte field_0x0d;
+  byte field_0x0e;
+  byte field_0x0f;
+  byte field_0x10;
+  byte field_0x11;
+  byte field_0x12;
+  byte field_0x13;
+  byte field_0x14;
+  byte field_0x15;
+  byte field_0x16;
+  byte field_0x17;
+  byte current_video_runtime;
+  byte field_0x19;
+  byte current_video_length;
+  byte field_0x1b;
+  short video_length;
+  byte field_0x1e;
+  byte field_0x1f;
+  byte field_0x20;
   byte still_flash_on;
-  byte unknown_byte_34;
-  byte unknown_byte_35;
-  unsigned int unknown_uint_36;
-  unsigned int unknown_uint_40;
-  unsigned int unknown_uint_44;
-  unsigned int unknown_uint_48;
-  unsigned int unknown_uint_52;
-  unsigned int unknown_uint_56;
-  unsigned int unknown_uint_60;
-  unsigned int unknown_uint_64;
-  unsigned int still_led_turned_on_time_us;
-  unsigned int unknown_uint_72;
-  int total_images;
+  byte field_0x22;
+  byte field_0x23;
+  byte new_tlps_file_p;
+  byte sd_card_mounted;
+  byte field_0x26;
+  byte abort_current_image_p;
+  uint tls_jpg_file_ptr;
+  uint jpg_file_size;
+  byte *jpg_file_buffer;
+  byte field_0x34;
+  byte field_0x35;
+  byte field_0x36;
+  byte field_0x37;
+  byte field_0x38;
+  byte field_0x39;
+  byte field_0x3a;
+  byte field_0x3b;
+  byte field_0x3c;
+  byte field_0x3d;
+  short video_end_time_us;
+  short photo_end_time_in_us;
+  byte field_0x42;
+  byte field_0x43;
+  uint still_led_turned_on_time_us;
+  byte field_0x48;
+  byte field_0x49;
+  byte field_0x4a;
+  byte field_0x4b;
+  int  total_images;
   int current_image;
   char current_filename[200];
 } struct_CameraConfig;
@@ -700,7 +768,7 @@ typedef struct struct_ColdBinData {
   enum_photo_delay_encoding photo_delay;
   short                photo_delay_in_seconds;
   byte                 field_50_1;
-  byte                 field_51_1;
+  byte                 timelapse_file_type;
   uint         multi_shot_encoding;
   enum_cold_item_ir_led_intensity led_power;
   byte                 field_60_1;
@@ -755,16 +823,10 @@ typedef struct struct_ColdBinData {
   byte                 field_133_1;
   byte                 field_134_1;
   byte                 field_135_1;
-  byte                 field_136_1;
-  byte                 field_137_1;
-  byte                 field_138_1;
-  byte                 field_139_1;
+  uint                 rsvd;
   uint         timelapse_frequency;
   uint         timelapse_period;
-  byte                 field_148_1;
-  byte                 field_149_1;
-  byte                 field_150_1;
-  byte                 field_151_1;
+  uint         timelapse_rsvd;
   byte                 field_152_1;
   byte                 field_153_1;
   byte                 field_154_1;
@@ -957,7 +1019,7 @@ typedef struct struct_ColdBinData {
   enum_photo_delay_encoding encoded_photo_delay;
   short                photo_delay_in_seconds;
   byte                 field_50_1;
-  byte                 field_51_1;
+  byte                 timelapse_file_type;
   unsigned int         burst_size_index;
   enum_cold_item_ir_led_intensity led_power;
   byte                 field_60_1;
@@ -1009,16 +1071,10 @@ typedef struct struct_ColdBinData {
   byte                 field_133_1;
   byte                 field_134_1;
   byte                 field_135_1;
-  byte                 field_136_1;
-  byte                 field_137_1;
-  byte                 field_138_1;
-  byte                 field_139_1;
+  unsigned int         rsvd;
   unsigned int         timelapse_frequency;
   unsigned int         timelapse_period;
-  byte                 field_148_1;
-  byte                 field_149_1;
-  byte                 field_150_1;
-  byte                 field_151_1;
+  unsigned int         timelapse_rsvd;
   byte                 field_152_1;
   byte                 field_153_1;
   byte                 field_154_1;
@@ -1208,7 +1264,7 @@ typedef struct struct_ColdBinData {
   enum_photo_delay_encoding encoded_photo_delay;
   short                photo_delay_in_seconds;
   byte                 field_42_1;
-  byte                 field_43_1;
+  byte                 timelapse_file_type;
   unsigned int         mult_shot_mode;
   enum_cold_item_ir_led_intensity led_power;
   byte                 field_52_1;
@@ -1258,22 +1314,15 @@ typedef struct struct_ColdBinData {
   byte                 field_121_1;
   byte                 field_122_1;
   byte                 field_123_1;
-  byte                 field_124_1;
-  byte                 field_125_1;
-  byte                 field_126_1;
-  byte                 field_127_1;
+  unsigned int         rsvd;
   unsigned int         timelapse_frequency;
   unsigned int         timelapse_period;
-  byte                 field_136_1;
-  byte                 field_137_1;
-  byte                 field_138_1;
-  byte                 field_139_1;
+  unsigned int         timelapse_rsvd;
   byte                 field_140_1;
   byte                 field_141_1;
-  byte                 field_142_1;
+  byte                 new_timelapse_file_p;
   byte                 field_143_1;
-  byte                 field_144_1;
-  byte                 field_145_1;
+  ushort               tls_jpg_suffix_number;
   char                 camera_name[8];
   byte                 field_154_1;
   byte                 field_155_1;
@@ -1477,6 +1526,7 @@ extern void          init_directory_suffix_file_prefix(char* directory_suffix, c
 
 extern void          init_IR_LED(void);
 
+extern bool          checkForSDCard();
 extern int           check_event_0x58510000_qualifier1(uint qualifier1);
 extern void          check_post_printf_state_set_sio_params();
 extern void          check_remaining_sd_capacity(void);
@@ -1532,6 +1582,7 @@ extern char          get_cold_item_sensor_digital_effect(void);
 extern uint          get_cold_item_timelapse_frequency(void);
 extern uint          get_cold_item_tod_last_photo_in_seconds(void);
 extern uint          get_cold_item_timelapse_period(void);
+extern uint          get_cold_item_photo_resolution(void);
 
 extern uint          get_battery_percent();
 extern uint          get_battery_percent_from_voltage(uint voltage);
@@ -1539,8 +1590,8 @@ extern ushort        get_battery_voltage_x100();
 extern byte          get_create_command_thread_p();
 extern void          get_current_date_time_short(struct_short_RTCTime *return_date_time);
 extern uint  get_current_operating_time_ms(void);
-extern void          get_directory_suffix_file_prefix(char *directory_suffix, char *file_prefix);
-extern void          get_directory_suffix_file_prefix_indirect(char *directory_suffix, char *file_prefix);
+extern void          get_directory_suffix_image_prefix(char *directory_suffix, char *image_prefix);
+extern void          get_directory_suffix_image_prefix_indirect(char *directory_suffix, char *image_prefix);
 
 extern struct_system_device_entry *get_system_device_entry(uint dev_id);
 //extern int           getHceTaskMenuMultiItem2_FSM_valid(void);
@@ -1566,6 +1617,8 @@ extern uint          get_max_year(void);
 extern uint          get_min_year(void);
 extern uint          get_g_temp_day_number(void);
 
+extern ushort        get_photo_size_factor(int table_index);
+
 extern int           get_g_temperature_value(void);
 extern byte          get_DAT_80357b60_at_global_index(void);
 extern uint          get_cold_item_operation_mode(void);
@@ -1585,6 +1638,12 @@ extern unsigned long long get_64_bit_date_time_in_seconds(struct_DateTime *curre
 
 extern uint          get_VideoFormatStructure(int param_1, void* unknown_structure_pointer);
 
+extern bool          get_within_operating_hours_p();
+
+
+extern void          get_dir_image_indices(uint *,uint *);
+extern void          set_dir_image_indices(uint ,uint );
+
 extern void          hal_set_rtc(struct_short_RTCTime *short_rtc_time);
 extern void          hal_IRLedOff(void);
 extern void          hal_IRLedOff_pre_work(void);
@@ -1593,6 +1652,7 @@ extern void          HceCommon_SetCaptureImag(uint param_1,char *param_2);
 extern void          HceCommon_RestoreDefaultColdItem(char preserve_rtc_p);
 
 extern bool          HceIQ_CheckNightMode(void);
+extern void          HceIRCut_SetIRCutClosed(void);
 extern int           HceStampLoadFont(uint font_id,
 				      ushort *large_width, ushort *large_height,
 				      ushort *small_width, ushort *small_height,
@@ -1606,7 +1666,7 @@ extern uint          HceTask_ToNextNChar(int up_button_p,
 					 uint (*min_value_function)(), 
 					 uint (*max_value_function)(),
 					 ushort some_value);
-
+extern void          HceTaskBoot2Cap_Task0();
 extern void          HceTaskUnMount_fsm_iterator(void);
 extern void          HceTaskFormat_fsm_iterator(void);
 extern void          HceTaskFormat_task0(void);
@@ -1616,6 +1676,9 @@ extern void          HceTaskFormat_task3_format_drive(void);
 extern void          HceTaskFormat_task4_Init_DCF(void);
 extern void          HceTaskFormat_task5(void);
 extern void          HceTaskFormat_task6(void);
+extern bool          HceTaskStillFSM_valid_p();
+extern void          used_jfif_function(void);
+extern void          hijacked_digital_zoom_function(void);
 extern void          initCodeSentry(uint);
 extern void          IRLedOff(void);
 extern void          setIRLedOn(void);
@@ -1662,6 +1725,9 @@ extern int           read_sd_blocks(uint dev_id,uint current_sector,uint operati
 extern bool          reset_capture_timer(uint year_month, uint day_hour);
 extern int           seekToSpecifiedFileLocation(uint file_ptr, uint offset, uint whence);
 
+extern void          register_low_battery_display_function(void (*func)(int));
+extern void          still_low_battery_display_function(int);
+
 #if (defined BTC_8E) || (defined BTC_8E_HP4) || (defined BTC_8E_HP5)
 extern int           Pressure_sensor_getReading(int *pressure,int *temperature);
 #elif (defined BTC_7E) || (defined BTC_7E_HP4) || (defined BTC_7E_HP5)
@@ -1676,6 +1742,10 @@ extern void          setBatteryCalibConfig(void);
 
 extern void          setCodeSentryCSR(int address,int flag);
 extern void          setCodeSentryAddressRegion(int filter_index,int dev_type,void *base,void *bounds);
+
+extern void          set_exif_time_of_capture(struct_short_RTCTime *);
+extern void          set_rtc_extra_current_tod_in_seconds(int);
+extern void          set_cold_item_current_tod_in_seconds(int);
 
 extern int           sdRead(void *param_1,uint start_block,uint num_blocks,byte *buffer);
 extern int           RdSdAddr(void *param_1,uint start_block,uint num_blocks,byte *buffer);
@@ -1693,7 +1763,7 @@ extern uint          get_sd_clock_kHz(void);
 
 extern void          set_cold_item_led_power(uint);
 extern int           set_cold_item_language_id(byte param_1);
-extern void          set_cold_item_rtc_device_set_p(byte rtc_time_set);
+extern void          set_cold_item_new_timelapse_file_p(byte);
 extern void          set_cold_item_137_1(byte param_1);
 extern void          set_g_ae_parameter(byte ae_parameter);
 extern void          set_g_cold_item_battery_type(uint battery_type);
@@ -1706,15 +1776,30 @@ extern void          set_ir_led_power_pwm(enum_alt_ir_led_intensity);
 extern void          set_ir_led_intensity_from_cold_item(enum_cold_item_ir_led_intensity ir_led_intensity);
 extern void          set_rtc_extra_byte_range(byte *buffer, uint start_byte, uint size);
 extern void          set_rtc_extra_operation_mode(byte);
+
+extern void          set_sd_iface_clock(uint);
+
+extern struct_photo_dimensions_int *set_camera_photo_resolution(struct_photo_dimensions_int *param_1,int encoded_photo_resolution);
+
+
 extern void          smart_IR_log_printf(char * format_string, uint arg1);
 extern void          smart_IR_log_sub_printf(char *format_string, uint arg1);
+extern int           snapYuv2ExifJpgWrite (void *image_descriptor,uint jpg_width,uint jpg_height,
+					   char *filename,uint param_5,uint param_6);
 extern void          sp5kIqBlockEnable(char, ...);
 extern void          sp5kIqCfgSet(uint, uint);
 extern int           sp5kModeSet(int next_mode);
 
+extern void          spawnIRCutFSM_per_mode();
+
 extern void          startHceTaskUnMount_FSM(uint param_1,uint param_2);
 extern void          startHceTaskFormat_FSM(int param_1, uint param_2);
 extern void          store_pressure_trend(void);
+
+extern void          startHceTaskStill_FSM(uint burst_size,ushort size_factor,uint width,uint height,uint param_5,uint param_6,
+					   byte trigger_delay);
+
+extern void          TaskTimeLapseFSM_task11_openTLfile();
 
 extern uint          btc_strlen(char* string);
 extern char *        btc_strcpy(char *dest, char *source);

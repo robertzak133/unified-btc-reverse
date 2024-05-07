@@ -3359,7 +3359,7 @@ $L182:
 	jal	setBatteryCalibConfig
 	nop
 
-	sb	$18,4($16)
+	sb	$18,6($16)
 $L186:
 	lw	$31,28($sp)
 $L190:

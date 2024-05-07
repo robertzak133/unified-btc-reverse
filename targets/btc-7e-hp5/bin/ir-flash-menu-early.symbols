@@ -16,8 +16,8 @@ SYMBOL TABLE:
 00000000         *UND*	00000000 get_g_cold_item_led_power
 00000000         *UND*	00000000 power_on_IR_LED
 0000008c       O *COM*	00000004 g_ifm_ir_led_power_menu
-00000018       O *COM*	00000004 g_wbwl_menu_handler_function_array_extensions
-000000f8       O *COM*	00000004 g_wbwl_camera_setup_selector_array
-00000364       O *COM*	00000004 g_wbwl_camera_setup_menu_item_array
+0000001c       O *COM*	00000004 g_wbwl_menu_handler_function_array_extensions
+00000100       O *COM*	00000004 g_wbwl_camera_setup_selector_array
+00000380       O *COM*	00000004 g_wbwl_camera_setup_menu_item_array
 
 

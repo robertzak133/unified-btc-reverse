@@ -26,29 +26,67 @@ SYMBOL TABLE:
 00000000         *UND*	00000000 get_cold_item_timelapse_period
 00000000         *UND*	00000000 set_fsm_state_absolute
 00000000         *UND*	00000000 set_fsm_state_relative
-00000284 g     F .text	00000018 tlps_encoded_timelapse_frequency_to_seconds
+00000284 g     F .text	00000098 tlps_TaskTimeLapseFSM_task6
+00000000         *UND*	00000000 g_ColdItemData
+00000000         *UND*	00000000 TaskTimeLapseFSM_task6
+00000000         *UND*	00000000 get_photo_size_factor
+00000000         *UND*	00000000 get_cold_item_photo_resolution
+00000000         *UND*	00000000 still_low_battery_display_function
+00000000         *UND*	00000000 register_low_battery_display_function
+00000000         *UND*	00000000 set_camera_photo_resolution
+00000000         *UND*	00000000 startHceTaskStill_FSM
+0000031c g     F .text	00000044 tlps_TaskTimeLapseFSM_task7
+00000000         *UND*	00000000 TaskTimeLapseFSM_task7
+00000000         *UND*	00000000 HceTaskStillFSM_valid_p
+00000360 g     F .text	00000018 tlps_encoded_timelapse_frequency_to_seconds
 00000040 g     O .data	00000018 g_wbwl_timelapse_frequency_lookup_table
-0000029c g     F .text	00000018 tlps_execute_if_not_null
+00000378 g     F .text	00000018 tlps_execute_if_not_null
 00000000 g     O .data	00000040 g_wbwl_TaskTimeLapseFSM_function_array
 00000000         *UND*	00000000 execute_if_not_null
-000002b4 g     F .text	0000002c tlps_update_system_measurements
+00000390 g     F .text	00000008 tlps_TaskTImeLapseFSM_task6
+00000398 g     F .text	0000002c tlps_update_system_measurements
 00000000         *UND*	00000000 Volt_Calib_Bat
 00000000         *UND*	00000000 temperature_sensor_getReading
 00000000         *UND*	00000000 set_g_temperature_forc
 00000000         *UND*	00000000 update_timelapse_rise_set_times
-000002e0 g     F .text	000000bc tlps_TaskTimeLapseFSM_task12a
+000003c4 g     F .text	000000bc tlps_TaskTimeLapseFSM_task12a
 00000000         *UND*	00000000 get_power_switch_on_p
 00000000         *UND*	00000000 HceCommon_SetCaptureImag
 00000000         *UND*	00000000 get_current_operating_time_ms
 00000000         *UND*	00000000 g_last_timelapse_time_in_ms
 00000000         *UND*	00000000 thread_sleep
+00000480 g     F .text	0000000c tlps_get_cold_item_file_type
+0000048c g     F .text	0000000c tlps_set_cold_item_file_type
+00000498 g     F .text	00000210 tlps_handle_file_type_menu
+00000000         *UND*	00000000 g_menu_root
+00000000         *UND*	00000000 menu_draw_selected_item
+00000000         *UND*	00000000 ui_cursor_key_pressed_p
+00000000         *UND*	00000000 g_up_button_enable
+00000000         *UND*	00000000 g_down_button_enable
+00000000         *UND*	00000000 g_left_button_enable
+00000000         *UND*	00000000 g_right_button_enable
+00000000         *UND*	00000000 g_enter_button_enable
+000000f8       O *COM*	00000004 g_wbwl_camera_setup_selector_array
+00000000         *UND*	00000000 get_next_state_from_menu_enter
+00000000         *UND*	00000000 menu_get_next_menu_selection
+00000000         *UND*	00000000 menu_redraw_items
+00000000         *UND*	00000000 g_mode_button_enable
+00000000         *UND*	00000000 get_next_state_from_menu_mode
+000006a8 g     F .text	00000020 tlps_HceIRCut_SetIRCutClosed
+00000000         *UND*	00000000 HceIRCut_SetIRCutClosed
+000006c8 g     F .text	00000140 tls_HceTaskBoot2Cap_Task0
+00000000         *UND*	00000000 spawnIRCutFSM_per_mode
+00000000         *UND*	00000000 checkForSDCard
+00000000         *UND*	00000000 get_within_operating_hours_p
+00000000         *UND*	00000000 set_exif_time_of_capture
+00000000         *UND*	00000000 get_cold_item_operation_mode
+00000000         *UND*	00000000 HceTaskBoot2Cap_Task0
+00000000         *UND*	00000000 set_cold_item_current_tod_in_seconds
 00000000         *UND*	00000000 TaskTimeLapseFSM_task0
 00000000         *UND*	00000000 TaskTimeLapseFSM_task1
 00000000         *UND*	00000000 TaskTimeLapseFSM_task2
 00000000         *UND*	00000000 TaskTimeLapseFSM_task3_ae_set
 00000000         *UND*	00000000 TaskTimeLapseFSM_task5
-00000000         *UND*	00000000 TaskTimeLapseFSM_task6
-00000000         *UND*	00000000 TaskTimeLapseFSM_task7
 00000000         *UND*	00000000 TaskTimeLapseFSM_task8_CopyJPGFromRAM
 00000000         *UND*	00000000 TaskTimeLapseFSM_task9
 00000000         *UND*	00000000 TaskTimeLapseFSM_task10_WaitMountSD
@@ -56,6 +94,9 @@ SYMBOL TABLE:
 00000000         *UND*	00000000 TaskTimeLapseFSM_task12
 00000000         *UND*	00000000 TaskTimeLapseFSM_task13
 00000000         *UND*	00000000 TaskTimeLapseFSM_task14_end
-00000058 g     O .data	0000016c g_wbwl_timelapse_frequency_menu
+00000058 g     O .data	00000054 g_tlps_file_type_menu
+000000ac g     O .data	0000016c g_wbwl_timelapse_frequency_menu
+0000001c       O *COM*	00000004 g_wbwl_menu_handler_function_array_extensions
+00000364       O *COM*	00000004 g_wbwl_camera_setup_menu_item_array
 
 

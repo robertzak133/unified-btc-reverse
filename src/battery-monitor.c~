@@ -71,9 +71,9 @@
 
 
 // Global Variables
-extern struct_BatteryTelemetry setDigitalEffectswitchdataD_80375e18;
+extern struct_BatteryTelemetry setDigitalEffectswitchdataD_table;
 
-#define WBWL_GLOBAL_STRUCT setDigitalEffectswitchdataD_80375e18
+#define WBWL_GLOBAL_STRUCT setDigitalEffectswitchdataD_table
 
 // Battery Monitor Functions
 
@@ -889,7 +889,7 @@ void bm_increment_energy_consumed(unsigned int incremental_energy, unsigned int 
     int temp_in_f;
     enum_battery_type battery_type = WBWL_GLOBAL_STRUCT.battery_type;
 
-    if (get_gTemperatureUnitCelsiusP() == 0) {
+    if (get_cold_item_temperature_unit_celsius_p() == 0) {
       temp_in_f = get_temperatureForC(); // this version actually reads the register
     } else {
       temp_in_f = ((get_temperatureForC() * 9) / 5) + 32; 
@@ -1483,7 +1483,7 @@ void bm_handleBatteryTypeMenu(void)
     // Replace previous call with hook that allows us to do our initialization
     bm_set_g_cold_item_battery_type(camera_config->menu_selection_1);
     setBatteryCalibConfig();
-    camera_config->field_6 = 1;
+    camera_config->commit_menu_change = 1;
   }
   else {
     temp_int = ui_cursor_key_pressed_p(mode);

@@ -17,12 +17,13 @@ SYMBOL TABLE:
 00000008 g     F .text	00000034 menus_execute_if_not_null
 00000000         *UND*	00000000 g_HceTaskMenuMultiItem_fsm_function_array
 00000000         *UND*	00000000 execute_if_not_null
-00000000 g     O .data	00000018 g_wbwl_menu_handler_function_array_extensions
+00000000 g     O .data	0000001c g_wbwl_menu_handler_function_array_extensions
 0000003c g     F .text	0000001c wbwl_get_next_state_from_menu_enter
-00000018 g     O .data	000000f0 g_wbwl_camera_setup_selector_array
+0000001c g     O .data	000000f8 g_wbwl_camera_setup_selector_array
 00000000         *UND*	00000000 get_next_state_from_menu_enter
 0000008c       O *COM*	00000004 g_ifm_ir_led_power_menu
 00000018       O *COM*	00000004 g_wbwl_timelapse_frequency_lookup_table
+00000054       O *COM*	00000004 g_tlps_file_type_menu
 0000016c       O *COM*	00000004 g_wbwl_timelapse_frequency_menu
 00000054       O *COM*	00000004 g_dlsr_led_enable_menu
 00000054       O *COM*	00000004 g_rtc_time_format_menu
@@ -33,6 +34,7 @@ SYMBOL TABLE:
 00000000         *UND*	00000000 rtc_handle_time_format_menu
 00000000         *UND*	00000000 dslr_handle_led_enable_menu
 00000000         *UND*	00000000 apt_handle_aperture_menu
+00000000         *UND*	00000000 tlps_handle_file_type_menu
 00000000         *UND*	00000000 g_set_date_time_menu
 00000000         *UND*	00000000 g_operation_mode_menu
 00000000         *UND*	00000000 g_photo_quality_menu
@@ -56,6 +58,6 @@ SYMBOL TABLE:
 00000000         *UND*	00000000 g_capture_timer_menu
 00000000         *UND*	00000000 g_firmware_upgrade_menu
 00000000         *UND*	00000000 g_apt_aperture_menu
-00000108 g     O .data	00000348 g_wbwl_camera_setup_menu_item_array
+00000114 g     O .data	00000364 g_wbwl_camera_setup_menu_item_array
 
 

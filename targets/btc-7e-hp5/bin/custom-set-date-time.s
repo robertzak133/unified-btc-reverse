@@ -407,14 +407,14 @@ $L46:
 	lw	$4,16($sp)
 
 $L37:
-	jal	set_cold_item_rtc_device_set_p
+	jal	set_cold_item_new_timelapse_file_p
 	li	$4,1			# 0x1
 
 	jal	set_cold_item_137_1
 	move	$4,$0
 
 	li	$2,1			# 0x1
-	sb	$2,4($17)
+	sb	$2,6($17)
 $L34:
 	lui	$5,%hi(g_menu_root)
 	li	$4,1			# 0x1

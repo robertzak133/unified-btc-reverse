@@ -19,14 +19,14 @@
 
 // Global Variables
 
-#if (defined BTC_8E_HP5) || (defined BTC_7E_HP5) 
+#if (defined BTC_8E_HP5) || (defined BTC_7E_HP5) || (defined BTC_7E_HP4) || (defined BTC_8E_HP4)
 // The HP5 have a more light sensitive sensor
   struct_night_mode_min_max g_apt_nightmode_threshold_lookup_table[3] = {
     {25, 40},   // Standard
     {12, 20 },  // Low Light
     { 0,  0 }   // No Light
   };
-#elif (defined BTC_8E_HP4) || (defined BTC_7E_HP4) ||(defined BTC_8E) || (defined BTC_7E) 
+#elif (defined BTC_8E) || (defined BTC_7E) 
   struct_night_mode_min_max g_apt_nightmode_threshold_lookup_table[3] = {
     {90, 190},  // Standard
     {45, 95 },  // Low Light

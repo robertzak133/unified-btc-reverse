@@ -20,14 +20,14 @@ _DEPS = WBWL.h BTC.h SST-strings.h battery-monitor.h white-flash.h custom-ribbon
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
 ##_SRC = entry.c
-_SRC = entry0.c entry1.c entry2.c entry3.c battery-monitor.c white-flash.c custom-ribbon.c custom-info-strip.c volume-file-naming.c dslr-trigger.c dslr.c no-dslr.c extend-event-SD-card.c rtc-formats.c menus.c timelapse.c utilities.c aperture.c aperture-menu.c ir-flash-menu.c ir-flash-menu-early.c custom-set-date-time.c reduce-sd-clock.c
+_SRC = entry0.c entry1.c entry2.c entry3.c entry4.c battery-monitor.c white-flash.c custom-ribbon.c custom-info-strip.c volume-file-naming.c dslr-trigger.c dslr.c no-dslr.c extend-event-SD-card.c rtc-formats.c menus.c timelapse.c utilities.c aperture.c aperture-menu.c ir-flash-menu.c ir-flash-menu-early.c custom-set-date-time.c reduce-sd-clock.c
 SRC = $(patsubst %,$(SRCDIR)/%,$(_SRC))
 
 _SYMBOLS = $(_SRC:.c=.symbols)
 SYMBOLS = $(SRC:.c=.symbols)
 
-_release_OBJ = entry0.o entry1.o entry2.o entry3.o custom-ribbon.o custom-info-strip.o volume-file-naming.o extend-event-SD-card.o rtc-formats.o dslr-trigger.o menus.o timelapse.o aperture.o aperture-menu.o ir-flash-menu.o ir-flash-menu-early.o custom-set-date-time.o reduce-sd-clock.o
-_test_OBJ = entry0.o entry1.o entry2.o entry3.o custom-ribbon.o custom-info-strip.o volume-file-naming.o extend-event-SD-card.o rtc-formats.o dslr-trigger.o menus.o timelapse.o aperture.o aperture-menu.o ir-flash-menu.o ir-flash-menu-early.o custom-set-date-time.o reduce-sd-clock.o
+_release_OBJ = entry0.o entry1.o entry2.o entry3.o entry4.o custom-ribbon.o custom-info-strip.o volume-file-naming.o extend-event-SD-card.o rtc-formats.o dslr-trigger.o menus.o timelapse.o aperture.o aperture-menu.o ir-flash-menu.o ir-flash-menu-early.o custom-set-date-time.o reduce-sd-clock.o
+_test_OBJ = entry0.o entry1.o entry2.o entry3.o entry4.o custom-ribbon.o custom-info-strip.o volume-file-naming.o extend-event-SD-card.o rtc-formats.o dslr-trigger.o menus.o timelapse.o aperture.o aperture-menu.o ir-flash-menu.o ir-flash-menu-early.o custom-set-date-time.o reduce-sd-clock.o
 
 
 # all the different binary bundles

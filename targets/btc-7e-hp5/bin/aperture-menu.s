@@ -123,7 +123,7 @@ $L9:
 	jal	apt_set_cold_item_aperture
 	lbu	$4,2($16)
 
-	sb	$18,4($16)
+	sb	$18,6($16)
 $L12:
 	lw	$31,28($sp)
 $L14:
@@ -188,7 +188,7 @@ $L11:
 	move	$17,$2
 	li	$2,255			# 0xff
 	beql	$17,$2,$L12
-	li	$17,32			# 0x20
+	li	$17,33			# 0x21
 
 	b	$L14
 	lw	$31,28($sp)
@@ -258,9 +258,9 @@ g_apt_aperture_menu:
 	.word	3
 	.word	3
 
-	.comm	g_wbwl_menu_handler_function_array_extensions,24,4
+	.comm	g_wbwl_menu_handler_function_array_extensions,28,4
 
-	.comm	g_wbwl_camera_setup_selector_array,248,4
+	.comm	g_wbwl_camera_setup_selector_array,256,4
 
-	.comm	g_wbwl_camera_setup_menu_item_array,868,4
+	.comm	g_wbwl_camera_setup_menu_item_array,896,4
 	.ident	"GCC: (Ubuntu 9.4.0-1ubuntu1) 9.4.0"
