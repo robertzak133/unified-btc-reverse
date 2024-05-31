@@ -20,27 +20,6 @@
 
 
 // Updated State Machine Table
-
-#if (defined BTC_7E) || (defined BTC_8E) || (defined BTC_7E_HP4) || (defined BTC_8E_HP4) 
-void (*g_wbwl_TaskTimeLapseFSM_function_array[16])() = {
-  TaskTimeLapseFSM_task0,                // 0
-  TaskTimeLapseFSM_task1,                // 1
-  TaskTimeLapseFSM_task2,                // 2
-  TaskTimeLapseFSM_task3_ae_set,         // 3
-  tlps_TaskTimeLapseFSM_task4,           // 4
-  TaskTimeLapseFSM_task5,                // 5
-  tlps_TaskTimeLapseFSM_task6,           // 6
-  tlps_TaskTimeLapseFSM_task7,           // 7
-  TaskTimeLapseFSM_task8_CopyJPGFromRAM, // 8
-  TaskTimeLapseFSM_task9,                // 9
-  TaskTimeLapseFSM_task10_WaitMountSD,   // 10
-  TaskTimeLapseFSM_task11_openTLfile,    // 11
-  TaskTimeLapseFSM_task12,               // 12
-  tlps_TaskTimeLapseFSM_task12a,         // 13
-  TaskTimeLapseFSM_task13,               // 14
-  TaskTimeLapseFSM_task14_end            // 15
-};
-#elif (defined BTC_7E_HP5) || (defined BTC_8E_HP5) 
 // Task 0: get snap buffer (a buffer to hold current JPG image?
 //     - snap buffer available: Goto Task1
 //     - snap buffer not available: Goto Task 14
@@ -82,6 +61,27 @@ void (*g_wbwl_TaskTimeLapseFSM_function_array[16])() = {
 //     - yes -- Goto 14
 // Task 14: End State
 // 
+
+#if (defined BTC_7E) || (defined BTC_8E) || (defined BTC_7E_HP4) || (defined BTC_8E_HP4) 
+void (*g_wbwl_TaskTimeLapseFSM_function_array[16])() = {
+  TaskTimeLapseFSM_task0,                // 0
+  TaskTimeLapseFSM_task1,                // 1
+  TaskTimeLapseFSM_task2,                // 2
+  TaskTimeLapseFSM_task3_ae_set,         // 3
+  tlps_TaskTimeLapseFSM_task4,           // 4
+  TaskTimeLapseFSM_task5,                // 5
+  tlps_TaskTimeLapseFSM_task6,           // 6
+  tlps_TaskTimeLapseFSM_task7,           // 7
+  TaskTimeLapseFSM_task8_CopyJPGFromRAM, // 8
+  TaskTimeLapseFSM_task9,                // 9
+  TaskTimeLapseFSM_task10_WaitMountSD,   // 10
+  TaskTimeLapseFSM_task11_openTLfile,    // 11
+  TaskTimeLapseFSM_task12,               // 12
+  tlps_TaskTimeLapseFSM_task12a,         // 13
+  TaskTimeLapseFSM_task13,               // 14
+  TaskTimeLapseFSM_task14_end            // 15
+};
+#elif (defined BTC_7E_HP5) || (defined BTC_8E_HP5) 
 void (*g_wbwl_TaskTimeLapseFSM_function_array[16])() = {
   TaskTimeLapseFSM_task0,                // 0
   TaskTimeLapseFSM_task1,                // 1
@@ -122,7 +122,6 @@ struct_hp5_menu_item g_wbwl_timelapse_frequency_menu[13] = {
 struct_hp5_menu_item g_tlps_file_type_menu[3] = {
   { no_icon, SST__DOT_TLS,             0x00, 0x01, 0x00, 0x1, 0x1},
   { no_icon, SST__DOT_JPG,             0x00, 0x01, 0x00, 0x1, 0x1},
-  // { no_icon, SST__DOT_MP4,             0x00, 0x01, 0x00, 0x1, 0x1},
   { no_icon, SST_TIMELAPSE_SP_FILE,    0x00, 0x00, 0x01, 0x03, 0x03}
 };
 

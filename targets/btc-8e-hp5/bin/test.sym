@@ -202,7 +202,6 @@ SYMBOL TABLE:
 8018b978 g     F entry3_section	00000008 cdt_get_min_hour
 8021e12c g     F entry4_section	00000020 tlps_HceIRCut_SetIRCutClosed
 8010d0f8 g       *ABS*	00000000 get_min_month
-800d7eb0 g     F entry1_section	00000038 rsc_initialize_sd_card_to_data
 803858f4 g       *ABS*	00000000 g_dcfapi_loaded_p
 80104f08 g       *ABS*	00000000 TaskTimeLapseFSM_task12
 803192cc g       *ABS*	00000000 g_photo_mode_p
@@ -314,7 +313,6 @@ SYMBOL TABLE:
 8010d0e4 g       *ABS*	00000000 get_max_year
 800fd524 g       *ABS*	00000000 fsm_getNextState
 8010d188 g       *ABS*	00000000 get_g_menu_temp_hour
-800d7ee8 g     F entry1_section	00000008 rsc_log_printf
 800fd4d4 g       *ABS*	00000000 fsm_getCurrentState
 8006d720 g     F entry0_section	0000002c ifm_power_on_IR_LED
 800e7b7c g       *ABS*	00000000 spawnIRCutFSM_per_mode

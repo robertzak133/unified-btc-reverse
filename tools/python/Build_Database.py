@@ -39,7 +39,7 @@ g_btc_7e_hp5_strings = g_btc_7e_strings
 
 g_btc_8e_hp5_strings = g_btc_7e_hp5_strings 
 
-g_btc_major_version = "240506P"
+g_btc_major_version = "240530P"
 
 g_wbwl_btc_targets = {}
 # PATRIOT-FHD

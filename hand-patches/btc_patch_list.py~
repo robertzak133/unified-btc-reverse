@@ -909,8 +909,8 @@ timelapse_patch_list['tlps_HceIRCut']['start_offset']['BTC-7E-HP4'] = 0x0126210
 timelapse_patch_list['tlps_HceIRCut']['start_offset']['BTC-8E-HP4'] = 0x0126748
 timelapse_patch_list['tlps_HceIRCut']['start_offset']['BTC-7E-HP5'] = 0x0104e40
 timelapse_patch_list['tlps_HceIRCut']['start_offset']['BTC-8E-HP5'] = 0x0104e8c
-timelapse_patch_list['tlps_HceIRCut']['change_from_ptr'] = 'HceIRCut_SetIRCutClosed'
-timelapse_patch_list['tlps_HceIRCut']['change_to_ptr']   = 'tlps_HceIRCut_SetIRCutClosed'
+timelapse_patch_list['tlps_HceIRCut']['change_from_jump'] = 'jal.HceIRCut_SetIRCutClosed'
+timelapse_patch_list['tlps_HceIRCut']['change_to_jump']   = 'jal.tlps_HceIRCut_SetIRCutClosed'
 
 # Debugging Missing Temperature
 # in Unknown_Function()
