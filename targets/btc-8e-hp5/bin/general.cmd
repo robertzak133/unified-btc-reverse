@@ -1,6 +1,6 @@
 /* Command File for Gcc Loader */
 /*    Created automatically by Ghidra.UnifiedCreateLdScript.java */
-/*    2024-04-08 04:55:45 */
+/*    2024-06-04 08:54:37 */
 
   /* Symbol Definitions */
    btc_strcpy = 0x80033558;
@@ -46,7 +46,6 @@
    fsm_getCurrentState = 0x800fd4d4;
    update_timelapse_rise_set_times = 0x800eac9c;
    g_smart_ir_video_menu = 0x80312ba8;
-   initialize_sd_card_to_data = 0x8026ddc0;
    HceIQ_CheckNightMode = 0x8005c51c;
    HceTask_ToNextNChar = 0x80111298;
    HceCommon_RestoreDefaultColdItem = 0x8005c850;
@@ -57,7 +56,6 @@
    spawnIRCutFSM_per_mode = 0x800e7b7c;
    vfsClose = 0x8003084c;
    g_operation_mode_menu = 0x80312128;
-   g_sd_card_descriptor = 0x8038cb28;
    g_video_length_menu = 0x80312224;
    get_battery_percent_from_voltage = 0x800eb0fc;
    g_firmware_upgrade_menu = 0x80312d84;
@@ -106,7 +104,6 @@
    get_max_year = 0x8010d0e4;
    function_with_syscall_zero = 0x80007f40;
    HceCommon_SetCaptureImag = 0x800e56b8;
-   g_timelapse_period_menu = 0x80312a3c;
    draw_video_scroll_bar = 0x801121e8;
    TaskTimeLapseFSM_task8_CopyJPGFromRAM = 0x801046f0;
    get_rtc_time_or_alarm = 0x80060bc8;
@@ -128,6 +125,7 @@
    TaskTimeLapseFSM_task11_openTLfile = 0x80103c28;
    get_cold_item_photo_resolution = 0x800e524c;
    set_g_cold_item_battery_type = 0x800e54d0;
+   get_cold_item_tod_last_photo_in_seconds = 0x8005bfe8;
    get_cold_item_temperature_unit_celsius_p = 0x800e5398;
    get_g_cold_item_led_power = 0x8005c80c;
    g_sensor_config_table_A = 0x802ca2bc;
@@ -165,13 +163,13 @@
    TaskTimeLapseFSM_task7 = 0x801047d4;
    menu_draw_selected_item = 0x8010cd60;
    TaskTimeLapseFSM_task6 = 0x8010495c;
+   get_next_wake_time = 0x800ea8cc;
    TaskTimeLapseFSM_task5 = 0x80104a60;
    TaskTimeLapseFSM_task4 = 0x80104fe4;
    g_temp_am_pm_p = 0x80319314;
    get_g_menu_temp_month = 0x8010d0ec;
    TaskTimeLapseFSM_task2 = 0x80105274;
    TaskTimeLapseFSM_task1 = 0x80104d80;
-   reduce_SD_clock = 0x8026be80;
    TaskTimeLapseFSM_task0 = 0x80104df0;
    Volt_Calib_Bat = 0x800ebb14;
    execute_if_not_null = 0x800e4e34;
@@ -223,7 +221,7 @@ MEMORY {
   entry1_ram(WXAI) : ORIGIN = 0x800d76f4, LENGTH = 0x1234
   entry2_ram(WXAI) : ORIGIN = 0x800dc9c4, LENGTH = 0x17b4
   entry3_ram(WXAI) : ORIGIN = 0x8018b01c, LENGTH = 0x1704
-  entry4_ram(WXAI) : ORIGIN = 0x8021dc18, LENGTH = 0xa6c
+  entry4_ram(WXAI) : ORIGIN = 0x80183324, LENGTH = 0xe44
 }
 /* Sections */
 SECTIONS {
@@ -250,10 +248,10 @@ SECTIONS {
                 entry3.o
                 menus.o
                 volume-file-naming.o
-                custom-set-date-time.o
-      } >entry3_ram
-       entry4_section 0x8021dc18 : {
-                entry4.o
                 timelapse.o
+      } >entry3_ram
+       entry4_section 0x80183324 : {
+                entry4.o
+                custom-set-date-time.o
       } >entry4_ram
 }

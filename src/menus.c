@@ -152,8 +152,8 @@ struct_menu_selections_descriptor g_wbwl_camera_setup_selector_array[WBWL_NUM_BT
     { g_battery_type_menu,           3 }, //0x0c
     { g_trigger_speed_menu,          3 }, //0x0d
     { g_restore_default_menu,        3 }, //0x0e
-    { g_wbwl_timelapse_frequency_menu,   13 }, //0x0f
-    { g_timelapse_period_menu,       6 }, //0x10
+    { g_wbwl_timelapse_frequency_menu,  13 }, //0x0f
+    { g_wbwl_timelapse_period_menu,      7 }, //0x10
     { g_delete_all_menu,             3 }, //0x11
     { g_ifm_ir_led_power_menu,       4 }, //0x12
     { g_smart_ir_video_menu,         3 }, //0x13
@@ -191,7 +191,7 @@ struct_menu_selections_descriptor g_wbwl_camera_setup_selector_array[WBWL_NUM_BT
     { g_trigger_speed_menu,          3 }, //0x0d
     { g_restore_default_menu,        3 }, //0x0e
     { g_wbwl_timelapse_frequency_menu,   13 }, //0x0f
-    { g_timelapse_period_menu,       6 }, //0x10
+    { g_wbwl_timelapse_period_menu,       7 }, //0x10
     { g_delete_all_menu,             3 }, //0x11
     { g_ifm_ir_led_power_menu,       5 }, //0x12
     { g_smart_ir_video_menu,         3 }, //0x13
@@ -231,7 +231,7 @@ struct_menu_selections_descriptor g_wbwl_camera_setup_selector_array[WBWL_NUM_BT
     { g_trigger_speed_menu,          3 }, //0x0e
     { g_restore_default_menu,        3 }, //0x0f
     { g_wbwl_timelapse_frequency_menu,   13 }, //0x10
-    { g_timelapse_period_menu,       6 }, //0x11
+    { g_wbwl_timelapse_period_menu,       7 }, //0x11
     { g_delete_all_menu,             3 }, //0x12
     { g_ifm_ir_led_power_menu,       5 }, //0x13
     { g_smart_ir_video_menu,         3 }, //0x14

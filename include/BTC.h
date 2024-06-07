@@ -20,7 +20,8 @@ typedef enum enum_tod_in_timelapse {
   daylight_post_sunrise_region = 0,
   daylight_no_photo_region,
   daylight_pre_sunset_region,
-  night_no_photo_region
+  night_no_photo_region,
+//  night_photo_region
 } enum_tod_in_timelapse;
 
 typedef enum enum_timelapse_period_encoding {
@@ -28,7 +29,8 @@ typedef enum enum_timelapse_period_encoding {
   one_hour,
   two_hours,
   three_hours,
-  four_hours
+  four_hours,
+  all_day_night
 } enum_timelapse_period_encoding;
 
 typedef enum enum_pir_range_options {
@@ -1689,6 +1691,8 @@ extern bool          initSmartIRQueueThread(void);
 
 extern void          PV_RAW_ImageWrite(int param_1,char *param_2);
 extern uint          get_next_state_from_menu_enter(uint param_1,struct_hp5_menu_item *param_2 ,uint param_3, struct_menu_root **param_4);
+extern int           get_next_wake_time(struct_short_RTCTime *short_rtc_time, enum_tod_in_timelapse timelapse_region);
+
 
 extern int           local_sprintf(char*, char*, ...);
 extern void          log_printf(uint, char *, ...);

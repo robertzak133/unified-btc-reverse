@@ -167,7 +167,7 @@ struct_menu_selections_descriptor g_wbwl_camera_setup_selector_array[WBWL_NUM_BT
     { g_rtc_time_format_menu,        3 }, //0x1a
     { g_dlsr_led_enable_menu,        3 }, //0x1b
     { g_apt_aperture_menu,           4 }, //0x1c
-    { g_tlps_file_type_menu,         4 }, //0x1d
+    { g_tlps_file_type_menu,         3 }, //0x1d
     // Null Terminator
     { 0,                             0 }  //0x1e
   };
@@ -205,7 +205,7 @@ struct_menu_selections_descriptor g_wbwl_camera_setup_selector_array[WBWL_NUM_BT
     { g_rtc_time_format_menu,        3 }, //0x1a
     { g_dlsr_led_enable_menu,        3 }, //0x1b
     { g_apt_aperture_menu,           4 }, //0x1c
-    { g_tlps_file_type_menu,         4 }, //0x1d
+    { g_tlps_file_type_menu,         3 }, //0x1d
     // Null Terminator
     { 0,                             0 }  //0x1e
   };
@@ -245,7 +245,7 @@ struct_menu_selections_descriptor g_wbwl_camera_setup_selector_array[WBWL_NUM_BT
     { g_rtc_time_format_menu,        3 }, //0x1a
     { g_dlsr_led_enable_menu,        3 }, //0x1b
     { g_apt_aperture_menu,           4 }, //0x1c
-    { g_tlps_file_type_menu,         4 }, //0x1d
+    { g_tlps_file_type_menu,         3 }, //0x1d
    // Null Terminator
     { 0,                             0 }  //0x1e
   };

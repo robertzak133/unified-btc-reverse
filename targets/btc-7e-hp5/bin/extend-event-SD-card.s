@@ -361,4 +361,6 @@ g_evsd_extended_sd_power_menu:
 	.comm	g_wbwl_camera_setup_selector_array,256,4
 
 	.comm	g_wbwl_camera_setup_menu_item_array,896,4
+
+	.comm	g_wbwl_timelapse_period_menu,196,4
 	.ident	"GCC: (Ubuntu 9.4.0-1ubuntu1) 9.4.0"

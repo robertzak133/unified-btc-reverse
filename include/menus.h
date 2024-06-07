@@ -6,6 +6,8 @@
 
 // Globals
 
+struct_hp5_menu_item g_wbwl_timelapse_period_menu[7];
+
 struct_hp5_menu_item g_wbwl_camera_setup_menu_item_array[WBWL_NUM_BTC_SETUP_MENU_FUNCTIONS + 
 							 WBWL_NUM_WBWL_SETUP_MENU_FUNCTIONS];
 

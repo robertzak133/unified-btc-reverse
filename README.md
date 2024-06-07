@@ -2,7 +2,10 @@
 
 This repository contains tools, source file, hand patches, and documentation for the (nearly) complete flow for adding new features, written in C, to Browning Trail Cameras via semi-automatically generated firmware update files.  Supported cameras are BTC{7,8}E{, HP4, HP5}.  That is, Browning Recon Force and Spec Ops line of cameras, models Edge, Elite HP4, and Elite HP5. 
 
-## Most Recent Release
+## Most Recent Releases
+
+2024-06-05: Added "All Day/Night" option to Timelapse Period menu.  See description below
+
 2024-05-31: New (hopefully more complete) fix to "corrupt SD card" bug.  My previous understanding of the problem was correct -- these cameras don't operate reliably above 25 MHz SD Clock speed.  However, my initial fix was incomplete, allowing high speed SD cards to operate above 25 MHz along some code paths.  I believe I have covered these all now.  Please file an issue if you encounter SD card corruption issue on this version of firmware or later.
 
 ## Feature Description
@@ -14,12 +17,12 @@ and
 If you are here for RELEASE'd firmware images themselves, you can find them below:
 | Camera Model | Factory Baseline  | Current WBWL | Version  | Build Date |
 |--------------|-------------------|--------------|----------|------------|
-| BTC-7E | [brnbtc70.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-7e/factory-firmware-images/BTC7E_2021_10_07/brnbtc70.BRN) | [brnbtc70.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-7e/created-burn-images/RELEASE/brnbtc70.BRN) | WWL7E_240530P | 2024-05-31 |
-| BTC-8E | [brnbtc80.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-8e/factory-firmware-images/BTC8E_2021_10_07/brnbtc80.BRN) | [brnbtc80.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-8e/created-burn-images/RELEASE/brnbtc80.BRN) | WWL8E_240530P | 2024-05-31 |
-| BTC-7E-HP4 | [brnbtc71.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-7e-hp4/factory-firmware-images/2023-02-01-ns/brnbtc71.BRN) | [brnbtc71.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-7e-hp4/created-burn-images/RELEASE/brnbtc71.BRN) | WWL7EH4_240530P | 2024-05-31 |
-| BTC-8E-HP4 | [brnbtc81.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-8e-hp4/factory-firmware-images/2023-02-01-ns/brnbtc81.BRN) | [brnbtc81.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-8e-hp4/created-burn-images/RELEASE/brnbtc81.BRN) | WWL8EH4_240530P | 2024-05-31 |
-| BTC-7E-HP5 | [brnbtc72.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-7e-hp5/factory-firmware-images/BTC7EH5_L10200F/brnbtc72.BRN) | [brnbtc72.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-7e-hp5/created-burn-images/RELEASE/brnbtc72.BRN) | WWL7EH5_240530P | 2024-05-31 |
-| BTC-8E-HP5 | [brnbtc82.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-8e-hp5/factory-firmware-images/BTC8EH5_L10200F/brnbtc82.BRN) | [brnbtc82.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-8e-hp5/created-burn-images/RELEASE/brnbtc82.BRN) | WWL8EH5_240530P | 2024-05-31 |
+| BTC-7E | [brnbtc70.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-7e/factory-firmware-images/BTC7E_2021_10_07/brnbtc70.BRN) | [brnbtc70.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-7e/created-burn-images/RELEASE/brnbtc70.BRN) | WWL7E_240605P | 2024-06-07 |
+| BTC-8E | [brnbtc80.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-8e/factory-firmware-images/BTC8E_2021_10_07/brnbtc80.BRN) | [brnbtc80.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-8e/created-burn-images/RELEASE/brnbtc80.BRN) | WWL8E_240605P | 2024-06-07 |
+| BTC-7E-HP4 | [brnbtc71.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-7e-hp4/factory-firmware-images/2023-02-01-ns/brnbtc71.BRN) | [brnbtc71.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-7e-hp4/created-burn-images/RELEASE/brnbtc71.BRN) | WWL7EH4_240605P | 2024-06-07 |
+| BTC-8E-HP4 | [brnbtc81.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-8e-hp4/factory-firmware-images/2023-02-01-ns/brnbtc81.BRN) | [brnbtc81.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-8e-hp4/created-burn-images/RELEASE/brnbtc81.BRN) | WWL8EH4_240605P | 2024-06-07 |
+| BTC-7E-HP5 | [brnbtc72.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-7e-hp5/factory-firmware-images/BTC7EH5_L10200F/brnbtc72.BRN) | [brnbtc72.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-7e-hp5/created-burn-images/RELEASE/brnbtc72.BRN) | WWL7EH5_240605P | 2024-06-07 |
+| BTC-8E-HP5 | [brnbtc82.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-8e-hp5/factory-firmware-images/BTC8EH5_L10200F/brnbtc82.BRN) | [brnbtc82.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-8e-hp5/created-burn-images/RELEASE/brnbtc82.BRN) | WWL8EH5_240605P | 2024-06-07 |
 
 ## Download Instructions
 - Find the copy of brnbtc7x.BRN (Recon Force) or brnbtc8x.BRN (Spec Ops) file for your camera above
@@ -53,15 +56,19 @@ If, for any reason, you want to get back to the factory firmware, choose the "Fa
  * Night Video Limit: The default manufacturer firmware limits night time (flash illuminated) videos to 20 Seconds.  This option removes that limit, allowing illuminated videos of the same duration as daylight videos.
  * Custom Info Strip: Adds "seconds" to the time of day; adds battery percent; compresses the size of the browning logo so it doesn't extend up into the main screen space.  Note there is a bug for this firmware in some Edge (BTC-8E) cameras which breaks the temperature and pressure reading including in the info strip.  
  * Custom Volume/Directory/Filenames: Normally, this camera renames the SD card "volume"  to "BROWNING", in folders in DCIM called xxxBTCF, in files called IMG_xxxx.  With this modification, these labels are all taken from the camera name, as set by the user.  Note that only the first 5 and 4 characters are used for the folder and file suffix/prefix respectively.  Thus, for camera name, "MYCAMERA", the SD card will be labeled "MYCAMERA" and files can be found in DCIM/100MYCAME/MYCA0001.JPG.  Any "space" in the first 5 characters is replaced by an "underscore".
- * More Frequent Timelapse Options: I added (every) "1" and "2" second options to the Timelapse Frequency Menu.  
  * DSLR Trigger: Causes the "aim led" to turn on whenever a photo or video is taken.  This LED can be used to trigger a DSLR camera, while also allowing the trail camera to take photos or video.
  * Extended SD Power: Causes the CPU and SD card to remain powered on for 30 seconds after each photo or video.  This to allow shared SD card to be read by another device.  Note that during this time, the camera will not trigger.
  * Time and Date Format Options: Added options for time format -- 12H/24H; and date formats MM/DD/YYYY; DD/MM/YYYY; YYYYMMDD
  * IR Flash Power: Added an "Off" option to IR Flash power.  When in "Off", the IR Flash is not used, even for night photos.  Intended for use in sets with another source of IR illumination. 
  * Night Threshold: Lowers the amount of light required to take a color image.  Defaults to "Standard".  In "No light" setting, the camera will take color photos even in darkness.  Useful with external illumination. 
- * Timelapse Format: A new menu item selects whether to store images taken in Timelapse+ mode as .TLS files (factory default), or as a series of .JPG files (new feature).  Feature designed to support data processing of Timelapse images as single JPGs (e.g. an AI-based tool flow which starts with JPG images).  
+ * Timelapse+ Mode Enhancements:
+ ** More Frequent Timelapse Options: I added (every) "1" and "2" second options to the Timelapse Frequency Menu.  
+ ** Timelapse Format: A new menu selects whether to store images taken in Timelapse+ mode as .TLS files (factory default), or as a series of .JPG files (new feature).  Feature designed to support data processing of Timelapse images as single JPGs (e.g. an AI-based tool flow which starts with JPG images).  
+ ** All Day/Night Timelapse Period:  The factory firmware does it's best to limit timelapse photos to daytime only.  The factory "timelapse period" menu allows you to restrict daytime photos to 1,2,3, or 4 hours after sunrise and before sunset; or to take photos "all day".  For some applications, it is desirable to take 24 hour timelapse footage.  Thus, I have added an "all day/night" menu entry to the timelapse period menu.  In this mode (see "Timelapse Format" feature, above):
+ ***  if the camera is configured to take .TLS files, it will take only color (no flash) timelapse photos at night.  This could be useful, for example, to capture a timelapse of an aurora-borealis. 
+ ***  if the camera is configured to take .JPG files, it will take color photos during the day, but use the flash at night.  This could be useful, for example, to capture the growth of a plants deep in the Everglades, day and night. Please don't ask me to decouple these -- it's much harder than it sounds. 
  * Fix to SD Corruption Issue: fixes a bug in factory firmware in which SD cards are sometimes corrupted.  This fix allows higher speed (and higer capacity) SD cards to work reliably in Edge, HP4, and HP5 models. 
- 
+
 ## Build environment and Source Code
 
 This repository contains tools and source code for building firmware images.  

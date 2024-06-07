@@ -6,238 +6,6 @@
 	.module	nooddspreg
 	.text
 	.align	2
-	.globl	tlps_TaskTimeLapseFSM_task4
-	.set	nomips16
-	.set	nomicromips
-	.ent	tlps_TaskTimeLapseFSM_task4
-	.type	tlps_TaskTimeLapseFSM_task4, @function
-tlps_TaskTimeLapseFSM_task4:
-	.frame	$sp,88,$31		# vars= 32, regs= 10/0, args= 16, gp= 0
-	.mask	0xc0ff0000,-4
-	.fmask	0x00000000,0
-	.set	noreorder
-	.set	nomacro
-	addiu	$sp,$sp,-88
-	sw	$31,84($sp)
-	sw	$fp,80($sp)
-	sw	$22,72($sp)
-	sw	$21,68($sp)
-	sw	$23,76($sp)
-	sw	$20,64($sp)
-	sw	$19,60($sp)
-	sw	$18,56($sp)
-	sw	$17,52($sp)
-	jal	getCameraConfigStructPtr
-	sw	$16,48($sp)
-
-	addiu	$4,$sp,16
-	jal	get_current_date_time_short
-	lbu	$22,39($2)
-
-	jal	get_tod_in_timelapse_region
-	addiu	$4,$sp,16
-
-	addiu	$5,$sp,32
-	addiu	$4,$sp,28
-	jal	update_timelapse_sunrise
-	move	$fp,$2
-
-	addiu	$5,$sp,40
-	jal	update_timelapse_sunset
-	addiu	$4,$sp,36
-
-	lw	$2,28($sp)
-	li	$3,65536			# 0x10000
-	sll	$21,$2,4
-	subu	$21,$21,$2
-	sll	$21,$21,2
-	addiu	$2,$3,20865
-	sltu	$2,$21,$2
-	beql	$2,$0,$L2
-	addiu	$21,$3,20863
-
-$L2:
-	lw	$2,32($sp)
-	li	$3,65536			# 0x10000
-	sll	$19,$2,4
-	subu	$19,$19,$2
-	sll	$19,$19,2
-	addiu	$2,$3,20865
-	sltu	$2,$19,$2
-	beql	$2,$0,$L3
-	addiu	$19,$3,20863
-
-$L3:
-	lw	$16,36($sp)
-	li	$3,65536			# 0x10000
-	addiu	$2,$3,20865
-	sll	$20,$16,4
-	subu	$20,$20,$16
-	sll	$20,$20,2
-	sltu	$2,$20,$2
-	beql	$2,$0,$L4
-	addiu	$20,$3,20863
-
-$L4:
-	lw	$2,40($sp)
-	li	$3,65536			# 0x10000
-	sll	$18,$2,4
-	subu	$18,$18,$2
-	sll	$18,$18,2
-	addiu	$2,$3,20865
-	sltu	$2,$18,$2
-	beql	$2,$0,$L5
-	addiu	$18,$3,20863
-
-$L5:
-	lhu	$2,24($sp)
-	li	$3,3600			# 0xe10
-	sll	$16,$2,4
-	subu	$16,$16,$2
-	lhu	$2,22($sp)
-	sll	$16,$16,2
-	mult	$2,$3
-	mflo	$2
-	li	$3,65536			# 0x10000
-	addu	$16,$16,$2
-	lhu	$2,26($sp)
-	addu	$16,$16,$2
-	addiu	$2,$3,20865
-	sltu	$2,$16,$2
-	beql	$2,$0,$L6
-	addiu	$16,$3,20863
-
-$L6:
-	jal	get_cold_item_timelapse_frequency
-	nop
-
-	jal	encoded_timelapse_frequency_to_seconds
-	move	$4,$2
-
-	jal	get_cold_item_tod_last_photo_in_seconds
-	move	$17,$2
-
-	move	$23,$2
-	sltu	$2,$16,$17
-	beq	$2,$0,$L28
-	li	$2,1			# 0x1
-
-	li	$2,65536			# 0x10000
-	addiu	$2,$2,20864
-	addu	$16,$16,$2
-	li	$2,1			# 0x1
-$L28:
-	bne	$22,$2,$L8
-	nop
-
-	addu	$2,$17,$23
-	sltu	$3,$2,$16
-	bne	$3,$0,$L29
-	addiu	$17,$2,-2
-
-	subu	$3,$2,$16
-	sltu	$3,$3,11
-	beq	$3,$0,$L10
-	nop
-
-$L29:
-	sltu	$16,$16,$17
-$L11:
-	beq	$16,$0,$L10
-	nop
-
-	b	$L18
-	nop
-
-$L8:
-	bne	$fp,$2,$L12
-	li	$2,-3			# 0xfffffffffffffffd
-
-	jal	get_cold_item_timelapse_period
-	nop
-
-	beq	$2,$0,$L30
-	addu	$3,$17,$23
-
-	sltu	$2,$16,$19
-	bne	$2,$0,$L15
-	subu	$2,$20,$16
-
-	subu	$19,$16,$19
-	sltu	$19,$19,121
-	bne	$19,$0,$L10
-	nop
-
-$L15:
-	sltu	$16,$20,$16
-	beq	$16,$0,$L16
-	sltu	$2,$2,3
-
-$L18:
-	jal	set_fsm_state_absolute
-	li	$4,12			# 0xc
-
-	lw	$31,84($sp)
-$L27:
-	lw	$fp,80($sp)
-	lw	$23,76($sp)
-	lw	$22,72($sp)
-	lw	$21,68($sp)
-	lw	$20,64($sp)
-	lw	$19,60($sp)
-	lw	$18,56($sp)
-	lw	$17,52($sp)
-	lw	$16,48($sp)
-	jr	$31
-	addiu	$sp,$sp,88
-
-$L16:
-	beq	$2,$0,$L18
-	nop
-
-$L10:
-	jal	set_fsm_state_relative
-	li	$4,1			# 0x1
-
-	b	$L27
-	lw	$31,84($sp)
-
-$L12:
-	and	$2,$fp,$2
-	beq	$2,$0,$L13
-	addu	$3,$17,$23
-
-	li	$2,3			# 0x3
-	bne	$fp,$2,$L18
-	sltu	$2,$16,$18
-
-	bne	$2,$0,$L31
-	subu	$2,$21,$16
-
-	subu	$18,$16,$18
-	sltu	$18,$18,121
-	bne	$18,$0,$L10
-	nop
-
-$L31:
-	b	$L15
-	move	$20,$21
-
-$L13:
-$L30:
-	addiu	$3,$3,-1
-	sltu	$3,$16,$3
-	beq	$3,$0,$L10
-	sltu	$16,$23,$16
-
-	b	$L11
-	nop
-
-	.set	macro
-	.set	reorder
-	.end	tlps_TaskTimeLapseFSM_task4
-	.size	tlps_TaskTimeLapseFSM_task4, .-tlps_TaskTimeLapseFSM_task4
-	.align	2
 	.globl	tlps_TaskTimeLapseFSM_task6
 	.set	nomips16
 	.set	nomicromips
@@ -253,19 +21,19 @@ tlps_TaskTimeLapseFSM_task6:
 	lbu	$2,%lo(g_ColdItemData+51)($2)
 	addiu	$sp,$sp,-64
 	sw	$31,60($sp)
-	bne	$2,$0,$L33
+	bne	$2,$0,$L2
 	sw	$16,56($sp)
 
 	jal	TaskTimeLapseFSM_task6
 	nop
 
 	lw	$31,60($sp)
-$L36:
+$L5:
 	lw	$16,56($sp)
 	jr	$31
 	addiu	$sp,$sp,64
 
-$L33:
+$L2:
 	jal	get_photo_size_factor
 	move	$4,$0
 
@@ -296,7 +64,7 @@ $L33:
 	jal	set_fsm_state_relative
 	li	$4,1			# 0x1
 
-	b	$L36
+	b	$L5
 	lw	$31,60($sp)
 
 	.set	macro
@@ -317,26 +85,26 @@ tlps_TaskTimeLapseFSM_task7:
 	.set	nomacro
 	lui	$2,%hi(g_ColdItemData+51)
 	lbu	$2,%lo(g_ColdItemData+51)($2)
-	bne	$2,$0,$L38
+	bne	$2,$0,$L7
 	nop
 
 	j	TaskTimeLapseFSM_task7
 	nop
 
-$L38:
+$L7:
 	addiu	$sp,$sp,-24
 	sw	$31,20($sp)
 	jal	HceTaskStillFSM_valid_p
 	nop
 
-	bne	$2,$0,$L37
+	bne	$2,$0,$L6
 	lw	$31,20($sp)
 
 	li	$4,13			# 0xd
 	j	set_fsm_state_absolute
 	addiu	$sp,$sp,24
 
-$L37:
+$L6:
 	jr	$31
 	addiu	$sp,$sp,24
 
@@ -344,6 +112,405 @@ $L37:
 	.set	reorder
 	.end	tlps_TaskTimeLapseFSM_task7
 	.size	tlps_TaskTimeLapseFSM_task7, .-tlps_TaskTimeLapseFSM_task7
+	.align	2
+	.globl	tlps_get_cold_item_raw_timelapse_period
+	.set	nomips16
+	.set	nomicromips
+	.ent	tlps_get_cold_item_raw_timelapse_period
+	.type	tlps_get_cold_item_raw_timelapse_period, @function
+tlps_get_cold_item_raw_timelapse_period:
+	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
+	.mask	0x00000000,0
+	.fmask	0x00000000,0
+	.set	noreorder
+	.set	nomacro
+	lui	$2,%hi(g_ColdItemData+144)
+	jr	$31
+	lw	$2,%lo(g_ColdItemData+144)($2)
+
+	.set	macro
+	.set	reorder
+	.end	tlps_get_cold_item_raw_timelapse_period
+	.size	tlps_get_cold_item_raw_timelapse_period, .-tlps_get_cold_item_raw_timelapse_period
+	.align	2
+	.globl	tlps_get_cold_item_cooked_timelapse_period
+	.set	nomips16
+	.set	nomicromips
+	.ent	tlps_get_cold_item_cooked_timelapse_period
+	.type	tlps_get_cold_item_cooked_timelapse_period, @function
+tlps_get_cold_item_cooked_timelapse_period:
+	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
+	.mask	0x00000000,0
+	.fmask	0x00000000,0
+	.set	noreorder
+	.set	nomacro
+	lui	$2,%hi(g_ColdItemData+144)
+	lw	$2,%lo(g_ColdItemData+144)($2)
+	li	$3,5			# 0x5
+	beql	$2,$3,$L14
+	move	$2,$0
+
+$L14:
+	jr	$31
+	nop
+
+	.set	macro
+	.set	reorder
+	.end	tlps_get_cold_item_cooked_timelapse_period
+	.size	tlps_get_cold_item_cooked_timelapse_period, .-tlps_get_cold_item_cooked_timelapse_period
+	.section	.rodata.str1.4,"aMS",@progbits,1
+	.align	2
+$LC0:
+	.ascii	"tlps_get_tod_in_timelapse_region: at %02d:%02d:%02d retu"
+	.ascii	"rning: %d\012\000"
+	.text
+	.align	2
+	.globl	tlps_get_tod_in_timelapse_region
+	.set	nomips16
+	.set	nomicromips
+	.ent	tlps_get_tod_in_timelapse_region
+	.type	tlps_get_tod_in_timelapse_region, @function
+tlps_get_tod_in_timelapse_region:
+	.frame	$sp,40,$31		# vars= 0, regs= 3/0, args= 24, gp= 0
+	.mask	0x80030000,-4
+	.fmask	0x00000000,0
+	.set	noreorder
+	.set	nomacro
+	lui	$2,%hi(g_ColdItemData+144)
+	lw	$3,%lo(g_ColdItemData+144)($2)
+	addiu	$sp,$sp,-40
+	li	$2,5			# 0x5
+	sw	$17,32($sp)
+	sw	$16,28($sp)
+	sw	$31,36($sp)
+	move	$17,$4
+	beq	$3,$2,$L16
+	li	$16,1			# 0x1
+
+	jal	get_tod_in_timelapse_region
+	nop
+
+	move	$16,$2
+$L16:
+	jal	set_pre_printf_state
+	nop
+
+	lh	$7,10($17)
+	lh	$6,8($17)
+	lh	$5,6($17)
+	lui	$4,%hi($LC0)
+	sw	$16,16($sp)
+	jal	tty_printf
+	addiu	$4,$4,%lo($LC0)
+
+	jal	check_post_printf_state_set_sio_params
+	nop
+
+	lw	$31,36($sp)
+	lw	$17,32($sp)
+	move	$2,$16
+	lw	$16,28($sp)
+	jr	$31
+	addiu	$sp,$sp,40
+
+	.set	macro
+	.set	reorder
+	.end	tlps_get_tod_in_timelapse_region
+	.size	tlps_get_tod_in_timelapse_region, .-tlps_get_tod_in_timelapse_region
+	.align	2
+	.globl	tlps_TaskTimeLapseFSM_task4
+	.set	nomips16
+	.set	nomicromips
+	.ent	tlps_TaskTimeLapseFSM_task4
+	.type	tlps_TaskTimeLapseFSM_task4, @function
+tlps_TaskTimeLapseFSM_task4:
+	.frame	$sp,88,$31		# vars= 32, regs= 10/0, args= 16, gp= 0
+	.mask	0xc0ff0000,-4
+	.fmask	0x00000000,0
+	.set	noreorder
+	.set	nomacro
+	addiu	$sp,$sp,-88
+	sw	$31,84($sp)
+	sw	$fp,80($sp)
+	sw	$22,72($sp)
+	sw	$21,68($sp)
+	sw	$23,76($sp)
+	sw	$20,64($sp)
+	sw	$19,60($sp)
+	sw	$18,56($sp)
+	sw	$17,52($sp)
+	jal	getCameraConfigStructPtr
+	sw	$16,48($sp)
+
+	addiu	$4,$sp,16
+	jal	get_current_date_time_short
+	lbu	$22,39($2)
+
+	jal	tlps_get_tod_in_timelapse_region
+	addiu	$4,$sp,16
+
+	addiu	$5,$sp,32
+	addiu	$4,$sp,28
+	jal	update_timelapse_sunrise
+	move	$fp,$2
+
+	addiu	$5,$sp,40
+	jal	update_timelapse_sunset
+	addiu	$4,$sp,36
+
+	lw	$2,28($sp)
+	li	$3,65536			# 0x10000
+	sll	$21,$2,4
+	subu	$21,$21,$2
+	sll	$21,$21,2
+	addiu	$2,$3,20865
+	sltu	$2,$21,$2
+	beql	$2,$0,$L21
+	addiu	$21,$3,20863
+
+$L21:
+	lw	$2,32($sp)
+	li	$3,65536			# 0x10000
+	sll	$19,$2,4
+	subu	$19,$19,$2
+	sll	$19,$19,2
+	addiu	$2,$3,20865
+	sltu	$2,$19,$2
+	beql	$2,$0,$L22
+	addiu	$19,$3,20863
+
+$L22:
+	lw	$16,36($sp)
+	li	$3,65536			# 0x10000
+	addiu	$2,$3,20865
+	sll	$20,$16,4
+	subu	$20,$20,$16
+	sll	$20,$20,2
+	sltu	$2,$20,$2
+	beql	$2,$0,$L23
+	addiu	$20,$3,20863
+
+$L23:
+	lw	$2,40($sp)
+	li	$3,65536			# 0x10000
+	sll	$18,$2,4
+	subu	$18,$18,$2
+	sll	$18,$18,2
+	addiu	$2,$3,20865
+	sltu	$2,$18,$2
+	beql	$2,$0,$L24
+	addiu	$18,$3,20863
+
+$L24:
+	lhu	$2,24($sp)
+	li	$3,3600			# 0xe10
+	sll	$16,$2,4
+	subu	$16,$16,$2
+	lhu	$2,22($sp)
+	sll	$16,$16,2
+	mult	$2,$3
+	mflo	$2
+	li	$3,65536			# 0x10000
+	addu	$16,$16,$2
+	lhu	$2,26($sp)
+	addu	$16,$16,$2
+	addiu	$2,$3,20865
+	sltu	$2,$16,$2
+	beql	$2,$0,$L25
+	addiu	$16,$3,20863
+
+$L25:
+	jal	get_cold_item_timelapse_frequency
+	nop
+
+	jal	encoded_timelapse_frequency_to_seconds
+	move	$4,$2
+
+	jal	get_cold_item_tod_last_photo_in_seconds
+	move	$17,$2
+
+	move	$23,$2
+	sltu	$2,$16,$17
+	beq	$2,$0,$L47
+	li	$2,1			# 0x1
+
+	li	$2,65536			# 0x10000
+	addiu	$2,$2,20864
+	addu	$16,$16,$2
+	li	$2,1			# 0x1
+$L47:
+	bne	$22,$2,$L27
+	nop
+
+	addu	$2,$17,$23
+	sltu	$3,$2,$16
+	bne	$3,$0,$L48
+	addiu	$17,$2,-2
+
+	subu	$3,$2,$16
+	sltu	$3,$3,11
+	beq	$3,$0,$L29
+	nop
+
+$L48:
+	sltu	$16,$16,$17
+$L30:
+	beq	$16,$0,$L29
+	nop
+
+	b	$L37
+	nop
+
+$L27:
+	bne	$fp,$2,$L31
+	li	$2,-3			# 0xfffffffffffffffd
+
+	jal	get_cold_item_timelapse_period
+	nop
+
+	beq	$2,$0,$L49
+	addu	$3,$17,$23
+
+	sltu	$2,$16,$19
+	bne	$2,$0,$L34
+	subu	$2,$20,$16
+
+	subu	$19,$16,$19
+	sltu	$19,$19,121
+	bne	$19,$0,$L29
+	nop
+
+$L34:
+	sltu	$16,$20,$16
+	beq	$16,$0,$L35
+	sltu	$2,$2,3
+
+$L37:
+	jal	set_fsm_state_absolute
+	li	$4,12			# 0xc
+
+	lw	$31,84($sp)
+$L46:
+	lw	$fp,80($sp)
+	lw	$23,76($sp)
+	lw	$22,72($sp)
+	lw	$21,68($sp)
+	lw	$20,64($sp)
+	lw	$19,60($sp)
+	lw	$18,56($sp)
+	lw	$17,52($sp)
+	lw	$16,48($sp)
+	jr	$31
+	addiu	$sp,$sp,88
+
+$L35:
+	beq	$2,$0,$L37
+	nop
+
+$L29:
+	jal	set_fsm_state_relative
+	li	$4,1			# 0x1
+
+	b	$L46
+	lw	$31,84($sp)
+
+$L31:
+	and	$2,$fp,$2
+	beq	$2,$0,$L32
+	addu	$3,$17,$23
+
+	li	$2,3			# 0x3
+	bne	$fp,$2,$L37
+	sltu	$2,$16,$18
+
+	bne	$2,$0,$L50
+	subu	$2,$21,$16
+
+	subu	$18,$16,$18
+	sltu	$18,$18,121
+	bne	$18,$0,$L29
+	nop
+
+$L50:
+	b	$L34
+	move	$20,$21
+
+$L32:
+$L49:
+	addiu	$3,$3,-1
+	sltu	$3,$16,$3
+	beq	$3,$0,$L29
+	sltu	$16,$23,$16
+
+	b	$L30
+	nop
+
+	.set	macro
+	.set	reorder
+	.end	tlps_TaskTimeLapseFSM_task4
+	.size	tlps_TaskTimeLapseFSM_task4, .-tlps_TaskTimeLapseFSM_task4
+	.section	.rodata.str1.4
+	.align	2
+$LC1:
+	.ascii	"tlps_get_next_wake_time: at %02d:%02d:%02d in region %d;"
+	.ascii	" tod_last_photo: %d; returning: %d\012\000"
+	.text
+	.align	2
+	.globl	tlps_get_next_wake_time
+	.set	nomips16
+	.set	nomicromips
+	.ent	tlps_get_next_wake_time
+	.type	tlps_get_next_wake_time, @function
+tlps_get_next_wake_time:
+	.frame	$sp,56,$31		# vars= 0, regs= 5/0, args= 32, gp= 0
+	.mask	0x800f0000,-4
+	.fmask	0x00000000,0
+	.set	noreorder
+	.set	nomacro
+	addiu	$sp,$sp,-56
+	sw	$18,44($sp)
+	sw	$16,36($sp)
+	move	$18,$5
+	move	$16,$4
+	sw	$31,52($sp)
+	sw	$19,48($sp)
+	jal	get_cold_item_tod_last_photo_in_seconds
+	sw	$17,40($sp)
+
+	move	$5,$18
+	move	$4,$16
+	jal	get_next_wake_time
+	move	$19,$2
+
+	jal	set_pre_printf_state
+	move	$17,$2
+
+	lh	$7,10($16)
+	lh	$6,8($16)
+	lh	$5,6($16)
+	lui	$4,%hi($LC1)
+	sw	$17,24($sp)
+	sw	$19,20($sp)
+	sw	$18,16($sp)
+	jal	tty_printf
+	addiu	$4,$4,%lo($LC1)
+
+	jal	check_post_printf_state_set_sio_params
+	nop
+
+	lw	$31,52($sp)
+	lw	$19,48($sp)
+	lw	$18,44($sp)
+	lw	$16,36($sp)
+	move	$2,$17
+	lw	$17,40($sp)
+	jr	$31
+	addiu	$sp,$sp,56
+
+	.set	macro
+	.set	reorder
+	.end	tlps_get_next_wake_time
+	.size	tlps_get_next_wake_time, .-tlps_get_next_wake_time
 	.align	2
 	.globl	tlps_encoded_timelapse_frequency_to_seconds
 	.set	nomips16
@@ -440,9 +607,9 @@ tlps_update_system_measurements:
 	.set	reorder
 	.end	tlps_update_system_measurements
 	.size	tlps_update_system_measurements, .-tlps_update_system_measurements
-	.section	.rodata.str1.4,"aMS",@progbits,1
+	.section	.rodata.str1.4
 	.align	2
-$LC0:
+$LC2:
 	.ascii	"HceTaskTimeLapse_End\000"
 	.text
 	.align	2
@@ -468,25 +635,25 @@ tlps_TaskTimeLapseFSM_task12a:
 
 	move	$16,$2
 	sltu	$2,$2,4
-	beq	$2,$0,$L55
+	beq	$2,$0,$L66
 	li	$4,12			# 0xc
 
 	jal	get_power_switch_on_p
 	nop
 
-	bne	$2,$0,$L49
-	lui	$5,%hi($LC0)
+	bne	$2,$0,$L60
+	lui	$5,%hi($LC2)
 
 	li	$4,12			# 0xc
-$L55:
+$L66:
 	lw	$31,28($sp)
 	lw	$17,24($sp)
 	lw	$16,20($sp)
 	j	set_fsm_state_absolute
 	addiu	$sp,$sp,32
 
-$L49:
-	addiu	$5,$5,%lo($LC0)
+$L60:
+	addiu	$5,$5,%lo($LC2)
 	jal	HceCommon_SetCaptureImag
 	move	$4,$0
 
@@ -500,10 +667,10 @@ $L49:
 	lw	$5,%lo(g_last_timelapse_time_in_ms)($3)
 	subu	$4,$2,$5
 	sltu	$6,$4,$16
-	beq	$6,$0,$L50
+	beq	$6,$0,$L61
 	move	$17,$3
 
-	beq	$4,$0,$L50
+	beq	$4,$0,$L61
 	nop
 
 	addu	$5,$5,$16
@@ -511,14 +678,14 @@ $L49:
 	jal	thread_sleep
 	li	$4,3			# 0x3
 
-$L50:
+$L61:
 	jal	get_current_operating_time_ms
 	nop
 
 	jal	tlps_update_system_measurements
 	sw	$2,%lo(g_last_timelapse_time_in_ms)($17)
 
-	b	$L55
+	b	$L66
 	li	$4,1			# 0x1
 
 	.set	macro
@@ -585,7 +752,7 @@ tlps_handle_file_type_menu:
 	sw	$18,24($sp)
 
 	lbu	$17,0($2)
-	beq	$17,$0,$L59
+	beq	$17,$0,$L70
 	move	$16,$2
 
 	sb	$0,0($2)
@@ -602,66 +769,66 @@ tlps_handle_file_type_menu:
 	j	menu_draw_selected_item
 	addiu	$sp,$sp,32
 
-$L59:
+$L70:
 	jal	ui_cursor_key_pressed_p
 	move	$4,$0
 
 	li	$3,1			# 0x1
-	bne	$2,$3,$L60
+	bne	$2,$3,$L71
 	lui	$2,%hi(g_up_button_enable)
 
 	lbu	$3,%lo(g_up_button_enable)($2)
 	li	$2,2			# 0x2
-	beq	$3,$2,$L72
+	beq	$3,$2,$L83
 	lui	$18,%hi(g_menu_root)
 
-$L60:
+$L71:
 	jal	ui_cursor_key_pressed_p
 	li	$4,1			# 0x1
 
 	move	$17,$2
 	li	$2,1			# 0x1
-	bne	$17,$2,$L62
+	bne	$17,$2,$L73
 	lui	$2,%hi(g_down_button_enable)
 
 	lbu	$3,%lo(g_down_button_enable)($2)
 	li	$2,2			# 0x2
-	beq	$3,$2,$L61
+	beq	$3,$2,$L72
 	lui	$18,%hi(g_menu_root)
 
-$L62:
+$L73:
 	jal	ui_cursor_key_pressed_p
 	li	$4,2			# 0x2
 
 	li	$3,1			# 0x1
-	beq	$2,$3,$L63
+	beq	$2,$3,$L74
 	lui	$2,%hi(g_left_button_enable)
 
-$L64:
+$L75:
 	jal	ui_cursor_key_pressed_p
 	li	$4,3			# 0x3
 
 	li	$3,1			# 0x1
-	bne	$2,$3,$L66
+	bne	$2,$3,$L77
 	lui	$2,%hi(g_right_button_enable)
 
 	lbu	$3,%lo(g_right_button_enable)($2)
 	li	$2,2			# 0x2
-	beq	$3,$2,$L73
+	beq	$3,$2,$L84
 	lw	$31,28($sp)
 
-$L66:
+$L77:
 	jal	ui_cursor_key_pressed_p
 	li	$4,4			# 0x4
 
 	move	$17,$2
 	li	$2,1			# 0x1
-	bne	$17,$2,$L68
+	bne	$17,$2,$L79
 	lui	$2,%hi(g_enter_button_enable)
 
 	lbu	$3,%lo(g_enter_button_enable)($2)
 	li	$2,2			# 0x2
-	bne	$3,$2,$L68
+	bne	$3,$2,$L79
 	lui	$3,%hi(g_wbwl_camera_setup_selector_array)
 
 	lbu	$4,2($16)
@@ -677,23 +844,23 @@ $L66:
 
 	move	$4,$2
 	li	$2,255			# 0xff
-	beq	$4,$2,$L58
+	beq	$4,$2,$L69
 	lui	$2,%hi(g_ColdItemData+51)
 
 	lbu	$3,2($16)
 	sb	$3,%lo(g_ColdItemData+51)($2)
 	sb	$17,6($16)
-$L69:
+$L80:
 	lw	$31,28($sp)
-$L71:
+$L82:
 	lw	$18,24($sp)
 	lw	$17,20($sp)
 	lw	$16,16($sp)
 	j	set_fsm_state_absolute
 	addiu	$sp,$sp,32
 
-$L61:
 $L72:
+$L83:
 	addiu	$5,$16,2
 	move	$4,$17
 	addiu	$7,$18,%lo(g_menu_root)
@@ -709,34 +876,34 @@ $L72:
 	j	menu_redraw_items
 	addiu	$sp,$sp,32
 
-$L63:
+$L74:
 	lbu	$3,%lo(g_left_button_enable)($2)
 	li	$2,2			# 0x2
-	bne	$3,$2,$L64
+	bne	$3,$2,$L75
 	nop
 
-$L58:
+$L69:
 	lw	$31,28($sp)
-$L73:
+$L84:
 	lw	$18,24($sp)
-$L74:
+$L85:
 	lw	$17,20($sp)
 	lw	$16,16($sp)
 	jr	$31
 	addiu	$sp,$sp,32
 
-$L68:
+$L79:
 	jal	ui_cursor_key_pressed_p
 	li	$4,5			# 0x5
 
 	li	$3,1			# 0x1
-	bne	$2,$3,$L73
+	bne	$2,$3,$L84
 	lw	$31,28($sp)
 
 	lui	$3,%hi(g_mode_button_enable)
 	lbu	$4,%lo(g_mode_button_enable)($3)
 	li	$3,2			# 0x2
-	bne	$4,$3,$L74
+	bne	$4,$3,$L85
 	lw	$18,24($sp)
 
 	lui	$5,%hi(g_menu_root)
@@ -747,10 +914,10 @@ $L68:
 
 	move	$4,$2
 	li	$2,255			# 0xff
-	beql	$4,$2,$L69
+	beql	$4,$2,$L80
 	li	$4,36			# 0x24
 
-	b	$L71
+	b	$L82
 	lw	$31,28($sp)
 
 	.set	macro
@@ -771,13 +938,13 @@ tlps_HceIRCut_SetIRCutClosed:
 	.set	nomacro
 	lui	$2,%hi(g_ColdItemData+51)
 	lbu	$2,%lo(g_ColdItemData+51)($2)
-	bne	$2,$0,$L77
+	bne	$2,$0,$L88
 	nop
 
 	j	HceIRCut_SetIRCutClosed
 	nop
 
-$L77:
+$L88:
 	jr	$31
 	nop
 
@@ -809,13 +976,13 @@ tls_HceTaskBoot2Cap_Task0:
 	jal	get_within_operating_hours_p
 	move	$16,$2
 
-	beq	$16,$0,$L87
+	beq	$16,$0,$L98
 	li	$4,7			# 0x7
 
-	bne	$2,$0,$L80
+	bne	$2,$0,$L91
 	nop
 
-$L87:
+$L98:
 	jal	set_fsm_state_absolute
 	nop
 
@@ -825,7 +992,7 @@ $L87:
 	jr	$31
 	addiu	$sp,$sp,48
 
-$L80:
+$L91:
 	jal	get_current_date_time_short
 	addiu	$4,$sp,16
 
@@ -835,11 +1002,11 @@ $L80:
 	jal	get_cold_item_operation_mode
 	nop
 
-	beq	$2,$0,$L82
+	beq	$2,$0,$L93
 	li	$4,1			# 0x1
 
 	li	$3,1			# 0x1
-	beq	$2,$3,$L82
+	beq	$2,$3,$L93
 	li	$4,3			# 0x3
 
 	lh	$2,24($sp)
@@ -856,59 +1023,59 @@ $L80:
 	addu	$16,$16,$2
 	ori	$2,$17,0x86a0
 	sltu	$2,$16,$2
-	bne	$2,$0,$L83
+	bne	$2,$0,$L94
 	addiu	$2,$17,20865
 
 	jal	HceTaskBoot2Cap_Task0
 	nop
 
-	b	$L84
+	b	$L95
 	addiu	$16,$17,20863
 
-$L83:
+$L94:
 	sltu	$2,$16,$2
-	beql	$2,$0,$L100
+	beql	$2,$0,$L111
 	addiu	$16,$17,20863
 
-$L84:
-$L100:
-	jal	get_tod_in_timelapse_region
+$L95:
+$L111:
+	jal	tlps_get_tod_in_timelapse_region
 	addiu	$4,$sp,16
 
 	jal	get_cold_item_timelapse_period
 	move	$17,$2
 
 	li	$3,1			# 0x1
-	beq	$17,$3,$L85
+	beq	$17,$3,$L96
 	nop
 
 	li	$2,-3			# 0xfffffffffffffffd
 	and	$17,$17,$2
-	bne	$17,$0,$L97
+	bne	$17,$0,$L108
 	li	$4,5			# 0x5
 
-$L82:
+$L93:
 	lui	$2,%hi(g_ColdItemData+51)
 	lbu	$3,%lo(g_ColdItemData+51)($2)
 	li	$2,1			# 0x1
-	bne	$3,$2,$L87
+	bne	$3,$2,$L98
 	li	$2,5			# 0x5
 
-	beql	$4,$2,$L87
+	beql	$4,$2,$L98
 	li	$4,1			# 0x1
 
-	b	$L87
+	b	$L98
 	nop
 
-$L85:
-	beq	$2,$0,$L82
+$L96:
+	beq	$2,$0,$L93
 	li	$4,5			# 0x5
 
-$L97:
+$L108:
 	jal	set_cold_item_current_tod_in_seconds
 	move	$4,$16
 
-	b	$L82
+	b	$L93
 	li	$4,1			# 0x1
 
 	.set	macro
@@ -1082,4 +1249,58 @@ g_wbwl_timelapse_frequency_menu:
 	.comm	g_wbwl_camera_setup_selector_array,248,4
 
 	.comm	g_wbwl_camera_setup_menu_item_array,868,4
+	.globl	g_wbwl_timelapse_period_menu
+	.align	2
+	.type	g_wbwl_timelapse_period_menu, @object
+	.size	g_wbwl_timelapse_period_menu, 196
+g_wbwl_timelapse_period_menu:
+	.word	31
+	.word	27
+	.word	0
+	.word	1
+	.word	0
+	.word	1
+	.word	1
+	.word	31
+	.word	23
+	.word	0
+	.word	1
+	.word	0
+	.word	1
+	.word	1
+	.word	31
+	.word	24
+	.word	0
+	.word	1
+	.word	0
+	.word	1
+	.word	1
+	.word	31
+	.word	25
+	.word	0
+	.word	1
+	.word	0
+	.word	1
+	.word	1
+	.word	31
+	.word	26
+	.word	0
+	.word	1
+	.word	0
+	.word	1
+	.word	1
+	.word	31
+	.word	186
+	.word	0
+	.word	1
+	.word	0
+	.word	1
+	.word	1
+	.word	31
+	.word	57
+	.word	0
+	.word	0
+	.word	1
+	.word	3
+	.word	3
 	.ident	"GCC: (Ubuntu 9.4.0-1ubuntu1) 9.4.0"

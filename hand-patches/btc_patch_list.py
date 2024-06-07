@@ -912,6 +912,257 @@ timelapse_patch_list['tlps_HceIRCut']['start_offset']['BTC-8E-HP5'] = 0x0104e8c
 timelapse_patch_list['tlps_HceIRCut']['change_from_jump'] = 'jal.HceIRCut_SetIRCutClosed'
 timelapse_patch_list['tlps_HceIRCut']['change_to_jump']   = 'jal.tlps_HceIRCut_SetIRCutClosed'
 
+#### Support for "All Day/Night" Timlapse
+# Replace the call to handleTimelapsePeriod_menu
+timelapse_patch_list['tlps_handle_period_menu'] = {}
+timelapse_patch_list['tlps_handle_period_menu']['function'] = 'handleTimelapsePeriod_menu'
+timelapse_patch_list['tlps_handle_period_menu']['line_number'] = {}
+timelapse_patch_list['tlps_handle_period_menu']['line_number']['BTC-7E'] = 15
+timelapse_patch_list['tlps_handle_period_menu']['line_number']['BTC-8E'] = 14
+timelapse_patch_list['tlps_handle_period_menu']['line_number']['BTC-7E-HP4'] = 15 
+timelapse_patch_list['tlps_handle_period_menu']['line_number']['BTC-8E-HP4'] = 15
+timelapse_patch_list['tlps_handle_period_menu']['line_number']['BTC-7E-HP5'] = 14
+timelapse_patch_list['tlps_handle_period_menu']['line_number']['BTC-8E-HP5'] = 14 
+timelapse_patch_list['tlps_handle_period_menu']['start_offset'] = {}
+timelapse_patch_list['tlps_handle_period_menu']['start_offset']['BTC-7E'] = 0x0132ff8
+timelapse_patch_list['tlps_handle_period_menu']['start_offset']['BTC-8E'] = 0x0133bf4
+timelapse_patch_list['tlps_handle_period_menu']['start_offset']['BTC-7E-HP4'] = 0x012f8a8
+timelapse_patch_list['tlps_handle_period_menu']['start_offset']['BTC-8E-HP4'] = 0x01323d8
+timelapse_patch_list['tlps_handle_period_menu']['start_offset']['BTC-7E-HP5'] = 0x010ddd4
+timelapse_patch_list['tlps_handle_period_menu']['start_offset']['BTC-8E-HP5'] = 0x010e6c8
+timelapse_patch_list['tlps_handle_period_menu']['change_from_jump'] = 'jal.get_cold_item_timelapse_period'
+timelapse_patch_list['tlps_handle_period_menu']['change_to_jump']   = 'jal.tlps_get_cold_item_raw_timelapse_period'
+
+
+# Replace the get_cold_item_timelapse_period
+timelapse_patch_list['tlps_get_timelapse_period'] = {}
+timelapse_patch_list['tlps_get_timelapse_period']['function'] = 'get_cold_item_timelapse_period'
+timelapse_patch_list['tlps_get_timelapse_period']['line_number'] = {}
+timelapse_patch_list['tlps_get_timelapse_period']['line_number']['BTC-7E'] = 5
+timelapse_patch_list['tlps_get_timelapse_period']['line_number']['BTC-8E'] = 5
+timelapse_patch_list['tlps_get_timelapse_period']['line_number']['BTC-7E-HP4'] = 5 
+timelapse_patch_list['tlps_get_timelapse_period']['line_number']['BTC-8E-HP4'] = 5
+timelapse_patch_list['tlps_get_timelapse_period']['line_number']['BTC-7E-HP5'] = 5
+timelapse_patch_list['tlps_get_timelapse_period']['line_number']['BTC-8E-HP5'] = 7
+timelapse_patch_list['tlps_get_timelapse_period']['start_offset'] = {}
+timelapse_patch_list['tlps_get_timelapse_period']['start_offset']['BTC-7E'] = 0x010e460
+timelapse_patch_list['tlps_get_timelapse_period']['start_offset']['BTC-8E'] = 0x010e5ec
+timelapse_patch_list['tlps_get_timelapse_period']['start_offset']['BTC-7E-HP4'] = 0x010903c
+timelapse_patch_list['tlps_get_timelapse_period']['start_offset']['BTC-8E-HP4'] = 0x010947c
+timelapse_patch_list['tlps_get_timelapse_period']['start_offset']['BTC-7E-HP5'] = 0x00e53e8
+timelapse_patch_list['tlps_get_timelapse_period']['start_offset']['BTC-8E-HP5'] = 0x00e53cc
+timelapse_patch_list['tlps_get_timelapse_period']['change_from_bytes'] =  bytes([0x08, 0x00, 0xe0, 0x03])
+timelapse_patch_list['tlps_get_timelapse_period']['change_to_jump']   = 'j.tlps_get_cold_item_cooked_timelapse_period'
+
+## Replacing calls to get_tod_in_timelapse_region
+## I don't think I need to change the following functions
+##    print_timelapse_region_by_hour - this is only a diag print statement
+##    HceTaskBoot2Cap_Task -- not necessary because we've already rewritten this function
+
+##  spawnIRCutFSM_per_mode
+timelapse_patch_list['tlps_spawnIRCutFSM'] = {}
+timelapse_patch_list['tlps_spawnIRCutFSM']['function'] = 'spawnIRCutFSM_per_mode'
+timelapse_patch_list['tlps_spawnIRCutFSM']['line_number'] = {}
+timelapse_patch_list['tlps_spawnIRCutFSM']['line_number']['BTC-7E'] = 23
+timelapse_patch_list['tlps_spawnIRCutFSM']['line_number']['BTC-8E'] = 24
+timelapse_patch_list['tlps_spawnIRCutFSM']['line_number']['BTC-7E-HP4'] = 23
+timelapse_patch_list['tlps_spawnIRCutFSM']['line_number']['BTC-8E-HP4'] = 23
+timelapse_patch_list['tlps_spawnIRCutFSM']['line_number']['BTC-7E-HP5'] = 24
+timelapse_patch_list['tlps_spawnIRCutFSM']['line_number']['BTC-8E-HP5'] = 23 
+timelapse_patch_list['tlps_spawnIRCutFSM']['start_offset'] = {}
+timelapse_patch_list['tlps_spawnIRCutFSM']['start_offset']['BTC-7E'] = 0x01101e8
+timelapse_patch_list['tlps_spawnIRCutFSM']['start_offset']['BTC-8E'] = 0x0110418
+timelapse_patch_list['tlps_spawnIRCutFSM']['start_offset']['BTC-7E-HP4'] = 0x010b60c
+timelapse_patch_list['tlps_spawnIRCutFSM']['start_offset']['BTC-8E-HP4'] = 0x010bb0c
+timelapse_patch_list['tlps_spawnIRCutFSM']['start_offset']['BTC-7E-HP5'] = 0x00e7b20
+timelapse_patch_list['tlps_spawnIRCutFSM']['start_offset']['BTC-8E-HP5'] = 0x00e7bdc
+timelapse_patch_list['tlps_spawnIRCutFSM']['change_from_jump'] = 'jal.get_tod_in_timelapse_region'
+timelapse_patch_list['tlps_spawnIRCutFSM']['change_to_jump']   = 'jal.tlps_get_tod_in_timelapse_region'
+
+
+## HceIQ_PowerOnStateInit
+timelapse_patch_list['tlps_HceIQ_PowerOnStateInit'] = {}
+timelapse_patch_list['tlps_HceIQ_PowerOnStateInit']['function'] = 'HceIQ_PowerOnStateInit'
+timelapse_patch_list['tlps_HceIQ_PowerOnStateInit']['line_number'] = {}
+timelapse_patch_list['tlps_HceIQ_PowerOnStateInit']['line_number']['BTC-7E'] = 30
+timelapse_patch_list['tlps_HceIQ_PowerOnStateInit']['line_number']['BTC-8E'] = 32
+timelapse_patch_list['tlps_HceIQ_PowerOnStateInit']['line_number']['BTC-7E-HP4'] = 26
+timelapse_patch_list['tlps_HceIQ_PowerOnStateInit']['line_number']['BTC-8E-HP4'] = 26
+timelapse_patch_list['tlps_HceIQ_PowerOnStateInit']['line_number']['BTC-7E-HP5'] = 27
+timelapse_patch_list['tlps_HceIQ_PowerOnStateInit']['line_number']['BTC-8E-HP5'] = 27
+timelapse_patch_list['tlps_HceIQ_PowerOnStateInit']['start_offset'] = {}
+timelapse_patch_list['tlps_HceIQ_PowerOnStateInit']['start_offset']['BTC-7E'] = 0x01105bc
+timelapse_patch_list['tlps_HceIQ_PowerOnStateInit']['start_offset']['BTC-8E'] = 0x01107ec
+timelapse_patch_list['tlps_HceIQ_PowerOnStateInit']['start_offset']['BTC-7E-HP4'] = 0x010b9ec
+timelapse_patch_list['tlps_HceIQ_PowerOnStateInit']['start_offset']['BTC-8E-HP4'] = 0x010beec
+timelapse_patch_list['tlps_HceIQ_PowerOnStateInit']['start_offset']['BTC-7E-HP5'] = 0x00e7f00
+timelapse_patch_list['tlps_HceIQ_PowerOnStateInit']['start_offset']['BTC-8E-HP5'] = 0x00e7fbc
+timelapse_patch_list['tlps_HceIQ_PowerOnStateInit']['change_from_jump'] = 'jal.get_tod_in_timelapse_region'
+timelapse_patch_list['tlps_HceIQ_PowerOnStateInit']['change_to_jump']   = 'jal.tlps_get_tod_in_timelapse_region'
+
+## update_timelapse_rise_set_times
+timelapse_patch_list['tlps_update_timelapse_rise_set_times'] = {}
+timelapse_patch_list['tlps_update_timelapse_rise_set_times']['function'] = 'update_timelapse_rise_set_times'
+timelapse_patch_list['tlps_update_timelapse_rise_set_times']['line_number'] = {}
+timelapse_patch_list['tlps_update_timelapse_rise_set_times']['line_number']['BTC-7E'] = 20 
+timelapse_patch_list['tlps_update_timelapse_rise_set_times']['line_number']['BTC-8E'] = 22
+timelapse_patch_list['tlps_update_timelapse_rise_set_times']['line_number']['BTC-7E-HP4'] = 20
+timelapse_patch_list['tlps_update_timelapse_rise_set_times']['line_number']['BTC-8E-HP4'] = 20 
+timelapse_patch_list['tlps_update_timelapse_rise_set_times']['line_number']['BTC-7E-HP5'] = 22
+timelapse_patch_list['tlps_update_timelapse_rise_set_times']['line_number']['BTC-8E-HP5'] = 21
+timelapse_patch_list['tlps_update_timelapse_rise_set_times']['start_offset'] = {}
+timelapse_patch_list['tlps_update_timelapse_rise_set_times']['start_offset']['BTC-7E'] = 0x0113154
+timelapse_patch_list['tlps_update_timelapse_rise_set_times']['start_offset']['BTC-8E'] = 0x01133ac
+timelapse_patch_list['tlps_update_timelapse_rise_set_times']['start_offset']['BTC-7E-HP4'] = 0x010e1f4
+timelapse_patch_list['tlps_update_timelapse_rise_set_times']['start_offset']['BTC-8E-HP4'] = 0x010e6f4
+timelapse_patch_list['tlps_update_timelapse_rise_set_times']['start_offset']['BTC-7E-HP5'] = 0x00eac04
+timelapse_patch_list['tlps_update_timelapse_rise_set_times']['start_offset']['BTC-8E-HP5'] = 0x00eacc0
+timelapse_patch_list['tlps_update_timelapse_rise_set_times']['change_from_jump'] = 'jal.get_tod_in_timelapse_region'
+timelapse_patch_list['tlps_update_timelapse_rise_set_times']['change_to_jump']   = 'jal.tlps_get_tod_in_timelapse_region'
+
+
+## set_wakeup_alarms0
+timelapse_patch_list['tlps_set_wakeup_alarms0'] = {}
+timelapse_patch_list['tlps_set_wakeup_alarms0']['function'] = 'set_wakeup_alarms'
+timelapse_patch_list['tlps_set_wakeup_alarms0']['line_number'] = {}
+timelapse_patch_list['tlps_set_wakeup_alarms0']['line_number']['BTC-7E'] = 116 
+timelapse_patch_list['tlps_set_wakeup_alarms0']['line_number']['BTC-8E'] = 117
+timelapse_patch_list['tlps_set_wakeup_alarms0']['line_number']['BTC-7E-HP4'] = 110
+timelapse_patch_list['tlps_set_wakeup_alarms0']['line_number']['BTC-8E-HP4'] = 110
+timelapse_patch_list['tlps_set_wakeup_alarms0']['line_number']['BTC-7E-HP5'] = 109
+timelapse_patch_list['tlps_set_wakeup_alarms0']['line_number']['BTC-8E-HP5'] = 112 
+timelapse_patch_list['tlps_set_wakeup_alarms0']['start_offset'] = {}
+timelapse_patch_list['tlps_set_wakeup_alarms0']['start_offset']['BTC-7E'] = 0x0116da0
+timelapse_patch_list['tlps_set_wakeup_alarms0']['start_offset']['BTC-8E'] = 0x0116ff8
+timelapse_patch_list['tlps_set_wakeup_alarms0']['start_offset']['BTC-7E-HP4'] = 0x01125ac
+timelapse_patch_list['tlps_set_wakeup_alarms0']['start_offset']['BTC-8E-HP4'] = 0x0112aa8
+timelapse_patch_list['tlps_set_wakeup_alarms0']['start_offset']['BTC-7E-HP5'] = 0x00eefa0
+timelapse_patch_list['tlps_set_wakeup_alarms0']['start_offset']['BTC-8E-HP5'] = 0x00ef070
+timelapse_patch_list['tlps_set_wakeup_alarms0']['change_from_jump'] = 'jal.get_tod_in_timelapse_region'
+timelapse_patch_list['tlps_set_wakeup_alarms0']['change_to_jump']   = 'jal.tlps_get_tod_in_timelapse_region'
+
+## set_wakeup_alarms1
+timelapse_patch_list['tlps_set_wakeup_alarms1'] = {}
+timelapse_patch_list['tlps_set_wakeup_alarms1']['function'] = 'set_wakeup_alarms'
+timelapse_patch_list['tlps_set_wakeup_alarms1']['line_number'] = {}
+timelapse_patch_list['tlps_set_wakeup_alarms1']['line_number']['BTC-7E'] = 117
+timelapse_patch_list['tlps_set_wakeup_alarms1']['line_number']['BTC-8E'] = 119
+timelapse_patch_list['tlps_set_wakeup_alarms1']['line_number']['BTC-7E-HP4'] = 111
+timelapse_patch_list['tlps_set_wakeup_alarms1']['line_number']['BTC-8E-HP4'] = 111
+timelapse_patch_list['tlps_set_wakeup_alarms1']['line_number']['BTC-7E-HP5'] = 111
+timelapse_patch_list['tlps_set_wakeup_alarms1']['line_number']['BTC-8E-HP5'] = 113 
+timelapse_patch_list['tlps_set_wakeup_alarms1']['start_offset'] = {}
+timelapse_patch_list['tlps_set_wakeup_alarms1']['start_offset']['BTC-7E'] = 0x0116db4
+timelapse_patch_list['tlps_set_wakeup_alarms1']['start_offset']['BTC-8E'] = 0x011700c
+timelapse_patch_list['tlps_set_wakeup_alarms1']['start_offset']['BTC-7E-HP4'] = 0x01125c0
+timelapse_patch_list['tlps_set_wakeup_alarms1']['start_offset']['BTC-8E-HP4'] = 0x0112abc
+timelapse_patch_list['tlps_set_wakeup_alarms1']['start_offset']['BTC-7E-HP5'] = 0x00eefb4
+timelapse_patch_list['tlps_set_wakeup_alarms1']['start_offset']['BTC-8E-HP5'] = 0x00ef084
+timelapse_patch_list['tlps_set_wakeup_alarms1']['change_from_jump'] = 'jal.get_tod_in_timelapse_region'
+timelapse_patch_list['tlps_set_wakeup_alarms1']['change_to_jump']   = 'jal.tlps_get_tod_in_timelapse_region'
+
+timelapse_patch_list['tlps_HceTaskBoot2Cap_Task00'] = {}
+timelapse_patch_list['tlps_HceTaskBoot2Cap_Task00']['function'] = 'HceTaskBoot2Cap_Task0'
+timelapse_patch_list['tlps_HceTaskBoot2Cap_Task00']['line_number'] = {}
+timelapse_patch_list['tlps_HceTaskBoot2Cap_Task00']['line_number']['BTC-7E'] = 34
+timelapse_patch_list['tlps_HceTaskBoot2Cap_Task00']['line_number']['BTC-8E'] = 34 
+timelapse_patch_list['tlps_HceTaskBoot2Cap_Task00']['line_number']['BTC-7E-HP4'] = 33
+timelapse_patch_list['tlps_HceTaskBoot2Cap_Task00']['line_number']['BTC-8E-HP4'] = 33
+timelapse_patch_list['tlps_HceTaskBoot2Cap_Task00']['line_number']['BTC-7E-HP5'] = 32
+timelapse_patch_list['tlps_HceTaskBoot2Cap_Task00']['line_number']['BTC-8E-HP5'] = 32 
+timelapse_patch_list['tlps_HceTaskBoot2Cap_Task00']['start_offset'] = {}
+timelapse_patch_list['tlps_HceTaskBoot2Cap_Task00']['start_offset']['BTC-7E'] = 0x0122294
+timelapse_patch_list['tlps_HceTaskBoot2Cap_Task00']['start_offset']['BTC-8E'] = 0x0122654
+timelapse_patch_list['tlps_HceTaskBoot2Cap_Task00']['start_offset']['BTC-7E-HP4'] = 0x011deb0
+timelapse_patch_list['tlps_HceTaskBoot2Cap_Task00']['start_offset']['BTC-8E-HP4'] = 0x011e408
+timelapse_patch_list['tlps_HceTaskBoot2Cap_Task00']['start_offset']['BTC-7E-HP5'] = 0x00fc960
+timelapse_patch_list['tlps_HceTaskBoot2Cap_Task00']['start_offset']['BTC-8E-HP5'] = 0x00fc9d4
+timelapse_patch_list['tlps_HceTaskBoot2Cap_Task00']['change_from_jump'] = 'jal.get_tod_in_timelapse_region'
+timelapse_patch_list['tlps_HceTaskBoot2Cap_Task00']['change_to_jump']   = 'jal.tlps_get_tod_in_timelapse_region'
+
+#HceTaskBoot2Cap_Task01
+timelapse_patch_list['tlps_HceTaskBoot2Cap_Task01'] = {}
+timelapse_patch_list['tlps_HceTaskBoot2Cap_Task01']['function'] = 'HceTaskBoot2Cap_Task0'
+timelapse_patch_list['tlps_HceTaskBoot2Cap_Task01']['line_number'] = {}
+timelapse_patch_list['tlps_HceTaskBoot2Cap_Task01']['line_number']['BTC-7E'] = 36
+timelapse_patch_list['tlps_HceTaskBoot2Cap_Task01']['line_number']['BTC-8E'] = 36
+timelapse_patch_list['tlps_HceTaskBoot2Cap_Task01']['line_number']['BTC-7E-HP4'] = 35
+timelapse_patch_list['tlps_HceTaskBoot2Cap_Task01']['line_number']['BTC-8E-HP4'] = 35
+timelapse_patch_list['tlps_HceTaskBoot2Cap_Task01']['line_number']['BTC-7E-HP5'] = 34
+timelapse_patch_list['tlps_HceTaskBoot2Cap_Task01']['line_number']['BTC-8E-HP5'] = 34
+timelapse_patch_list['tlps_HceTaskBoot2Cap_Task01']['start_offset'] = {}
+timelapse_patch_list['tlps_HceTaskBoot2Cap_Task01']['start_offset']['BTC-7E'] = 0x01222a8
+timelapse_patch_list['tlps_HceTaskBoot2Cap_Task01']['start_offset']['BTC-8E'] = 0x0122668
+timelapse_patch_list['tlps_HceTaskBoot2Cap_Task01']['start_offset']['BTC-7E-HP4'] = 0x011dec4
+timelapse_patch_list['tlps_HceTaskBoot2Cap_Task01']['start_offset']['BTC-8E-HP4'] = 0x011e41c
+timelapse_patch_list['tlps_HceTaskBoot2Cap_Task01']['start_offset']['BTC-7E-HP5'] = 0x00fc974
+timelapse_patch_list['tlps_HceTaskBoot2Cap_Task01']['start_offset']['BTC-8E-HP5'] = 0x00fc9e8
+timelapse_patch_list['tlps_HceTaskBoot2Cap_Task01']['change_from_jump'] = 'jal.get_tod_in_timelapse_region'
+timelapse_patch_list['tlps_HceTaskBoot2Cap_Task01']['change_to_jump']   = 'jal.tlps_get_tod_in_timelapse_region'
+
+# TaskTimeLapseFSM_task4
+# For HP5's only -- we've rewritten the function for Edges and HP4 cameras
+timelapse_patch_list['tlps_TaskTimeLapseFSM_task4'] = {}
+timelapse_patch_list['tlps_TaskTimeLapseFSM_task4']['function'] = 'TaskTimeLapseFSM_task4'
+timelapse_patch_list['tlps_TaskTimeLapseFSM_task4']['line_number'] = {}
+#timelapse_patch_list['tlps_TaskTimeLapseFSM_task4']['line_number']['BTC-7E'] = 
+#timelapse_patch_list['tlps_TaskTimeLapseFSM_task4']['line_number']['BTC-8E'] = 
+#timelapse_patch_list['tlps_TaskTimeLapseFSM_task4']['line_number']['BTC-7E-HP4'] = 
+#timelapse_patch_list['tlps_TaskTimeLapseFSM_task4']['line_number']['BTC-8E-HP4'] = 
+timelapse_patch_list['tlps_TaskTimeLapseFSM_task4']['line_number']['BTC-7E-HP5'] = 27
+timelapse_patch_list['tlps_TaskTimeLapseFSM_task4']['line_number']['BTC-8E-HP5'] = 26 
+timelapse_patch_list['tlps_TaskTimeLapseFSM_task4']['start_offset'] = {}
+#timelapse_patch_list['tlps_TaskTimeLapseFSM_task4']['start_offset']['BTC-7E'] = 0x
+#timelapse_patch_list['tlps_TaskTimeLapseFSM_task4']['start_offset']['BTC-8E'] = 0x
+#timelapse_patch_list['tlps_TaskTimeLapseFSM_task4']['start_offset']['BTC-7E-HP4'] = 0x
+#timelapse_patch_list['tlps_TaskTimeLapseFSM_task4']['start_offset']['BTC-8E-HP4'] = 0x
+timelapse_patch_list['tlps_TaskTimeLapseFSM_task4']['start_offset']['BTC-7E-HP5'] = 0x0104fd4
+timelapse_patch_list['tlps_TaskTimeLapseFSM_task4']['start_offset']['BTC-8E-HP5'] = 0x0105020
+timelapse_patch_list['tlps_TaskTimeLapseFSM_task4']['change_from_jump'] = 'jal.get_tod_in_timelapse_region'
+timelapse_patch_list['tlps_TaskTimeLapseFSM_task4']['change_to_jump']   = 'jal.tlps_get_tod_in_timelapse_region'
+
+# HandleWaittimeLapseFSM_task0
+# For HP5's only -- we've rewritten the function for Edges and HP4 cameras
+timelapse_patch_list['tlps_HandleWaittimeLapseFSM_task0'] = {}
+timelapse_patch_list['tlps_HandleWaittimeLapseFSM_task0']['function'] = 'HandleWaittimeLapseFSM_task0'
+timelapse_patch_list['tlps_HandleWaittimeLapseFSM_task0']['line_number'] = {}
+timelapse_patch_list['tlps_HandleWaittimeLapseFSM_task0']['line_number']['BTC-7E'] = 19
+timelapse_patch_list['tlps_HandleWaittimeLapseFSM_task0']['line_number']['BTC-8E'] = 19
+timelapse_patch_list['tlps_HandleWaittimeLapseFSM_task0']['line_number']['BTC-7E-HP4'] = 19
+timelapse_patch_list['tlps_HandleWaittimeLapseFSM_task0']['line_number']['BTC-8E-HP4'] = 18
+timelapse_patch_list['tlps_HandleWaittimeLapseFSM_task0']['line_number']['BTC-7E-HP5'] = 24
+timelapse_patch_list['tlps_HandleWaittimeLapseFSM_task0']['line_number']['BTC-8E-HP5'] = 19 
+timelapse_patch_list['tlps_HandleWaittimeLapseFSM_task0']['start_offset'] = {}
+timelapse_patch_list['tlps_HandleWaittimeLapseFSM_task0']['start_offset']['BTC-7E'] = 0x0137d5c
+timelapse_patch_list['tlps_HandleWaittimeLapseFSM_task0']['start_offset']['BTC-8E'] = 0x0138958
+timelapse_patch_list['tlps_HandleWaittimeLapseFSM_task0']['start_offset']['BTC-7E-HP4'] = 0x013462c
+timelapse_patch_list['tlps_HandleWaittimeLapseFSM_task0']['start_offset']['BTC-8E-HP4'] = 0x013715c
+timelapse_patch_list['tlps_HandleWaittimeLapseFSM_task0']['start_offset']['BTC-7E-HP5'] = 0x0112d78
+timelapse_patch_list['tlps_HandleWaittimeLapseFSM_task0']['start_offset']['BTC-8E-HP5'] = 0x011358c
+timelapse_patch_list['tlps_HandleWaittimeLapseFSM_task0']['change_from_jump'] = 'jal.get_tod_in_timelapse_region'
+timelapse_patch_list['tlps_HandleWaittimeLapseFSM_task0']['change_to_jump']   = 'jal.tlps_get_tod_in_timelapse_region'
+
+# Debugging in update_timelapse_rise_set_times
+#timelapse_patch_list['tlps_update_timelapse_rise_set_times_wake'] = {}
+#timelapse_patch_list['tlps_update_timelapse_rise_set_times_wake']['function'] = 'update_timelapse_rise_set_times'
+#timelapse_patch_list['tlps_update_timelapse_rise_set_times_wake']['line_number'] = {}
+#timelapse_patch_list['tlps_update_timelapse_rise_set_times_wake']['line_number']['BTC-7E'] = 
+#timelapse_patch_list['tlps_update_timelapse_rise_set_times_wake']['line_number']['BTC-8E'] = 
+#timelapse_patch_list['tlps_update_timelapse_rise_set_times_wake']['line_number']['BTC-7E-HP4'] = 
+#timelapse_patch_list['tlps_update_timelapse_rise_set_times_wake']['line_number']['BTC-8E-HP4'] = 
+#timelapse_patch_list['tlps_update_timelapse_rise_set_times_wake']['line_number']['BTC-7E-HP5'] = 22
+#timelapse_patch_list['tlps_update_timelapse_rise_set_times_wake']['line_number']['BTC-8E-HP5'] = 21
+#timelapse_patch_list['tlps_update_timelapse_rise_set_times_wake']['start_offset'] = {}
+#timelapse_patch_list['tlps_update_timelapse_rise_set_times_wake']['start_offset']['BTC-7E'] = 0x
+#timelapse_patch_list['tlps_update_timelapse_rise_set_times_wake']['start_offset']['BTC-8E'] = 0x
+#timelapse_patch_list['tlps_update_timelapse_rise_set_times_wake']['start_offset']['BTC-7E-HP4'] = 0x
+#timelapse_patch_list['tlps_update_timelapse_rise_set_times_wake']['start_offset']['BTC-8E-HP4'] = 0x
+#timelapse_patch_list['tlps_update_timelapse_rise_set_times_wake']['start_offset']['BTC-7E-HP5'] = 0x00eac6c
+#timelapse_patch_list['tlps_update_timelapse_rise_set_times_wake']['start_offset']['BTC-8E-HP5'] = 0x00eacc0
+#timelapse_patch_list['tlps_update_timelapse_rise_set_times_wake']['change_from_jump'] = 'jal.get_next_wake_time'
+#timelapse_patch_list['tlps_update_timelapse_rise_set_times_wake']['change_to_jump']   = 'jal.tlps_get_next_wake_time'
+
+
 # Debugging Missing Temperature
 # in Unknown_Function()
 # unknown line number

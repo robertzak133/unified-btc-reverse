@@ -2,6 +2,7 @@
 // Prototype for functions and globals associated with WBWL
 //    menus extensions
 
+#include "WBWL.h"
 
 // Globals
 

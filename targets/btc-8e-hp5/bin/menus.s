@@ -150,8 +150,8 @@ g_wbwl_camera_setup_selector_array:
 	.word	3
 	.word	g_wbwl_timelapse_frequency_menu
 	.word	13
-	.word	g_timelapse_period_menu
-	.word	6
+	.word	g_wbwl_timelapse_period_menu
+	.word	7
 	.word	g_delete_all_menu
 	.word	3
 	.word	g_ifm_ir_led_power_menu
@@ -409,4 +409,6 @@ g_wbwl_camera_setup_menu_item_array:
 	.word	1
 	.word	3
 	.word	3
+
+	.comm	g_wbwl_timelapse_period_menu,196,4
 	.ident	"GCC: (Ubuntu 9.4.0-1ubuntu1) 9.4.0"

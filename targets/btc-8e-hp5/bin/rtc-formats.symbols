@@ -40,5 +40,6 @@ SYMBOL TABLE:
 00000054 g     O .data	00000070 g_rtc_date_format_menu
 0000001c       O *COM*	00000004 g_wbwl_menu_handler_function_array_extensions
 00000380       O *COM*	00000004 g_wbwl_camera_setup_menu_item_array
+000000c4       O *COM*	00000004 g_wbwl_timelapse_period_menu
 
 

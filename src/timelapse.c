@@ -15,6 +15,7 @@
 //#define DEBUG
 //#define DEBUG1
 //#define DEBUG2
+#define DEBUG3
 
 // TaskTimeLapseFSM
 
@@ -125,17 +126,13 @@ struct_hp5_menu_item g_tlps_file_type_menu[3] = {
   { no_icon, SST_TIMELAPSE_SP_FILE,    0x00, 0x00, 0x01, 0x03, 0x03}
 };
 
-
-
 // Converts from encoded timelapse frequency to a frequency 
 //   (actualy an interval) in seconds
 short g_wbwl_timelapse_frequency_lookup_table[12] = {
   1, 2, 5, 10, 20, 30, 60, 120, 300, 600, 1800, 3600
 };
 
-#ifdef TLPS_NIGHT_DAY
-//  2023-01-12 zak: Tabled for the time being
-//       degree of difficulty given complexity of code too high
+// All Day/Night Support
 
 struct_hp5_menu_item g_wbwl_timelapse_period_menu[7] = {
   {no_icon, SST_ALL_SP_DAY,             0, 1, 0, 1, 1},//  ALL DAY
@@ -146,7 +143,53 @@ struct_hp5_menu_item g_wbwl_timelapse_period_menu[7] = {
   {no_icon, SST_ALL_SP_DAY_SLASH_NIGHT, 0, 1, 0, 1, 1}, // ALL DAY/NIGHT
   {no_icon, SST_TIMELAPSE_SP_PERIOD,    0, 0, 1, 3, 3}  // Timelapse Period
 };
+
+enum_timelapse_period_encoding tlps_get_cold_item_raw_timelapse_period(void)
+{
+  return g_ColdItemData.timelapse_period;
+}
+
+enum_timelapse_period_encoding tlps_get_cold_item_cooked_timelapse_period(void)
+{
+  if (g_ColdItemData.timelapse_period == all_day_night) {
+    return all_day;
+  }
+  return g_ColdItemData.timelapse_period;
+}
+
+enum_tod_in_timelapse tlps_get_tod_in_timelapse_region(struct_short_RTCTime *short_rtc_time) {
+  enum_tod_in_timelapse return_value;
+
+  if (g_ColdItemData.timelapse_period == all_day_night) {
+    // This should still take photos, since we're in "all_day_mode" to the rest of the firmware
+    return_value =   daylight_no_photo_region; // daylight_post_sunrise_region;
+  } else {
+    return_value =  get_tod_in_timelapse_region(short_rtc_time);
+  }
+#ifdef DEBUG3
+  set_pre_printf_state();
+  tty_printf("tlps_get_tod_in_timelapse_region: at %02d:%02d:%02d returning: %d\n", 
+	     (int)short_rtc_time->hour, (int)short_rtc_time->minute, (int)short_rtc_time->second,
+	     (int) return_value);
+  check_post_printf_state_set_sio_params();  
 #endif
+  return return_value;
+}
+
+int tlps_get_next_wake_time(struct_short_RTCTime *short_rtc_time, enum_tod_in_timelapse timelapse_region) {
+  int tod_last_photo_in_seconds = get_cold_item_tod_last_photo_in_seconds();
+  int return_value = get_next_wake_time(short_rtc_time, timelapse_region);
+	
+#ifdef DEBUG3
+  set_pre_printf_state();
+  tty_printf("tlps_get_next_wake_time: at %02d:%02d:%02d in region %d; tod_last_photo: %d; returning: %d\n", 
+	     (int)short_rtc_time->hour, (int)short_rtc_time->minute, (int)short_rtc_time->second,
+	     (int)timelapse_region, tod_last_photo_in_seconds,
+	     (int) return_value);
+  check_post_printf_state_set_sio_params();  
+#endif
+  return return_value; 
+}
 
 
 
@@ -155,6 +198,7 @@ short tlps_encoded_timelapse_frequency_to_seconds(int index) {
   result = g_wbwl_timelapse_frequency_lookup_table[index];
   return result;
 }
+
 
 
 
@@ -268,7 +312,7 @@ void tlps_update_system_measurements() {
 
 
 // Our own version of TaskTimLapseFSM_task4
-//     Developed for debugging only; and not yet ported to HP4 or HP5 cameras
+//     Developed for debugging only; and not yet ported to HP5 cameras
 //     Note that this is called in FSM function vector defined at top of this
 //     file. 
 //     this is a complex function, and we need to:
@@ -301,7 +345,7 @@ void tlps_TaskTimeLapseFSM_task4(void)
   camera_config = getCameraConfigStructPtr();
   abort_current_image = camera_config->abort_current_image_p;
   get_current_date_time_short(&short_rtc_time);
-  current_timelapse_region = get_tod_in_timelapse_region(&short_rtc_time);
+  current_timelapse_region = tlps_get_tod_in_timelapse_region(&short_rtc_time);
   update_timelapse_sunrise(&sunrise_time_in_minutes,&post_sunrise_time_in_minutes);
   update_timelapse_sunset(&pre_sunset_time_in_minutes,&sunset_time_in_minutes);
   tod_last_photo_in_seconds = 86399;
@@ -652,7 +696,7 @@ void tls_HceTaskBoot2Cap_Task0(void) {
     if (86400 < tod_in_seconds) {
       tod_in_seconds = 86399;
     }
-    timelapse_region = (enum_tod_in_timelapse) get_tod_in_timelapse_region(&current_time);
+    timelapse_region = (enum_tod_in_timelapse) tlps_get_tod_in_timelapse_region(&current_time);
     timelapse_period = (enum_timelapse_period_encoding) get_cold_item_timelapse_period();
       
     switch(timelapse_region) {
