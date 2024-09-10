@@ -2,6 +2,8 @@
 
 This repository contains tools, source file, hand patches, and documentation for the (nearly) complete flow for adding new features, written in C, to Browning Trail Cameras via semi-automatically generated firmware update files.  Supported cameras are BTC{7,8}E{, HP4, HP5}.  That is, Browning Recon Force and Spec Ops line of cameras, models Edge, Elite HP4, and Elite HP5. 
 
+Note that installing this firmware may void the manufacturer warranty.  If you need to return a camera to the manufacture for warranty, see instructions below for "Reinstalling Factory Firmware" to first get the camera back into original factory configuration.  
+
 ## Most Recent Releases
 
 2024-06-05: Added "All Day/Night" option to Timelapse Period menu.  See description below
