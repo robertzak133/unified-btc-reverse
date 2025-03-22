@@ -123,6 +123,9 @@ $LC4:
 	.ascii	"%04d%02d%02d %s  %d/%d\000"
 	.align	2
 $LC5:
+	.ascii	"%04d/%02d/%02d %s  %d/%d\000"
+	.align	2
+$LC6:
 	.ascii	"%d/%d\000"
 	.text
 	.align	2
@@ -144,17 +147,17 @@ wbwl_custom_ribbon_sprintf:
 	sw	$31,124($sp)
 	sw	$20,120($sp)
 	sw	$19,116($sp)
-	move	$18,$4
-	move	$16,$6
+	move	$16,$4
+	move	$17,$6
 	jal	getCameraConfigStructPtr
-	move	$17,$7
+	move	$18,$7
 
 	addiu	$4,$2,84
 	jal	wbwlFileCTimeGet
 	addiu	$5,$sp,32
 
 	bne	$2,$0,$L8
-	lui	$5,%hi($LC5)
+	lui	$5,%hi($LC6)
 
 	jal	rtc_get_cold_item_time_format
 	nop
@@ -182,16 +185,21 @@ $L11:
 	jal	local_sprintf
 	sw	$2,16($sp)
 
-	li	$4,1			# 0x1
+	li	$4,2			# 0x2
 	lw	$6,44($sp)
 	lw	$2,48($sp)
 	beq	$19,$4,$L12
 	lw	$3,52($sp)
 
-	li	$4,2			# 0x2
-	sw	$17,28($sp)
+	li	$4,3			# 0x3
 	beq	$19,$4,$L13
-	sw	$16,24($sp)
+	addiu	$4,$sp,68
+
+	li	$4,1			# 0x1
+	lui	$5,%hi($LC3)
+	sw	$18,28($sp)
+	beq	$19,$4,$L14
+	sw	$17,24($sp)
 
 	addiu	$4,$sp,68
 	addiu	$3,$3,1900
@@ -199,15 +207,14 @@ $L11:
 	sw	$4,20($sp)
 	sw	$3,16($sp)
 	addiu	$6,$2,1
-$L19:
-	lui	$5,%hi($LC3)
+$L20:
 	addiu	$5,$5,%lo($LC3)
-$L18:
+$L19:
 	jal	local_sprintf
-	move	$4,$18
+	move	$4,$16
 
 	lw	$31,124($sp)
-$L20:
+$L21:
 	lw	$20,120($sp)
 	lw	$19,116($sp)
 	lw	$18,112($sp)
@@ -228,34 +235,45 @@ $L9:
 	b	$L11
 	addiu	$5,$5,%lo($LC1)
 
-$L12:
+$L14:
 	addiu	$4,$sp,68
 	addiu	$3,$3,1900
-	sw	$17,28($sp)
-	sw	$16,24($sp)
 	sw	$4,20($sp)
 	sw	$3,16($sp)
-	b	$L19
+	b	$L20
 	addiu	$7,$2,1
 
-$L13:
+$L12:
 	addiu	$4,$sp,68
 	lui	$5,%hi($LC4)
 	sw	$6,16($sp)
+	sw	$18,28($sp)
+	sw	$17,24($sp)
 	sw	$4,20($sp)
 	addiu	$7,$2,1
 	addiu	$6,$3,1900
-	b	$L18
+	b	$L19
 	addiu	$5,$5,%lo($LC4)
 
-$L8:
-	move	$7,$17
-	move	$6,$16
+$L13:
+	lui	$5,%hi($LC5)
+	sw	$6,16($sp)
+	sw	$18,28($sp)
+	sw	$17,24($sp)
+	sw	$4,20($sp)
+	addiu	$7,$2,1
+	addiu	$6,$3,1900
+	b	$L19
 	addiu	$5,$5,%lo($LC5)
-	jal	local_sprintf
-	move	$4,$18
 
-	b	$L20
+$L8:
+	move	$7,$18
+	move	$6,$17
+	addiu	$5,$5,%lo($LC6)
+	jal	local_sprintf
+	move	$4,$16
+
+	b	$L21
 	lw	$31,124($sp)
 
 	.set	macro
@@ -278,13 +296,13 @@ ld_draw_video_scroll_bar:
 	li	$2,256			# 0x100
 	sw	$16,24($sp)
 	sw	$31,28($sp)
-	bne	$4,$2,$L22
+	bne	$4,$2,$L23
 	move	$16,$4
 
 	jal	draw_video_scroll_bar
 	li	$4,254			# 0xfe
 
-$L22:
+$L23:
 	li	$2,13			# 0xd
 	sw	$2,16($sp)
 	li	$7,10			# 0xa
@@ -301,14 +319,14 @@ $L22:
 	li	$4,4			# 0x4
 
 	li	$2,255			# 0xff
-	beq	$16,$2,$L26
+	beq	$16,$2,$L27
 	lw	$31,28($sp)
 
 	sltu	$2,$16,101
-	beql	$2,$0,$L24
+	beql	$2,$0,$L25
 	li	$16,100			# 0x64
 
-$L24:
+$L25:
 	li	$6,176			# 0xb0
 	mult	$16,$6
 	mflo	$16
@@ -325,7 +343,7 @@ $L24:
 	li	$4,4			# 0x4
 
 	lw	$31,28($sp)
-$L26:
+$L27:
 	lw	$16,24($sp)
 	jr	$31
 	addiu	$sp,$sp,32
@@ -358,5 +376,5 @@ ld_clear_video_scroll_bar:
 
 	.comm	g_rtc_time_format_menu,84,4
 
-	.comm	g_rtc_date_format_menu,112,4
+	.comm	g_rtc_date_format_menu,140,4
 	.ident	"GCC: (Ubuntu 9.4.0-1ubuntu1) 9.4.0"

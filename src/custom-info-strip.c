@@ -4,6 +4,7 @@
 
 #include "BTC.h"
 #include "custom-info-strip.h"
+#include "capture-timer.h"
 #include "rtc-formats.h"
 
 //#define DEBUG
@@ -27,6 +28,9 @@ int wbwl_custom_info_strip_date_sprintf(char *buffer, char *format_string,
       break;
     case rtc_yyyymmdd:
       local_sprintf(buffer,"%04d%02d%02d ", year, month, day);
+      break;
+    case rtc_yyyy_mm_dd:
+      local_sprintf(buffer,"%04d/%02d/%02d ", year, month, day);
       break;
     }
 #ifdef DEBUG
@@ -87,15 +91,19 @@ int wbwl_custom_info_strip_strlen(char *buffer) {
 
   starting_length = btc_strlen(buffer);
 
+#if (defined BTC_7A)
+  power_supply_mode = ctm_get_power_supply_mode();
+#else
   power_supply_mode = get_power_supply_mode();
+#endif
 
   if (power_supply_mode == 0) {
     uint bytes_written;
     unsigned int battery_reading;
     battery_reading = get_battery_percent();
-    bytes_written = local_sprintf(&buffer[starting_length], "B:%3d ", battery_reading);
+    bytes_written = local_sprintf(&buffer[starting_length], " B:%3d ", battery_reading);
   } else {
-    local_sprintf(&buffer[starting_length], "B:EXT ");
+    local_sprintf(&buffer[starting_length], " B:EXT ");
   }
 
 #ifdef DEBUG

@@ -12,27 +12,22 @@ SYMBOL TABLE:
 00000000 l    d  .pdr	00000000 .pdr
 00000000 l    d  .comment	00000000 .comment
 00000000 l    d  .gnu.attributes	00000000 .gnu.attributes
-00000000 g     F .text	0000026c wf_setDigitalEffect
-00000000         *UND*	00000000 g_run_iq_init_function_p
-00000000         *UND*	00000000 get_DAT_80357b60_at_global_index
-00000000         *UND*	00000000 g_iq_init_function_param
-00000000         *UND*	00000000 setSensor_configB
-00000000         *UND*	00000000 dispatch_IQ_function
-00000000         *UND*	00000000 setSensor_configA
-00000000         *UND*	00000000 sp5kIqCfgSet
-00000000         *UND*	00000000 sp5kIqBlockEnable
-00000000         *UND*	00000000 g_iq_init_color_param
-0000026c g     F .text	000000f0 cp_setSensorDigitalEffectPhoto
-00000000         *UND*	00000000 g_photo_mode_p
+00000000 g     F .text	00000034 wfl_setSensorDigitalEffectPhoto
+00000000         *UND*	00000000 apt_get_cold_item_aperture
+00000000         *UND*	00000000 setSensorDigitalEffectPhoto
+00000034 g     F .text	00000034 wfl_setSensorDigitalEffectVideo
+00000000         *UND*	00000000 setSensorDigitalEffectVideo
+00000068 g     F .text	0000002c wfl_HceIRCut_SetIRCutOpen
+00000000         *UND*	00000000 HceIRCut_SetIRCutOpen
+00000094 g     F .text	00000008 wfl_video_log_printf
+00000000         *UND*	00000000 log_printf
+0000009c g     F .text	00000074 wfl_spawnIRCutFSM_per_mode
+00000000         *UND*	00000000 get_cold_item_operation_mode
+00000000         *UND*	00000000 tlps_get_cold_item_raw_timelapse_period
 00000000         *UND*	00000000 g_night_mode_p
-00000000         *UND*	00000000 set_aaa_ae_pipeline_wrapper
-00000000         *UND*	00000000 set_aaa_awb_pipeline_wrapper
-00000000         *UND*	00000000 appAWBALGLib_WBParamSet
-00000000         *UND*	00000000 set_g_ae_parameter
-00000000         *UND*	00000000 exif_remove_and_add_wrapper
-00000000         *UND*	00000000 get_cold_item_sensor_digital_effect
-00000000         *UND*	00000000 g_sensor_config_table_A
-00000000         *UND*	00000000 setDigitalEffect
-0000035c g     F .text	000000c8 cp_setSensorDigitalEffectVideo
+00000000         *UND*	00000000 IRCutThreadCreate
+00000018       O *COM*	00000004 g_wbwl_timelapse_frequency_lookup_table
+00000054       O *COM*	00000004 g_tlps_file_type_menu
+0000016c       O *COM*	00000004 g_wbwl_timelapse_frequency_menu
 
 

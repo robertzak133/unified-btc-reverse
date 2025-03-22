@@ -12,10 +12,11 @@ SYMBOL TABLE:
 00000000 l    d  .pdr	00000000 .pdr
 00000000 l    d  .comment	00000000 .comment
 00000000 l    d  .gnu.attributes	00000000 .gnu.attributes
+00000004       O *COM*	00000004 g_SST_OFF_string
 00000000 g     O .data	0000008c g_ifm_ir_led_power_menu
-0000001c       O *COM*	00000004 g_wbwl_menu_handler_function_array_extensions
-00000100       O *COM*	00000004 g_wbwl_camera_setup_selector_array
-00000380       O *COM*	00000004 g_wbwl_camera_setup_menu_item_array
+00000018       O *COM*	00000004 g_wbwl_menu_handler_function_array_extensions
+000000f8       O *COM*	00000004 g_wbwl_camera_setup_selector_array
+00000364       O *COM*	00000004 g_wbwl_camera_setup_menu_item_array
 000000c4       O *COM*	00000004 g_wbwl_timelapse_period_menu
 
 

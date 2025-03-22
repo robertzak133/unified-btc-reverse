@@ -52,7 +52,7 @@ SYMBOL TABLE:
 00000000         *UND*	00000000 get_cold_item_capture_timer_p
 00000000         *UND*	00000000 get_capture_timer_rtc_time
 00000000         *UND*	00000000 reset_capture_timer
-00000000         *UND*	00000000 set_cold_item_new_timelapse_file_p
+00000000         *UND*	00000000 set_cold_item_timelapse_new_file_p
 00000000         *UND*	00000000 set_cold_item_137_1
 00000000         *UND*	00000000 g_menu_root
 00000000         *UND*	00000000 get_next_state_from_menu_mode
@@ -78,6 +78,6 @@ SYMBOL TABLE:
 00000000         *UND*	00000000 fsm_getNextState
 00000000         *UND*	00000000 fsm_getCurrentState
 00000054       O *COM*	00000004 g_rtc_time_format_menu
-00000070       O *COM*	00000004 g_rtc_date_format_menu
+0000008c       O *COM*	00000004 g_rtc_date_format_menu
 
 

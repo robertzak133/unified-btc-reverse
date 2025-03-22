@@ -12,6 +12,9 @@ $LC0:
 	.align	2
 $LC1:
 	.ascii	"%04d%02d%02d \000"
+	.align	2
+$LC2:
+	.ascii	"%04d/%02d/%02d \000"
 	.text
 	.align	2
 	.globl	wbwl_custom_info_strip_date_sprintf
@@ -26,48 +29,58 @@ wbwl_custom_info_strip_date_sprintf:
 	.set	noreorder
 	.set	nomacro
 	addiu	$sp,$sp,-40
-	sw	$17,32($sp)
 	sw	$16,28($sp)
-	sw	$4,20($sp)
 	move	$16,$6
-	lw	$17,56($sp)
+	lw	$6,56($sp)
+	sw	$17,32($sp)
+	sw	$4,20($sp)
+	sw	$6,16($sp)
 	sw	$31,36($sp)
 	jal	rtc_get_cold_item_date_format
-	sw	$7,16($sp)
+	move	$17,$7
 
-	li	$3,1			# 0x1
+	li	$3,2			# 0x2
 	lw	$6,16($sp)
 	beq	$2,$3,$L2
 	lw	$4,20($sp)
 
-	li	$3,2			# 0x2
+	li	$3,3			# 0x3
 	beq	$2,$3,$L3
-	lui	$5,%hi($LC1)
+	li	$3,1			# 0x1
 
-	move	$7,$6
-	sw	$17,56($sp)
-	move	$6,$16
-$L6:
 	lui	$5,%hi($LC0)
+	beq	$2,$3,$L4
+	sw	$6,56($sp)
+
+	move	$7,$17
+	move	$6,$16
+$L7:
 	addiu	$5,$5,%lo($LC0)
-$L5:
+$L6:
 	lw	$31,36($sp)
 	lw	$17,32($sp)
 	lw	$16,28($sp)
 	j	local_sprintf
 	addiu	$sp,$sp,40
 
-$L2:
-	sw	$17,56($sp)
-	b	$L6
+$L4:
 	move	$7,$16
+	b	$L7
+	move	$6,$17
+
+$L2:
+	lui	$5,%hi($LC1)
+	sw	$17,56($sp)
+	move	$7,$16
+	b	$L6
+	addiu	$5,$5,%lo($LC1)
 
 $L3:
-	sw	$6,56($sp)
+	lui	$5,%hi($LC2)
+	sw	$17,56($sp)
 	move	$7,$16
-	move	$6,$17
-	b	$L5
-	addiu	$5,$5,%lo($LC1)
+	b	$L6
+	addiu	$5,$5,%lo($LC2)
 
 	.set	macro
 	.set	reorder
@@ -75,10 +88,10 @@ $L3:
 	.size	wbwl_custom_info_strip_date_sprintf, .-wbwl_custom_info_strip_date_sprintf
 	.section	.rodata.str1.4
 	.align	2
-$LC2:
+$LC3:
 	.ascii	"%02d:%02d:%02d %s \000"
 	.align	2
-$LC3:
+$LC4:
 	.ascii	"%02d:%02d:%02d \000"
 	.text
 	.align	2
@@ -108,35 +121,35 @@ wbwl_custom_info_strip_time_sprintf:
 	lw	$17,24($sp)
 
 	li	$3,1			# 0x1
-	beq	$2,$3,$L8
+	beq	$2,$3,$L9
 	lw	$7,92($sp)
 
 	lw	$2,96($sp)
 	lw	$6,88($sp)
-	lui	$5,%hi($LC2)
-	sw	$2,20($sp)
-	sw	$17,16($sp)
-	addiu	$5,$5,%lo($LC2)
-	jal	local_sprintf
-	move	$4,$16
-
-	lw	$31,76($sp)
-$L11:
-	lw	$17,72($sp)
-	lw	$16,68($sp)
-	jr	$31
-	addiu	$sp,$sp,80
-
-$L8:
-	lw	$7,28($sp)
-	lw	$6,32($sp)
 	lui	$5,%hi($LC3)
+	sw	$2,20($sp)
 	sw	$17,16($sp)
 	addiu	$5,$5,%lo($LC3)
 	jal	local_sprintf
 	move	$4,$16
 
-	b	$L11
+	lw	$31,76($sp)
+$L12:
+	lw	$17,72($sp)
+	lw	$16,68($sp)
+	jr	$31
+	addiu	$sp,$sp,80
+
+$L9:
+	lw	$7,28($sp)
+	lw	$6,32($sp)
+	lui	$5,%hi($LC4)
+	sw	$17,16($sp)
+	addiu	$5,$5,%lo($LC4)
+	jal	local_sprintf
+	move	$4,$16
+
+	b	$L12
 	lw	$31,76($sp)
 
 	.set	macro
@@ -145,11 +158,11 @@ $L8:
 	.size	wbwl_custom_info_strip_time_sprintf, .-wbwl_custom_info_strip_time_sprintf
 	.section	.rodata.str1.4
 	.align	2
-$LC4:
-	.ascii	"B:%3d \000"
-	.align	2
 $LC5:
-	.ascii	"B:EXT \000"
+	.ascii	" B:%3d \000"
+	.align	2
+$LC6:
+	.ascii	" B:EXT \000"
 	.text
 	.align	2
 	.globl	wbwl_custom_info_strip_strlen
@@ -173,32 +186,32 @@ wbwl_custom_info_strip_strlen:
 	jal	get_power_supply_mode
 	move	$16,$2
 
-	bne	$2,$0,$L13
+	bne	$2,$0,$L14
 	addu	$4,$17,$16
 
 	jal	get_battery_percent
 	sw	$4,16($sp)
 
 	lw	$4,16($sp)
-	lui	$5,%hi($LC4)
+	lui	$5,%hi($LC5)
 	move	$6,$2
 	jal	local_sprintf
-	addiu	$5,$5,%lo($LC4)
+	addiu	$5,$5,%lo($LC5)
 
 	lw	$31,36($sp)
-$L16:
+$L17:
 	lw	$16,28($sp)
 	move	$4,$17
 	lw	$17,32($sp)
 	j	btc_strlen
 	addiu	$sp,$sp,40
 
-$L13:
-	lui	$5,%hi($LC5)
+$L14:
+	lui	$5,%hi($LC6)
 	jal	local_sprintf
-	addiu	$5,$5,%lo($LC5)
+	addiu	$5,$5,%lo($LC6)
 
-	b	$L16
+	b	$L17
 	lw	$31,36($sp)
 
 	.set	macro
@@ -227,5 +240,5 @@ wbwl_StampDrawLogo:
 
 	.comm	g_rtc_time_format_menu,84,4
 
-	.comm	g_rtc_date_format_menu,112,4
+	.comm	g_rtc_date_format_menu,140,4
 	.ident	"GCC: (Ubuntu 9.4.0-1ubuntu1) 9.4.0"

@@ -6,8 +6,9 @@
 //     2023-03-17: "Off" menu setting;  No IR LED
 
 //
-
-#if (defined BTC_7E) || (defined BTC_8E) 
+#if (defined BTC_7A_OLD)
+struct_hp5_menu_item g_ifm_ir_led_power_menu[5];
+#elif (defined BTC_7A) || (defined BTC_7E) || (defined BTC_8E) 
 struct_hp5_menu_item g_ifm_ir_led_power_menu[4];
 #elif (defined BTC_7E_HP4) || (defined BTC_8E_HP4) || (defined BTC_7E_HP5) || (defined BTC_8E_HP5)
 struct_hp5_menu_item g_ifm_ir_led_power_menu[5];

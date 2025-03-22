@@ -18,6 +18,12 @@
 #include "menus.h"
 #include "extend-event-SD-card.h"
 
+// 2024-10-07 Zak: Removed  -- this is not strictly an automatic process,
+//                 as it needs to be from other places, as well.  
+// #define EVSD_ACTIVE
+//    
+
+#ifdef EVSD_ACTIVE
 //#define DEBUG
 
 // Global Constants
@@ -33,6 +39,7 @@ struct_hp5_menu_item g_evsd_extended_sd_power_menu[3] = {
 
 void evsd_check_remaining_sd_capacity(void) {
 
+foo my BAR
 #ifdef DEBUG
     set_pre_printf_state();
     tty_printf("evsd_check_remaining_sd_capacity - s\n");
@@ -162,3 +169,5 @@ EXIT:
   return;
 }
 
+
+#endif

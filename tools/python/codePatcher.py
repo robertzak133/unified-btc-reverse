@@ -53,7 +53,7 @@ class codePatcher:
 
     # Check to see whether keys in a given dict are unique
     def check_for_uniqueness(self, patch_name, patch_dict, key):
-        equivalence_list = [['BTC-8E', 'BTC-7E'],
+        equivalence_list = [['BTC-7A', 'BTC-8E', 'BTC-7E'],
                             ['BTC-8E-HP4', 'BTC-7E-HP4'],
                             ['BTC-8E-HP5', 'BTC-7E-HP5']]
         if key in patch_dict:
@@ -249,6 +249,7 @@ class codePatcher:
                         ## entry point code regions stacked on top of each other, starting at beginning of file
                         old_bytes = old_bytes_f.read(length)
                         ## entry point code regions start at zero, but are packed with filler in between unused address space
+                        print(f'Debug: add_bytes_to_patch_list: start_offset = 0x{start_offset:8x}; base_offset = 0x{base_offset:8x}')
                         new_bytes_f.seek(start_offset - base_offset)
                         new_bytes = new_bytes_f.read(length)
                         self.internal_patch_list[new_patch_name]['change_from_bytes'] = old_bytes

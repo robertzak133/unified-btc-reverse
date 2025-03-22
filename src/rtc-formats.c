@@ -12,10 +12,11 @@
 
 // Global Variables
 // Menus
-struct_hp5_menu_item g_rtc_date_format_menu[4] = {
+struct_hp5_menu_item g_rtc_date_format_menu[5] = {
   {no_icon, SST_MM_SLASH_DD_SLASH_YYYY,  0x00, 0x01, 0x00, 0x1, 0x1},
   {no_icon, SST_DD_SLASH_MM_SLASH_YYYY,  0x00, 0x01, 0x00, 0x1, 0x1},
   {no_icon, SST_YYYYMMDD,                0x00, 0x01, 0x00, 0x1, 0x1},
+  {no_icon, SST_YYYY_SLASH_MM_SLASH_DD,  0x00, 0x01, 0x00, 0x1, 0x1},
   {no_icon, SST_DATE_SP_FORMAT,          0x00, 0x00, 0x01, 0x03, 0x03}
 };
 
@@ -25,43 +26,23 @@ struct_hp5_menu_item g_rtc_time_format_menu[3] = {
   {no_icon, SST_TIME_SP_FORMAT, 0x00, 0x00, 0x01, 0x03, 0x03}
 };
 
-
 // 
 byte rtc_get_cold_item_date_format() {
-  byte result = g_ColdItemData.sd_management_p;
-  result = GET_BYTE_N_BIT(result,
-			  WBWL_DATE_FORMAT_N_BITS,
-			  WBWL_DATE_FORMAT_LSBIT);
-  return(result);
+  return g_ColdItemData.date_format;
 
 }
 
 void rtc_set_cold_item_date_format(byte date_format) {
-  byte temp_byte = g_ColdItemData.sd_management_p;
-  temp_byte = SET_BYTE_N_BIT(temp_byte, date_format,
-			     WBWL_DATE_FORMAT_N_BITS,
-			     WBWL_DATE_FORMAT_LSBIT);
-
-  g_ColdItemData.sd_management_p = temp_byte;
+  g_ColdItemData.date_format = date_format;
 }
 
 
 byte rtc_get_cold_item_time_format() {
-  byte result = g_ColdItemData.sd_management_p;
-  result = GET_BYTE_N_BIT(result,
-			  WBWL_TIME_FORMAT_N_BITS,
-			  WBWL_TIME_FORMAT_LSBIT);
-  return(result);
-
+  return g_ColdItemData.time_format;;
 }
 
 void rtc_set_cold_item_time_format(byte time_format) {
-  byte temp_byte = g_ColdItemData.sd_management_p;
-  temp_byte = SET_BYTE_N_BIT(temp_byte, time_format, 
-			     WBWL_TIME_FORMAT_N_BITS,
-			     WBWL_TIME_FORMAT_LSBIT);
-  set_cold_item_sd_management_p(temp_byte);
-
+  g_ColdItemData.time_format = time_format;
 }
 
 

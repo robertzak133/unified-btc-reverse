@@ -18,21 +18,28 @@
 
 #include "BTC.h"
 #include "WBWL.h"
-//#define ERROR_PRINT
+#define ERROR_PRINT
 // 
 
-#if (defined BTC_7E) || (defined BTC_8E)
-uint MakeShortNameByLongName(char *param1, int *param2, char *dest_string, char *src_string) {
+#if (defined BTC_7A_OLD)
+void cmdFPGA_CdspPV(int argc, char ** argv) {
 #ifdef ERROR_PRINT
   set_pre_printf_state();
-  tty_printf("Error::WBWL - MakeShortNameByLongName() not implemented in this patched firmware version");
+  tty_printf("Error::WBWL - cmdFPGA_CdspPV() not implemented in this patched firmware version");
   check_post_printf_state_set_sio_params();
 #endif
-
-  btc_strcpy(dest_string, "WBWL");
-  return 1; 
+}
+#elif (defined BTC_7A) || (defined BTC_7E) || (defined BTC_8E)
+// This function is smaller, but it's earlier in the binary, necessary in the 7E/8E to avoid
+//      executing out of uninitialized memory
+void print_disk_handle(uint param_1) {
+#ifdef ERROR_PRINT
+  set_pre_printf_state();
+  tty_printf("Error::WBWL - print_disk_handle not implemented in this patched firmware version");
+  check_post_printf_state_set_sio_params();
+#endif
 }    
-#else
+#elif (defined BTC_7E_HP4) || (defined BTC_8E_HP4) || (defined BTC_7E_HP5) || (defined BTC_8E_HP5) 
 
 uint          get_VideoFormatStructure(int param_1, void* unknown_structure_pointer){
 
@@ -43,6 +50,10 @@ uint          get_VideoFormatStructure(int param_1, void* unknown_structure_poin
 #endif
   return 0;
 }
+
+#else 
+
+*** ERROR: Unrecognized/unspecified camera target ****
 
 #endif
 

@@ -14,15 +14,14 @@
 
 #include "BTC.h"
 #include "WBWL.h"
-#define ERROR_PRINT
+//#define ERROR_PRINT
 // 
 
-#if (defined BTC_7E) || (defined BTC_8E) || (defined BTC_7E_HP4) || (defined BTC_8E_HP4)
-//      Gives us 20K bytes to work with -- plenty
-void cmdFPGA_CdspPV(int argc, char ** argv) {
+#if (defined BTC_7A) || (defined BTC_7E) || (defined BTC_8E) || (defined BTC_7E_HP4) || (defined BTC_8E_HP4)
+void print_SD_CSD(uint param_1) {
 #ifdef ERROR_PRINT
   set_pre_printf_state();
-  tty_printf("Error::WBWL - cmdFPGA_CdspPV() not implemented in this patched firmware version");
+  tty_printf("Error::WBWL-print_SD_CSD not implemented \n");
   check_post_printf_state_set_sio_params();
 #endif
 }
@@ -31,12 +30,14 @@ void cmdFPGA_CdspPV(int argc, char ** argv) {
 void cli_command_function(uint param_1,char **param_2) {
 #ifdef ERROR_PRINT
   set_pre_printf_state();
-  tty_printf("Error::WBWL -  cli_command_function() not implemented in this patched firmware version");
+  tty_printf("Error::WBWL -  cli_command_function() not implemented in this patched firmware version\n");
   check_post_printf_state_set_sio_params();
 
 #endif
 }
 
+#else
+*** ERROR: Unrecognize or unspecified camera type ***
 #endif
 
 

@@ -1,0 +1,127 @@
+// capture-timer.c
+//     Adding capture timer functionality to BTC-7A, if we can
+
+#include "BTC.h"
+#include "WBWL.h"
+#include "menus.h"
+#include "capture-timer.h"
+#include "rtc-formats.h"
+#include "custom-set-date-time.h"
+
+//#define DEBUG_NIGHT_VIDEO
+#define DEBUG_NO_SD
+
+#if (defined BTC_7A)
+
+// patches required to get baseline BTC_7E firmware to run correctly on 
+//      BTC_7A
+
+// The bit that tells us whether we're on external power, or not is in a
+//     different spot.  Basedon code from the BTC-7A
+bool ctm_get_power_supply_mode(void) {
+  uint result_buffer [3];
+  bool dummy;
+
+  // dummy call to get the hijacked function in the symbol databse
+  dummy = get_power_supply_mode();
+  hal_bit_function_at_index(1,0x4000,result_buffer);
+  return (result_buffer[0] & 0x4000) == 0;
+}
+#endif
+
+#if (defined BTC_7E) && (defined DEBUG_NO_SD)
+
+int ctm_fsm_spawn(byte allocate_p,void *iterator_function,uint param_3,uint param_4,uint param_5, void *memory) {
+  int *crash_int; 
+  set_pre_printf_state();
+  tty_printf("ctm_fsm_spawn: we were called! \n");
+  check_post_printf_state_set_sio_params();
+
+  crash_int = (int *) 0x0;
+  // reference a null pointer
+  set_pre_printf_state();
+  tty_printf("ctm_fsm_spawn: crashing on null ptr 0x%0x8x\n", *crash_int);
+  check_post_printf_state_set_sio_params();
+  return fsm_spawn(allocate_p, iterator_function, param_3, param_4, param_5, memory);
+}
+#endif
+
+void ctm_tty_printf(char *format_string, uint data) {
+  set_pre_printf_state();
+  tty_printf(format_string, data);
+  check_post_printf_state_set_sio_params();
+}
+
+// Debug Patches Only 
+#if (defined BTC_7A) && (defined DEBUG_NIGHT_VIDEO)
+// Debug
+
+uint ctm_get_some_system_time(int qualifier,uint *time) {
+  uint result = get_some_system_time(qualifier,time);
+  uint time_in_tenths = *time/100;
+  struct_CameraConfig *camera_config;
+
+  if ((time_in_tenths % 2) == 0) {
+    camera_config = getCameraConfigStructPtr();
+    set_pre_printf_state();
+    tty_printf("ctm_get_some_system_time: time %d; current_video_length %d\n",  
+	       *time, camera_config->current_video_length);
+    check_post_printf_state_set_sio_params();
+  }
+  return result;
+}
+
+uint ctm_get_SDCardState() {
+  uint result = get_SDCardState();
+  set_pre_printf_state();
+  tty_printf("ctm_getSDCardState: returning %d\n",  result);
+  check_post_printf_state_set_sio_params();
+  return result;
+}
+
+bool ctm_checkForSDCard() {
+  bool result = checkForSDCard();
+  set_pre_printf_state();
+  tty_printf("ctm_checkForSDCard: returning %d\n", (int) result);
+  check_post_printf_state_set_sio_params();
+  return result;
+}
+
+uint ctm_get_power_switch_on_p() {
+  uint result;
+  result = get_power_switch_on_p();
+  set_pre_printf_state();
+  tty_printf("ctm_get_power_switch_on_p: returning %d\n", result);
+  check_post_printf_state_set_sio_params();
+  return result;
+}
+
+int ctm_check_hal_low_voltage() {
+  int result;
+  result = check_hal_low_voltage();
+  set_pre_printf_state();
+  tty_printf("ctm_check_hal_low_voltage: returning %d\n", result);
+  check_post_printf_state_set_sio_params();
+  return result;
+}
+
+int ctm_icatch_isp_load_firmware(void) {
+  int return_value; 
+
+  set_pre_printf_state();
+  tty_printf("ctm_icatch_isp_load_firmware-s\n");
+  return_value = icatch_isp_load_firmware();
+  tty_printf("ctm_icatch_isp_load_firmware-e (%d)\n", return_value);
+  check_post_printf_state_set_sio_params();
+  return return_value;
+}
+void ctm_load_boot_parameters(void) {
+
+  load_boot_parameters();
+
+  // set_pre_printf_state();
+  // tty_printf("cpt_load_boot_parameters:: g_image_size = 0x%08x\n", 0);
+  // check_post_printf_state_set_sio_params();
+}
+
+#endif

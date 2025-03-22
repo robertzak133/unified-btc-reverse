@@ -193,7 +193,7 @@ wbwl_init_directory_suffix_file_prefix:
 	lbu	$3,%lo(g_dcfapi_loaded_p)($2)
 	li	$2,1			# 0x1
 	beq	$3,$2,$L38
-	lui	$2,%hi(g_btc_init_directory_suffix_prefix_dyn)
+	lui	$2,%hi(g_active_dcfapi_functions+16)
 
 	lui	$4,%hi($LC2)
 	move	$6,$0
@@ -201,9 +201,9 @@ wbwl_init_directory_suffix_file_prefix:
 	jal	function_with_syscall_zero
 	addiu	$4,$4,%lo($LC2)
 
-	lui	$2,%hi(g_btc_init_directory_suffix_prefix_dyn)
+	lui	$2,%hi(g_active_dcfapi_functions+16)
 $L38:
-	lw	$2,%lo(g_btc_init_directory_suffix_prefix_dyn)($2)
+	lw	$2,%lo(g_active_dcfapi_functions+16)($2)
 	beq	$2,$0,$L31
 	move	$6,$0
 

@@ -1,0 +1,26 @@
+
+capture-timer.o:     file format elf32-tradlittlemips
+
+SYMBOL TABLE:
+00000000 l    df *ABS*	00000000 capture-timer.c
+00000000 l    d  .text	00000000 .text
+00000000 l    d  .data	00000000 .data
+00000000 l    d  .bss	00000000 .bss
+00000000 l    d  .mdebug.abi32	00000000 .mdebug.abi32
+00000000 l    d  .reginfo	00000000 .reginfo
+00000000 l    d  .MIPS.abiflags	00000000 .MIPS.abiflags
+00000000 l    d  .pdr	00000000 .pdr
+00000000 l    d  .comment	00000000 .comment
+00000000 l    d  .gnu.attributes	00000000 .gnu.attributes
+00000000 g     F .text	0000002c ctm_tty_printf
+00000000         *UND*	00000000 set_pre_printf_state
+00000000         *UND*	00000000 tty_printf
+00000000         *UND*	00000000 check_post_printf_state_set_sio_params
+00000054       O *COM*	00000004 g_rtc_time_format_menu
+0000008c       O *COM*	00000004 g_rtc_date_format_menu
+00000018       O *COM*	00000004 g_wbwl_menu_handler_function_array_extensions
+000000f8       O *COM*	00000004 g_wbwl_camera_setup_selector_array
+00000364       O *COM*	00000004 g_wbwl_camera_setup_menu_item_array
+000000c4       O *COM*	00000004 g_wbwl_timelapse_period_menu
+
+

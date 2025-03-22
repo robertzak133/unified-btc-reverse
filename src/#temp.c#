@@ -1,0 +1,177 @@
+
+void HceTaskRecordingRecStop(void)
+
+{
+  byte bVar1;
+  short end_time_us;
+  struct_CameraConfig *camera_config;
+  uint uVar2;
+  int iVar3;
+  undefined4 end_time_ms;
+  uint video_length;
+  ushort total_video_length_limit;
+  uint temp;
+  uint local_20;
+  struct_event_descriptor event_descriptor;
+  ushort current_video_runtime;
+  ushort local_video_length;
+  
+  camera_config = getCameraConfigStructPtr();
+  local_20 = 0;
+  FUN_800c0218(6,&local_20);
+  local_20 = local_20 / 1000;
+  if (local_20 < 3) {
+    uVar2 = FUN_8000c380();
+  }
+  else {
+    uVar2 = FUN_8000c378();
+  }
+  if (uVar2 != 0) {
+    camera_config->field41_0x3b = 1;
+    camera_config->menu_selection_2 = 1;
+    IRLedOff();
+  }
+  iVar3 = ui_cursor_key_pressed_p(up);
+  if ((((((iVar3 == 1) && (g_up_button_enable == 2)) ||
+        ((iVar3 = ui_cursor_key_pressed_p(down), iVar3 == 1 && (g_down_button_enable == 2)))) ||
+       ((iVar3 = ui_cursor_key_pressed_p(left), iVar3 == 1 && (g_left_button_enable == 2)))) ||
+      ((iVar3 = ui_cursor_key_pressed_p(right), iVar3 == 1 && (g_right_button_enable == 2)))) ||
+     (((iVar3 = ui_cursor_key_pressed_p(enter), iVar3 == 1 && (g_enter_button_enable == 2)) ||
+      ((iVar3 = ui_cursor_key_pressed_p(mode), iVar3 == 1 && (g_mode_button_enable == 2)))))) {
+    iVar3 = check_HceTaskBoot2Cap_FSM_valid();
+    if (iVar3 != 0) {
+      camera_config->menu_selection_2 = 1;
+    }
+    camera_config->field40_0x3a = 1;
+  }
+  iVar3 = checkForSDCard();
+  if (((iVar3 == 0) || (iVar3 = get_power_switch_on_p(), iVar3 == 0)) ||
+     (iVar3 = check_hal_low_voltage(), iVar3 != 0)) {
+    camera_config->menu_selection_2 = 1;
+    goto LAB_8001fa40;
+  }
+  bVar1 = camera_config->commit_menu_change;
+  if (bVar1 == 0) goto LAB_8001fa40;
+  if (bVar1 == 1) {
+    iVar3 = getSDCardState();
+    if ((iVar3 == 2) && (iVar3 = get_g_sd_card_mounted_p(2), iVar3 != 0)) goto LAB_8001fa2c;
+    startHceTaskMount_FSM(2,1);
+    bVar1 = camera_config->commit_menu_change;
+  }
+  else {
+    if ((bVar1 != 2) || (iVar3 = FUN_8001c4b8(), iVar3 != 0)) goto LAB_8001fa40;
+    iVar3 = FUN_8000effc();
+    if (iVar3 == 0) {
+      camera_config->menu_selection_2 = 1;
+      goto LAB_8001fa40;
+    }
+    FUN_800bfbfc(7,0);
+LAB_8001fa2c:
+    bVar1 = camera_config->commit_menu_change;
+  }
+  camera_config->commit_menu_change = bVar1 + 1;
+LAB_8001fa40:
+  if (camera_config->field39_0x39 != 0) {
+    if (local_20 < 2) {
+      FUN_80004b04(0);
+    }
+    else {
+      if (((ushort)camera_config->current_video_runtime != local_20) &&
+         ((ushort)camera_config->current_video_runtime < 2)) {
+        thunk_MCUApp_SetPIRTrigger(1);
+        FUN_80004b04(0);
+      }
+      iVar3 = FUN_80004b6c();
+      if (iVar3 != 0) {
+        if ((ushort)camera_config->current_video_runtime != local_20) {
+          DoubleTryResetPIRTrigger();
+          thread_sleep(3,2);
+        }
+        if (camera_config->field40_0x3a == 0) {
+          camera_config->field33_0x33 = 10;
+        }
+      }
+    }
+  }
+  uVar2 = local_20 & 0xffff;
+  if ((ushort)camera_config->current_video_runtime == local_20) {
+    iVar3 = check_event_number(0x61510505);
+    if (((((iVar3 == 0) && (iVar3 = check_event_number(0x205), iVar3 == 0)) &&
+         (iVar3 = check_event_number(0x61510504), iVar3 == 0)) &&
+        ((iVar3 = check_event_number(0x200), iVar3 == 0 &&
+         (iVar3 = check_event_number(0x61510510), iVar3 == 0)))) &&
+       (iVar3 = check_event_0x58510000_qualifier1(0x21), iVar3 == 0)) {
+      event_descriptor.event_number = 0;
+      event_descriptor.qualifier_1 = 0;
+      event_descriptor.qualifier_2 = 0;
+      get_global_event_descriptor(&event_descriptor);
+    }
+    else {
+      camera_config->menu_selection_2 = 1;
+    }
+  }
+  else {
+    video_length = (uint)(ushort)camera_config->current_video_length;
+    temp = video_length - uVar2;
+    if (video_length < uVar2) {
+      temp = 0;
+    }
+    camera_config->current_video_runtime = (short)uVar2;
+    if ((camera_config->field39_0x39 != 0) &&
+       (bVar1 = camera_config->field33_0x33 - 1, camera_config->field33_0x33 != 0)) {
+      camera_config->field33_0x33 = bVar1;
+      if ((video_length <= uVar2) && (temp = (uint)bVar1, camera_config->field31_0x31 == 0)) {
+        camera_config->field31_0x31 = 1;
+      }
+    }
+    if ((*(char *)&camera_config->field45_0x42 != '\0') &&
+       (camera_config->current_video_runtime == 2)) {
+      FUN_80010278(0);
+    }
+    FUN_8000a508();
+    if (camera_config->field1_0x1 != 0) {
+      FUN_80008518(camera_config->current_video_runtime);
+    }
+    execute_ribbon_display_function(2,temp,camera_config->field31_0x31 & 1);
+    local_video_length = camera_config->current_video_length;
+    current_video_runtime = camera_config->current_video_runtime;
+    total_video_length_limit = 300;
+    if (300 < local_video_length) {
+      total_video_length_limit = local_video_length;
+    }
+    if ((total_video_length_limit <= current_video_runtime) ||
+       ((camera_config->exit_menu_p_or_ir_led_on != 0 && (19 < current_video_runtime)))) {
+      camera_config->menu_selection_2 = 1;
+    }
+    if ((local_video_length <= current_video_runtime) && (camera_config->field33_0x33 == 0)) {
+      camera_config->menu_selection_2 = 1;
+    }
+  }
+  if (camera_config->menu_selection_2 != 0) {
+    set_aaa_ae_pipeline_wrapper(0);
+    set_aaa_awb_pipeline_wrapper(0);
+    if (camera_config->field38_0x38 != 0) {
+      end_time_us = get_current_time_us();
+      camera_config->video_end_time_us = end_time_us;
+      iVar3 = FUN_80004c68();
+      if (iVar3 == 0) {
+        FUN_80004c04(0x19);
+      }
+      if (camera_config->field34_0x34 != 0) {
+        camera_config->field34_0x34 = 0;
+        DoubleTryResetPIRTrigger();
+        thread_sleep(3,2);
+        MCUApp_ResetPIRPin(1);
+        FUN_80004b04(0);
+        debug_print_string(0,s_still_MCUApp_ResetPIRPin_803a0bc0);
+      }
+    }
+    set_pre_printf_state();
+    end_time_ms = get_current_operating_time_ms();
+    tty_printf(s_%s_rec_stop:_[31m%d_ms_[m_803a0c7c,s_HceTaskRecording_RecVideoRecordi_80373b34,
+               end_time_ms);
+    check_post_printf_state_set_sio_params();
+    set_fsm_state_relative(1);
+  }
+  return;
+}

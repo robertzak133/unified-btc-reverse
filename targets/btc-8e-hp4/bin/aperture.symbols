@@ -12,15 +12,16 @@ SYMBOL TABLE:
 00000000 l    d  .pdr	00000000 .pdr
 00000000 l    d  .comment	00000000 .comment
 00000000 l    d  .gnu.attributes	00000000 .gnu.attributes
-00000000 g     F .text	00000030 apt_get_cold_item_aperture
+00000000 g     F .text	00000030 apt_get_rtc_extra_aperture
 00000000         *UND*	00000000 get_rtc_extra_byte_range
-00000030 g     F .text	00000060 apt_set_cold_item_aperture
+00000030 g     F .text	0000002c apt_get_rtc_extra_operation_mode
+0000005c g     F .text	00000068 apt_set_rtc_extra_operation_mode
 00000000         *UND*	00000000 set_rtc_extra_byte_range
-00000090 g     F .text	0000002c apt_get_rtc_extra_operation_mode
-000000bc g     F .text	00000058 apt_set_rtc_extra_operation_mode
-00000114 g     F .text	00000030 apt_get_night_mode_threshold_min_max
-00000000 g     O .data	00000018 g_apt_nightmode_threshold_lookup_table
-00000144 g     F .text	000000b4 apt_HceIQ_CheckNightMode
+00000000         *UND*	00000000 apt_get_cold_item_aperture
+00000000         *UND*	00000000 apt_set_rtc_extra_aperture
+000000c4 g     F .text	00000024 apt_get_night_mode_threshold_min_max
+00000000 g     O .data	00000006 g_apt_nightmode_threshold_lookup_table
+000000e8 g     F .text	000000c8 apt_HceIQ_CheckNightMode
 00000000         *UND*	00000000 read_photo_sensor_value
 00000000         *UND*	00000000 g_photo_sensor_value
 00000000         *UND*	00000000 HceIQ_CheckNightMode
@@ -28,9 +29,9 @@ SYMBOL TABLE:
 00000000         *UND*	00000000 g_night_mode_p
 00000000         *UND*	00000000 g_photo_detector_hysteresis
 00000000         *UND*	00000000 photo_sensor_hysteresis
-0000001c       O *COM*	00000004 g_wbwl_menu_handler_function_array_extensions
-000000f8       O *COM*	00000004 g_wbwl_camera_setup_selector_array
-00000364       O *COM*	00000004 g_wbwl_camera_setup_menu_item_array
+00000018       O *COM*	00000004 g_wbwl_menu_handler_function_array_extensions
+000000f0       O *COM*	00000004 g_wbwl_camera_setup_selector_array
+00000348       O *COM*	00000004 g_wbwl_camera_setup_menu_item_array
 000000c4       O *COM*	00000004 g_wbwl_timelapse_period_menu
 
 

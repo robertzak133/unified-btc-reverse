@@ -86,6 +86,7 @@ class carveBTCBRN:
         with open(FILENAME, 'rb') as f:
             # Read and carve FAT16 (A) partition
             offset = header.ldata['offset'][self.SPHOST_FAT_INDEX] + self.SPHOST_FAT_HEADER
+            print(f'Info::carve: (A) partition offset = 0x{offset:02x}')
             f.seek(offset)
             fat16hdr = Struct([
                 (None, '3B'),
@@ -95,6 +96,7 @@ class carveBTCBRN:
                 ('sectors', 'H')
                 ], f.read(0x40))
             fat16size = fat16hdr.ldata['bytes_per_sector'] * fat16hdr.ldata['sectors']
+            print(f'Info::carve A size: 0x{fat16size:8x}')
             self.carve(FILENAME, f'offset{self.SPHOST_FAT_INDEX}.A', fat16size, offset, out_directory=out_directory)
 
             # Read and carve FAT12 (B) partition
@@ -110,4 +112,5 @@ class carveBTCBRN:
                     ('sectors', 'H')
                     ], f.read(0x40))
                 fat12size = fat12hdr.ldata['bytes_per_sector'] * fat12hdr.ldata['sectors']
+                print(f'Info::carve B size: 0x{fat12size:8x}')
                 self.carve(FILENAME, f'offset{self.SPHOST_FAT_INDEX}.B', fat12size, offset, out_directory=out_directory)

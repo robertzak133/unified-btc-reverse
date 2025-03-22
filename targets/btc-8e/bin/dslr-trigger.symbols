@@ -12,18 +12,25 @@ SYMBOL TABLE:
 00000000 l    d  .pdr	00000000 .pdr
 00000000 l    d  .comment	00000000 .comment
 00000000 l    d  .gnu.attributes	00000000 .gnu.attributes
-00000000 g     F .text	00000014 dslr_get_cold_item_dslr_trigger_p
-00000000         *UND*	00000000 g_ColdItemData
-00000014 g     F .text	0000002c dt_cold_item_led_power_blur_reduction_p
+00000000 g     F .text	00000008 xtrg_Write_LEDOn
 00000000         *UND*	00000000 Write_LEDOn
-00000000         *UND*	00000000 cold_item_led_power_blur_reduction_p
-00000040 g     F .text	00000030 dt_video_log_printf_hook
-00000000         *UND*	00000000 log_printf
-00000070 g     F .text	00000030 dt_IRLedOff
-00000000         *UND*	00000000 IRLedOff
+00000008 g     F .text	00000008 xtrg_Write_LEDOff
 00000000         *UND*	00000000 Write_LEDOff
-000000a0 g     F .text	00000024 dslr_set_cold_item_dslr_trigger_p
-000000c4 g     F .text	0000020c dslr_handle_led_enable_menu
+00000010 g     F .text	00000050 xtrg_flash_trigger_p
+00000000         *UND*	00000000 apt_get_cold_item_aperture
+00000000         *UND*	00000000 g_night_mode_p
+00000000         *UND*	00000000 g_apt_nightmode_threshold_lookup_table
+00000000         *UND*	00000000 g_photo_sensor_value
+00000060 g     F .text	0000004c dt_cold_item_led_power_blur_reduction_p
+00000000         *UND*	00000000 g_ColdItemData
+00000000         *UND*	00000000 cold_item_led_power_blur_reduction_p
+000000ac g     F .text	0000005c dt_video_log_printf_hook
+00000000         *UND*	00000000 log_printf
+00000108 g     F .text	0000005c dt_IRLedOff
+00000000         *UND*	00000000 IRLedOff
+00000164 g     F .text	0000000c xtrg_get_cold_item_ext_trigger_enum
+00000170 g     F .text	0000000c xtrg_set_cold_item_ext_trigger_enum
+0000017c g     F .text	000001f8 xtrg_handle_led_enable_menu
 00000000         *UND*	00000000 getCameraConfigStructPtr
 00000000         *UND*	00000000 g_menu_root
 00000000         *UND*	00000000 menu_draw_selected_item
@@ -33,16 +40,16 @@ SYMBOL TABLE:
 00000000         *UND*	00000000 g_left_button_enable
 00000000         *UND*	00000000 g_right_button_enable
 00000000         *UND*	00000000 g_enter_button_enable
-000000f8       O *COM*	00000004 g_wbwl_camera_setup_selector_array
+000000f0       O *COM*	00000004 g_wbwl_camera_setup_selector_array
 00000000         *UND*	00000000 get_next_state_from_menu_enter
 00000000         *UND*	00000000 set_fsm_state_absolute
 00000000         *UND*	00000000 menu_get_next_menu_selection
 00000000         *UND*	00000000 menu_redraw_items
 00000000         *UND*	00000000 g_mode_button_enable
 00000000         *UND*	00000000 get_next_state_from_menu_mode
-00000000 g     O .data	00000054 g_dlsr_led_enable_menu
-0000001c       O *COM*	00000004 g_wbwl_menu_handler_function_array_extensions
-00000364       O *COM*	00000004 g_wbwl_camera_setup_menu_item_array
+00000000 g     O .data	00000070 g_ext_trigger_enable_menu
+00000018       O *COM*	00000004 g_wbwl_menu_handler_function_array_extensions
+00000348       O *COM*	00000004 g_wbwl_camera_setup_menu_item_array
 000000c4       O *COM*	00000004 g_wbwl_timelapse_period_menu
 
 

@@ -6,7 +6,17 @@
 //      are being taken
 // 2022-12-03 zak: added menu for enabling
 
-struct_hp5_menu_item g_dlsr_led_enable_menu[3];
+
+struct_hp5_menu_item g_ext_trigger_enable_menu[4];
+
+typedef enum enum_ext_trigger {
+  xtrg_off = 0,
+  xtrg_dslr = 1,
+  xtrg_flash = 2
+} enum_ext_trigger;
+
+void xtrg_Write_LEDOn();
+void xtrg_Write_LEDOff();
 
 void dt_RapidFirePhotos_printf_hook(char * format_string, unsigned int delay_ms,
 				    unsigned int image_width, unsigned int image_height,
@@ -18,10 +28,10 @@ void dt_video_log_printf_hook(unsigned int level, char * format_string, char * f
 
 void dt_IRLedOff(void);
 
-void dslr_handle_led_enable_menu(void);
+void xtrg_handle_led_enable_menu(void);
 
-byte dslr_get_cold_item_dslr_trigger_p();
+enum_ext_trigger xtrg_get_cold_item_ext_trigger_enum();
 
-void dslr_set_cold_item_dslr_trigger_p(byte dslr_trigger_p);
+void xtrg_set_cold_item_ext_trigger_enum(enum_ext_trigger ext_trigger_enum);
 
 

@@ -76,6 +76,6 @@ SYMBOL TABLE:
 00000000         *UND*	00000000 fsm_getNextState
 00000000         *UND*	00000000 fsm_getCurrentState
 00000054       O *COM*	00000004 g_rtc_time_format_menu
-00000070       O *COM*	00000004 g_rtc_date_format_menu
+0000008c       O *COM*	00000004 g_rtc_date_format_menu
 
 

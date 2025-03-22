@@ -1,0 +1,36 @@
+//
+// native-quality.c
+//    Adds a mode to "photo quality" menu for "native" 
+//    This sets the quality to be the native resolution of the sensor
+
+#include "BTC.h"
+#include "WBWL.h"
+#include "menus.h"
+#include "native-quality.h"
+
+struct_hp5_menu_item g_ntvq_photo_quality_menu[6] = {
+  {no_icon, SST_LOW_SP__LB_4MP_RB_ ,    0x0, 0x1, 0x0, 0x1, 0x1},
+  {no_icon, SST_MEDIUM_SP__LB_8MP_RB_ , 0x0, 0x1, 0x0, 0x1, 0x1},
+  {no_icon, SST_HIGH_SP__LB_12MP_RB_ ,  0x0, 0x1, 0x0, 0x1, 0x1},
+  {no_icon, SST_ULTRA_SP__LB_20MP_RB_ , 0x0, 0x1, 0x0, 0x1, 0x1},
+  {no_icon, SST_NATIVE_LB_2M_RB_ ,      0x0, 0x1, 0x0, 0x1, 0x1},
+  {no_icon, SST_PHOTO_SP_QUALITY,       0x0, 0x0, 0x1, 0x3, 0x3}
+};
+
+
+struct_photo_dimensions_int *ntvq_get_camera_photo_resolution(struct_photo_dimensions_int *photo_dimensions, enum_photo_quality encoded_photo_quality) {
+
+  if (encoded_photo_quality > 1000) {
+    // Dummy (never taken) branch just to get the function below into the symbol table
+    return get_camera_photo_resolution(photo_dimensions, encoded_photo_quality);
+  }
+  if (encoded_photo_quality <= ultra_20MP) {
+    photo_dimensions->width = (uint) g_image_resolution_lookup_table[(uint)encoded_photo_quality].width;
+    photo_dimensions->height = (uint) g_image_resolution_lookup_table[(uint)encoded_photo_quality].height;
+    photo_dimensions->width_hi = 0;
+    photo_dimensions->height_hi = 0;
+  } else {
+    get_multi_shot_photo_dimensions(photo_dimensions);
+  }
+  return photo_dimensions;
+}

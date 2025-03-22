@@ -6,17 +6,32 @@
 #include "menus.h"
 #include "aperture.h"
 
-#define DEBUG
+//#define DEBUG
 
 // Global Variables
 // Menus
+
+#if (defined BTC_7A_OLD) 
+
+char  g_SST_STANDARD_string[sizeof("STANDARD")] = "STANDARD";
+char  g_SST_LOW_SP_LIGHT_string[sizeof("LOW LIGHT")] = "LOW LIGHT";
+char  g_SST_NO_SP_LIGHT_string[sizeof("NO LIGHT")] = "NO LIGHT";
+char  g_SST_DAY_SP_THRESHOLD_string[sizeof("DAY THRESHOLD")] = "DAY THRESHOLD";
+
+struct_hp5_menu_item g_apt_aperture_menu[4] = {
+  {no_icon, g_SST_STANDARD_string,     0x00, 0x01, 0x00, 0x1, 0x1},
+  {no_icon, g_SST_LOW_SP_LIGHT_string, 0x00, 0x01, 0x00, 0x1, 0x1},
+  {no_icon, g_SST_NO_SP_LIGHT_string, 0x00, 0x01, 0x00, 0x1, 0x1},
+  {no_icon, g_SST_DAY_SP_THRESHOLD_string,        0x00, 0x00, 0x01, 0x03, 0x03}
+};
+#elif (defined BTC_7A) || (defined BTC_7E) || (defined BTC_8E) || (defined BTC_7E_HP4) || (defined BTC_8E_HP4) || (defined BTC_7E_HP5) || (defined BTC_8E_HP5)
 struct_hp5_menu_item g_apt_aperture_menu[4] = {
   {no_icon, SST_STANDARD,     0x00, 0x01, 0x00, 0x1, 0x1},
   {no_icon, SST_LOW_SP_LIGHT, 0x00, 0x01, 0x00, 0x1, 0x1},
   {no_icon, SST_NO_SP_LIGHT, 0x00, 0x01, 0x00, 0x1, 0x1},
   {no_icon, SST_DAY_SP_THRESHOLD,        0x00, 0x00, 0x01, 0x03, 0x03}
 };
-
+#endif
 
 void apt_handle_aperture_menu() {
   byte  encoded_aperture;
@@ -77,4 +92,13 @@ void apt_handle_aperture_menu() {
 EXIT1:
   set_fsm_state_absolute(iVar1);
   return;
+}
+
+// Never called, but here to get some local functions in the lookup table
+void apt_dummy(void) {
+  byte result;
+#if (defined BTC_7A) || (defined BTC_7E) || (defined BTC_8E) || (defined BTC_7E_HP4) || (defined BTC_8E_HP4) || (defined BTC_7E_HP5) || (defined BTC_8E_HP5)
+  result = get_rtc_extra_operation_mode();
+  set_rtc_extra_operation_mode(result);
+#endif
 }

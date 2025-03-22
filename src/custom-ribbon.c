@@ -100,6 +100,11 @@ void wbwl_custom_ribbon_sprintf(char *buffer, char * format,
 		    creation_date_time.year + 1900, creation_date_time.month + 1, creation_date_time.day,
 		    time_buffer, current_media_index, total_num_media);
       break;
+    case rtc_yyyy_mm_dd:
+      local_sprintf(buffer,"%04d/%02d/%02d %s  %d/%d", 
+		    creation_date_time.year + 1900, creation_date_time.month + 1, creation_date_time.day,
+		    time_buffer, current_media_index, total_num_media);
+      break;
     }
 
     // fill up the buffer 

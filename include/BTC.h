@@ -5,6 +5,11 @@
 
 #include "SST-strings.h"
 
+
+// Handy Constants
+
+#define COLD_ITEM_SIGNATURE  0x5a3c
+
 // Imported (manually) from Ghidra
 // 
 
@@ -16,11 +21,12 @@ typedef unsigned short   ushort;
 // Enums w/ typedefs
 
 
+
 typedef enum enum_tod_in_timelapse {
   daylight_post_sunrise_region = 0,
   daylight_no_photo_region,
   daylight_pre_sunset_region,
-  night_no_photo_region,
+  night_no_photo_region
 //  night_photo_region
 } enum_tod_in_timelapse;
 
@@ -64,7 +70,7 @@ typedef enum enum_ui_cursor_button {
   mode
 } enum_ui_cursor_button;
 
-#if (defined BTC_7E) || (defined BTC_8E)
+#if (defined BTC_7A) || (defined BTC_7E) || (defined BTC_8E)
 typedef enum enum_battery_type {
   lithium = 0,
   alkaline = 1
@@ -83,6 +89,14 @@ typedef enum enum_battery_type {
 } enum_battery_type;
 #endif
 
+// Photo Quality Settings
+typedef enum enum_photo_quality {
+  low_4MP = 0,
+  medium_8MP,
+  high_12MP,
+  ultra_20MP,
+  native_2MP
+} enum_photo_quality;
 
 // Time scaler for thread_sleep function
 typedef enum enum_timer_wait_scale {
@@ -99,7 +113,40 @@ typedef enum enum_flash_intensity {
   flash_high
 } enum_flash_intensity;
 
-#if (defined BTC_7E) || (defined BTC_8E)
+#if (defined BTC_7A_OLD) 
+typedef enum enum_jpg_icon_index {
+  setup	= 0x0, 
+  playback, 
+  home, 
+  datetime,
+  opmode, 
+  photo_quality, 
+  video_length, 
+  video_quality,
+  photo_delay,
+  multishot,
+  temp_unit,
+  camera_name,
+  stamp,
+  motion_test,
+  pir_range,
+  battery_type,
+  trigger_speed,
+  restore_default,
+  plot_frequency,
+  plot_period,
+  timelapse_quality,
+  delete_one,
+  delete_all,
+  tv_out,
+  sd_management,
+  smart_ir,
+  ir_flash_power,
+  firmware_upgrade,
+  no_icon
+} enum_jpg_icon_index;
+
+#elif (defined BTC_7A) || (defined BTC_7E) || (defined BTC_8E)
 typedef enum enum_jpg_icon_index {
   setup	= 0x0, 
   playback, 
@@ -214,14 +261,14 @@ typedef enum enum_menu_selection_action {
   new_child = 2
 } enum_menu_selection_action;
 
-#if (defined BTC_7E) || (defined BTC_8E)
+#if (defined BTC_7A) || (defined BTC_7E) || (defined BTC_8E)
 typedef enum enum_cold_item_ir_led_intensity {
   economy = 0,
   long_range,
   off
 } enum_cold_item_ir_led_intensity;
 
-#elif (defined BTC_7E_HP4) || (defined BTC_8E_HP4)
+#elif  (defined BTC_7E_HP4) || (defined BTC_8E_HP4)
 typedef enum enum_cold_item_ir_led_intensity {
   economy = 0,
   long_range,
@@ -229,7 +276,7 @@ typedef enum enum_cold_item_ir_led_intensity {
   off
 } enum_cold_item_ir_led_intensity;
 
-#elif (defined BTC_7E_HP5) || (defined BTC_8E_HP5)
+#elif (defined BTC_7A) || (defined BTC_7E_HP5) || (defined BTC_8E_HP5)
 typedef enum enum_cold_item_ir_led_intensity {
   economy = 0,
   long_range,
@@ -281,14 +328,88 @@ typedef enum enum_photo_delay_encoding {
   pd_sixty_minutes
 } enum_photo_delay_encoding;
 
+typedef enum enum_multi_shot_encoding {
+  ms_8_shot_standard = 0,
+  ms_7_shot_standard,
+  ms_6_shot_standard,
+  ms_5_shot_standard,
+  ms_4_shot_standard,
+  ms_3_shot_standard,
+  ms_2_shot_standard,
+  ms_single_shot,
+  ms_8_shot_rapid,
+  ms_7_shot_rapid,
+  ms_6_shot_rapid,
+  ms_5_shot_rapid,
+  ms_4_shot_rapid,
+  ms_3_shot_rapid,
+  ms_2_shot_rapid
+} enum_multi_shot_encoding;
+
 // Structures w/ typedefs
+
+typedef struct struct_event_descriptor {
+  int event_number;
+  int qualifier_1;
+  int qualifier_2;
+} struct_event_descriptor;
+
+
+typedef struct struct_dcfapi_functions {
+  uint library_id;
+  void (*unknown11)();
+  void (*unknown10)();
+  void (*unknown9)();
+  void (*set_dir_suffix_image_prefix)();
+  void (*get_dir_suffix_image_prefix)();
+  void (*set_dir_image_indices)();
+  void (*get_dir_image_indices)();
+  void (*unknown8)();
+  void (*unknown7)();
+  void (*unknown6)();
+  void (*unknown5)();
+  void (*del_file_helper)();
+  void (*get_dcf_index)();
+  void (*set_next_dcf)();
+  void (*get_next_dcf)();
+  void (*set_next_image_path)();
+  void (*get_next_image_path)();
+  void (*set_alt2_dir_image_indices)();
+  void (*get_alt2_dir_image_indices)();
+  void (*unknown12)();
+  void (*func_0x54)();
+  void (*func_0x58)();
+  void (*func_0x5c)();
+  void (*media_trim)();
+  void (*func_0x64)();
+  void (*set_alt_dir_image_indices)();
+  void (*get_alt_dir_image_indices)();
+  void (*func_0x70)();
+  void (*unknown14)();
+  void (*func_0x78)();
+  void (*func_0x7c)();
+  void (*func_0x80)();
+  void (*func_0x84)();
+  void (*func_0x88)();
+  void (*recover_fun)();
+  void (*unknown15)();
+  void (*unknown16)();
+  void (*unknown17)();
+  void (*func_0x9c)();
+  void (*func_0xa0)();
+} struct_dcfapi_functions;
 
 typedef struct struct_photo_dimensions_int {
   uint width;
   uint height;
-  uint field2_0x8;
-  uint field3_0xc;
+  uint width_hi;
+  uint height_hi;
 } struct_photo_dimensions_int;
+
+typedef struct struct_photo_dimensions_short {
+  ushort width;
+  ushort height;
+} struct_photo_dimensions_short;
 
 typedef struct struct_image_descriptor {
   uint field0x0;
@@ -363,6 +484,32 @@ typedef enum enum_date_time_menu_item {
   dtm_nominal_am_pm = 9
 }  enum_date_time_menu_item;
 
+typedef enum enum_capture_timer_menu_item {
+  ctm_nominal_start_hour = 0,
+  ctm_nominal_start_minute = 2,
+  ctm_nominal_start_am_pm = 4,
+  ctm_nominal_end_hour  = 5,
+  ctm_nominal_end_minute = 7,
+  ctm_nominal_end_am_pm = 9
+} enum_capture_timer_menu_item;
+
+
+typedef struct struct_capture_menu_display_state{
+  short start_hour;
+  short start_minute;
+  short start_am_pm;
+  short end_hour;
+  short end_minutes;
+  short end_am_pm;
+} struct_capture_menu_display_state;
+
+typedef struct struct_capture_menu_internal_state{
+  short start_hour;
+  short start_minute;
+  short end_hour;
+  short end_minutes;
+} struct_capture_menu_internal_state;
+
 
 typedef struct struct_menu_functions {
   uint (*current_value_function)();
@@ -370,16 +517,27 @@ typedef struct struct_menu_functions {
   uint (*max_value_function)();
 } struct_menu_functions;
 
+#if (defined BTC_7A_OLD)
 typedef struct struct_hp5_menu_item {
   enum_jpg_icon_index   icon_index;
-  enum_sst_string   text_id;
-  uint   foreground_color;
-  uint   background_color;
+  char  *text_ptr;
+  uint   disable_item; 
+  uint   menu_increment;
   enum_menu_selection_action menu_selection_action;
   uint   return_state_id;
   uint   next_state_id;
 } struct_hp5_menu_item;
-
+#elif (defined BTC_7E_HP5) || (defined BTC_8E_HP5) || (defined BTC_7E_HP4) || (defined BTC_8E_HP4) || (defined BTC_7E) || (defined BTC_8E) || (defined BTC_7A)
+typedef struct struct_hp5_menu_item {
+  enum_jpg_icon_index   icon_index;
+  enum_sst_string   text_id;
+  uint   disable_item; 
+  uint   menu_increment;
+  enum_menu_selection_action menu_selection_action;
+  uint   return_state_id;
+  uint   next_state_id;
+} struct_hp5_menu_item;
+#endif
 
 typedef struct struct_menu_selections_descriptor {
   struct_hp5_menu_item  *menu_item_array;
@@ -421,11 +579,21 @@ typedef struct struct_mpu_spi_address {
   byte addr2;
 } struct_mpu_spi_address;
 
+typedef struct struct_mpu_spi_addr {
+  byte addr0;
+  byte addr1;
+} struct_mpu_spi_addr;
+
 typedef struct struct_mpu_spi_data {
   byte data0;
   byte data1;
   byte data2;
 } struct_mpu_spi_data;
+
+typedef struct struct_mpu_spi_data_2B {
+  byte data0;
+  byte data1;
+} struct_mpu_spi_data_2B;
 
 // Real Time Clock Structures
 typedef struct struct_RTCTime {
@@ -471,8 +639,73 @@ typedef struct struct_DateTime {
 // Camera config -- go-to structure with everything but the kitchen sink
 //    These are my nemesis in as much as they can change gen-on-gen in a difficult
 //    to track way :(
+#if (defined BTC_7A_OLD)
+typedef struct struct_CameraConfig {
+  byte exit_menu_p_or_ir_led_on; // 0
+  byte video_p;
+  byte menu_selection_1;         // 2
+  byte menu_selection_2;         // 3
+  // a bunch of unknown ints
+  byte commit_menu_change;       // 4
+  byte field_05_1;               // 5
+  byte field_06_1;               // 6
+  byte field_07_1;               // 7
+  byte field_08_1;               // 8
+  byte field_09_1;               // 9
+  byte field_10_1;               // 10
+  byte field_11_1;               // 11
+  byte field_12_1;               // 12
+  byte field_13_1;               // 13
+  byte field_14_1;               // 14
+  byte field_15_1;               // 15
+  byte field_16_1;               // 16
+  byte field_17_1;               // 17
+  byte field_18_1;               // 18
+  byte field_19_1;               // 19
+  byte field_20_1;               // 20
+  byte field_21_1;               // 21
+  byte field_22_1;               // 22
+  byte field_23_1;               // 23
+  short current_video_runtime;   // 24
+  short current_video_length;    // 26
+  short video_length;            // 28
+  byte fileld_30_1;              // 30
+  byte fileld_31_1;              // 30
+  byte fileld_32_1;              // 32
+  byte still_flash_on;           // 33
+  byte field_34_1;               // 34
+  byte field_35_1;               // 35
+  byte field_36_1;               // 36
+  byte some_timelapse_field;    // 37
+  byte field_38_1;              // 38
+  byte abort_current_image_p;   // 39
+  uint jpg_file_id;             // 40
+  uint jpg_file_size;           // 44
+  byte unknown_byte_48;
+  byte unknown_byte_49;
+  byte unknown_byte_50;
+  byte unknown_byte_51;
+  byte unknown_byte_52;
+  byte unknown_byte_53;
+  byte unknown_byte_54;
+  byte unknown_byte_55;
+  byte unknown_byte_56;
+  byte unknown_byte_57;
+  byte unknown_byte_58;
+  byte unknown_byte_59;
+  byte unknown_byte_60;
+  byte unknown_byte_61;
+  short video_end_time_us; // 62
+  short photo_end_time_us; // 64
+  short unknown_short_66; 
+  uint still_led_turned_on_time_us; // 68
+  uint unknown_uint_72;
+  int total_images; // 76
+  int current_image; //80
+  char current_filename[200]; //84
+} struct_CameraConfig;
 
-#if (defined BTC_7E) || (defined BTC_8E) 
+#elif (defined BTC_7A) || (defined BTC_7E) || (defined BTC_8E) 
 typedef struct struct_CameraConfig {
   byte exit_menu_p_or_ir_led_on; // 0
   byte video_p;
@@ -527,7 +760,10 @@ typedef struct struct_CameraConfig {
   short unknown_short_66; 
   uint still_led_turned_on_time_us; // 68
   uint unknown_uint_72;
-  int total_images; // 76
+  byte total_still_burst_images;  // 76
+  byte total_to_view_images;      // 77
+  byte unknown_byte_78;           // 78
+  byte unknown_byte_79;           // 79
   int current_image; //80
   char current_filename[200]; //84
 } struct_CameraConfig;
@@ -748,11 +984,13 @@ typedef struct struct_video_page_descriptor {
 
 
 // Cold storage Data structure
+
 //      Edge-Specific
-#if (defined BTC_7E) || (defined BTC_8E)
+#if (defined BTC_7A) || (defined BTC_7E) || (defined BTC_8E)
 typedef struct struct_ColdBinData {
   short                file_length;
-  short                field_02_2;
+  byte                 busy_p;
+  byte                 field_03_1;
   struct_short_RTCTime short_RTC_time;
   short                previous_MCU;
   short                current_MCU;
@@ -778,9 +1016,9 @@ typedef struct struct_ColdBinData {
   byte                 field_62_1;
   byte                 field_63_1;
   byte                 image_data_strip_p;
-  byte                 field_65_1;
-  byte                 field_66_1;
-  byte                 field_67_1;
+  byte                 aperture;
+  byte                 external_trigger;
+  byte                 date_format;
   uint         temperature_unit_celsius_p;
   byte                 field_72_1;
   byte                 field_73_1;
@@ -796,7 +1034,7 @@ typedef struct struct_ColdBinData {
   byte                 smart_ir_video_p;
   byte                 sd_management_p;
   byte                 field_94_1;
-  byte                 field_95_1;
+  byte                 time_format;
   byte                 field_96_1;
   byte                 field_97_1;
   byte                 field_98_1;
@@ -980,7 +1218,7 @@ typedef struct struct_ColdBinData {
   byte                 field_312_1;
   byte                 field_313_1;
   byte                 capture_timer_p;
-  byte                 field_315_1;
+  byte                 capture_timer_menu_active_p;
   byte                 field_316_1;
   byte                 field_317_1;
   byte                 field_318_1;
@@ -996,7 +1234,7 @@ typedef struct struct_ColdBinData {
 #elif (defined BTC_7E_HP4) || (defined BTC_8E_HP4)
 typedef struct struct_ColdBinData {
   short                file_length;
-  byte                 field_02_1;
+  byte                 busy_p;
   byte                 field_03_1;
   struct_short_RTCTime short_RTC_time;
   byte                 field_16_1;
@@ -1029,9 +1267,9 @@ typedef struct struct_ColdBinData {
   byte                 field_62_1;
   byte                 field_63_1;
   byte                 image_data_strip_p;
-  byte                 field_65_1;
-  byte                 field_66_1;
-  byte                 field_67_1;
+  byte                 aperture;
+  byte                 external_trigger;
+  byte                 date_format;
   unsigned int         temperature_unit_celsius_p;
   byte                 field_72_1;
   byte                 field_73_1;
@@ -1047,7 +1285,7 @@ typedef struct struct_ColdBinData {
   byte                 smart_ir_video_p;
   byte                 sd_management_p;
   byte                 field_94_1;
-  byte                 field_95_1;
+  byte                 time_format; 
   byte                 field_96_1;
   byte                 field_97_1;
   byte                 field_98_1;
@@ -1250,7 +1488,8 @@ typedef struct struct_ColdBinData {
 #elif (defined BTC_7E_HP5) || (defined BTC_8E_HP5)
 typedef struct struct_ColdBinData {
   short                file_length;
-  short                field_02_2;
+  byte                 busy_p;
+  byte                 field_03_1;
   struct_short_RTCTime short_RTC_time;
   enum_operation_mode  operation_mode;
   unsigned int         photo_resolution;
@@ -1274,9 +1513,9 @@ typedef struct struct_ColdBinData {
   byte                 field_54_1;
   byte                 field_55_1;
   byte                 image_data_strip_p;
-  byte                 field_57_1;
-  byte                 field_58_1;
-  byte                 field_59_1;
+  byte                 aperture;
+  byte                 external_trigger;
+  byte                 date_format;
   unsigned int         temperature_unit_celsius_p;
   byte                 field_64_1;
   byte                 field_65_1;
@@ -1284,12 +1523,14 @@ typedef struct struct_ColdBinData {
   byte                 field_67_1;
   unsigned int         pir_range;
   enum_battery_type    battery_type;
-  unsigned int         trigger_speed;
+  byte                 trigger_speed;
+  byte                 time_format;
+  byte                 field_78_1;
+  byte                 field_79_1;
   byte                 smart_ir_video_p;
   byte                 sd_management_p;
-  byte                 field_82_1;
-  byte                 field_83_1;
-  short                AELGLib_Params;
+  short                AEGLib_Params_A;
+  short                AELGLib_Params_B;
   short                pressure_trend_array[6];
   short                pressure_trend_time;
   byte                 pressure_trend_index;
@@ -1411,7 +1652,63 @@ typedef struct struct_ColdBinData {
 #endif
 // External Global Variables
 
+#if (defined BTC_7A_OLD)
+// BTC_7A has string constants for menus in the program data segment 
+extern char g_SST_ECONOMY_string[sizeof("ECONOMY")];
+extern char g_SST_LONG_SP_RANGE_string[sizeof("LONG RANGE")];
+extern char g_SST_BLUR_SP_REDUCTION_string[sizeof("BLUR REDUCTION")];
+extern char g_SST_SETUP_SP_DATE_SLASH_TIME_string[sizeof("SETUP DATE/TIME")];
+extern char g_SST_OPERATION_SP_MODE_string[sizeof("OPERATION MODE")];
+extern char g_SST_PHOTO_SP_QUALITY_string[sizeof("PHOTO QUALITY")];
+extern char g_SST_VIDEO_SP_LENGTH_string[sizeof("VIDEO LENGTH")];
+extern char g_SST_VIDEO_SP_QUALITY_string[sizeof("VIDEO QUALITY")];
+extern char g_SST_PHOTO_SP_DELAY_string[sizeof("PHOTO DELAY")];
+extern char g_SST_MULTI_SP_SHOT_SP_MODE_string[sizeof("MULTI SHOT MODE")];
+extern char g_SST_TEMP_SP_UNIT_string[sizeof("TEMP UNIT")];
+extern char g_SST_CAMERA_SP_NAME_string[sizeof("CAMERA NAME")];
+extern char g_SST_IMAGE_SP_DATA_SP_STRIP_string[sizeof("IMAGE DATA STRIP")];
+extern char g_SST_MOTION_SP_TEST_string[sizeof("MOTION TEST")];
+extern char g_SST_MOTION_SP_DETECTION_string[sizeof("MOTION DETECTION")];
+extern char g_SST_BATTERY_SP_TYPE_string[sizeof("BATTERY TYPE")];
+extern char g_SST_TRIGGER_SP_SPEED_string[sizeof("TRIGGER SPEED")];
+extern char g_SST_DEFAULT_SP_SETTINGS_string[sizeof("DEFAULT SETTINGS")];
+extern char g_SST_TIMELAPSE_SP_FREQ_string[sizeof("TIMELAPSE FREQ")];
+extern char g_SST_TIMELAPSE_SP_PERIOD_string[sizeof("TIMELAPSE PERIOD")];
+extern char g_SST_DELETE_SP_ALL_string[sizeof("DELETE ALL")];
+extern char g_SST_TV_SP_OUT_string[sizeof("TV OUT")];
+extern char g_SST_IR_SP_FLASH_SP_POWER_string[sizeof("IR FLASH POWER")];
+extern char g_SST_SMART_SP_IR_SP_VIDEO_string[sizeof("SMART IR VIDEO")];
+extern char g_SST_SD_SP_MANAGEMENT_string[sizeof("SD MANAGEMENT")];
+extern char g_SST_FW_SP_UPGRADE_string[sizeof("FW UPGRADE")];
+
+extern char g_SST_CAMERA_SP_SETUP_string[sizeof("CAMERA SETUP")];
+
+extern char g_SST_1_SP_SEC_string[sizeof("1 SEC")];
+extern char g_SST_5_SP_SECS_string[sizeof("5 SECS")];
+extern char g_SST_10_SP_SECS_string[sizeof("10 SECS")];
+extern char g_SST_20_SP_SECS_string[sizeof("20 SECS")];
+extern char g_SST_30_SP_SECS_string[sizeof("30 SECS")];
+extern char g_SST_1_SP_MIN_string[sizeof("1 MIN")];
+extern char g_SST_2_SP_MINS_string[sizeof("2 MINS")];
+extern char g_SST_5_SP_MINS_string[sizeof("5 MINS")];
+extern char g_SST_10_SP_MINS_string[sizeof("10 MINS")];
+extern char g_SST_30_SP_MINS_string[sizeof("30 MINS")];
+extern char g_SST_60_SP_MINS_string[sizeof("60 MINS")];
+extern char g_SST_TIMELAPSE_SP_FREQ_string[sizeof("TIMELAPSE FREQ")];
+
+extern char g_SST_ALL_SP_DAY_string[sizeof("_ALL DAY")];
+extern char g_SST_1_SP_HOUR_string[sizeof("1 HOUR")];
+extern char g_SST_2_SP_HOURS_string[sizeof("2 HOURS")];
+extern char g_SST_3_SP_HOURS_string[sizeof("3 HOURS")];
+extern char g_SST_4_SP_HOURS_string[sizeof("4 HOURS")];
+extern char g_SST_TIMELAPSE_SP_PERIOD_string[sizeof("TIMELAPSE PERIOD")];
+extern char g_SST_CAPTURE_SP_TIMER_string[sizeof("CAPTURE TIMER")];
+
+#endif
+
 extern struct_ColdBinData g_ColdItemData;
+extern struct_ColdBinData g_ReferenceColdItemData;
+extern byte g_cold_item_signature_valid_p;
 
 extern void * g_sd_card_descriptor;  // this is not really a void*, but I don't understand the data structure well enough to put in here
 
@@ -1424,7 +1721,7 @@ extern struct_hp5_menu_item g_video_length_menu[7];
 extern struct_hp5_menu_item g_video_quality_menu[3];
 extern struct_hp5_menu_item g_photo_delay_menu[11];
 extern struct_hp5_menu_item g_multi_shot_mode_menu[16];
-#if (defined BTC_7E) || (defined BTC_8E)
+#if (defined BTC_7A) || (defined BTC_7E) || (defined BTC_8E)
 #elif (defined BTC_7E_HP4) || (defined BTC_8E_HP4)
 extern struct_hp5_menu_item g_hdr_menu[3];
 #elif (defined BTC_7E_HP5) || (defined BTC_8E_HP5)
@@ -1435,7 +1732,11 @@ extern struct_hp5_menu_item g_camera_name_menu[1];
 extern struct_hp5_menu_item g_image_data_strip_menu[3];
 extern struct_hp5_menu_item g_motion_test_menu[3];
 extern struct_hp5_menu_item g_pir_range_menu[3];
-#if (defined BTC_7E) || (defined BTC_8E)
+
+#if (defined BTC_7A_OLD)
+extern struct_hp5_menu_item g_battery_type_menu[3];
+extern struct_hp5_menu_item g_tv_out_menu[3];
+#elif (defined BTC_7A) || (defined BTC_7E) || (defined BTC_8E)
 extern struct_hp5_menu_item g_battery_type_menu[3];
 #elif (defined BTC_7E_HP4) || (defined BTC_8E_HP4)
 extern struct_hp5_menu_item g_battery_type_menu[4];
@@ -1444,7 +1745,11 @@ extern struct_hp5_menu_item g_battery_type_menu[4];
 #endif
 
 extern struct_hp5_menu_item g_trigger_speed_menu[3];
-extern struct_hp5_menu_item g_restore_default_menu[3];
+
+// Size of factory menu is only 3 items; but I've expanded it to 5
+//      to support custom-settings
+extern struct_hp5_menu_item g_restore_default_menu[5];
+
 extern struct_hp5_menu_item g_timelapse_frequency_menu[11]; 
 extern struct_hp5_menu_item g_timelapse_period_menu[6];
 extern struct_hp5_menu_item g_delete_all_menu[3];
@@ -1459,6 +1764,7 @@ extern struct_hp5_menu_item g_firmware_upgrade_menu[4];
 extern uint                 g_current_on_time_in_seconds;
 
 extern byte g_dcfapi_loaded_p;
+extern struct_dcfapi_functions g_active_dcfapi_functions; 
 
 extern struct_short_RTCTime g_set_date_time_menu_state;
 
@@ -1486,6 +1792,9 @@ extern byte         g_mode_button_enable;
 extern byte         g_sensor_config_table_A[4];
 extern byte         g_sensor_config_table_B[4];
 
+
+extern struct_photo_dimensions_short g_image_resolution_lookup_table[4];
+
 extern int          g_SPL06_007_compensation_scale_table[8];
 
 extern byte         g_set_time_buffer[10];
@@ -1500,8 +1809,10 @@ extern byte         g_new_check_night_mode_p;
 extern byte         g_photo_detector_hysteresis;
 extern uint         g_photo_sensor_value;
 
-//extern void *       PTR_DAT_80373d38;
-extern void         (*g_btc_init_directory_suffix_prefix_dyn)(char *, char*, uint);
+extern byte         g_wakeup_alarm_mask_A;
+extern byte         g_wakeup_alarm_mask_B;
+
+extern uint         g_image_size;
 
 
 extern enum_alt_ir_led_intensity g_ir_led_power_alt_encoding;
@@ -1509,7 +1820,54 @@ extern enum_alt_ir_led_intensity g_ir_led_power_alt_encoding;
 extern byte          g_ir_led_intensity_set_p;
 
 // External Functions
-// These are arranged in alphabetical order, for now
+// These were once arranged in alphabetical order, but they are higgly piggly now
+
+// Threadx
+
+extern uint          tx_queue_send(void *queue, void *message, int option);
+
+// event_loop_iterator
+extern void          event_loop_iterator(uint event_number,uint qualifier);
+extern void          event_descriptor_init(struct_event_descriptor *event_descriptor);
+extern int           get_matching_event_descriptor(int event_number,struct_event_descriptor *event_descriptor);
+extern void          set_g_evt_0x52510507_state_initialized_p(byte param_1);
+extern int           get_g_evt_0x52510507_counter(void);
+extern void          set_g_evt_0x52510507_counter(int param_1);
+extern void          set_sd_card_state_w_init(uint param_1);
+extern byte          get_g_sd_card_valid_p();
+extern void          set_g_sd_card_state_valid_p(byte param_1);
+extern void          initialize_g_mode_change_counter(byte param_1);
+extern void          service_button_event(int param_1,uint param_2);
+extern void          host_task_init(void);
+extern byte          get_g_test_mode(void);
+extern int           get_g_sd_card_mounted_p(void);
+extern void          set_g_sd_card_mounted_p(byte param_1);
+extern void          serviceEvent_0x5151000(int param_1,int param_2);
+extern void          service_event_0x5851000(int qualifier);
+extern void          set_g_evt_0x52510507_state_initialized_p(byte param_1);
+extern int           get_g_evt_0x5251050a_counter(void);
+extern void          set_g_evt_0x5251050a_counter(int param_1);
+extern void          setStillCapDone(void);
+extern void          serviceSetCurrentMode_event(int param_1,int param_2);
+extern void          set_g_info_strip_enabled_p(byte param_1);
+extern void          set_fast_cap_mount_active_p(byte param_1);
+extern byte          get_g_fast_cap_mount_active_p(void);
+extern bool          vfs_unmount_wrapper2(int param_1);
+extern void          set_g_some_sd_status_p(byte param_1);
+extern void          app_init_directory_suffix_file_prefix(void);
+extern void          fsm_iterate_all_in_g_fsm_descriptor_list(void);
+
+extern struct_event_descriptor g_event_descriptor;
+
+// Digi Pyro Related Routines
+extern void          DigiPIRSpi_Write(uint csr_value);
+extern void          digi_pir_spi_serial_out(int param_1);
+extern void          some_sort_of_delay(uint param_1);
+extern int           get_fine_grained_time(void);
+
+// string constants
+extern char*        s_FastCap_CST_MSG_ID_MOUNT_FINISH_e_8036c7c4;
+
 
 extern int           appAWBALGLib_WBParamSet(uint param_1, uint param_2);
 
@@ -1520,6 +1878,7 @@ extern uint          btc_fread(uint file_ptr, void * buffer, uint size);
 extern uint          btc_fwrite(uint file_ptr, void *buffer, uint size);
 
 extern void *        btc_malloc(uint size);
+extern void *        malloc_3(uint size);
 
 extern void          btc_init_directory_suffix_file_prefix(void);
 
@@ -1530,13 +1889,16 @@ extern void          init_IR_LED(void);
 
 extern bool          checkForSDCard();
 extern int           check_event_0x58510000_qualifier1(uint qualifier1);
+extern void          check_event_null_function(int, int);
 extern void          check_post_printf_state_set_sio_params();
 extern void          check_remaining_sd_capacity(void);
+extern int           check_hal_low_voltage(void); 
 
 extern bool          cold_item_led_power_blur_reduction_p();
 extern uint          debug_printf(char *);
-extern void          debug_print_string(uint, char *);
+extern void          debug_print_string(uint, char *, ...);
 extern void          dispatch_IQ_function(int, uint, uint, ...);
+extern void          draw_jpg_on_screen(uint index);
 extern void          draw_rectangle_wrapper(uint right_x,
 					    uint bottom_y,
 					    uint width,
@@ -1545,6 +1907,9 @@ extern void          draw_rectangle_wrapper(uint right_x,
 
 extern void          draw_set_time_screen(uint selected_item);
 extern void          draw_video_scroll_bar(uint percent_complete);
+extern void          draw_sst_string_on_display (int param_1,int param_2,void *param_3,int *param_4,int param_5,char *format_string,
+						 int param_7,int param_8);
+
 
 extern uint          encoded_timelapse_frequency_to_seconds(uint);
 extern bool          fatVolLabSet(char *drive_letter,char *volume_name);
@@ -1553,12 +1918,13 @@ extern bool          fatVolLabSet_wrapper(char* drive_letter, char* volume_name)
 extern void          free(void *ptr);
 extern void          free_fsm_descriptor_on_error(void * iterator_function);
 
+extern int           fsize(uint file_ptr);
+
 extern uint          fsm_getCurrentState(void);
 extern byte          fsm_getNextState(void);
 extern int           fsm_get_valid(void *fsm_function);
 extern void          fsm_setCurrentState(byte state);
-extern int           fsm_spawn(byte initialize_fsm_p,void *fsm_iterator_function,uint ref_count,uint fsm_active,
-			       uint param_5);
+extern  int          fsm_spawn(byte allocate_p,void *iterator_function,uint param_3,uint param_4,uint param_5, void *memory);
 
 extern void          set_fsm_state_absolute(int);
 extern void          set_fsm_state_relative(int);
@@ -1566,25 +1932,80 @@ extern void          set_fsm_state_relative(int);
 extern void          setSensor_configA(unsigned char);
 extern void          setSensor_configB(unsigned char);
 
+#if (defined BTC_7A) || (defined BTC_7E) || (defined BTC_8E)
+extern void           set_some_sd_global(uint);
+#endif
+
 extern bool          execute_if_not_null(void *function_ptr);
 extern void          exif_remove_and_add_wrapper(int param_1);
 
 extern struct struct_CameraConfig *getCameraConfigStructPtr(void);
 extern int           getMCURegisterByte(uint param_1,byte *data);
+extern int           MPUSpi_WriteNPacketByManualPWM(byte *address,byte *data,uint num_bytes);
+extern void          MCU_SPI_mutex_get(uint wait_option);
+extern void          MCU_Read_waiting_on_some_event(void);
+extern void          MCU_SPI_mutex_put(void);
+
+extern struct_menu_selections_descriptor *getCurrentMenuCollectionAndSize(struct_menu_selections_descriptor *menu_selections,struct_menu_root **menu_root);
 
 extern enum_cold_item_ir_led_intensity get_extra_rtc_alt_ir_led_intensity();
 
 extern void          get_capture_timer_rtc_time(struct_short_RTCTime *short_rtc_time);
 
+extern uint          get_some_system_time(int qualifier,uint *time);
+extern uint          get_SDCardState();
+
+
+extern uint          getCountdownDelay();
+extern uint          get_mcu_csr();
+extern uint          get_g_timelapse_wakeup_time_qualifier();
+extern void          get_multi_shot_photo_dimensions(struct_photo_dimensions_int *);
+extern void          mcu_rtc_test();
+extern void          set_mcu_pir_pin(uint);
+extern void          set_g_reset_pir_trigger_count(uint);
+extern void          MCUApp_ForcePIROutputHigh();
+extern void          set_some_mcu_pir_reset_value(uint);
+extern void          check_mcu_register_10(uint, uint);
+extern void          check_mcu_register_12(uint);
+extern void          check_mcu_register_25(uint, uint);
+extern void          set_mcu_wakeup_mask(uint);
+extern void          set_mcu_wakeup_time(uint);
+extern void          set_mcu_register_masks(uint);
+extern void          write_wakeup_4_spi();
+extern void          set_wakeup_alarms();
+extern bool          HceTaskMount_FSM_valid_p(void);
+extern bool          HceTaskStillBurstFSM_valid_p(void);
+extern bool          HceTaskRecording_FSM_valid_p(void);
+extern bool          checkHceTaskTimeLapse_valid(void);
+extern byte          get_menu_button_enable(uint button_index);
+extern bool          check_sd_capacity_to_complete_burst(void);
+extern void          ModeAuto_DoCaptureEvent(int param_1);
+extern void          register_Timelapse_completion_function(void *completion_function);
+extern void          startHceWaitTimeLapse_FSM(byte param_1);
+extern void          ModeAuto2_FSM_Task11(void);
+extern byte          g_mcu_reboot_on_power_switch;
+extern byte          g_mcu_ver;
+extern byte          g_mcu_sub_ver;
+
+
+
 extern void          get_cold_item_camera_name(char * camera_name);
 extern byte          get_cold_item_capture_timer_p(void);
 extern byte          get_cold_item_sd_management_p();
+extern uint          get_g_low_battery_off_1();
 extern enum_battery_type  get_g_cold_item_battery_type(void);
+extern uint          get_g_current_MCU(void);
+extern uint          get_g_sio_params_set(void);
+extern void          set_sio_params(uint);
+extern uint          disable_hang_reboot(void);
+extern void          Read_MCU_Ver(uint);
+extern void          Read_MCU_SubVer(uint);
 extern char          get_cold_item_sensor_digital_effect(void);
 extern uint          get_cold_item_timelapse_frequency(void);
 extern uint          get_cold_item_tod_last_photo_in_seconds(void);
-extern uint          get_cold_item_timelapse_period(void);
+extern enum_timelapse_period_encoding get_cold_item_timelapse_period(void);
 extern uint          get_cold_item_photo_resolution(void);
+extern enum_multi_shot_encoding get_cold_item_multi_shot_encoding(void);
 
 extern uint          get_battery_percent();
 extern uint          get_battery_percent_from_voltage(uint voltage);
@@ -1600,6 +2021,7 @@ extern struct_system_device_entry *get_system_device_entry(uint dev_id);
 extern ushort        get_g_cold_item_video_duration(void);
 extern int           get_g_cold_item_led_power(void);
 extern uint          get_cold_item_temperature_unit_celsius_p(void);
+extern byte          get_cold_item_info_strip_enable_p(void);
 extern uint          get_g_menu_temp_minute(void);
 extern uint          get_g_menu_temp_hour(void);
 extern uint          get_g_menu_temp_month(void);
@@ -1619,14 +2041,17 @@ extern uint          get_max_year(void);
 extern uint          get_min_year(void);
 extern uint          get_g_temp_day_number(void);
 
+extern ushort        get_g_timelapse_wakeup_time();
+
 extern ushort        get_photo_size_factor(int table_index);
 
+extern byte          get_g_night_mode_p(void);
 extern int           get_g_temperature_value(void);
 extern byte          get_DAT_80357b60_at_global_index(void);
 extern uint          get_cold_item_operation_mode(void);
 extern void          get_cold_item_short_rtc_time(struct_short_RTCTime *short_rtc_time);
 extern int           get_power_supply_mode(void);
-extern byte          get_power_switch_on_p();
+extern uint          get_power_switch_on_p();
 extern void          get_rtc_extra_byte_range(byte *buffer, uint start_byte, uint size);          
 extern byte          get_rtc_extra_operation_mode(void);
 extern void          get_rtc_time_or_alarm(int flag, struct_RTCTime *current_rtc_time);
@@ -1646,6 +2071,7 @@ extern bool          get_within_operating_hours_p();
 extern void          get_dir_image_indices(uint *,uint *);
 extern void          set_dir_image_indices(uint ,uint );
 
+extern bool          get_device_csr_bit(uint, uint, void*);
 extern void          hal_set_rtc(struct_short_RTCTime *short_rtc_time);
 extern void          hal_IRLedOff(void);
 extern void          hal_IRLedOff_pre_work(void);
@@ -1654,7 +2080,9 @@ extern void          HceCommon_SetCaptureImag(uint param_1,char *param_2);
 extern void          HceCommon_RestoreDefaultColdItem(char preserve_rtc_p);
 
 extern bool          HceIQ_CheckNightMode(void);
+extern void          HceIQ_PowerOnStateInit();
 extern void          HceIRCut_SetIRCutClosed(void);
+extern void          HceIRCut_SetIRCutOpen(void);
 extern int           HceStampLoadFont(uint font_id,
 				      ushort *large_width, ushort *large_height,
 				      ushort *small_width, ushort *small_height,
@@ -1685,15 +2113,17 @@ extern void          initCodeSentry(uint);
 extern void          IRLedOff(void);
 extern void          setIRLedOn(void);
 extern void          set_IRLedOn_PwrLvl(uint ir_led_intensity);
+extern void          set_ir_led_intensity_from_cold_item(uint cold_led_power);
 extern bool          set_pwm_device_percent(uint device_id, uint denominator_divisor, uint percent);
 
+extern int           icatch_isp_load_firmware(void);
 extern bool          initSmartIRQueueThread(void);
 
 extern void          PV_RAW_ImageWrite(int param_1,char *param_2);
 extern uint          get_next_state_from_menu_enter(uint param_1,struct_hp5_menu_item *param_2 ,uint param_3, struct_menu_root **param_4);
 extern int           get_next_wake_time(struct_short_RTCTime *short_rtc_time, enum_tod_in_timelapse timelapse_region);
 
-
+extern  void         load_boot_parameters();
 extern int           local_sprintf(char*, char*, ...);
 extern void          log_printf(uint, char *, ...);
 
@@ -1726,15 +2156,15 @@ extern void          power_on_IR_LED(void);
 extern uint          read_photo_sensor_value();
 extern int           read_pressure_temperature_device(byte *, byte);
 extern int           read_sd_blocks(uint dev_id,uint current_sector,uint operation_size, byte *buffer);
-extern bool          reset_capture_timer(uint year_month, uint day_hour);
-extern int           seekToSpecifiedFileLocation(uint file_ptr, uint offset, uint whence);
+extern bool          reset_capture_timer(uint start_hour_minute, uint end_hour_minute);
+extern int           seekToSpecifiedFileLocation(uint file_ptr, uint file_mode, uint offset, uint whence, uint);
 
 extern void          register_low_battery_display_function(void (*func)(int));
 extern void          still_low_battery_display_function(int);
 
 #if (defined BTC_8E) || (defined BTC_8E_HP4) || (defined BTC_8E_HP5)
 extern int           Pressure_sensor_getReading(int *pressure,int *temperature);
-#elif (defined BTC_7E) || (defined BTC_7E_HP4) || (defined BTC_7E_HP5)
+#elif (defined BTC_7A) || (defined BTC_7E) || (defined BTC_7E_HP4) || (defined BTC_7E_HP5)
 extern int           temperature_sensor_getReading(void);
 extern void          set_g_temperature_forc(int temperature);
 #endif
@@ -1747,9 +2177,13 @@ extern void          setBatteryCalibConfig(void);
 extern void          setCodeSentryCSR(int address,int flag);
 extern void          setCodeSentryAddressRegion(int filter_index,int dev_type,void *base,void *bounds);
 
+extern void          setSensorDigitalEffectPhoto(byte night_p);
+extern void          setSensorDigitalEffectVideo(byte night_p);
+
 extern void          set_exif_time_of_capture(struct_short_RTCTime *);
 extern void          set_rtc_extra_current_tod_in_seconds(int);
 extern void          set_cold_item_current_tod_in_seconds(int);
+extern void          set_cold_item_timelapse_new_file_p(byte param_1);
 
 extern int           sdRead(void *param_1,uint start_block,uint num_blocks,byte *buffer);
 extern int           RdSdAddr(void *param_1,uint start_block,uint num_blocks,byte *buffer);
@@ -1773,6 +2207,7 @@ extern void          set_g_ae_parameter(byte ae_parameter);
 extern void          set_g_cold_item_battery_type(uint battery_type);
 extern void          set_cold_item_pir_range(enum_pir_range_options pir_range_option);
 extern void          set_cold_item_sd_management_p(byte param_1);
+extern void          set_cold_item_overtemp_p(void);
 extern void          set_pir_sensor_range(enum_pir_range_options pir_range_option);
 extern void          set_pre_printf_state(void);
 
@@ -1781,9 +2216,10 @@ extern void          set_ir_led_intensity_from_cold_item(enum_cold_item_ir_led_i
 extern void          set_rtc_extra_byte_range(byte *buffer, uint start_byte, uint size);
 extern void          set_rtc_extra_operation_mode(byte);
 
+extern void          set_g_flash_on_check_battery(int);
 extern void          set_sd_iface_clock(uint);
 
-extern struct_photo_dimensions_int *set_camera_photo_resolution(struct_photo_dimensions_int *param_1,int encoded_photo_resolution);
+extern struct_photo_dimensions_int *get_camera_photo_resolution(struct_photo_dimensions_int *param_1,int encoded_photo_resolution);
 
 
 extern void          smart_IR_log_printf(char * format_string, uint arg1);
@@ -1795,6 +2231,7 @@ extern void          sp5kIqCfgSet(uint, uint);
 extern int           sp5kModeSet(int next_mode);
 
 extern void          spawnIRCutFSM_per_mode();
+extern void          IRCutThreadCreate(uint value);
 
 extern void          startHceTaskUnMount_FSM(uint param_1,uint param_2);
 extern void          startHceTaskFormat_FSM(int param_1, uint param_2);
@@ -1816,6 +2253,7 @@ extern void          tty_printf_battery_stats();
 
 extern bool          ui_cursor_key_pressed_p(enum_ui_cursor_button button_code);
 
+extern void          update_current_MCU(uint);
 extern void          update_timelapse_sunset(int *pre_sunset_start_time_in_minutes,uint *sunset_time_in_minutes);
 extern void          update_timelapse_sunrise(int *sunrise_time_in_minutes,int *post_sunrise_time_in_minutes);
 
@@ -1837,9 +2275,7 @@ extern int           write_sd_blocks(uint dev_id,uint current_sector,uint operat
 extern int           Write_LEDOn();
 extern int           Write_LEDOff();
 
-extern int           WrappedMPUSpi_WriteNPacketByManualPWM(struct_mpu_spi_address *mpu_spi_address,
-							  struct_mpu_spi_data *mpu_spi_data,
-							  uint num_bytes);
+extern int           WrappedMPUSpi_WriteNPacketByManualPWM(byte *data0, byte *data1, uint num_bytes);
 
 
 // Menu Constructors

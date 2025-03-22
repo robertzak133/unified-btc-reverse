@@ -407,7 +407,7 @@ $L46:
 	lw	$4,16($sp)
 
 $L37:
-	jal	set_cold_item_new_timelapse_file_p
+	jal	set_cold_item_timelapse_new_file_p
 	li	$4,1			# 0x1
 
 	jal	set_cold_item_137_1
@@ -874,5 +874,5 @@ $L89:
 
 	.comm	g_rtc_time_format_menu,84,4
 
-	.comm	g_rtc_date_format_menu,112,4
+	.comm	g_rtc_date_format_menu,140,4
 	.ident	"GCC: (Ubuntu 9.4.0-1ubuntu1) 9.4.0"

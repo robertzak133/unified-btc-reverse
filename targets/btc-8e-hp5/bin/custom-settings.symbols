@@ -1,0 +1,66 @@
+
+custom-settings.o:     file format elf32-tradlittlemips
+
+SYMBOL TABLE:
+00000000 l    df *ABS*	00000000 custom-settings.c
+00000000 l    d  .text	00000000 .text
+00000000 l    d  .data	00000000 .data
+00000000 l    d  .bss	00000000 .bss
+00000000 l    d  .mdebug.abi32	00000000 .mdebug.abi32
+00000000 l    d  .rodata.str1.4	00000000 .rodata.str1.4
+00000000 l       .rodata.str1.4	00000000 $LC0
+00000098 l       .rodata.str1.4	00000000 $LC5
+000000b4 l       .rodata.str1.4	00000000 $LC6
+00000058 l       .rodata.str1.4	00000000 $LC3
+00000014 l       .rodata.str1.4	00000000 $LC1
+00000078 l       .rodata.str1.4	00000000 $LC4
+00000030 l       .rodata.str1.4	00000000 $LC2
+000000d8 l       .rodata.str1.4	00000000 $LC7
+00000000 l    d  .reginfo	00000000 .reginfo
+00000000 l    d  .MIPS.abiflags	00000000 .MIPS.abiflags
+00000000 l    d  .pdr	00000000 .pdr
+00000000 l    d  .comment	00000000 .comment
+00000000 l    d  .gnu.attributes	00000000 .gnu.attributes
+00000000 g     F .text	00000008 cst_custom_cold_item_valid_p
+00000008 g     F .text	0000003c cst_valid_custom_config_p
+00000000         *UND*	00000000 btc_fopen
+00000000         *UND*	00000000 vfsClose
+00000044 g     F .text	000001a0 cst_RestoreCustomColdItem
+00000000         *UND*	00000000 g_ColdItemData
+00000000         *UND*	00000000 set_pre_printf_state
+00000000         *UND*	00000000 tty_printf
+00000000         *UND*	00000000 check_post_printf_state_set_sio_params
+00000000         *UND*	00000000 seekToSpecifiedFileLocation
+00000000         *UND*	00000000 fsize
+00000000         *UND*	00000000 btc_fread
+00000000         *UND*	00000000 g_cold_item_signature_valid_p
+00000000         *UND*	00000000 btc_fclose
+00000000         *UND*	00000000 g_ReferenceColdItemData
+00000000         *UND*	00000000 memcpy
+000001e4 g     F .text	000000ac cst_SaveCustomColdItem
+00000000         *UND*	00000000 btc_fwrite
+00000290 g     F .text	00000274 cst_handleRestoreDefault_menu
+00000000         *UND*	00000000 getCameraConfigStructPtr
+00000000         *UND*	00000000 handleRestoreDefault_menu
+00000000         *UND*	00000000 g_menu_root
+00000000         *UND*	00000000 getCurrentMenuCollectionAndSize
+00000000         *UND*	00000000 menu_draw_selected_item
+00000000         *UND*	00000000 ui_cursor_key_pressed_p
+00000000         *UND*	00000000 g_up_button_enable
+00000000         *UND*	00000000 g_down_button_enable
+00000000         *UND*	00000000 g_left_button_enable
+00000000         *UND*	00000000 g_right_button_enable
+00000000         *UND*	00000000 g_enter_button_enable
+000000f8       O *COM*	00000004 g_wbwl_camera_setup_selector_array
+00000000         *UND*	00000000 get_next_state_from_menu_enter
+00000000         *UND*	00000000 HceCommon_RestoreDefaultColdItem
+00000000         *UND*	00000000 set_fsm_state_absolute
+00000000         *UND*	00000000 menu_get_next_menu_selection
+00000000         *UND*	00000000 menu_redraw_items
+00000000         *UND*	00000000 g_mode_button_enable
+00000000         *UND*	00000000 get_next_state_from_menu_mode
+00000018       O *COM*	00000004 g_wbwl_menu_handler_function_array_extensions
+00000364       O *COM*	00000004 g_wbwl_camera_setup_menu_item_array
+000000c4       O *COM*	00000004 g_wbwl_timelapse_period_menu
+
+

@@ -19,7 +19,16 @@
 
 #define ERROR_PRINT
 
-#if (defined BTC_7E_HP5) || (defined BTC_8E_HP5)
+#if (defined BTC_7A) || (defined BTC_7E) || (defined BTC_8E) || (defined BTC_7E_HP4) || (defined BTC_8E_HP4)
+//      Gives us 20K bytes to work with -- plenty
+void cmdFPGA_CdspPV(int argc, char ** argv) {
+#ifdef ERROR_PRINT
+  set_pre_printf_state();
+  tty_printf("Error::WBWL - cmdFPGA_CdspPV() not implemented in this patched firmware version");
+  check_post_printf_state_set_sio_params();
+#endif
+}
+#elif (defined BTC_7E_HP5) || (defined BTC_8E_HP5)
 void cli_test_dispatch(int argc, char ** argv, unsigned int * param3) {
 #ifdef ERROR_PRINT
   set_pre_printf_state();

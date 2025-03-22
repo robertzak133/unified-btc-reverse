@@ -7,55 +7,10 @@ SYMBOL TABLE:
 00000000 l    d  .data	00000000 .data
 00000000 l    d  .bss	00000000 .bss
 00000000 l    d  .mdebug.abi32	00000000 .mdebug.abi32
-00000000 l    d  .rodata.str1.4	00000000 .rodata.str1.4
-00000000 l       .rodata.str1.4	00000000 $LC0
-00000074 l       .rodata.str1.4	00000000 $LC1
-00000034 l       .rodata.str1.4	00000000 $LC2
-00000054 l       .rodata.str1.4	00000000 $LC3
-00000088 l       .rodata.str1.4	00000000 $LC4
-000000a0 l       .rodata.str1.4	00000000 $LC5
-000000cc l       .rodata.str1.4	00000000 $LC6
-00000114 l       .rodata.str1.4	00000000 $LC8
-00000128 l       .rodata.str1.4	00000000 $LC9
-000000f0 l       .rodata.str1.4	00000000 $LC7
-00000164 l       .rodata.str1.4	00000000 $LC11
-00000140 l       .rodata.str1.4	00000000 $LC10
-0000017c l       .rodata.str1.4	00000000 $LC12
-0000019c l       .rodata.str1.4	00000000 $LC13
-000001ac l       .rodata.str1.4	00000000 $LC14
-000001cc l       .rodata.str1.4	00000000 $LC15
-000001dc l       .rodata.str1.4	00000000 $LC16
-000001fc l       .rodata.str1.4	00000000 $LC17
-0000020c l       .rodata.str1.4	00000000 $LC18
-00000228 l       .rodata.str1.4	00000000 $LC19
-00000238 l       .rodata.str1.4	00000000 $LC20
-00000258 l       .rodata.str1.4	00000000 $LC21
-00000268 l       .rodata.str1.4	00000000 $LC22
-00000288 l       .rodata.str1.4	00000000 $LC23
-000002b4 l       .rodata.str1.4	00000000 $LC25
-00000298 l       .rodata.str1.4	00000000 $LC24
 00000000 l    d  .reginfo	00000000 .reginfo
 00000000 l    d  .MIPS.abiflags	00000000 .MIPS.abiflags
 00000000 l    d  .pdr	00000000 .pdr
 00000000 l    d  .comment	00000000 .comment
 00000000 l    d  .gnu.attributes	00000000 .gnu.attributes
-00000000 g     F .text	00000080 write_memory_to_file
-00000000         *UND*	00000000 btc_fopen
-00000000         *UND*	00000000 tty_printf
-00000000         *UND*	00000000 btc_fwrite
-00000000         *UND*	00000000 btc_fclose
-00000080 g     F .text	00000054 dump_dram_contents
-00000000         *UND*	00000000 memcpy
-000000d4 g     F .text	000001d4 copy_file
-00000000         *UND*	00000000 set_pre_printf_state
-00000000         *UND*	00000000 check_post_printf_state_set_sio_params
-00000000         *UND*	00000000 vfsOpen
-00000000         *UND*	00000000 vfsFileSizeGet
-00000000         *UND*	00000000 vfsClose
-00000000         *UND*	00000000 vfsFileDel
-00000000         *UND*	00000000 vfsFileCopy
-000002a8 g     F .text	000000b0 util_set_cold_item_language_id
-00000000         *UND*	00000000 set_cold_item_language_id
-00000358 g     F .text	00000008 utilities_check_post_printf_hook
 
 

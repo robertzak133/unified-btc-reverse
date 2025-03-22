@@ -131,19 +131,19 @@ SYMBOL TABLE:
 00000000         *UND*	00000000 set_g_cold_item_battery_type
 000018e4 g     F .text	00000020 bm_HceCommon_RestoreDefaultColdItem_hook
 00000000         *UND*	00000000 HceCommon_RestoreDefaultColdItem
-00001904 g     F .text	000001d8 bm_StoreBatteryMonitorFile
+00001904 g     F .text	000001e0 bm_StoreBatteryMonitorFile
 00000000         *UND*	00000000 get_current_operating_time_ms
 00000000         *UND*	00000000 btc_fopen
 00000000         *UND*	00000000 seekToSpecifiedFileLocation
 00000000         *UND*	00000000 positive_diff
-00001adc g     F .text	0000001c store_pressure_bm_hook
+00001ae4 g     F .text	0000001c store_pressure_bm_hook
 00000000         *UND*	00000000 store_pressure_trend
-00001af8 g     F .text	00000190 bm_LoadBatteryMonitorFile
+00001b00 g     F .text	00000190 bm_LoadBatteryMonitorFile
 00000000         *UND*	00000000 btc_fread
-00001c88 g     F .text	0000001c bm_Volt_Calib_Bat_hook
+00001c90 g     F .text	0000001c bm_Volt_Calib_Bat_hook
 00000000         *UND*	00000000 Volt_Calib_Bat
-00001ca4 g     F .text	00000088 bm_write_summary_file
-00001d2c g     F .text	00000228 bm_handleBatteryTypeMenu
+00001cac g     F .text	00000088 bm_write_summary_file
+00001d34 g     F .text	00000228 bm_handleBatteryTypeMenu
 00000000         *UND*	00000000 get_g_cold_item_battery_type
 00000000         *UND*	00000000 g_menu_root
 00000000         *UND*	00000000 menu_draw_selected_item

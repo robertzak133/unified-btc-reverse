@@ -79,10 +79,9 @@ void wbwl_init_directory_suffix_file_prefix() {
   if (g_dcfapi_loaded_p != 1) {
     function_with_syscall_zero("dcfapi.c",173,0);
   }
-  if (g_btc_init_directory_suffix_prefix_dyn != (void *)0x0) {
-    (*g_btc_init_directory_suffix_prefix_dyn)(directory_suffix,file_prefix, 0);
+  if (g_active_dcfapi_functions.set_dir_suffix_image_prefix != (void *)0x0) {
+    (g_active_dcfapi_functions.set_dir_suffix_image_prefix)(directory_suffix, file_prefix, 0);
   }
-
 #ifdef DEBUG
   set_pre_printf_state();
   tty_printf("wbwl_init_directory_suffix_file_prefix -e \n");
@@ -91,7 +90,7 @@ void wbwl_init_directory_suffix_file_prefix() {
 
 }
 
-#if (defined BTC_7E) || (defined BTC_8E)
+#if (defined BTC_7A) || (defined BTC_7E) || (defined BTC_8E)
 void wbwl_alt_init_directory_suffix_file_prefix(char *suffix, char *prefix, uint param2) {
   char directory_suffix[16];
   char file_prefix[16];

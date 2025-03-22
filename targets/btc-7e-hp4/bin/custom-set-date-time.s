@@ -868,5 +868,5 @@ $L90:
 
 	.comm	g_rtc_time_format_menu,84,4
 
-	.comm	g_rtc_date_format_menu,112,4
+	.comm	g_rtc_date_format_menu,140,4
 	.ident	"GCC: (Ubuntu 9.4.0-1ubuntu1) 9.4.0"

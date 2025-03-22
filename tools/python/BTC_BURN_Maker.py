@@ -89,18 +89,19 @@ class BTC_BURN_Maker:
         # write magic sequence
         address = 0;
         magic = root['magic']
-        ##print(f'Debug::fprint_sphost_header:writing magic of {magic} to {address:04x}')
+        print(f'Debug::fprint_sphost_header:writing magic of {magic} to {address:04x}')
         binary_file.write(magic)
         # write file_length
         address += 16;
         filesize = root['filesize']
-        ##print(f'Debug::fprint_sphost_header:writing filesize of 0x{filesize:04x} to 0x{address:04x}')
+        print(f'Debug::fprint_sphost_header:writing filesize of 0x{filesize:04x} to 0x{address:04x}')
         binary_file.write(filesize.to_bytes(4, byteorder = 'little', signed = False))
+        address += 4;
         # write offsets
         for index in root['offset']:
             if (index == 0): continue   ## offset0 is assumed
             offset = root['offset'][index]
-            ##print(f'Debug::fprint_sphost_header:writing offset{index} of 0x{offset:04x} to file address 0x{address:04x}')
+            print(f'Debug::fprint_sphost_header:writing offset{index} of 0x{offset:04x} to file address 0x{address:04x}')
             binary_file.write(offset.to_bytes(4, byteorder = 'little', signed = False))
             address += 4
         # write crc
@@ -133,6 +134,7 @@ class BTC_BURN_Maker:
   
             offset2header = Struct([
                 ('header_string', '16s'),
+
                 ('num_images', '1s'),
                 ('header_padding', '15s'),
                 ('drive_a_id_string', '20s'),
@@ -195,22 +197,18 @@ class BTC_BURN_Maker:
         return
 	
     ## Copy over file system images
-    def copy_file_system_image(self, fs_directory_name, dest_directory):
+    def copy_file_system_image(self, fs_directory_name, dest_directory, fs_name):
         if not fs_directory_name:
             return
     
         src_filename = fs_directory_name
-        dest_filename = os.path.join(dest_directory, 'offset2.A')
+        dest_filename = os.path.join(dest_directory, fs_name)
         src_size = os.stat(src_filename).st_size
         dest_size = os.stat(dest_filename).st_size
         if (src_size != dest_size):
-            print(f'Error: copy_file_system_images -- offset2.A src size {src_size} not equal to dest size {dest_size}')
-            return
-        ##with open(dest_filename, "rb") as dest_f:
-            ##print(f'Debug: copy_file_system_image: Grabbing ICATCH FAT16 header from {dest_filename}')
-            ##header_data = dest_f.read(512)
-
-        ##print(f'Debug: copy_file_system_image: Copying {src_filename} to {dest_filename}')
+            ## 2025-02-02: Zak -- convert this to a warning (from an error).  In the case of the BTC-7A hack, I'm stealing
+            ##             the A: and B: file systems from the BTC-7E, which has a different (smaller) 
+            print(f'Warning: copy_file_system_images -- {fs_name} src size {src_size} not equal to dest size {dest_size}')
         shutil.copy(src_filename, dest_filename)
 
         return
@@ -249,11 +247,12 @@ class BTC_BURN_Maker:
 
         checksum = np.sum(array_of_ints, dtype='<u4')
         num_elements = len(array_of_ints)
-        print(f'Checksum for {filename} is {checksum:08X}; Num elements = {num_elements}; Size/4 = {file_size/4}')
+        print(f'Checksum for {filename} is {checksum:08X}; FileSize = {file_size} Num elements = {num_elements}; Size/4 = {file_size/4}')
         return checksum
 
     # Calculate Checksum of a list of files
     def calculate_file_list_checksum(self, directory, file_list):
+        print(f'Debug:: calculate_file_list_checksum: {file_list}')
         list_checksum = 0;
         offset_dict = {}
         for file in file_list:
@@ -268,9 +267,9 @@ class BTC_BURN_Maker:
                        target='BTC-7A',
                        ref_brn_directory=None, ref_brn_filename=None, dest_directory=None, 
                        dest_file=None, ref_eeprom_directory=None, ref_eeprom_filename=None,
-                       fs_directory_name=None, list_of_patch_lists=None, patch_directory=None,
+                       fsa_directory_name=None, fsb_directory_name=None, list_of_patch_lists=None, patch_directory=None,
 		       list_of_patch_bases=None, command_file_base="general", cmd_directory=None,
-		       offset2a_source='HAND_PATCH',
+		       offset2a_source='HAND_PATCH', offset2b_source='BRN_FILE'
                        ):
         '''Combine offset components into a single firmware file
         Parameters
@@ -291,7 +290,9 @@ class BTC_BURN_Maker:
 	    Location of an EEPROM image to grab binary data from
         ref_eeprom_filenamename : str
             Name of EEPROM binary image
-        fs_directory_name : str
+        fsa_directory_name : str
+	    Name of directory and file containing a modified file system image
+        fsb_directory_name : str
 	    Name of directory and file containing a modified file system image
         list_of_patch_lists : list of str
 	    a list of hand patch lists
@@ -305,19 +306,24 @@ class BTC_BURN_Maker:
             Which is directly from the factory firmware image; the "HAND_PATCH" option selects
             a file system which has been hand-modified for new content (e.g. new images, or new
             string files)
+        offset2b_source : specifies where to get the B file system from.  Defaults to "BRN_FILE"
+            Which is directly from the factory firmware image; the "HAND_PATCH" option selects
+            a file system which has been hand-modified for new content or size
+            string files)
         '''
-
-
         self.set_camera_target(target);
 
         # Don't count the "prometheus" file when calculating file sizes
-        if (self.camera_target == 'BTC-7E') or (self.camera_target == 'BTC-8E') or \
+        if (self.camera_target == 'BTC-7A') or \
+	   (self.camera_target == 'BTC-7E') or (self.camera_target == 'BTC-8E') or \
            (self.camera_target == 'BTC-7E-HP4') or (self.camera_target == 'BTC-8E-HP4'):
             size_files = ["SPHOST.header", "offset0", "offset1", "offset2.header", "offset2.A",
 			  "offset2.B", "offset3", "offset5"]
+                
         else:
             size_files = ["SPHOST.header", "offset0", "offset1", "offset2.header", "offset2.A",
-			  "offset2.B", "offset3", "offset5", "offset6"]
+                              "offset2.B", "offset3", "offset5", "offset6"]
+                
 
         # Do include prometheus_trailer in the list of all the files that
         # go into the final .BRN file
@@ -360,7 +366,6 @@ class BTC_BURN_Maker:
         brn_carver = carveBTCBRN()
         brn_carver.carve_firmware(FILENAME=brn_filename, out_directory=dest_directory)
 
-
         # Option to get the the A-file system (contained in offset 2) from the eeprom
         # file.  This is only required if adding files via PowerISO doesn't work
         if (offset2a_source == 'EEPROM'):
@@ -373,11 +378,22 @@ class BTC_BURN_Maker:
             # we don't need to do anything
             print("Info::make_burn_file:getting A file system from BRN File");
         elif (offset2a_source == 'HAND_PATCH'):
-            print(f"Info::make_burn_file: getting A file system from {fs_directory_name}")
-            self.copy_file_system_image(fs_directory_name, dest_directory)
+            print(f"Info::make_burn_file: getting A file system from {fsa_directory_name}")
+            self.copy_file_system_image(fsa_directory_name, dest_directory, 'offset2.A')
         else:
             print(f"Error::make_burn_file: unrecognized offset2a_source: {offset2a_source}")
-            
+
+	# Option to get the B-File system (contained in offset 2) directly from the .BRN file
+        if (offset2b_source == 'BRN_FILE'):
+            # we don't need to do anything
+            print("Info::make_burn_file:getting B file system from BRN File");
+        elif (offset2b_source == 'HAND_PATCH'):
+            print(f"Info::make_burn_file: getting A file system from {fsb_directory_name}")
+            self.copy_file_system_image(fsb_directory_name, dest_directory, 'offset2.B')
+        else:
+            print(f"Error::make_burn_file: unrecognized offset2b_source: {offset2b_source}")
+
+        # Rewrite offset2.header
         # Handle Patches
         patcher = codePatcher()
         # now -- time to patch the offset3 (application binary) file
@@ -407,7 +423,7 @@ class BTC_BURN_Maker:
                     patcher.set_obj_symbol_table(cmd_directory, patch_base)
 
         # If any patches, apply them!
-        if patch_list or patch_directory:
+        if patch_directory:
             file_to_patch_filename = os.path.join(dest_directory, 'offset3')
             patcher.patch_binary(file_to_patch_filename, self.camera_target)
 
@@ -473,7 +489,8 @@ class BTC_BURN_Maker:
             self.fprint_sphost_header(header, header_file, checksum, '<')
 
         # now calculate the checksum of all the files
-        if (self.camera_target == 'BTC-7E') or (self.camera_target == 'BTC-8E') or \
+        if (self.camera_target == 'BTC-7A') or \
+           (self.camera_target == 'BTC-7E') or (self.camera_target == 'BTC-8E') or \
            (self.camera_target == 'BTC-7E-HP4') or (self.camera_target == 'BTC-8E-HP4'):
             file_list = [ "offset0", "offset1", "offset2.A", "offset2.B", "offset2.header",
                           "offset3", "offset5", "SPHOST.header"]
@@ -496,7 +513,7 @@ class BTC_BURN_Maker:
         brn_file = os.path.join(dest_directory, dest_file)
         brn_combiner = combineFirmware()
         ##print(f'Debug::make_burn_file:debug::combine_firmware: brn_file = {brn_file}')
-        ##print(f'Debug::make_burn_file:debug::combine_firmware: all_files = {all_files}')
+        print(f'Debug::make_burn_file:debug::combine_firmware: all_files = {all_files}')
         brn_combiner.combine_firmware(outfile=brn_file, files=all_files, directory=dest_directory)
   
         print('Done!')

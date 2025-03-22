@@ -7,6 +7,14 @@
 
 // External Global Variables
 
+#if (defined BTC_7A_OLD) 
+char g_SST_2_SP_SECS_string[sizeof("2 SECS")];
+char g_SST__DOT_TLS_string[sizeof(".TLS")];
+char g_SST__DOT_JPG_string[sizeof(".JPG")];
+char g_SST_TIMELAPSE_SP_FILE_string[sizeof("TIMELAPSE FILE")];
+
+#endif
+
 // Here is a global variable we stole from the string space used in the 
 //   the entry function we hijacked -- cmdFPGA_CsdspPV
 extern unsigned int g_last_timelapse_time_in_ms;
@@ -41,11 +49,13 @@ struct_hp5_menu_item g_wbwl_timelapse_period_menu[7];
 short g_wbwl_timelapse_frequency_lookup_table[12];
 
 // Functions
+
+enum_timelapse_period_encoding tlps_get_cold_item_raw_timelapse_period(void);
 short tlps_encoded_timelapse_frequency_to_seconds(int index);
 
 void tlps_tty_printf(char * format_string, int mode);
 
-#if (defined BTC_7E) || (defined BTC_8E) || (defined BTC_7E_HP4) || (defined BTC_8E_HP4)
+#if (defined BTC_7A) || (defined BTC_7E) || (defined BTC_8E) || (defined BTC_7E_HP4) || (defined BTC_8E_HP4)
 void tlps_TaskTimeLapseFSM_task4(void);
 #endif
 

@@ -2906,10 +2906,12 @@ $L154:
 	addiu	$sp,$sp,64
 
 $L156:
+	move	$7,$0
 	move	$6,$0
 	move	$5,$0
-	jal	seekToSpecifiedFileLocation
 	move	$4,$16
+	jal	seekToSpecifiedFileLocation
+	sw	$0,16($sp)
 
 	li	$6,52			# 0x34
 	addiu	$5,$17,%lo(setDigitalEffectswitchdataD_table)

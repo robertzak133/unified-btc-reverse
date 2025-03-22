@@ -17,11 +17,9 @@ rtc_get_cold_item_date_format:
 	.fmask	0x00000000,0
 	.set	noreorder
 	.set	nomacro
-	lui	$2,%hi(g_ColdItemData+93)
-	lbu	$2,%lo(g_ColdItemData+93)($2)
-	srl	$2,$2,2
+	lui	$2,%hi(g_ColdItemData+67)
 	jr	$31
-	andi	$2,$2,0x3
+	lbu	$2,%lo(g_ColdItemData+67)($2)
 
 	.set	macro
 	.set	reorder
@@ -39,15 +37,9 @@ rtc_set_cold_item_date_format:
 	.fmask	0x00000000,0
 	.set	noreorder
 	.set	nomacro
-	lui	$3,%hi(g_ColdItemData)
-	addiu	$3,$3,%lo(g_ColdItemData)
-	lbu	$2,93($3)
-	sll	$4,$4,2
-	andi	$4,$4,0xc
-	andi	$2,$2,0xf3
-	or	$2,$2,$4
+	lui	$2,%hi(g_ColdItemData+67)
 	jr	$31
-	sb	$2,93($3)
+	sb	$4,%lo(g_ColdItemData+67)($2)
 
 	.set	macro
 	.set	reorder
@@ -65,11 +57,9 @@ rtc_get_cold_item_time_format:
 	.fmask	0x00000000,0
 	.set	noreorder
 	.set	nomacro
-	lui	$2,%hi(g_ColdItemData+93)
-	lbu	$2,%lo(g_ColdItemData+93)($2)
-	srl	$2,$2,4
+	lui	$2,%hi(g_ColdItemData+95)
 	jr	$31
-	andi	$2,$2,0x1
+	lbu	$2,%lo(g_ColdItemData+95)($2)
 
 	.set	macro
 	.set	reorder
@@ -87,13 +77,9 @@ rtc_set_cold_item_time_format:
 	.fmask	0x00000000,0
 	.set	noreorder
 	.set	nomacro
-	lui	$2,%hi(g_ColdItemData+93)
-	lbu	$2,%lo(g_ColdItemData+93)($2)
-	sll	$4,$4,4
-	andi	$4,$4,0x10
-	andi	$2,$2,0xef
-	j	set_cold_item_sd_management_p
-	or	$4,$2,$4
+	lui	$2,%hi(g_ColdItemData+95)
+	jr	$31
+	sb	$4,%lo(g_ColdItemData+95)($2)
 
 	.set	macro
 	.set	reorder
@@ -122,16 +108,16 @@ rtc_handle_date_format_menu:
 	beq	$17,$0,$L6
 	move	$16,$2
 
-	jal	rtc_get_cold_item_date_format
 	sb	$0,0($2)
-
+	lui	$2,%hi(g_ColdItemData+67)
+	lbu	$2,%lo(g_ColdItemData+67)($2)
+	addiu	$4,$16,2
+	lui	$5,%hi(g_menu_root)
 	sb	$2,2($16)
 	lw	$31,28($sp)
 	lw	$18,24($sp)
 	lw	$17,20($sp)
-	addiu	$4,$16,2
 	lw	$16,16($sp)
-	lui	$5,%hi(g_menu_root)
 	addiu	$5,$5,%lo(g_menu_root)
 	j	menu_draw_selected_item
 	addiu	$sp,$sp,32
@@ -203,20 +189,19 @@ $L13:
 	sll	$2,$4,3
 	sb	$17,0($16)
 	addu	$3,$3,$2
-	lw	$5,0($3)
 	lw	$6,4($3)
+	lw	$5,0($3)
 	lui	$7,%hi(g_menu_root)
 	jal	get_next_state_from_menu_enter
 	addiu	$7,$7,%lo(g_menu_root)
 
-	move	$5,$2
+	move	$4,$2
 	li	$2,255			# 0xff
-	beq	$5,$2,$L20
-	lw	$31,28($sp)
+	beq	$4,$2,$L5
+	lui	$2,%hi(g_ColdItemData+67)
 
-	jal	rtc_set_cold_item_date_format
-	lbu	$4,2($16)
-
+	lbu	$3,2($16)
+	sb	$3,%lo(g_ColdItemData+67)($2)
 	sb	$17,4($16)
 $L16:
 	lw	$31,28($sp)
@@ -224,7 +209,6 @@ $L18:
 	lw	$18,24($sp)
 	lw	$17,20($sp)
 	lw	$16,16($sp)
-	move	$4,$5
 	j	set_fsm_state_absolute
 	addiu	$sp,$sp,32
 
@@ -249,8 +233,10 @@ $L10:
 	lbu	$3,%lo(g_left_button_enable)($2)
 	li	$2,2			# 0x2
 	bne	$3,$2,$L11
-	lw	$31,28($sp)
+	nop
 
+$L5:
+	lw	$31,28($sp)
 $L20:
 	lw	$18,24($sp)
 $L21:
@@ -274,15 +260,15 @@ $L15:
 	lw	$18,24($sp)
 
 	lui	$5,%hi(g_menu_root)
-	addiu	$5,$5,%lo(g_menu_root)
+	li	$4,1			# 0x1
 	sb	$2,0($16)
 	jal	get_next_state_from_menu_mode
-	li	$4,1			# 0x1
+	addiu	$5,$5,%lo(g_menu_root)
 
-	move	$5,$2
+	move	$4,$2
 	li	$2,255			# 0xff
-	beql	$5,$2,$L16
-	li	$5,36			# 0x24
+	beql	$4,$2,$L16
+	li	$4,35			# 0x23
 
 	b	$L18
 	lw	$31,28($sp)
@@ -314,16 +300,16 @@ rtc_handle_time_format_menu:
 	beq	$17,$0,$L23
 	move	$16,$2
 
-	jal	rtc_get_cold_item_time_format
 	sb	$0,0($2)
-
+	lui	$2,%hi(g_ColdItemData+95)
+	lbu	$2,%lo(g_ColdItemData+95)($2)
+	addiu	$4,$16,2
+	lui	$5,%hi(g_menu_root)
 	sb	$2,2($16)
 	lw	$31,28($sp)
 	lw	$18,24($sp)
 	lw	$17,20($sp)
-	addiu	$4,$16,2
 	lw	$16,16($sp)
-	lui	$5,%hi(g_menu_root)
 	addiu	$5,$5,%lo(g_menu_root)
 	j	menu_draw_selected_item
 	addiu	$sp,$sp,32
@@ -380,9 +366,9 @@ $L30:
 	jal	ui_cursor_key_pressed_p
 	li	$4,4			# 0x4
 
-	move	$18,$2
+	move	$17,$2
 	li	$2,1			# 0x1
-	bne	$18,$2,$L32
+	bne	$17,$2,$L32
 	lui	$2,%hi(g_enter_button_enable)
 
 	lbu	$3,%lo(g_enter_button_enable)($2)
@@ -393,7 +379,7 @@ $L30:
 	lbu	$4,2($16)
 	addiu	$3,$3,%lo(g_wbwl_camera_setup_selector_array)
 	sll	$2,$4,3
-	sb	$18,0($16)
+	sb	$17,0($16)
 	addu	$3,$3,$2
 	lw	$6,4($3)
 	lw	$5,0($3)
@@ -401,22 +387,20 @@ $L30:
 	jal	get_next_state_from_menu_enter
 	addiu	$7,$7,%lo(g_menu_root)
 
-	move	$17,$2
+	move	$4,$2
 	li	$2,255			# 0xff
-	beq	$17,$2,$L37
-	lw	$31,28($sp)
+	beq	$4,$2,$L22
+	lui	$2,%hi(g_ColdItemData+95)
 
-	jal	rtc_set_cold_item_time_format
-	lbu	$4,2($16)
-
-	sb	$18,4($16)
+	lbu	$3,2($16)
+	sb	$3,%lo(g_ColdItemData+95)($2)
+	sb	$17,4($16)
 $L33:
 	lw	$31,28($sp)
 $L35:
 	lw	$18,24($sp)
-	lw	$16,16($sp)
-	move	$4,$17
 	lw	$17,20($sp)
+	lw	$16,16($sp)
 	j	set_fsm_state_absolute
 	addiu	$sp,$sp,32
 
@@ -441,8 +425,10 @@ $L27:
 	lbu	$3,%lo(g_left_button_enable)($2)
 	li	$2,2			# 0x2
 	bne	$3,$2,$L28
-	lw	$31,28($sp)
+	nop
 
+$L22:
+	lw	$31,28($sp)
 $L37:
 	lw	$18,24($sp)
 $L38:
@@ -466,15 +452,15 @@ $L32:
 	lw	$18,24($sp)
 
 	lui	$5,%hi(g_menu_root)
-	sb	$2,0($16)
-	addiu	$5,$5,%lo(g_menu_root)
-	jal	get_next_state_from_menu_mode
 	li	$4,1			# 0x1
+	sb	$2,0($16)
+	jal	get_next_state_from_menu_mode
+	addiu	$5,$5,%lo(g_menu_root)
 
-	move	$17,$2
+	move	$4,$2
 	li	$2,255			# 0xff
-	beql	$17,$2,$L33
-	li	$17,36			# 0x24
+	beql	$4,$2,$L33
+	li	$4,35			# 0x23
 
 	b	$L35
 	lw	$31,28($sp)
@@ -513,7 +499,7 @@ g_rtc_time_format_menu:
 	.globl	g_rtc_date_format_menu
 	.align	2
 	.type	g_rtc_date_format_menu, @object
-	.size	g_rtc_date_format_menu, 112
+	.size	g_rtc_date_format_menu, 140
 g_rtc_date_format_menu:
 	.word	31
 	.word	184
@@ -537,6 +523,13 @@ g_rtc_date_format_menu:
 	.word	1
 	.word	1
 	.word	31
+	.word	187
+	.word	0
+	.word	1
+	.word	0
+	.word	1
+	.word	1
+	.word	31
 	.word	183
 	.word	0
 	.word	0
@@ -544,11 +537,11 @@ g_rtc_date_format_menu:
 	.word	3
 	.word	3
 
-	.comm	g_wbwl_menu_handler_function_array_extensions,28,4
+	.comm	g_wbwl_menu_handler_function_array_extensions,24,4
 
-	.comm	g_wbwl_camera_setup_selector_array,248,4
+	.comm	g_wbwl_camera_setup_selector_array,240,4
 
-	.comm	g_wbwl_camera_setup_menu_item_array,868,4
+	.comm	g_wbwl_camera_setup_menu_item_array,840,4
 
 	.comm	g_wbwl_timelapse_period_menu,196,4
 	.ident	"GCC: (Ubuntu 9.4.0-1ubuntu1) 9.4.0"

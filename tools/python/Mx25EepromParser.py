@@ -22,6 +22,7 @@ class Mx25EepromParser:
   dummy_cycles = 6     # default
   dummy_cycle_p = False     # per command -- interject address dummy cycles (True)
   dummy_cycle_count = 0
+  abortable = False
   read_command = True
   command_byte = 0
   command_bit_count = 0
@@ -44,19 +45,25 @@ class Mx25EepromParser:
 
   # dictionary for commands
   #   indexed by hex opcode
-  #   0: Mnemmonic; Number of address cycles; read_command; min_data bytes; data_bit_width; addr_bit_width, dummy_cycle_p; num_dummy_cyles
-  command_table = {"0x01": ["WRSR", 0, False, 1, 1, 1, False, 0],
-                   "0x02": ["PP",   0, False, 1, 1, 1, False, 0],
-                   "0x03": ["READ", 3, True,  1, 1, 1, False, 0],
-                   "0x04": ["WRDI", 0, False, 0, 0, 0, False, 0],
-                   "0x05": ["RDSR", 0, True,  1, 1, 1, False, 0],
-                   "0x06": ["WREN", 0, False, 0, 0, 0, False, 0],
-                   "0x35": ["EQIO", 0, False, 0, 1, 0, False, 0], 
-                   "0x38": ["4PP",  3, False, 1, 4, 4, False, 0],
-                   "0x6b": ["QREAD",3, True,  1, 4, 1, True,  8],
-                   "0x9f": ["RDID", 0, True,  4, 0, 1, False, 0],
-                   "0xe1": ["WRDPB",4, False, 1, 1, 1, False, 0],
-                   "0xeb": ["4READ",3, True,  1, 4, 4, True,  6]
+  #   0: Mnemmonic; Number of address cycles; read_command; min_data bytes; data_bit_width; addr_bit_width, dummy_cycle_p; num_dummy_cyles; abortable
+  command_table = {"0x01": ["WRSR1", 0, False, 1, 1, 1, False, 0, False],
+                   "0x02": ["PP",   0, False, 1, 1, 1, False, 0, False],
+                   "0x03": ["READ", 3, True,  1, 1, 1, False, 0, False],
+                   "0x04": ["WRDI", 0, False, 0, 0, 0, False, 0, False],
+                   "0x05": ["RDSR1", 0, True,  1, 1, 1, False, 0, True],
+                   "0x06": ["WREN", 0, False, 0, 0, 0, False, 0, False],
+                   "0x11": ["WRSR3", 0, False, 1, 1, 1, False, 0, False],
+                   "0x15": ["RDSR3", 0, True,  1, 1, 1, False, 0, True],
+                   "0x31": ["WRSR2", 0, False, 1, 1, 1, False, 0, False],
+                   "0x35": ["RDSR2", 0, False, 0, 1, 0, False, 0, False], 
+                   "0x38": ["4PP",  3, False, 1, 4, 4, False, 0, False],
+		   "0x3b": ["2READ", 3, True, 1, 2, 1, True,  8, False], 
+                   "0x6b": ["QREAD",3, True,  1, 4, 1, True,  8, False],
+		   "0x66": ["ENRST", 0, False, 0, 0, 0, False, 0, False], 
+                   "0x9f": ["RDID", 0, True,  4, 0, 1, False, 0, False],
+		   "0x99": ["RESET",0, False,  0, 0, 0, False, 0, False],
+                   "0xe1": ["WRDPB",4, False, 1, 1, 1, False, 0, False],
+                   "0xeb": ["4READ",3, True,  1, 4, 4, True,  6, False]
                    }
   
   # Initialize binary file
@@ -304,6 +311,7 @@ class Mx25EepromParser:
               self.address_bit_width = self.command_table[self.opcode][5]
               self.dummy_cycle_p = self.command_table[self.opcode][6]
               self.dummy_cycles = self.command_table[self.opcode][7]
+              self.abortable = self.command_table[self.opcode][8]
               print("@T=", TimeValue, " command: " + self.opcode + " : " + self.mnemonic)
               outfile.write("command: " + self.opcode + " : " + self.mnemonic)
               outfile.write("\n")
@@ -372,9 +380,13 @@ class Mx25EepromParser:
 
     if (currentState == 'read_data'):
       if (CSValue == 1):
-        print("Warning: @T=", TimeValue, ": In state read_data: not expecting CS to go high on non-byte-boundary; Bit count: " + 
-              str(self.data_bit_count) + " Byte count: "+ str(self.data_byte_count) + " Sclk_count: " + str(self.sclk_count))
-        outfile.write("\n")
+        if (self.abortable):
+          print("Info: ", self.mnemonic, "aborted on non-byte-boundary with rising CS")
+        else:
+          print("Warning: @T=", TimeValue, ": In state read_data: not expecting CS to go high on non-byte-boundary; Bit count: " + 
+                str(self.data_bit_count) + " Byte count: "+ str(self.data_byte_count) + " Sclk_count: " + str(self.sclk_count))
+          outfile.write("\n")
+        return 'read_done'
       if(rising_sclk):
         if (self.update_read_data(RESET_SIO3Value, WP_SIO2Value, SO_SIO1Value, SI_SIO0Value)):
           if(self.debug):

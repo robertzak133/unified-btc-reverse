@@ -1,21 +1,37 @@
 
+//
+// rtc-formats.h 
+// Prototypes for RTC format menus
+//
+
 
 typedef enum enum_rtc_date_format_options {
   rtc_mm_dd_yyyy = 0,
   rtc_dd_mm_yyyy,
-  rtc_yyyymmdd
+  rtc_yyyymmdd,
+  rtc_yyyy_mm_dd
 } enum_rtc_date_format_options;
 
-typdef enum enum_rtc_time_format_options {
+typedef enum enum_rtc_time_format_options {
   rtc_twelve_hour = 0,
   rtc_twenty_four_hour
 } enum_rtc_time_format_options;
 
 // Global Variables
 // Menus
-struct_menu_selections_descriptor g_rtc_date_format_menu[4];
-struct_menu_selections_descriptor g_rtc_time_format_menu[3];
+struct_hp5_menu_item g_rtc_date_format_menu[4];
+struct_hp5_menu_item g_rtc_time_format_menu[3];
 
+#if (defined BTC_7A_OLD) 
+char g_SST_MM_SLASH_DD_SLASH_YYYY_string[sizeof("MM/DD/YYYY")];
+char g_SST_DD_SLASH_MM_SLASH_YYYY_string[sizeof("DD/MM/YYYY")];
+char g_SST_YYYYMMDD_string[sizeof("YYYYMMDD")];
+char g_SST_DATE_SP_FORMAT_string[sizeof("DATE FORMAT")];
+
+char g_SST_12_DASH_HOUR_string[sizeof("12-HOUR")];
+char g_SST_24_DASH_HOUR_string[sizeof("24-HOUR")];
+char g_SST_TIME_SP_FORMAT_string[sizeof("TIME FORMAT")];
+#endif
 
 // 
 byte rtc_get_cold_item_date_format();

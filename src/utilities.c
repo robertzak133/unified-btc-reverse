@@ -8,7 +8,7 @@
 #include "utilities.h"
 
 
-
+#ifdef COMPILE_UTILTIES
 
 int util_set_cold_item_language_id(byte menu_selection) {
 
@@ -131,3 +131,5 @@ void utilities_check_post_printf_hook() {
   //copy_image_file(pmt_source_filename, pmt_dest_filename);
 
 }
+
+#endif

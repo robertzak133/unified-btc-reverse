@@ -1,0 +1,27 @@
+// capture-timer.c
+//     Adding capture timer functionality to BTC-7A, if we can
+
+
+#if (defined BTC_7A_OLD) 
+
+char  g_SST_CAPTURE_SP_TIMER_string[sizeof("CAPTURE TIMER")];
+char  g_SST_OFF_string[sizeof("OFF")];
+char  g_SST_ON_string[sizeof("ON")];
+
+
+struct_hp5_menu_item g_ctm_capture_timer_menu[3];
+
+bool ctm_get_within_operating_hours_p(void);
+
+byte ctm_get_cold_item_capture_timer_p();
+
+void ctm_set_cold_item_capture_timer_p(byte capture_timer_p);
+
+void ctm_get_capture_timer_rtc_time(struct_short_RTCTime *capture_rtc_time);
+
+bool ctm_reset_capture_timer(uint year_month, uint day_hour);
+
+void ctm_handleCaptureTimerP_menu(void);
+void ctm_handleSetCaptureTimerParams_menu(void);
+
+#endif

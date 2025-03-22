@@ -83,6 +83,8 @@ wbwl_get_next_state_from_menu_enter:
 	.end	wbwl_get_next_state_from_menu_enter
 	.size	wbwl_get_next_state_from_menu_enter, .-wbwl_get_next_state_from_menu_enter
 
+	.comm	g_ntvq_photo_quality_menu,168,4
+
 	.comm	g_ifm_ir_led_power_menu,140,4
 
 	.comm	g_wbwl_timelapse_frequency_lookup_table,24,4
@@ -91,37 +93,36 @@ wbwl_get_next_state_from_menu_enter:
 
 	.comm	g_wbwl_timelapse_frequency_menu,364,4
 
-	.comm	g_dlsr_led_enable_menu,84,4
+	.comm	g_ext_trigger_enable_menu,112,4
 
 	.comm	g_rtc_time_format_menu,84,4
 
-	.comm	g_rtc_date_format_menu,112,4
+	.comm	g_rtc_date_format_menu,140,4
 
 	.comm	g_evsd_extended_sd_power_menu,84,4
 	.globl	g_wbwl_menu_handler_function_array_extensions
 	.data
 	.align	2
 	.type	g_wbwl_menu_handler_function_array_extensions, @object
-	.size	g_wbwl_menu_handler_function_array_extensions, 28
+	.size	g_wbwl_menu_handler_function_array_extensions, 24
 g_wbwl_menu_handler_function_array_extensions:
-	.word	evsd_handle_extended_sd_power_menu
 	.word	rtc_handle_date_format_menu
 	.word	rtc_handle_time_format_menu
-	.word	dslr_handle_led_enable_menu
+	.word	xtrg_handle_led_enable_menu
 	.word	apt_handle_aperture_menu
 	.word	tlps_handle_file_type_menu
 	.word	menus_handleCommitUpdates_menu
 	.globl	g_wbwl_camera_setup_selector_array
 	.align	2
 	.type	g_wbwl_camera_setup_selector_array, @object
-	.size	g_wbwl_camera_setup_selector_array, 248
+	.size	g_wbwl_camera_setup_selector_array, 240
 g_wbwl_camera_setup_selector_array:
 	.word	g_set_date_time_menu
 	.word	1
 	.word	g_operation_mode_menu
 	.word	4
-	.word	g_photo_quality_menu
-	.word	5
+	.word	g_ntvq_photo_quality_menu
+	.word	6
 	.word	g_video_length_menu
 	.word	7
 	.word	g_video_quality_menu
@@ -145,7 +146,7 @@ g_wbwl_camera_setup_selector_array:
 	.word	g_trigger_speed_menu
 	.word	3
 	.word	g_restore_default_menu
-	.word	3
+	.word	5
 	.word	g_wbwl_timelapse_frequency_menu
 	.word	13
 	.word	g_wbwl_timelapse_period_menu
@@ -164,14 +165,12 @@ g_wbwl_camera_setup_selector_array:
 	.word	3
 	.word	g_firmware_upgrade_menu
 	.word	4
-	.word	g_evsd_extended_sd_power_menu
-	.word	3
 	.word	g_rtc_date_format_menu
-	.word	4
+	.word	5
 	.word	g_rtc_time_format_menu
 	.word	3
-	.word	g_dlsr_led_enable_menu
-	.word	3
+	.word	g_ext_trigger_enable_menu
+	.word	4
 	.word	g_apt_aperture_menu
 	.word	4
 	.word	g_tlps_file_type_menu
@@ -181,7 +180,7 @@ g_wbwl_camera_setup_selector_array:
 	.globl	g_wbwl_camera_setup_menu_item_array
 	.align	2
 	.type	g_wbwl_camera_setup_menu_item_array, @object
-	.size	g_wbwl_camera_setup_menu_item_array, 868
+	.size	g_wbwl_camera_setup_menu_item_array, 840
 g_wbwl_camera_setup_menu_item_array:
 	.word	3
 	.word	31
@@ -351,48 +350,41 @@ g_wbwl_camera_setup_menu_item_array:
 	.word	0
 	.word	2
 	.word	29
-	.word	24
-	.word	179
-	.word	0
-	.word	1
-	.word	0
-	.word	2
-	.word	30
 	.word	3
 	.word	183
 	.word	0
 	.word	1
 	.word	0
 	.word	2
-	.word	31
+	.word	30
 	.word	3
 	.word	180
 	.word	0
 	.word	1
 	.word	0
 	.word	2
-	.word	32
+	.word	31
 	.word	13
-	.word	187
+	.word	188
+	.word	0
+	.word	1
+	.word	0
+	.word	2
+	.word	32
+	.word	26
+	.word	191
 	.word	0
 	.word	1
 	.word	0
 	.word	2
 	.word	33
-	.word	26
-	.word	190
+	.word	18
+	.word	195
 	.word	0
 	.word	1
 	.word	0
 	.word	2
 	.word	34
-	.word	18
-	.word	194
-	.word	0
-	.word	1
-	.word	0
-	.word	2
-	.word	35
 	.word	31
 	.word	110
 	.word	0

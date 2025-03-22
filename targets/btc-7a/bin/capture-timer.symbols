@@ -1,0 +1,92 @@
+
+capture-timer.o:     file format elf32-tradlittlemips
+
+SYMBOL TABLE:
+00000000 l    df *ABS*	00000000 capture-timer.c
+00000000 l    d  .text	00000000 .text
+00000000 l    d  .data	00000000 .data
+00000000 l    d  .bss	00000000 .bss
+00000000 l    d  .mdebug.abi32	00000000 .mdebug.abi32
+00000000 l    d  .rodata.str1.4	00000000 .rodata.str1.4
+00000050 l       .rodata.str1.4	00000000 $LC3
+00000098 l       .rodata.str1.4	00000000 $LC7
+000000b4 l       .rodata.str1.4	00000000 $LC9
+000000d4 l       .rodata.str1.4	00000000 $LC11
+00000000 l       .rodata.str1.4	00000000 $LC0
+00000018 l       .rodata.str1.4	00000000 $LC1
+00000034 l       .rodata.str1.4	00000000 $LC2
+00000064 l       .rodata.str1.4	00000000 $LC4
+00000074 l       .rodata.str1.4	00000000 $LC5
+00000084 l       .rodata.str1.4	00000000 $LC6
+000000ac l       .rodata.str1.4	00000000 $LC8
+000000bc l       .rodata.str1.4	00000000 $LC10
+000000ec l       .rodata.str1.4	00000000 $LC12
+0000010c l       .rodata.str1.4	00000000 $LC13
+00000130 l       .rodata.str1.4	00000000 $LC14
+0000016c l       .rodata.str1.4	00000000 $LC16
+00000154 l       .rodata.str1.4	00000000 $LC15
+00000184 l       .rodata.str1.4	00000000 $LC17
+00000198 l       .rodata.str1.4	00000000 $LC18
+000001c4 l       .rodata.str1.4	00000000 $LC19
+000001f0 l       .rodata.str1.4	00000000 $LC20
+00000000 l    d  .reginfo	00000000 .reginfo
+00000000 l    d  .MIPS.abiflags	00000000 .MIPS.abiflags
+00000000 l    d  .pdr	00000000 .pdr
+00000000 l    d  .comment	00000000 .comment
+00000000 l    d  .gnu.attributes	00000000 .gnu.attributes
+00000000 g     F .text	0000003c ctm_get_power_supply_mode
+00000000         *UND*	00000000 get_power_supply_mode
+00000000         *UND*	00000000 get_device_csr_bit
+0000003c g     F .text	0000002c ctm_tty_printf
+00000000         *UND*	00000000 set_pre_printf_state
+00000000         *UND*	00000000 tty_printf
+00000000         *UND*	00000000 check_post_printf_state_set_sio_params
+00000068 g     F .text	00000008 ctm_check_event_null_function
+00000070 g     F .text	00000480 ctm_event_loop_iterator
+00000000         *UND*	00000000 g_event_descriptor
+00000000         *UND*	00000000 event_descriptor_init
+00000000         *UND*	00000000 get_matching_event_descriptor
+00000000         *UND*	00000000 fsm_iterate_all_in_g_fsm_descriptor_list
+00000000         *UND*	00000000 get_g_evt_0x5251050a_counter
+00000000         *UND*	00000000 set_g_evt_0x5251050a_counter
+00000000         *UND*	00000000 event_loop_iterator
+00000000         *UND*	00000000 debug_print_string
+00000000         *UND*	00000000 host_task_init
+00000000         *UND*	00000000 service_button_event
+00000000         *UND*	00000000 get_SDCardState
+00000000         *UND*	00000000 get_g_test_mode
+00000000         *UND*	00000000 get_g_sd_card_mounted_p
+00000000         *UND*	00000000 vfs_unmount_wrapper2
+00000000         *UND*	00000000 set_g_sd_card_mounted_p
+00000000         *UND*	00000000 set_sd_card_state_w_init
+00000000         *UND*	00000000 initialize_g_mode_change_counter
+00000000         *UND*	00000000 get_g_sd_card_valid_p
+00000000         *UND*	00000000 set_g_sd_card_state_valid_p
+00000000         *UND*	00000000 serviceEvent_0x5151000
+00000000         *UND*	00000000 set_g_evt_0x52510507_state_initialized_p
+00000000         *UND*	00000000 setStillCapDone
+00000000         *UND*	00000000 get_g_evt_0x52510507_counter
+00000000         *UND*	00000000 set_g_evt_0x52510507_counter
+00000000         *UND*	00000000 service_event_0x5851000
+00000000         *UND*	00000000 serviceSetCurrentMode_event
+00000000         *UND*	00000000 get_g_fast_cap_mount_active_p
+00000000         *UND*	00000000 set_g_info_strip_enabled_p
+00000000         *UND*	00000000 set_fast_cap_mount_active_p
+00000000         *UND*	00000000 set_g_some_sd_status_p
+00000000         *UND*	00000000 app_init_directory_suffix_file_prefix
+00000000         *UND*	00000000 check_remaining_sd_capacity
+000004f0 g     F .text	000001f8 ctm_DigiPIRSpi_Write
+00000000         *UND*	00000000 digi_pir_spi_serial_out
+00000000         *UND*	00000000 some_sort_of_delay
+00000000         *UND*	00000000 get_fine_grained_time
+00000000         *UND*	00000000 log_printf
+00000000         *UND*	00000000 positive_diff
+00000000         *UND*	00000000 DigiPIRSpi_Write
+00000054       O *COM*	00000004 g_rtc_time_format_menu
+0000008c       O *COM*	00000004 g_rtc_date_format_menu
+00000018       O *COM*	00000004 g_wbwl_menu_handler_function_array_extensions
+000000f0       O *COM*	00000004 g_wbwl_camera_setup_selector_array
+00000348       O *COM*	00000004 g_wbwl_camera_setup_menu_item_array
+000000c4       O *COM*	00000004 g_wbwl_timelapse_period_menu
+
+

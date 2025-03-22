@@ -1494,7 +1494,7 @@ void bm_handleBatteryTypeMenu(void)
       return;
     }
     camera_config->exit_menu_p_or_ir_led_on = 1;
-    camera_config->field_1 = 0;
+    camera_config->video_p = 0;
     menu_offset = get_next_state_from_menu_mode(1,&g_menu_root);
     temp_int = 0x1f;
     if (menu_offset == 0xff) goto LAB_8010ef94;

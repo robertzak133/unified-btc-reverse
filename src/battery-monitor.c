@@ -621,7 +621,7 @@ int bm_StoreBatteryMonitorFile() {
     return_value = 0;
   } else {
     // write file with data
-    seekToSpecifiedFileLocation(file_ptr, 0, 0);
+    seekToSpecifiedFileLocation(file_ptr, 0, 0, 0, 0);
     unsigned int fwrite_result = btc_fwrite(file_ptr, &WBWL_GLOBAL_STRUCT, sizeof (WBWL_GLOBAL_STRUCT));
     btc_fclose(file_ptr);
     end_time_ms = get_current_operating_time_ms();

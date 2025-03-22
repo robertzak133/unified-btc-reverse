@@ -25,7 +25,7 @@ SYMBOL TABLE:
 00000000         *UND*	00000000 btc_strcpy
 0000015c g     F .text	00000070 wbwl_init_directory_suffix_file_prefix
 00000000         *UND*	00000000 g_dcfapi_loaded_p
-00000000         *UND*	00000000 g_btc_init_directory_suffix_prefix_dyn
+00000000         *UND*	00000000 g_active_dcfapi_functions
 00000000         *UND*	00000000 function_with_syscall_zero
 000001cc g     F .text	0000007c wbwl_temp_file_path_sprintf
 00000000         *UND*	00000000 local_sprintf

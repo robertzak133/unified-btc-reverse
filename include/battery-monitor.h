@@ -169,6 +169,4 @@ void          bm_fprint_battery_telemetry(unsigned int fptr);
 void          bm_print_battery_telemetry(void);
 
 
-void          cp_setSensorDigitalEffectPhoto(char night_p);
-void          cp_setSensorDigitalEffectVideo(char night_p);
 

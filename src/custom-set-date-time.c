@@ -14,6 +14,7 @@
 #include "BTC.h"
 #include "WBWL.h"
 #include "rtc-formats.h"
+#include "capture-timer.h"
 #include "custom-set-date-time.h"
 
 //#define DEBUG
@@ -36,6 +37,10 @@
 // 9        AM/PM         NA
 
 
+
+#if (defined BTC_7A_OLD) 
+byte g_cst_set_time_buffer[10] = {0x1f, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+#endif
 
 void cdt_get_set_date_time_functions (enum_date_time_menu_item selector, 
 				      enum_rtc_date_format_options date_format,
@@ -248,6 +253,97 @@ int cdt_check_keyboard(struct_CameraConfig *camera_config) {
   return buttons_pressed_p;
 }
 
+#if (defined BTC_7A_OLD) 
+uint cdt_HceTask_ToNextNChar(int up_button_p,uint current_value_function(), uint min_value_function(), uint max_value_function(),ushort next_item)
+{
+  uint max_value;
+  int iVar2;
+  uint current_value;
+  uint uVar4;
+  uint min_value;
+  uint l_next_item;
+  
+  l_next_item = (uint)next_item;
+  current_value = 0;
+  if (up_button_p == 0) {
+    if (current_value_function != (void *)0x0) {
+      current_value = (*current_value_function)();
+    }
+    min_value = 0;
+    if (min_value_function != (void *)0x0) {
+      min_value = (*min_value_function)();
+    }
+    max_value = 0xffff;
+    if (max_value_function == (void *)0x0) {
+      iVar2 = 0xffff - min_value;
+    }
+    else {
+      max_value = (*max_value_function)();
+      if (max_value < min_value) {
+        return current_value;
+      }
+      iVar2 = max_value - min_value;
+    }
+    if (iVar2 < 0) {
+      iVar2 = iVar2 + 3;
+    }
+    uVar4 = (uint)(iVar2 << 0xe) >> 0x10;
+    if (uVar4 == 0) {
+      uVar4 = 1;
+    }
+    if (uVar4 < l_next_item) {
+      //set_pre_printf_state();
+      //tty_printf(s_%s_Menu_Speed_Ctrl,_max_speed_@_%_8036f924,s_HceTask_ToPrevNChar_8035539c,l_next_item,
+      //           uVar4);
+      //check_post_printf_state_set_sio_params();
+      l_next_item = uVar4;
+    }
+    if ((int)current_value < (int)(min_value + l_next_item)) {
+      current_value = max_value + ((current_value + 1) - min_value);
+    }
+    current_value = current_value - l_next_item;
+  }
+  else {
+    if (current_value_function != (void *)0x0) {
+      current_value = (*current_value_function)();
+    }
+    min_value = 0;
+    if (min_value_function != (void *)0x0) {
+      min_value = (*min_value_function)();
+    }
+    if (max_value_function == (void *)0x0) {
+      max_value = 0xffff;
+      iVar2 = 0xffff - min_value;
+    }
+    else {
+      max_value = (*max_value_function)();
+      if (max_value < min_value) {
+        return current_value;
+      }
+      iVar2 = max_value - min_value;
+    }
+    if (iVar2 < 0) {
+      iVar2 = iVar2 + 3;
+    }
+    uVar4 = (uint)(iVar2 << 0xe) >> 0x10;
+    if (uVar4 == 0) {
+      uVar4 = 1;
+    }
+    if (uVar4 < l_next_item) {
+      //set_pre_printf_state();
+      //tty_printf(s_%s_Menu_Speed_Ctrl,_max_speed_@_%_8036f924,s_HceTask_ToNextNChar_803553b0,l_next_item,
+      //           uVar4);
+      //check_post_printf_state_set_sio_params();
+      l_next_item = uVar4;
+    }
+    if ((int)(max_value - l_next_item) < (int)current_value) {
+      current_value = (min_value + (current_value - 1)) - max_value;
+    }
+    current_value = current_value + l_next_item;
+  }
+  return current_value & 0xffff;
+}
+#endif
   
 // The up/down buttons change the temporary value of the date or time
 //     There is a generic function which 
@@ -275,11 +371,20 @@ void cdt_handle_up_down_buttons(struct_CameraConfig *camera_config,
 				   date_format, time_format,
 				   &date_time_menu_functions);
 
+#if (defined BTC_7A_OLD) 
+  *current_field_value = cdt_HceTask_ToNextNChar(up_button_p,
+					     date_time_menu_functions.current_value_function,
+					     date_time_menu_functions.min_value_function,
+					     date_time_menu_functions.max_value_function, 
+					     next_item);
+
+#elif (defined BTC_7A) || (defined BTC_7E) || (defined BTC_8E) || (defined BTC_7E_HP4) || (defined BTC_8E_HP4) || (defined BTC_7E_HP5) || (defined BTC_8E_HP5) 
   *current_field_value = HceTask_ToNextNChar(up_button_p,
 					     date_time_menu_functions.current_value_function,
 					     date_time_menu_functions.min_value_function,
 					     date_time_menu_functions.max_value_function, 
 					     next_item);
+#endif
 }
 
 void cdt_handle_left_right_buttons(struct_CameraConfig *camera_config, int left_button_p) {
@@ -298,8 +403,12 @@ void cdt_handle_left_right_buttons(struct_CameraConfig *camera_config, int left_
   } else {
     right_p = 1;
   }
+#if (defined BTC_7A_OLD) 
+  //update_time_field(right_p,&camera_config->menu_selection_1,1,g_cst_set_time_buffer,10);
   update_time_field(right_p,&camera_config->menu_selection_1,1,g_set_time_buffer,10);
-
+#elif (defined BTC_7A) || (defined BTC_7E) || (defined BTC_8E) || (defined BTC_7E_HP4) || (defined BTC_8E_HP4) || (defined BTC_7E_HP5) || (defined BTC_8E_HP5)
+  update_time_field(right_p,&camera_config->menu_selection_1,1,g_set_time_buffer,10);
+#endif
 }
 
 
@@ -379,16 +488,30 @@ void cdt_handle_enter_mode_buttons(struct_CameraConfig *camera_config,
     }
     g_set_date_time_menu_state.second = 0;
     hal_set_rtc(&g_set_date_time_menu_state);
+#if (defined BTC_7A_OLD)
+    uint capture_timer_p  = ctm_get_cold_item_capture_timer_p();
+#elif (defined BTC_7A) || (defined BTC_7E) || (defined BTC_8E) || (defined BTC_7E_HP4) || (defined BTC_8E_HP4) || (defined BTC_7E_HP5) || (defined BTC_8E_HP5)
     uint capture_timer_p  = get_cold_item_capture_timer_p();
+#else
+    *** ERROR *** Invalid Target
+#endif
     if (capture_timer_p != 0) {
       struct_short_RTCTime short_rtc_time;
-      get_capture_timer_rtc_time(&short_rtc_time);
       struct_short_RTC_as_uints *rtc_as_uints = (struct_short_RTC_as_uints *)&short_rtc_time;
+
+#if (defined BTC_7A_OLD)
+      ctm_get_capture_timer_rtc_time(&short_rtc_time);
+      ctm_reset_capture_timer(rtc_as_uints->year_month,
+			  rtc_as_uints->day_hour);
+
+#elif (defined BTC_7A) || (defined BTC_7E) || (defined BTC_8E) || (defined BTC_7E_HP4) || (defined BTC_8E_HP4) || (defined BTC_7E_HP5) || (defined BTC_8E_HP5)
+      get_capture_timer_rtc_time(&short_rtc_time);
       reset_capture_timer(rtc_as_uints->year_month,
 			  rtc_as_uints->day_hour);
+#endif
     }
 #if (defined BTC_7E_HP5) || (defined BTC_8E_HP5)
-    set_cold_item_new_timelapse_file_p(1);
+    set_cold_item_timelapse_new_file_p(1);
     set_cold_item_137_1(0);
 #endif
     camera_config->commit_menu_change = 1;

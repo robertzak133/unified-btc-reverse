@@ -40,11 +40,11 @@ $L1:
 
 	.comm	g_ifm_ir_led_power_menu,140,4
 
-	.comm	g_wbwl_menu_handler_function_array_extensions,28,4
+	.comm	g_wbwl_menu_handler_function_array_extensions,24,4
 
-	.comm	g_wbwl_camera_setup_selector_array,248,4
+	.comm	g_wbwl_camera_setup_selector_array,240,4
 
-	.comm	g_wbwl_camera_setup_menu_item_array,868,4
+	.comm	g_wbwl_camera_setup_menu_item_array,840,4
 
 	.comm	g_wbwl_timelapse_period_menu,196,4
 	.ident	"GCC: (Ubuntu 9.4.0-1ubuntu1) 9.4.0"

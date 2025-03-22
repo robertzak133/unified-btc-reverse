@@ -6,16 +6,33 @@
 #include "menus.h"
 #include "aperture.h"
 
-#define DEBUG
+//#define DEBUG
 
 // Global Variables
 // Menus
+
 struct_hp5_menu_item g_apt_aperture_menu[4] = {
-  {no_icon, SST_STANDARD,     0x00, 0x01, 0x00, 0x1, 0x1},
-  {no_icon, SST_LOW_SP_LIGHT, 0x00, 0x01, 0x00, 0x1, 0x1},
-  {no_icon, SST_NO_SP_LIGHT, 0x00, 0x01, 0x00, 0x1, 0x1},
+  {no_icon, SST_STANDARD,                0x00, 0x01, 0x00, 0x1, 0x1},
+  {no_icon, SST_LOW_SP_LIGHT,            0x00, 0x01, 0x00, 0x1, 0x1},
+  {no_icon, SST_ALWAYS_SP_COLOR,         0x00, 0x01, 0x00, 0x1, 0x1},
   {no_icon, SST_DAY_SP_THRESHOLD,        0x00, 0x00, 0x01, 0x03, 0x03}
 };
+
+
+enum_aperture_encoding apt_get_cold_item_aperture() {
+  return (enum_aperture_encoding) g_ColdItemData.aperture;
+}
+
+void apt_set_cold_item_aperture(enum_aperture_encoding aperture) {
+  g_ColdItemData.aperture = (byte) aperture;
+}
+
+void apt_set_rtc_extra_aperture(enum_aperture_encoding aperture) {
+  uint buffer [4];
+  get_rtc_extra_byte_range((byte *)buffer,6,2);
+  buffer[0] = buffer[0] & 0xffff3fff | (aperture & 3) << 14;
+  set_rtc_extra_byte_range((byte *)buffer,6,2);
+}
 
 
 void apt_handle_aperture_menu() {
@@ -82,6 +99,8 @@ EXIT1:
 // Never called, but here to get some local functions in the lookup table
 void apt_dummy(void) {
   byte result;
+#if (defined BTC_7A) || (defined BTC_7E) || (defined BTC_8E) || (defined BTC_7E_HP4) || (defined BTC_8E_HP4) || (defined BTC_7E_HP5) || (defined BTC_8E_HP5)
   result = get_rtc_extra_operation_mode();
   set_rtc_extra_operation_mode(result);
+#endif
 }
