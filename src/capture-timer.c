@@ -11,6 +11,31 @@
 //#define DEBUG_NIGHT_VIDEO
 //#define DEBUG_EVENT_ITERATOR
 //#define DEBUG_TEMPERATURE_HALT
+//#define DEBUG_VOLTCALIB
+//#define DEBUG_TLPS_CAPTURE_TIMER
+
+
+// Capture Timer Support For Timelapse
+
+//     Don't take timelapse photos durint times that the capture timer is 
+//     inactive
+void ctm_schedule_alarm_global_callback(uint timer_number, uint wakeup_time, uint timer_type, void* callback_function) {
+  if ((timer_number != 1) &&
+      (get_within_operating_hours_p() != 0) &&
+      (get_cold_item_timelapse_period() != all_day_night)){
+    // Only schedule a timelapse alarm if the capture_timer *isn't* currently active and
+    //      we're not in all_day_night mode
+    schedule_alarm_global_callback(timer_number, wakeup_time, timer_type, callback_function);
+  } 
+#ifdef DEBUG_TLPS_CAPTURE_TIMER
+  else {
+      set_pre_printf_state();
+      tty_printf("ctm_schedule_alarm: ignored wakeup in %d\n",
+		 wakeup_time);
+      check_post_printf_state_set_sio_params();
+  }
+#endif
+} 
 
 #if (defined BTC_7A)
 
@@ -336,7 +361,21 @@ void ctm_DigiPIRSpi_Write(uint csr_value) {
 
 
 // Debug Patches Only
-#if (defined BTC_8E_HP5) && (defined DEBUG_TEMPERATURE_HALT)
+
+// Debugging Timelapse Capture Timer
+#if (defined BTC_7E_HP5) && (defined DEBUG_TLPS_CAPTURE_TIMER)
+
+#endif
+
+// Debugging VOLTCALIB
+//        Setting and reading VOLTCALIB.BIN file
+#if (defined BTC_7E_HP5) && (defined DEBUG_VOLTCALIB)
+
+
+#ENDIF
+
+
+#IF (DEFINED BTC_8E_HP5) && (DEFINED DEBUG_TEMPERATURE_HALT)
 
 // 2025-03-16: My hypothesis is that a negagive value in temperatuer (C or F) 
 //             confuses the "set_cold_item_overtemp_p()" function

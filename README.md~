@@ -2,14 +2,14 @@
 
 This repository contains tools, source file, hand patches, and documentation for the (nearly) complete flow for adding new features, written in C, to Browning Trail Cameras via semi-automatically generated firmware update files.  Supported cameras are BTC-7A, BTC{7,8}{E, E-HP4, E-HP5}.  That is, Browning Recon Force Advantage, and Recon Force  and Spec Ops line of cameras, models Edge, Elite HP4, and Elite HP5.
 
-2025-03-18: Note there is a known issue that preents certain newer HP5 cameras from downloading this firmware (or Browning firmware, for that matter).  If the "LOAD FIRMWARE" option isn't availabe int he FW upgrade menu, you have one of these cameras. 
+Note that installing this firmware may void the manufacturer warranty.  If you need to return a camera to the manufacture for warranty, see instructions below for "Reinstalling Factory Firmware" to first get the camera back into original factory configuration.  
 
 ## Most Recent Releases
 2025-03-02: 
 
-A major release, including new functions, changes to previous functions. 
+A major release, including new functions, and generalization of  previous functions. 
 
-I have also updated the firmare for the HP5 cameras so that they are based on the more recent factory firmware, version "M06170F." I’m not sure what’s in this factory release, although I don’t believe it addresses the “corrupt SD card” bug.  My fix for this bug remains in place.
+I have also updated the firmare for the HP5 cameras so that they are based on the more recent factory firmware, version "M06170F." I'm not sure what's new in this factory release, although I don't believe it addresses the "corrupt SD card" bug.  My fix for this bug remains in place.
 
 I added support for the BTC-7A (Recon Force Advantage) model.  This firmware is based on the more recent model for the BTC-7E, and thus inherits the "capture timer" feature Bronwning introduced with the "Elite" models.
 
@@ -23,6 +23,8 @@ I added Several new features, described in more detail below.  These include:
 
 I have also removed the "Extended SD Card" menu.  This was a lightly used, and likely obsolete function, and I needed to retire it to make room for the custom configuration code, above.
 
+As of 2025-03-18, there is a known issue that prevents certain newer HP5 cameras from downloading this firmware (or Browning firmware, for that matter).  If the "YES" option isn't available in the "FW UPGRADE" menu, you may have one of these cameras. 
+
 See notes below for a description of how these new features might be used.  
 
 
@@ -35,12 +37,13 @@ and
 If you are here for RELEASE'd firmware images themselves, you can find them below:
 | Camera Model | Factory Baseline  | Current WBWL | Version  | Build Date |
 |--------------|-------------------|--------------|----------|------------|
-| BTC-7E | [brnbtc70.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-7e/factory-firmware-images/BTC7E_2021_10_07/brnbtc70.BRN) | [brnbtc70.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-7e/created-burn-images/RELEASE/brnbtc70.BRN) | WWL7E_240605P | 2024-06-07 |
-| BTC-8E | [brnbtc80.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-8e/factory-firmware-images/BTC8E_2021_10_07/brnbtc80.BRN) | [brnbtc80.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-8e/created-burn-images/RELEASE/brnbtc80.BRN) | WWL8E_240605P | 2024-06-07 |
-| BTC-7E-HP4 | [brnbtc71.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-7e-hp4/factory-firmware-images/2023-02-01-ns/brnbtc71.BRN) | [brnbtc71.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-7e-hp4/created-burn-images/RELEASE/brnbtc71.BRN) | WWL7EH4_240605P | 2024-06-07 |
-| BTC-8E-HP4 | [brnbtc81.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-8e-hp4/factory-firmware-images/2023-02-01-ns/brnbtc81.BRN) | [brnbtc81.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-8e-hp4/created-burn-images/RELEASE/brnbtc81.BRN) | WWL8EH4_240605P | 2024-06-07 |
-| BTC-7E-HP5 | [brnbtc72.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-7e-hp5/factory-firmware-images/BTC7EH5_L10200F/brnbtc72.BRN) | [brnbtc72.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-7e-hp5/created-burn-images/RELEASE/brnbtc72.BRN) | WWL7EH5_240605P | 2024-06-07 |
-| BTC-8E-HP5 | [brnbtc82.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-8e-hp5/factory-firmware-images/BTC8EH5_L10200F/brnbtc82.BRN) | [brnbtc82.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-8e-hp5/created-burn-images/RELEASE/brnbtc82.BRN) | WWL8EH5_240605P | 2024-06-07 |
+| BTC-7A | [brnbtc70.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-7a/factory-firmware-images/BTC7E_2021_10_07/brnbtc70.BRN) | [brnbtc70.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-7a/created-burn-images/RELEASE/brnbtc70.BRN) | WWL7A_250321R | 2025-03-21 |
+| BTC-7E | [brnbtc70.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-7e/factory-firmware-images/BTC7E_2021_10_07/brnbtc70.BRN) | [brnbtc70.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-7e/created-burn-images/RELEASE/brnbtc70.BRN) | WWL7E_250321R | 2025-03-21 |
+| BTC-8E | [brnbtc80.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-8e/factory-firmware-images/BTC8E_2021_10_07/brnbtc80.BRN) | [brnbtc80.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-8e/created-burn-images/RELEASE/brnbtc80.BRN) | WWL8E_250321R | 2025-03-21 |
+| BTC-7E-HP4 | [brnbtc71.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-7e-hp4/factory-firmware-images/2023-02-01-ns/brnbtc71.BRN) | [brnbtc71.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-7e-hp4/created-burn-images/RELEASE/brnbtc71.BRN) | WWL7EH4_250321R | 2025-03-21 |
+| BTC-8E-HP4 | [brnbtc81.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-8e-hp4/factory-firmware-images/2023-02-01-ns/brnbtc81.BRN) | [brnbtc81.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-8e-hp4/created-burn-images/RELEASE/brnbtc81.BRN) | WWL8EH4_250321R | 2025-03-21 |
+| BTC-7E-HP5 | [brnbtc72.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-7e-hp5/factory-firmware-images/BTC7EH5_M06170F/brnbtc72.BRN) | [brnbtc72.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-7e-hp5/created-burn-images/RELEASE/brnbtc72.BRN) | WWL7EH5_250321R | 2025-03-21 |
+| BTC-8E-HP5 | [brnbtc82.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-8e-hp5/factory-firmware-images/BTC8EH5_M06170F/brnbtc82.BRN) | [brnbtc82.BRN](https://github.com/robertzak133/unified-btc-reverse/blob/main/targets/btc-8e-hp5/created-burn-images/RELEASE/brnbtc82.BRN) | WWL8EH5_250321R | 2025-03-21 |
 
 ## Download Instructions
 - Find the copy of brnbtc7x.BRN (Recon Force) or brnbtc8x.BRN (Spec Ops) file for your camera above

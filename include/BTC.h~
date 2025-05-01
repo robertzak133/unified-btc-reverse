@@ -328,7 +328,32 @@ typedef enum enum_photo_delay_encoding {
   pd_sixty_minutes
 } enum_photo_delay_encoding;
 
+typedef enum enum_multi_shot_encoding {
+  ms_8_shot_standard = 0,
+  ms_7_shot_standard,
+  ms_6_shot_standard,
+  ms_5_shot_standard,
+  ms_4_shot_standard,
+  ms_3_shot_standard,
+  ms_2_shot_standard,
+  ms_single_shot,
+  ms_8_shot_rapid,
+  ms_7_shot_rapid,
+  ms_6_shot_rapid,
+  ms_5_shot_rapid,
+  ms_4_shot_rapid,
+  ms_3_shot_rapid,
+  ms_2_shot_rapid
+} enum_multi_shot_encoding;
+
 // Structures w/ typedefs
+
+typedef struct struct_event_descriptor {
+  int event_number;
+  int qualifier_1;
+  int qualifier_2;
+} struct_event_descriptor;
+
 
 typedef struct struct_dcfapi_functions {
   uint library_id;
@@ -957,6 +982,10 @@ typedef struct struct_video_page_descriptor {
   uint unknown_124;
 } struct_video_page_descriptor;
 
+typedef struct struct_voltage_calibration {
+  ushort low_8_0_voltage;
+  ushort high_13_0_voltage;
+} struct_voltage_calibration;
 
 // Cold storage Data structure
 
@@ -1685,6 +1714,7 @@ extern struct_ColdBinData g_ColdItemData;
 extern struct_ColdBinData g_ReferenceColdItemData;
 extern byte g_cold_item_signature_valid_p;
 
+extern struct struct_voltage_calibration g_volt_calib_file_low_high_voltage;
 extern void * g_sd_card_descriptor;  // this is not really a void*, but I don't understand the data structure well enough to put in here
 
 extern struct_pressure_temperature_coefficients g_pressure_temperature_coefficients;
@@ -1789,6 +1819,9 @@ extern byte         g_wakeup_alarm_mask_B;
 
 extern uint         g_image_size;
 
+extern byte         g_voltcalib_bin_read_p;
+extern ushort       g_volt_calib_file_header_0;
+extern ushort       g_volt_calib_file_header_1;
 
 extern enum_alt_ir_led_intensity g_ir_led_power_alt_encoding;
 
@@ -1797,13 +1830,51 @@ extern byte          g_ir_led_intensity_set_p;
 // External Functions
 // These were once arranged in alphabetical order, but they are higgly piggly now
 
-#if (defined BTC_7A_OLD) 
-extern void          set_g_photo_sensor_value(uint light_level);
-extern byte          get_g_cold_item_sensor_hysteresis(void);
-extern void          set_g_cold_item_hysteresis(byte hysteresis);
-extern void          set_g_night_mode(bool night_mode);
-extern uint          get_g_night_mode_p(void);
-#endif
+// Threadx
+
+extern uint          tx_queue_send(void *queue, void *message, int option);
+
+// event_loop_iterator
+extern void          event_loop_iterator(uint event_number,uint qualifier);
+extern void          event_descriptor_init(struct_event_descriptor *event_descriptor);
+extern int           get_matching_event_descriptor(int event_number,struct_event_descriptor *event_descriptor);
+extern void          set_g_evt_0x52510507_state_initialized_p(byte param_1);
+extern int           get_g_evt_0x52510507_counter(void);
+extern void          set_g_evt_0x52510507_counter(int param_1);
+extern void          set_sd_card_state_w_init(uint param_1);
+extern byte          get_g_sd_card_valid_p();
+extern void          set_g_sd_card_state_valid_p(byte param_1);
+extern void          initialize_g_mode_change_counter(byte param_1);
+extern void          service_button_event(int param_1,uint param_2);
+extern void          host_task_init(void);
+extern byte          get_g_test_mode(void);
+extern int           get_g_sd_card_mounted_p(void);
+extern void          set_g_sd_card_mounted_p(byte param_1);
+extern void          serviceEvent_0x5151000(int param_1,int param_2);
+extern void          service_event_0x5851000(int qualifier);
+extern void          set_g_evt_0x52510507_state_initialized_p(byte param_1);
+extern int           get_g_evt_0x5251050a_counter(void);
+extern void          set_g_evt_0x5251050a_counter(int param_1);
+extern void          setStillCapDone(void);
+extern void          serviceSetCurrentMode_event(int param_1,int param_2);
+extern void          set_g_info_strip_enabled_p(byte param_1);
+extern void          set_fast_cap_mount_active_p(byte param_1);
+extern byte          get_g_fast_cap_mount_active_p(void);
+extern bool          vfs_unmount_wrapper2(int param_1);
+extern void          set_g_some_sd_status_p(byte param_1);
+extern void          app_init_directory_suffix_file_prefix(void);
+extern void          fsm_iterate_all_in_g_fsm_descriptor_list(void);
+
+extern struct_event_descriptor g_event_descriptor;
+
+// Digi Pyro Related Routines
+extern void          DigiPIRSpi_Write(uint csr_value);
+extern void          digi_pir_spi_serial_out(int param_1);
+extern void          some_sort_of_delay(uint param_1);
+extern int           get_fine_grained_time(void);
+
+// string constants
+extern char*        s_FastCap_CST_MSG_ID_MOUNT_FINISH_e_8036c7c4;
 
 
 extern int           appAWBALGLib_WBParamSet(uint param_1, uint param_2);
@@ -1816,6 +1887,7 @@ extern uint          btc_fwrite(uint file_ptr, void *buffer, uint size);
 
 extern void *        btc_malloc(uint size);
 extern void *        malloc_3(uint size);
+extern void *        some_malloc(uint size);
 
 extern void          btc_init_directory_suffix_file_prefix(void);
 
@@ -1826,13 +1898,14 @@ extern void          init_IR_LED(void);
 
 extern bool          checkForSDCard();
 extern int           check_event_0x58510000_qualifier1(uint qualifier1);
+extern void          check_event_null_function(int, int);
 extern void          check_post_printf_state_set_sio_params();
 extern void          check_remaining_sd_capacity(void);
 extern int           check_hal_low_voltage(void); 
 
 extern bool          cold_item_led_power_blur_reduction_p();
 extern uint          debug_printf(char *);
-extern void          debug_print_string(uint, char *);
+extern void          debug_print_string(uint, char *, ...);
 extern void          dispatch_IQ_function(int, uint, uint, ...);
 extern void          draw_jpg_on_screen(uint index);
 extern void          draw_rectangle_wrapper(uint right_x,
@@ -1843,6 +1916,9 @@ extern void          draw_rectangle_wrapper(uint right_x,
 
 extern void          draw_set_time_screen(uint selected_item);
 extern void          draw_video_scroll_bar(uint percent_complete);
+extern void          draw_sst_string_on_display (int param_1,int param_2,void *param_3,int *param_4,int param_5,char *format_string,
+						 int param_7,int param_8);
+
 
 extern uint          encoded_timelapse_frequency_to_seconds(uint);
 extern bool          fatVolLabSet(char *drive_letter,char *volume_name);
@@ -1874,6 +1950,10 @@ extern void          exif_remove_and_add_wrapper(int param_1);
 
 extern struct struct_CameraConfig *getCameraConfigStructPtr(void);
 extern int           getMCURegisterByte(uint param_1,byte *data);
+extern int           MPUSpi_WriteNPacketByManualPWM(byte *address,byte *data,uint num_bytes);
+extern void          MCU_SPI_mutex_get(uint wait_option);
+extern void          MCU_Read_waiting_on_some_event(void);
+extern void          MCU_SPI_mutex_put(void);
 
 extern struct_menu_selections_descriptor *getCurrentMenuCollectionAndSize(struct_menu_selections_descriptor *menu_selections,struct_menu_root **menu_root);
 
@@ -1932,8 +2012,9 @@ extern void          Read_MCU_SubVer(uint);
 extern char          get_cold_item_sensor_digital_effect(void);
 extern uint          get_cold_item_timelapse_frequency(void);
 extern uint          get_cold_item_tod_last_photo_in_seconds(void);
-extern uint          get_cold_item_timelapse_period(void);
+extern enum_timelapse_period_encoding get_cold_item_timelapse_period(void);
 extern uint          get_cold_item_photo_resolution(void);
+extern enum_multi_shot_encoding get_cold_item_multi_shot_encoding(void);
 
 extern uint          get_battery_percent();
 extern uint          get_battery_percent_from_voltage(uint voltage);
@@ -1973,6 +2054,7 @@ extern ushort        get_g_timelapse_wakeup_time();
 
 extern ushort        get_photo_size_factor(int table_index);
 
+extern byte          get_g_night_mode_p(void);
 extern int           get_g_temperature_value(void);
 extern byte          get_DAT_80357b60_at_global_index(void);
 extern uint          get_cold_item_operation_mode(void);
@@ -1998,7 +2080,7 @@ extern bool          get_within_operating_hours_p();
 extern void          get_dir_image_indices(uint *,uint *);
 extern void          set_dir_image_indices(uint ,uint );
 
-extern bool          hal_bit_function_at_index(uint param_1,uint param_2,void *buffer);         
+extern bool          get_device_csr_bit(uint, uint, void*);
 extern void          hal_set_rtc(struct_short_RTCTime *short_rtc_time);
 extern void          hal_IRLedOff(void);
 extern void          hal_IRLedOff_pre_work(void);
@@ -2110,6 +2192,7 @@ extern void          setSensorDigitalEffectVideo(byte night_p);
 extern void          set_exif_time_of_capture(struct_short_RTCTime *);
 extern void          set_rtc_extra_current_tod_in_seconds(int);
 extern void          set_cold_item_current_tod_in_seconds(int);
+extern void          set_cold_item_timelapse_new_file_p(byte param_1);
 
 extern int           sdRead(void *param_1,uint start_block,uint num_blocks,byte *buffer);
 extern int           RdSdAddr(void *param_1,uint start_block,uint num_blocks,byte *buffer);
@@ -2125,6 +2208,7 @@ extern void          flush_processor_cache(byte *buffer,uint size);
 extern void          flush_processor_cache2(byte *buffer,uint size);
 extern uint          get_sd_clock_kHz(void);
 
+extern void          schedule_alarm_global_callback(int timer_number,int delay_in_seconds,uint timer_type,void *callback_function);
 extern void          set_cold_item_led_power(uint);
 extern int           set_cold_item_language_id(byte param_1);
 extern void          set_cold_item_new_timelapse_file_p(byte);
@@ -2133,6 +2217,7 @@ extern void          set_g_ae_parameter(byte ae_parameter);
 extern void          set_g_cold_item_battery_type(uint battery_type);
 extern void          set_cold_item_pir_range(enum_pir_range_options pir_range_option);
 extern void          set_cold_item_sd_management_p(byte param_1);
+extern void          set_cold_item_overtemp_p(void);
 extern void          set_pir_sensor_range(enum_pir_range_options pir_range_option);
 extern void          set_pre_printf_state(void);
 
@@ -2155,8 +2240,11 @@ extern void          sp5kIqBlockEnable(char, ...);
 extern void          sp5kIqCfgSet(uint, uint);
 extern int           sp5kModeSet(int next_mode);
 
+extern int           get_fsm_valid_p(void *);
 extern void          spawnIRCutFSM_per_mode();
 extern void          IRCutThreadCreate(uint value);
+
+extern bool          spawn_HceModeVoltCalib_FSM();
 
 extern void          startHceTaskUnMount_FSM(uint param_1,uint param_2);
 extern void          startHceTaskFormat_FSM(int param_1, uint param_2);

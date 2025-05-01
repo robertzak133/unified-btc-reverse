@@ -1,6 +1,6 @@
 /* Command File for Gcc Loader */
 /*    Created automatically by Ghidra.UnifiedCreateLdScript.java */
-/*    2025-03-19 09:14:18 */
+/*    2025-04-12 07:14:31 */
 
   /* Symbol Definitions */
    btc_strcpy = 0x80033558;
@@ -70,6 +70,7 @@
    menu_get_next_menu_selection = 0x8011158c;
    btc_strlen = 0x80012cb8;
    g_delete_all_menu = 0x803170e4;
+   schedule_alarm_global_callback = 0x80061ae4;
    get_cold_item_camera_name = 0x800e5738;
    cold_item_led_power_blur_reduction_p = 0x800e5790;
    reset_capture_timer = 0x800e5124;

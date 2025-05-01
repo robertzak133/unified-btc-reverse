@@ -44,6 +44,7 @@ SYMBOL TABLE:
 80111a70 g       *ABS*	00000000 get_min_minute
 801098a4 g       *ABS*	00000000 TaskTimeLapseFSM_task4
 80060cf8 g       *ABS*	00000000 get_rtc_extra_byte_range
+801888b0 g     F entry4_section	0000009c ctm_schedule_alarm_global_callback
 800d78b0 g     F entry1_section	00000008 cli_command_function
 800e582c g       *ABS*	00000000 get_g_cold_item_battery_type
 8031693c g       *ABS*	00000000 g_photo_delay_menu
@@ -87,6 +88,7 @@ SYMBOL TABLE:
 80188348 g     F entry4_section	0000006c cdt_get_date_time_current_field_value
 801905f8 g     F entry3_section	00000210 tlps_handle_file_type_menu
 8018fff0 g     F entry3_section	00000058 wbwl_fatVolLabSet
+80061ae4 g       *ABS*	00000000 schedule_alarm_global_callback
 8005c850 g       *ABS*	00000000 HceCommon_RestoreDefaultColdItem
 80111a64 g       *ABS*	00000000 get_g_menu_temp_minute
 8006d6b0 g     F entry0_section	00000030 apt_get_rtc_extra_aperture
@@ -260,7 +262,7 @@ SYMBOL TABLE:
 80111a80 g       *ABS*	00000000 get_am_pm_current_value
 8031ee30 g       *ABS*	00000000 g_menu_root
 800de030 g     O entry2_section	0000008c g_ifm_ir_led_power_menu
-801888b0 g     F entry4_section	0000002c ctm_tty_printf
+8018894c g     F entry4_section	0000002c ctm_tty_printf
 8005e20c g       *ABS*	00000000 check_post_printf_state_set_sio_params
 800e5124 g       *ABS*	00000000 reset_capture_timer
 803168e8 g       *ABS*	00000000 g_video_quality_menu

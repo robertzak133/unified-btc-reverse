@@ -1,6 +1,6 @@
 /* Command File for Gcc Loader */
 /*    Created automatically by Ghidra.UnifiedCreateLdScript.java */
-/*    2025-03-19 09:13:07 */
+/*    2025-04-16 03:53:36 */
 
   /* Symbol Definitions */
    btc_strcpy = 0x80033558;
@@ -33,6 +33,7 @@
    ui_cursor_key_pressed_p = 0x800e9aec;
    get_max_hour = 0x80111104;
    IRLedOff = 0x8005e3f0;
+   get_battery_voltage_from_adc = 0x800eb1cc;
    get_next_state_from_menu_enter = 0x80110f34;
    get_power_supply_mode = 0x800eb1a0;
    get_temperatureForC = 0x800e6250;
@@ -70,6 +71,7 @@
    menu_get_next_menu_selection = 0x80110c34;
    btc_strlen = 0x80012cb8;
    g_delete_all_menu = 0x80314ee4;
+   schedule_alarm_global_callback = 0x80061c28;
    get_cold_item_camera_name = 0x800e5754;
    cold_item_led_power_blur_reduction_p = 0x800e57ac;
    reset_capture_timer = 0x800e5140;
@@ -81,8 +83,8 @@
    tty_printf = 0x80003c9c;
    check_post_printf_state_set_sio_params = 0x8005e20c;
    register_low_battery_display_function = 0x80106ce4;
-   get_power_switch_on_p = 0x8005c4dc;
    HceTaskStillFSM_valid_p = 0x80106cf8;
+   get_power_switch_on_p = 0x8005c4dc;
    TaskTimeLapseFSM_task14_end = 0x801083f0;
    posix_fileinfo = 0x80036068;
    handleSetTimeMenu = 0x801159d4;
@@ -157,20 +159,20 @@
    g_cold_item_signature_valid_p = 0x8031ca08;
    TaskTimeLapseFSM_task6 = 0x80109164;
    TaskTimeLapseFSM_task5 = 0x80109270;
-   TaskTimeLapseFSM_task4 = 0x801097f4;
    IRCutThreadCreate = 0x800e92bc;
+   TaskTimeLapseFSM_task4 = 0x801097f4;
    g_temp_am_pm_p = 0x8031b714;
    get_g_menu_temp_month = 0x80111054;
    TaskTimeLapseFSM_task2 = 0x80109a84;
    TaskTimeLapseFSM_task1 = 0x80109590;
-   TaskTimeLapseFSM_task0 = 0x80109600;
    Volt_Calib_Bat = 0x800ebebc;
    execute_if_not_null = 0x800e518c;
+   TaskTimeLapseFSM_task0 = 0x80109600;
    g_multi_shot_mode_menu = 0x80314870;
    draw_sst_string_on_display = 0x800f94a0;
    power_on_IR_LED = 0x8005e308;
-   g_temp_unit_menu = 0x80314a84;
    set_exif_time_of_capture = 0x800e9e40;
+   g_temp_unit_menu = 0x80314a84;
    g_active_dcfapi_functions = 0x8031aaf0;
    g_night_mode_p = 0x8031ca15;
    set_fsm_state_relative = 0x80101be0;

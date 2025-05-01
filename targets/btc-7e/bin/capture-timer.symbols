@@ -19,11 +19,15 @@ SYMBOL TABLE:
 00000000 l    d  .pdr	00000000 .pdr
 00000000 l    d  .comment	00000000 .comment
 00000000 l    d  .gnu.attributes	00000000 .gnu.attributes
-00000000 g     F .text	0000002c ctm_tty_printf
+00000000 g     F .text	0000009c ctm_schedule_alarm_global_callback
+00000000         *UND*	00000000 get_within_operating_hours_p
+00000000         *UND*	00000000 get_cold_item_timelapse_period
+00000000         *UND*	00000000 schedule_alarm_global_callback
+0000009c g     F .text	0000002c ctm_tty_printf
 00000000         *UND*	00000000 set_pre_printf_state
 00000000         *UND*	00000000 tty_printf
 00000000         *UND*	00000000 check_post_printf_state_set_sio_params
-0000002c g     F .text	000001f8 ctm_DigiPIRSpi_Write
+000000c8 g     F .text	000001f8 ctm_DigiPIRSpi_Write
 00000000         *UND*	00000000 digi_pir_spi_serial_out
 00000000         *UND*	00000000 some_sort_of_delay
 00000000         *UND*	00000000 get_fine_grained_time

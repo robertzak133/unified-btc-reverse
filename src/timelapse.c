@@ -16,7 +16,7 @@
 #include "timelapse.h"
 
 //#define DEBUG
-//#define DEBUG1
+//#define DEBUG_VOLTCALIB
 //#define DEBUG2
 //#define DEBUG3
 //#define DEBUG5
@@ -150,9 +150,8 @@ short g_wbwl_timelapse_frequency_lookup_table[12] = {
   1, 2, 5, 10, 20, 30, 60, 120, 300, 600, 1800, 3600
 };
 
+
 // All Day/Night Support
-
-
 
 enum_timelapse_period_encoding tlps_get_cold_item_raw_timelapse_period(void)
 {
@@ -750,11 +749,15 @@ void tls_HceTaskBoot2Cap_Task0(void) {
 
   within_operating_hours = get_within_operating_hours_p();
 
-#ifdef DEBUG1
+#ifdef DEBUG_VOLTCALIB
+#if (defined BTC_7E_HP5)
   set_pre_printf_state();
-  tty_printf("tls_HceTaskBoot2Cap_task0: sd_card_present = %d; within_operating_hours = %d \n",
-	     sd_card_present, within_operating_hours);
+  tty_printf("tls_HCETB2C:_task0:sd=%d; wioh=%d; raw_battery_adc: %d\n",
+	     sd_card_present, within_operating_hours, 
+	     get_battery_voltage_from_adc());
+  tty_printf_battery_stats();
   check_post_printf_state_set_sio_params();  
+#endif
 #endif
   
   // If sd card is not present,
@@ -807,6 +810,7 @@ void tls_HceTaskBoot2Cap_Task0(void) {
   set_fsm_state_absolute(next_state);
   return;
 }
+
 
 
 

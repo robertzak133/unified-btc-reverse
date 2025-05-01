@@ -982,6 +982,10 @@ typedef struct struct_video_page_descriptor {
   uint unknown_124;
 } struct_video_page_descriptor;
 
+typedef struct struct_voltage_calibration {
+  ushort low_8_0_voltage;
+  ushort high_13_0_voltage;
+} struct_voltage_calibration;
 
 // Cold storage Data structure
 
@@ -1710,6 +1714,7 @@ extern struct_ColdBinData g_ColdItemData;
 extern struct_ColdBinData g_ReferenceColdItemData;
 extern byte g_cold_item_signature_valid_p;
 
+extern struct struct_voltage_calibration g_volt_calib_file_low_high_voltage;
 extern void * g_sd_card_descriptor;  // this is not really a void*, but I don't understand the data structure well enough to put in here
 
 extern struct_pressure_temperature_coefficients g_pressure_temperature_coefficients;
@@ -1814,6 +1819,9 @@ extern byte         g_wakeup_alarm_mask_B;
 
 extern uint         g_image_size;
 
+extern byte         g_voltcalib_bin_read_p;
+extern ushort       g_volt_calib_file_header_0;
+extern ushort       g_volt_calib_file_header_1;
 
 extern enum_alt_ir_led_intensity g_ir_led_power_alt_encoding;
 
@@ -1879,6 +1887,7 @@ extern uint          btc_fwrite(uint file_ptr, void *buffer, uint size);
 
 extern void *        btc_malloc(uint size);
 extern void *        malloc_3(uint size);
+extern void *        some_malloc(uint size);
 
 extern void          btc_init_directory_suffix_file_prefix(void);
 
@@ -2007,6 +2016,7 @@ extern enum_timelapse_period_encoding get_cold_item_timelapse_period(void);
 extern uint          get_cold_item_photo_resolution(void);
 extern enum_multi_shot_encoding get_cold_item_multi_shot_encoding(void);
 
+extern uint          get_battery_voltage_from_adc();
 extern uint          get_battery_percent();
 extern uint          get_battery_percent_from_voltage(uint voltage);
 extern ushort        get_battery_voltage_x100();
@@ -2199,6 +2209,7 @@ extern void          flush_processor_cache(byte *buffer,uint size);
 extern void          flush_processor_cache2(byte *buffer,uint size);
 extern uint          get_sd_clock_kHz(void);
 
+extern void          schedule_alarm_global_callback(int timer_number,int delay_in_seconds,uint timer_type,void *callback_function);
 extern void          set_cold_item_led_power(uint);
 extern int           set_cold_item_language_id(byte param_1);
 extern void          set_cold_item_new_timelapse_file_p(byte);
@@ -2230,8 +2241,11 @@ extern void          sp5kIqBlockEnable(char, ...);
 extern void          sp5kIqCfgSet(uint, uint);
 extern int           sp5kModeSet(int next_mode);
 
+extern int           get_fsm_valid_p(void *);
 extern void          spawnIRCutFSM_per_mode();
 extern void          IRCutThreadCreate(uint value);
+
+extern bool          spawn_HceModeVoltCalib_FSM();
 
 extern void          startHceTaskUnMount_FSM(uint param_1,uint param_2);
 extern void          startHceTaskFormat_FSM(int param_1, uint param_2);

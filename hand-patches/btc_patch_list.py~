@@ -4,6 +4,7 @@
 ## Zak -- 2022-12-20: Updated for Edge (BTC-8E)
 ## Zak -- 2023-01-31: One file for all targets.  Share where we can; specialize where we must
 ## Zak -- 2024-10-06: Updated for version M06170F of baseline factory firmawer for BTC-{7,8}-E-HP5
+## Zak -- 2025-03-12: Patches that allow a BTC-7A to run with BTC-7E baseline firmware
 
 ## Zak -- turning off extended event SD card power 
 evsd_active = False
@@ -494,7 +495,6 @@ utilities_patch_list['tty_flush']['change_to_jump']   = 'jal.utilities_check_pos
 
 # handleLanguage_menu
 # source code line 38
-utilities_patch_list = {}
 utilities_patch_list['tty_flush'] = {}
 utilities_patch_list['tty_flush']['function'] = 'handleLanguage_menu'
 utilities_patch_list['tty_flush']['line_number'] = {}
@@ -3230,31 +3230,31 @@ sst_default_sp_settings_id['BTC-7E-HP5'] = 62
 sst_default_sp_settings_id['BTC-8E-HP5'] = 62
 
 sst_factory_id = {}
-sst_factory_id['BTC-7A'] = 195
-sst_factory_id['BTC-7E'] = 195
-sst_factory_id['BTC-8E'] = 195
-sst_factory_id['BTC-7E-HP4'] = 198
-sst_factory_id['BTC-8E-HP4'] = 198
-sst_factory_id['BTC-7E-HP5'] = 204
-sst_factory_id['BTC-8E-HP5'] = 204
+sst_factory_id['BTC-7A'] = 196
+sst_factory_id['BTC-7E'] = 196
+sst_factory_id['BTC-8E'] = 196
+sst_factory_id['BTC-7E-HP4'] = 199
+sst_factory_id['BTC-8E-HP4'] = 199
+sst_factory_id['BTC-7E-HP5'] = 205
+sst_factory_id['BTC-8E-HP5'] = 205
 
 sst_custom_id = {}
-sst_custom_id['BTC-7A'] = 196
-sst_custom_id['BTC-7E'] = 196
-sst_custom_id['BTC-8E'] = 196
-sst_custom_id['BTC-7E-HP4'] = 199
-sst_custom_id['BTC-8E-HP4'] = 199
-sst_custom_id['BTC-7E-HP5'] = 205
-sst_custom_id['BTC-8E-HP5'] = 205
+sst_custom_id['BTC-7A'] = 197
+sst_custom_id['BTC-7E'] = 197
+sst_custom_id['BTC-8E'] = 197
+sst_custom_id['BTC-7E-HP4'] = 200
+sst_custom_id['BTC-8E-HP4'] = 200
+sst_custom_id['BTC-7E-HP5'] = 206
+sst_custom_id['BTC-8E-HP5'] = 206
 
 sst_save_sp_custom_id = {}
-sst_save_sp_custom_id['BTC-7A'] = 197
-sst_save_sp_custom_id['BTC-7E'] = 197
-sst_save_sp_custom_id['BTC-8E'] = 197
-sst_save_sp_custom_id['BTC-7E-HP4'] = 200
-sst_save_sp_custom_id['BTC-8E-HP4'] = 200
-sst_save_sp_custom_id['BTC-7E-HP5'] = 206
-sst_save_sp_custom_id['BTC-8E-HP5'] = 206
+sst_save_sp_custom_id['BTC-7A'] = 198
+sst_save_sp_custom_id['BTC-7E'] = 198
+sst_save_sp_custom_id['BTC-8E'] = 198
+sst_save_sp_custom_id['BTC-7E-HP4'] = 201
+sst_save_sp_custom_id['BTC-8E-HP4'] = 201
+sst_save_sp_custom_id['BTC-7E-HP5'] = 207
+sst_save_sp_custom_id['BTC-8E-HP5'] = 207
 
 
 ## Custom Settings Patches
@@ -3994,52 +3994,132 @@ ctm_patch_list['ctm_check_sd_card3']['change_from_bytes']['BTC-7A'] = bytes([0x4
 ctm_patch_list['ctm_check_sd_card3']['change_to_bytes'] = {}
 ctm_patch_list['ctm_check_sd_card3']['change_to_bytes']['BTC-7A'] = bytes([0x42, 0x13, 0x02, 0x00]) ## srl v0, v0, 0xd
 
-## I don't know what these calls to the same bits as the SD Presence Detector, apparently in the code
-##   for exposure? -- do.  I'm going to leave them out for now.  Perhpas put back once I understand the larger problem
-# ctm_patch_list['ctm_upate_display_parameters0'] = {}
-# ctm_patch_list['ctm_upate_display_parameters0']['function'] = 'update_display_parameters'
-# ctm_patch_list['ctm_upate_display_parameters0']['line_number'] = {}
-# ctm_patch_list['ctm_upate_display_parameters0']['line_number']['BTC-7A'] = 20
-# ctm_patch_list['ctm_upate_display_parameters0']['start_offset'] = {}
-# ctm_patch_list['ctm_upate_display_parameters0']['start_offset']['BTC-7A'] = 0x0143e90
-# ctm_patch_list['ctm_upate_display_parameters0']['change_from_bytes'] = {}
-# ctm_patch_list['ctm_upate_display_parameters0']['change_from_bytes']['BTC-7A'] = bytes([0x00, 0x02, 0x05, 0x24])  ## srl v0, v0, 0x9
-# ctm_patch_list['ctm_upate_display_parameters0']['change_to_bytes'] = {}
-# ctm_patch_list['ctm_upate_display_parameters0']['change_to_bytes']['BTC-7A'] = bytes([0x00, 0x20, 0x05, 0x24]) ## srl v0, v0, 0xd
+# change the global variable that enodes the event_numer for the SD_CARD present GPIO
+ctm_patch_list['ctm_sd_card_gpio_event_number0'] = {}
+ctm_patch_list['ctm_sd_card_gpio_event_number0']['function'] = 'g_sd_disk_gpio.event_number[0]'
+ctm_patch_list['ctm_sd_card_gpio_event_number0']['line_number'] = {}
+ctm_patch_list['ctm_sd_card_gpio_event_number0']['line_number']['BTC-7A'] = 0
+ctm_patch_list['ctm_sd_card_gpio_event_number0']['start_offset'] = {}
+ctm_patch_list['ctm_sd_card_gpio_event_number0']['start_offset']['BTC-7A'] = 0x039cd04
+ctm_patch_list['ctm_sd_card_gpio_event_number0']['change_from_bytes'] = {}
+ctm_patch_list['ctm_sd_card_gpio_event_number0']['change_from_bytes']['BTC-7A'] = bytes([0x00, 0x02, 0x00, 0x00])  
+ctm_patch_list['ctm_sd_card_gpio_event_number0']['change_to_bytes'] = {}
+ctm_patch_list['ctm_sd_card_gpio_event_number0']['change_to_bytes']['BTC-7A'] = bytes([0x00, 0x20, 0x00, 0x00]) 
 
-# ctm_patch_list['ctm_upate_display_parameters1'] = {}
-# ctm_patch_list['ctm_upate_display_parameters1']['function'] = 'update_display_parameters'
-# ctm_patch_list['ctm_upate_display_parameters1']['line_number'] = {}
-# ctm_patch_list['ctm_upate_display_parameters1']['line_number']['BTC-7A'] = 20
-# ctm_patch_list['ctm_upate_display_parameters1']['start_offset'] = {}
-# ctm_patch_list['ctm_upate_display_parameters1']['start_offset']['BTC-7A'] = 0x0143e98
-# ctm_patch_list['ctm_upate_display_parameters1']['change_from_bytes'] = {}
-# ctm_patch_list['ctm_upate_display_parameters1']['change_from_bytes']['BTC-7A'] = bytes([0x00, 0x02, 0x06, 0x24])  ## srl v0, v0, 0x9
-# ctm_patch_list['ctm_upate_display_parameters1']['change_to_bytes'] = {}
-# ctm_patch_list['ctm_upate_display_parameters1']['change_to_bytes']['BTC-7A'] = bytes([0x00, 0x20, 0x06, 0x24]) ## srl v0, v0, 0xd
+ctm_patch_list['ctm_sd_card_gpio_event_number1'] = {}
+ctm_patch_list['ctm_sd_card_gpio_event_number1']['function'] = 'g_sd_disk_gpio.event_number[0]'
+ctm_patch_list['ctm_sd_card_gpio_event_number1']['line_number'] = {}
+ctm_patch_list['ctm_sd_card_gpio_event_number1']['line_number']['BTC-7A'] = 1
+ctm_patch_list['ctm_sd_card_gpio_event_number1']['start_offset'] = {}
+ctm_patch_list['ctm_sd_card_gpio_event_number1']['start_offset']['BTC-7A'] = 0x039cd08
+ctm_patch_list['ctm_sd_card_gpio_event_number1']['change_from_bytes'] = {}
+ctm_patch_list['ctm_sd_card_gpio_event_number1']['change_from_bytes']['BTC-7A'] = bytes([0x01, 0x02, 0x00, 0x00])  
+ctm_patch_list['ctm_sd_card_gpio_event_number1']['change_to_bytes'] = {}
+ctm_patch_list['ctm_sd_card_gpio_event_number1']['change_to_bytes']['BTC-7A'] = bytes([0x01, 0x20, 0x00, 0x00]) 
 
-# # DEBUG -- instrumenting the event_loop_interator
-ctm_patch_list['ctm_event_loop_iterator_sd_insert'] = {}
-ctm_patch_list['ctm_event_loop_iterator_sd_insert']['function'] = 'event_loop_itrator'
-ctm_patch_list['ctm_event_loop_iterator_sd_insert']['line_number'] = {}
-ctm_patch_list['ctm_event_loop_iterator_sd_insert']['line_number']['BTC-7A'] = 33
-ctm_patch_list['ctm_event_loop_iterator_sd_insert']['line_number']['BTC-7E'] = 33
-ctm_patch_list['ctm_event_loop_iterator_sd_insert']['start_offset'] = {}
-ctm_patch_list['ctm_event_loop_iterator_sd_insert']['start_offset']['BTC-7A'] = 0x0111e04
-ctm_patch_list['ctm_event_loop_iterator_sd_insert']['start_offset']['BTC-7E'] = 0x0111e04
-ctm_patch_list['ctm_event_loop_iterator_sd_insert']['change_from_jump'] = 'jal.tty_printf'
-ctm_patch_list['ctm_event_loop_iterator_sd_insert']['change_to_jump'] = 'jal.ctm_tty_printf'
+# change the location of the bit in the csr from 0x9 to 0xd
+ctm_patch_list['ctm_sd_card_gpio_bit_number'] = {}
+ctm_patch_list['ctm_sd_card_gpio_bit_number']['function'] = 'host_disk_detect'
+ctm_patch_list['ctm_sd_card_gpio_bit_number']['line_number'] = {}
+ctm_patch_list['ctm_sd_card_gpio_bit_number']['line_number']['BTC-7A'] = 13
+ctm_patch_list['ctm_sd_card_gpio_bit_number']['start_offset'] = {}
+ctm_patch_list['ctm_sd_card_gpio_bit_number']['start_offset']['BTC-7A'] = 0x000eac8
+ctm_patch_list['ctm_sd_card_gpio_bit_number']['change_from_bytes'] = {}
+ctm_patch_list['ctm_sd_card_gpio_bit_number']['change_from_bytes']['BTC-7A'] = bytes([0x09, 0x00, 0x02, 0x24])  
+ctm_patch_list['ctm_sd_card_gpio_bit_number']['change_to_bytes'] = {}
+ctm_patch_list['ctm_sd_card_gpio_bit_number']['change_to_bytes']['BTC-7A'] = bytes([0x0d, 0x00, 0x02, 0x24]) 
 
-ctm_patch_list['ctm_event_loop_iterator_sd_remove'] = {}
-ctm_patch_list['ctm_event_loop_iterator_sd_remove']['function'] = 'event_loop_itrator'
-ctm_patch_list['ctm_event_loop_iterator_sd_remove']['line_number'] = {}
-ctm_patch_list['ctm_event_loop_iterator_sd_remove']['line_number']['BTC-7A'] = 33
-ctm_patch_list['ctm_event_loop_iterator_sd_remove']['line_number']['BTC-7E'] = 33
-ctm_patch_list['ctm_event_loop_iterator_sd_remove']['start_offset'] = {}
-ctm_patch_list['ctm_event_loop_iterator_sd_remove']['start_offset']['BTC-7A'] = 0x0111e50
-ctm_patch_list['ctm_event_loop_iterator_sd_remove']['start_offset']['BTC-7E'] = 0x0111e50
-ctm_patch_list['ctm_event_loop_iterator_sd_remove']['change_from_jump'] = 'jal.tty_printf'
-ctm_patch_list['ctm_event_loop_iterator_sd_remove']['change_to_jump'] = 'jal.ctm_tty_printf'
+# Call a different verson of event_loop_iterator for the 7A
+ctm_patch_list['ctm_event_loop_iterator'] = {}
+ctm_patch_list['ctm_event_loop_iterator']['function'] = 'host_banner_loop'
+ctm_patch_list['ctm_event_loop_iterator']['line_number'] = {}
+ctm_patch_list['ctm_event_loop_iterator']['line_number']['BTC-7A'] = 28
+ctm_patch_list['ctm_event_loop_iterator']['start_offset'] = {}
+ctm_patch_list['ctm_event_loop_iterator']['start_offset']['BTC-7A'] = 0x00e01f4
+ctm_patch_list['ctm_event_loop_iterator']['change_from_jump'] = 'jal.event_loop_iterator'
+ctm_patch_list['ctm_event_loop_iterator']['change_to_jump'] = 'jal.ctm_event_loop_iterator'
+
+# Fixing a bug with retry of the PIR sensor CSR config
+#    Outer "while" loop now includes resetting the bit_selector
+ctm_patch_list['ctm_pir_retry_bug_fix'] = {}
+ctm_patch_list['ctm_pir_retry_bug_fix']['function'] = 'DigiPIR_SetConfigRegister'
+ctm_patch_list['ctm_pir_retry_bug_fix']['line_number'] = {}
+ctm_patch_list['ctm_pir_retry_bug_fix']['line_number']['BTC-7A'] = 7
+ctm_patch_list['ctm_pir_retry_bug_fix']['line_number']['BTC-7E'] = 7
+ctm_patch_list['ctm_pir_retry_bug_fix']['start_offset'] = {}
+ctm_patch_list['ctm_pir_retry_bug_fix']['start_offset']['BTC-7A'] = 0x010d86c
+ctm_patch_list['ctm_pir_retry_bug_fix']['start_offset']['BTC-7E'] = 0x010d86c
+ctm_patch_list['ctm_pir_retry_bug_fix']['change_from_jump'] = 'j.DigiPIRSpi_Write'
+ctm_patch_list['ctm_pir_retry_bug_fix']['change_to_jump'] =   'j.ctm_DigiPIRSpi_Write'
+
+# ##############################################################
+# ## DEBUG -- No trigger in colde weather bug in BTC-{7,8}E-HP5
+# # Call a different verson of get_temperatureForC -- always returns a negative temp
+# ctm_patch_list['ctm_get_temperatureForC'] = {}
+# ctm_patch_list['ctm_get_temperatureForC']['function'] = 'set_cold_item_overtemp_p'
+# ctm_patch_list['ctm_get_temperatureForC']['line_number'] = {}
+# ctm_patch_list['ctm_get_temperatureForC']['line_number']['BTC-8E-HP5'] = 12
+# ctm_patch_list['ctm_get_temperatureForC']['start_offset'] = {}
+# ctm_patch_list['ctm_get_temperatureForC']['start_offset']['BTC-8E-HP5'] = 0x00e71b8
+# ctm_patch_list['ctm_get_temperatureForC']['change_from_jump'] = 'jal.get_temperatureForC'
+# ctm_patch_list['ctm_get_temperatureForC']['change_to_jump'] = 'jal.ctm_get_temperatureForC'
+# # still_MCUApp_ResetPIRPin -- reroute call to set_cold_item_overtemp_p
+# ctm_patch_list['ctm_still_MCUApp_ResetPIRPin'] = {}
+# ctm_patch_list['ctm_still_MCUApp_ResetPIRPin']['function'] = 'still_MCUApp_ResetPIRPin'
+# ctm_patch_list['ctm_still_MCUApp_ResetPIRPin']['line_number'] = {}
+# ctm_patch_list['ctm_still_MCUApp_ResetPIRPin']['line_number']['BTC-8E-HP5'] = 39
+# ctm_patch_list['ctm_still_MCUApp_ResetPIRPin']['start_offset'] = {}
+# ctm_patch_list['ctm_still_MCUApp_ResetPIRPin']['start_offset']['BTC-8E-HP5'] = 0x0102ae0
+# ctm_patch_list['ctm_still_MCUApp_ResetPIRPin']['change_from_jump'] = 'jal.set_cold_item_overtemp_p'
+# ctm_patch_list['ctm_still_MCUApp_ResetPIRPin']['change_to_jump'] = 'jal.ctm_set_cold_item_overtemp_p'
+# # HceTaskRecording_RecVideoToRec -- reroute call to set_cold_item_overtemp_p
+# ctm_patch_list['ctm_HceTaskRecording_RecVideoToRec'] = {}
+# ctm_patch_list['ctm_HceTaskRecording_RecVideoToRec']['function'] = 'HceTaskRecording_RecVideoToRec'
+# ctm_patch_list['ctm_HceTaskRecording_RecVideoToRec']['line_number'] = {}
+# ctm_patch_list['ctm_HceTaskRecording_RecVideoToRec']['line_number']['BTC-8E-HP5'] = 28
+# ctm_patch_list['ctm_HceTaskRecording_RecVideoToRec']['start_offset'] = {}
+# ctm_patch_list['ctm_HceTaskRecording_RecVideoToRec']['start_offset']['BTC-8E-HP5'] = 0x010303c
+# ctm_patch_list['ctm_HceTaskRecording_RecVideoToRec']['change_from_jump'] = 'jal.set_cold_item_overtemp_p'
+# ctm_patch_list['ctm_HceTaskRecording_RecVideoToRec']['change_to_jump'] = 'jal.ctm_set_cold_item_overtemp_p'
+# # HceTskRecordingRecStop -- reroute call to set_cold_item_overtemp_p
+# ctm_patch_list['ctm_HceTskRecordingRecStop'] = {}
+# ctm_patch_list['ctm_HceTskRecordingRecStop']['function'] = 'HceTskRecordingRecStop'
+# ctm_patch_list['ctm_HceTskRecordingRecStop']['line_number'] = {}
+# ctm_patch_list['ctm_HceTskRecordingRecStop']['line_number']['BTC-8E-HP5'] = 73
+# ctm_patch_list['ctm_HceTskRecordingRecStop']['start_offset'] = {}
+# ctm_patch_list['ctm_HceTskRecordingRecStop']['start_offset']['BTC-8E-HP5'] = 0x0103384
+# ctm_patch_list['ctm_HceTskRecordingRecStop']['change_from_jump'] = 'jal.set_cold_item_overtemp_p'
+# ctm_patch_list['ctm_HceTskRecordingRecStop']['change_to_jump'] = 'jal.ctm_set_cold_item_overtemp_p'
+# # HceTaskRecording_RecVideoWaitAE -- reroute call to set_cold_item_overtemp_p
+# ctm_patch_list['ctm_HceTaskRecording_RecVideoWaitAE'] = {}
+# ctm_patch_list['ctm_HceTaskRecording_RecVideoWaitAE']['function'] = 'HceTaskRecording_RecVideoWaitAE'
+# ctm_patch_list['ctm_HceTaskRecording_RecVideoWaitAE']['line_number'] = {}
+# ctm_patch_list['ctm_HceTaskRecording_RecVideoWaitAE']['line_number']['BTC-8E-HP5'] = 40
+# ctm_patch_list['ctm_HceTaskRecording_RecVideoWaitAE']['start_offset'] = {}
+# ctm_patch_list['ctm_HceTaskRecording_RecVideoWaitAE']['start_offset']['BTC-8E-HP5'] = 0x0103af0
+# ctm_patch_list['ctm_HceTaskRecording_RecVideoWaitAE']['change_from_jump'] = 'jal.set_cold_item_overtemp_p'
+# ctm_patch_list['ctm_HceTaskRecording_RecVideoWaitAE']['change_to_jump'] = 'jal.ctm_set_cold_item_overtemp_p'
+# # HceTaskRecording_RecVideoWaitLed -- reroute call to set_cold_item_overtemp_p
+# ctm_patch_list['ctm_HceTaskRecording_RecVideoWaitLed'] = {}
+# ctm_patch_list['ctm_HceTaskRecording_RecVideoWaitLed']['function'] = 'HceTaskRecording_RecVideoWaitLed'
+# ctm_patch_list['ctm_HceTaskRecording_RecVideoWaitLed']['line_number'] = {}
+# ctm_patch_list['ctm_HceTaskRecording_RecVideoWaitLed']['line_number']['BTC-8E-HP5'] = 25
+# ctm_patch_list['ctm_HceTaskRecording_RecVideoWaitLed']['start_offset'] = {}
+# ctm_patch_list['ctm_HceTaskRecording_RecVideoWaitLed']['start_offset']['BTC-8E-HP5'] = 0x0103dec
+# ctm_patch_list['ctm_HceTaskRecording_RecVideoWaitLed']['change_from_jump'] = 'jal.set_cold_item_overtemp_p'
+# ctm_patch_list['ctm_HceTaskRecording_RecVideoWaitLed']['change_to_jump'] = 'jal.ctm_set_cold_item_overtemp_p'
+# # HceTaskRecording_RecVideoWaitView -- reroute call to set_cold_item_overtemp_p
+# ctm_patch_list['ctm_HceTaskRecording_RecVideoWaitView'] = {}
+# ctm_patch_list['ctm_HceTaskRecording_RecVideoWaitView']['function'] = 'HceTaskRecording_RecVideoWaitView'
+# ctm_patch_list['ctm_HceTaskRecording_RecVideoWaitView']['line_number'] = {}
+# ctm_patch_list['ctm_HceTaskRecording_RecVideoWaitView']['line_number']['BTC-8E-HP5'] = 24
+# ctm_patch_list['ctm_HceTaskRecording_RecVideoWaitView']['start_offset'] = {}
+# ctm_patch_list['ctm_HceTaskRecording_RecVideoWaitView']['start_offset']['BTC-8E-HP5'] = 0x0103f44
+# ctm_patch_list['ctm_HceTaskRecording_RecVideoWaitView']['change_from_jump'] = 'jal.set_cold_item_overtemp_p'
+# ctm_patch_list['ctm_HceTaskRecording_RecVideoWaitView']['change_to_jump'] = 'jal.ctm_set_cold_item_overtemp_p'
+
+##############################################################
+
 
 # # DEBUG -- cause a crash in spawn_ModeNoSD2FSM
 # ctm_patch_list['ctm_debug_no_sd'] = {}
@@ -4229,6 +4309,107 @@ ctm_patch_list['ctm_bk_ok_string_hex']['change_from_bytes']['BTC-7A'] = bytes([0
 ctm_patch_list['ctm_bk_ok_string_hex']['change_to_bytes'] = {}
 ctm_patch_list['ctm_bk_ok_string_hex']['change_to_bytes']['BTC-7A'] = bytes([0x4b, 0x28, 0x25, 0x78])
 
+# Don't schedule a timelapse alarm if the cpature timer is currently active (i.e. we're out of
+#       operating hours) and we're in all day/night timelapse period mode
+ctm_patch_list['ctm_set_wakeup_alarms'] = {}
+ctm_patch_list['ctm_set_wakeup_alarms']['function'] = 'set_wakeup_alarms'
+ctm_patch_list['ctm_set_wakeup_alarms']['line_number'] = {}
+ctm_patch_list['ctm_set_wakeup_alarms']['line_number']['BTC-7A'] = 153
+ctm_patch_list['ctm_set_wakeup_alarms']['line_number']['BTC-7E'] = 153 
+ctm_patch_list['ctm_set_wakeup_alarms']['line_number']['BTC-8E'] = 155
+ctm_patch_list['ctm_set_wakeup_alarms']['line_number']['BTC-7E-HP4'] = 145
+ctm_patch_list['ctm_set_wakeup_alarms']['line_number']['BTC-8E-HP4'] = 145
+ctm_patch_list['ctm_set_wakeup_alarms']['line_number']['BTC-7E-HP5'] = 121
+ctm_patch_list['ctm_set_wakeup_alarms']['line_number']['BTC-8E-HP5'] = 123
+ctm_patch_list['ctm_set_wakeup_alarms']['start_offset'] = {}
+ctm_patch_list['ctm_set_wakeup_alarms']['start_offset']['BTC-7A'] = 0x0116e74
+ctm_patch_list['ctm_set_wakeup_alarms']['start_offset']['BTC-7E'] = 0x0116e74
+ctm_patch_list['ctm_set_wakeup_alarms']['start_offset']['BTC-8E'] = 0x01170cc
+ctm_patch_list['ctm_set_wakeup_alarms']['start_offset']['BTC-7E-HP4'] = 0x0112688
+ctm_patch_list['ctm_set_wakeup_alarms']['start_offset']['BTC-8E-HP4'] = 0x0112b84
+ctm_patch_list['ctm_set_wakeup_alarms']['start_offset']['BTC-7E-HP5'] = 0x00ef4e4
+ctm_patch_list['ctm_set_wakeup_alarms']['start_offset']['BTC-8E-HP5'] = 0x00ef584
+ctm_patch_list['ctm_set_wakeup_alarms']['change_from_jump'] = 'jal.schedule_alarm_global_callback'
+ctm_patch_list['ctm_set_wakeup_alarms']['change_to_jump']   = 'jal.ctm_schedule_alarm_global_callback'
+
+#
+# Turn the preview screen rightside up
+#  No, this does not work -- crashes the camera :(
+#ctm_patch_list['ctm_preview_flip'] = {}
+#ctm_patch_list['ctm_preview_flip']['function'] = 'sys_init'
+#ctm_patch_list['ctm_preview_flip']['line_number'] = {}
+#ctm_patch_list['ctm_preview_flip']['line_number']['BTC-7A'] = 126
+#ctm_patch_list['ctm_preview_flip']['start_offset'] = {}
+#ctm_patch_list['ctm_preview_flip']['start_offset']['BTC-7A'] = 0x0002d90
+#ctm_patch_list['ctm_preview_flip']['change_from_bytes'] = bytes([0xb0, 0x0e, 0x84, 0x24])
+#ctm_patch_list['ctm_preview_flip']['change_to_bytes']   = bytes([0xf0, 0x0e, 0x84, 0x24])
+
+# Debug Timelapse Capture Timer
+#
+
+# Debug VoltCalib
+# Report back on the raw value from the ADC
+# ctm_patch_list['ctm_raw_battery_adc'] = {}
+# ctm_patch_list['ctm_raw_battery_adc']['function'] = 'update_battery_state'
+# ctm_patch_list['ctm_raw_battery_adc']['line_number'] = {}
+# ctm_patch_list['ctm_raw_battery_adc']['line_number']['BTC-7E-HP5'] = 8
+# ctm_patch_list['ctm_raw_battery_adc']['start_offset'] = {}
+# ctm_patch_list['ctm_raw_battery_adc']['start_offset']['BTC-7E-HP5'] = 0x00ebc9c
+# ctm_patch_list['ctm_raw_battery_adc']['change_from_jump'] = {}
+# ctm_patch_list['ctm_raw_battery_adc']['change_from_jump']['BTC-7E-HP5'] = 'jal.spawn_HceModeVoltCalib_FSM'
+# ctm_patch_list['ctm_raw_battery_adc']['change_to_jump'] = {}
+# ctm_patch_list['ctm_raw_battery_adc']['change_to_jump']['BTC-7E-HP5'] = 'jal.ctm_spawn_HceModeVoltCalib_FSM'
+
+# Shout out if we spwan the voltCalib FSM
+#       I don't think this spawns the FSM, merely checks to see if it is done
+#       THIS IS CLUE -- COme back to this
+# ctm_patch_list['ctm_spawn_volt_calib'] = {}
+# ctm_patch_list['ctm_spawn_volt_calib']['function'] = 'update_battery_state'
+# ctm_patch_list['ctm_spawn_volt_calib']['line_number'] = {}
+# ctm_patch_list['ctm_spawn_volt_calib']['line_number']['BTC-7E-HP5'] = 8
+# ctm_patch_list['ctm_spawn_volt_calib']['start_offset'] = {}
+# ctm_patch_list['ctm_spawn_volt_calib']['start_offset']['BTC-7E-HP5'] = 0x00ebc9c
+# ctm_patch_list['ctm_spawn_volt_calib']['change_from_jump'] = {}
+# ctm_patch_list['ctm_spawn_volt_calib']['change_from_jump']['BTC-7E-HP5'] = 'jal.spawn_HceModeVoltCalib_FSM'
+# ctm_patch_list['ctm_spawn_volt_calib']['change_to_jump'] = {}
+# ctm_patch_list['ctm_spawn_volt_calib']['change_to_jump']['BTC-7E-HP5'] = 'jal.ctm_spawn_HceModeVoltCalib_FSM'
+
+# Work through each of the states in the voltCalib FSM
+# ctm_patch_list['ctm_iterate_volt_calib_fsm'] = {}
+# ctm_patch_list['ctm_iterate_volt_calib_fsm']['function'] = 'HceModeVoltCalib_FSM_iterator'
+# ctm_patch_list['ctm_iterate_volt_calib_fsm']['line_number'] = {}
+# ctm_patch_list['ctm_iterate_volt_calib_fsm']['line_number']['BTC-7E-HP5'] = 28
+# ctm_patch_list['ctm_iterate_volt_calib_fsm']['start_offset'] = {}
+# ctm_patch_list['ctm_iterate_volt_calib_fsm']['start_offset']['BTC-7E-HP5'] = 0x010b45c
+# ctm_patch_list['ctm_iterate_volt_calib_fsm']['change_from_jump'] = {}
+# ctm_patch_list['ctm_iterate_volt_calib_fsm']['change_from_jump']['BTC-7E-HP5'] = 'jal.execute_if_not_null'
+# ctm_patch_list['ctm_iterate_volt_calib_fsm']['change_to_jump'] = {}
+# ctm_patch_list['ctm_iterate_volt_calib_fsm']['change_to_jump']['BTC-7E-HP5'] = 'jal.ctm_execute_if_not_null'
+
+# Are we writing to VOLTCALIB.BIN?
+# ctm_patch_list['ctm_task4_write_calib_file'] = {}
+# ctm_patch_list['ctm_task4_write_calib_file']['function'] = 'HceModeVoltCalib_task4'
+# ctm_patch_list['ctm_task4_write_calib_file']['line_number'] = {}
+# ctm_patch_list['ctm_task4_write_calib_file']['line_number']['BTC-7E-HP5'] = 30
+# ctm_patch_list['ctm_task4_write_calib_file']['start_offset'] = {}
+# ctm_patch_list['ctm_task4_write_calib_file']['start_offset']['BTC-7E-HP5'] = 0x010b5c4
+# ctm_patch_list['ctm_task4_write_calib_file']['change_from_jump'] = {}
+# ctm_patch_list['ctm_task4_write_calib_file']['change_from_jump']['BTC-7E-HP5'] = 'jal.btc_fwrite'
+# ctm_patch_list['ctm_task4_write_calib_file']['change_to_jump'] = {}
+# ctm_patch_list['ctm_task4_write_calib_file']['change_to_jump']['BTC-7E-HP5'] = 'jal.ctm_btc_fwrite'
+
+# Are we writing to VOLTCALIB.BIN?
+# ctm_patch_list['ctm_calibrate_command'] = {}
+# ctm_patch_list['ctm_calibrate_command']['function'] = 'calibrate_command'
+# ctm_patch_list['ctm_calibrate_command']['line_number'] = {}
+# ctm_patch_list['ctm_calibrate_command']['line_number']['BTC-7E-HP5'] = 40
+# ctm_patch_list['ctm_calibrate_command']['start_offset'] = {}
+# ctm_patch_list['ctm_calibrate_command']['start_offset']['BTC-7E-HP5'] = 0x00fd5cc
+# ctm_patch_list['ctm_calibrate_command']['change_from_jump'] = {}
+# ctm_patch_list['ctm_calibrate_command']['change_from_jump']['BTC-7E-HP5'] = 'jal.btc_fwrite'
+# ctm_patch_list['ctm_calibrate_command']['change_to_jump'] = {}
+# ctm_patch_list['ctm_calibrate_command']['change_to_jump']['BTC-7E-HP5'] = 'jal.ctm_btc_fwrite'
+
 # Debug by Crash 
 
 # Place this patch anywhere you want to cause the system to crash by jumping to a null address
@@ -4247,26 +4428,26 @@ ctm_patch_list['ctm_bk_ok_string_hex']['change_to_bytes']['BTC-7A'] = bytes([0x4
 # Patching in the new Menu
 npr_patch_list = {}
 
-# npr_patch_list['npr_new_menu_addr'] = {}
-# npr_patch_list['npr_new_menu_addr']['function'] = 'g_camera_setup_selector_array'
-# npr_patch_list['npr_new_menu_addr']['line_number'] = {}
-# npr_patch_list['npr_new_menu_addr']['line_number']['BTC-7A'] = 2
-# npr_patch_list['npr_new_menu_addr']['line_number']['BTC-7E'] = 2
-# npr_patch_list['npr_new_menu_addr']['line_number']['BTC-8E'] = 2
-# npr_patch_list['npr_new_menu_addr']['line_number']['BTC-7E-HP4'] = 2
-# npr_patch_list['npr_new_menu_addr']['line_number']['BTC-8E-HP4'] = 2
-# npr_patch_list['npr_new_menu_addr']['line_number']['BTC-7E-HP5'] = 2
-# npr_patch_list['npr_new_menu_addr']['line_number']['BTC-8E-HP5'] = 2
-# npr_patch_list['npr_new_menu_addr']['start_offset'] = {}
-# npr_patch_list['npr_new_menu_addr']['start_offset']['BTC-7A'] = 0x035543c
-# npr_patch_list['npr_new_menu_addr']['start_offset']['BTC-7E'] = 0x035543c
-# npr_patch_list['npr_new_menu_addr']['start_offset']['BTC-8E'] = 0x0355494
-# npr_patch_list['npr_new_menu_addr']['start_offset']['BTC-7E-HP4'] = 0x0358494
-# npr_patch_list['npr_new_menu_addr']['start_offset']['BTC-8E-HP4'] = 0x035c6c4
-# npr_patch_list['npr_new_menu_addr']['start_offset']['BTC-7E-HP5'] = 0x02cdf08
-# npr_patch_list['npr_new_menu_addr']['start_offset']['BTC-8E-HP5'] = 0x02d00c8
-# npr_patch_list['npr_new_menu_addr']['change_from_ptr'] = 'g_photo_quality_menu'
-# npr_patch_list['npr_new_menu_addr']['change_to_ptr']   = 'g_ntvq_photo_quality_menu'
+npr_patch_list['npr_new_resolution_lookup_table'] = {}
+npr_patch_list['npr_new_resolution_lookup_table']['function'] = 'draw_photo_resolution_on_screen'
+npr_patch_list['npr_new_resolution_lookup_table']['line_number'] = {}
+npr_patch_list['npr_new_resolution_lookup_table']['line_number']['BTC-7A'] = 30
+npr_patch_list['npr_new_resolution_lookup_table']['line_number']['BTC-7E'] = 30
+npr_patch_list['npr_new_resolution_lookup_table']['line_number']['BTC-8E'] = 38
+npr_patch_list['npr_new_resolution_lookup_table']['line_number']['BTC-7E-HP4'] = 40
+npr_patch_list['npr_new_resolution_lookup_table']['line_number']['BTC-8E-HP4'] = 40
+npr_patch_list['npr_new_resolution_lookup_table']['line_number']['BTC-7E-HP5'] = 38
+npr_patch_list['npr_new_resolution_lookup_table']['line_number']['BTC-8E-HP5'] = 40
+npr_patch_list['npr_new_resolution_lookup_table']['start_offset'] = {}
+npr_patch_list['npr_new_resolution_lookup_table']['start_offset']['BTC-7A'] = 0x011f2c0
+npr_patch_list['npr_new_resolution_lookup_table']['start_offset']['BTC-7E'] = 0x011f2c0
+npr_patch_list['npr_new_resolution_lookup_table']['start_offset']['BTC-8E'] = 0x011f5b8
+npr_patch_list['npr_new_resolution_lookup_table']['start_offset']['BTC-7E-HP4'] = 0x011addc
+npr_patch_list['npr_new_resolution_lookup_table']['start_offset']['BTC-8E-HP4'] = 0x011b1bc
+npr_patch_list['npr_new_resolution_lookup_table']['start_offset']['BTC-7E-HP5'] = 0x00f9d14
+npr_patch_list['npr_new_resolution_lookup_table']['start_offset']['BTC-8E-HP5'] = 0x00f9c40
+npr_patch_list['npr_new_resolution_lookup_table']['change_from_jump'] = 'jal.draw_sst_string_on_display'
+npr_patch_list['npr_new_resolution_lookup_table']['change_to_jump']   = 'jal.npr_draw_sst_string_on_display'
 
 # And the size
 npr_patch_list['npr_new_menu_size'] = {}
@@ -4583,3 +4764,16 @@ fdb_patch_list['format_fsm_6']['start_offset']['BTC-8E-HP5'] = 0x02cf6b4
 fdb_patch_list['format_fsm_6']['change_from_ptr'] = 'HceTaskFormat_task6'
 fdb_patch_list['format_fsm_6']['change_to_ptr']   = 'fdb_HceTaskFormat_task6'
 
+#DEBUG -- Enable CLI
+###### 2025-04-10 This is broken
+cli_patch_list = {}
+# cli_patch_list['cli_get_enable_cli_interface_p'] = {}
+# cli_patch_list['cli_get_enable_cli_interface_p']['function'] = 'hal_platform_init'
+# cli_patch_list['cli_get_enable_cli_interface_p']['line_number'] = {} 
+# cli_patch_list['cli_get_enable_cli_interface_p']['line_number']['BTC-7E-HP5'] = 74
+# cli_patch_list['cli_get_enable_cli_interface_p']['start_offset'] = {} 
+# cli_patch_list['cli_get_enable_cli_interface_p']['start_offset']['BTC-7E-HP5'] = 0x0002c50
+# cli_patch_list['cli_get_enable_cli_interface_p']['change_from_bytes'] = {}
+# cli_patch_list['cli_get_enable_cli_interface_p']['change_from_bytes']['BTC-7E-HP5'] = bytes([0xff, 0x00, 0x42, 0x30]) ## andi v0, v0, 0xff
+# cli_patch_list['cli_get_enable_cli_interface_p']['change_to_bytes'] = {}
+# cli_patch_list['cli_get_enable_cli_interface_p']['change_to_bytes']['BTC-7E-HP5'] = bytes([0xff, 0x00, 0x42, 0x34]) ## ori v0, v0, 0xff

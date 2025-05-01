@@ -16,12 +16,14 @@
 #include "timelapse.h"
 
 //#define DEBUG
-//#define DEBUG1
+#define DEBUG1
 //#define DEBUG2
 //#define DEBUG3
 //#define DEBUG5
 //#define DEBUG6
 //#define DEBUG7
+//#define DEBUG_NEW_TLS_FILE
+
 
 // TaskTimeLapseFSM
 // Updated State Machine Table
@@ -148,9 +150,8 @@ short g_wbwl_timelapse_frequency_lookup_table[12] = {
   1, 2, 5, 10, 20, 30, 60, 120, 300, 600, 1800, 3600
 };
 
+
 // All Day/Night Support
-
-
 
 enum_timelapse_period_encoding tlps_get_cold_item_raw_timelapse_period(void)
 {
@@ -268,6 +269,34 @@ void tlps_TaskTimeLapseFSM_task12a(void) {
   encoded_timelapse_frequency = get_cold_item_timelapse_frequency();
   timelapse_frequency_in_seconds = encoded_timelapse_frequency_to_seconds(encoded_timelapse_frequency);
 
+  // If the next timelapse capture will be past midnight, and we're in "all day/night" mode, then create a new TLS file
+  int  tod_last_photo_in_seconds = get_cold_item_tod_last_photo_in_seconds();
+  enum_timelapse_period_encoding timelapse_period = tlps_get_cold_item_raw_timelapse_period();
+#ifdef DEBUG_NEW_TLS_FILE
+  set_pre_printf_state();
+  tty_printf("tlps_TaskTimeLapseFSM_task12a:: tod_last_photo_in_seconds = %d; tlps_freq = %d; tlps_period = %d \n", 
+	     tod_last_photo_in_seconds, timelapse_frequency_in_seconds, timelapse_period);
+  check_post_printf_state_set_sio_params();  
+#endif
+  if ((timelapse_period == all_day_night) && 
+      ((tod_last_photo_in_seconds + timelapse_frequency_in_seconds) > 86400)) {
+#ifdef DEBUG_NEW_TLS_FILE
+    set_pre_printf_state();
+    tty_printf("tlps_TaskTimeLapseFSM_task12a:: creating new tls file \n", tod_last_photo_in_seconds);
+    check_post_printf_state_set_sio_params();  
+#endif
+    set_cold_item_timelapse_new_file_p(1);
+  }
+
+  // We only want to do this once -- and by this time, we're leaving this state one way, or another
+  enum_tls_file_type tls_file_type = (enum_tls_file_type) tlps_get_cold_item_file_type();
+  if (tls_file_type == tls_file_type_tls) {
+    // external DSLR LED off if necessary
+    enum_ext_trigger ext_trigger = xtrg_get_cold_item_ext_trigger_enum();
+    if (ext_trigger == xtrg_dslr) {
+      xtrg_Write_LEDOff();
+    }
+  }
   // if the timelapse frequency is less than 4 seconds, just stay on all the time
   if (timelapse_frequency_in_seconds < 4) {
     // Escape if the switch is in the "off" state 
@@ -300,12 +329,15 @@ void tlps_TaskTimeLapseFSM_task12a(void) {
     g_last_timelapse_time_in_ms = get_current_operating_time_ms();
 
     // Now we need to do some book keeping
-    // We only need to do every minute
+    // We only need to do every minute -- keeps track of current temperature/pressure, etc.
     tlps_update_system_measurements();
     //
     set_fsm_state_absolute(1);
     return;
   }
+
+  // Check to see whether we're in all-day-night mode; and if so, if we are at the start of a new day
+  //       if so, set to create a new TLPS file
   
   // The usual end of things -- on the way to exiting the FSM and going to sleep
   set_fsm_state_absolute(12);
@@ -645,7 +677,7 @@ void tlps_TaskTimeLapseFSM_task6() {
     // external DSLR LED on if necessary
     enum_ext_trigger ext_trigger = xtrg_get_cold_item_ext_trigger_enum();
     if (ext_trigger == xtrg_dslr) {
-      Write_LEDOn();
+      xtrg_Write_LEDOn();
     }
     // Then Just do the regular thing
     TaskTimeLapseFSM_task6();
@@ -677,11 +709,6 @@ void tlps_TaskTimeLapseFSM_task6() {
 void tlps_TaskTimeLapseFSM_task7() {
   enum_tls_file_type tls_file_type = (enum_tls_file_type) tlps_get_cold_item_file_type();
   if (tls_file_type == tls_file_type_tls) {
-    // external DSLR LED off if necessary
-    enum_ext_trigger ext_trigger = xtrg_get_cold_item_ext_trigger_enum();
-    if (ext_trigger == xtrg_dslr) {
-      Write_LEDOff();
-    }
     // do the regular thing
     TaskTimeLapseFSM_task7();
   } else {
@@ -723,10 +750,15 @@ void tls_HceTaskBoot2Cap_Task0(void) {
   within_operating_hours = get_within_operating_hours_p();
 
 #ifdef DEBUG1
+#if (defined BTC_7E_HP5)
   set_pre_printf_state();
-  tty_printf("tls_HceTaskBoot2Cap_task0: sd_card_present = %d; within_operating_hours = %d \n",
-	     sd_card_present, within_operating_hours);
+  tty_printf("tls_HCETB2C:_task0:sd=%d; wioh=%d; vcb=%d [%hu,%hu]\n",
+	     sd_card_present, within_operating_hours, g_voltcalib_bin_read_p, 
+	     g_volt_calib_file_low_high_voltage.low_8_0_voltage,
+	     g_volt_calib_file_low_high_voltage.high_13_0_voltage);
+  tty_printf_battery_stats();
   check_post_printf_state_set_sio_params();  
+#endif
 #endif
   
   // If sd card is not present,
@@ -752,7 +784,7 @@ void tls_HceTaskBoot2Cap_Task0(void) {
   default:
     // Else, invoke the standard still state machine
     next_state = 1;
-    // do some timelapse book keeping
+   // do some timelapse book keeping
     tod_in_seconds =
       (uint)current_time.minute * 60 + (uint)current_time.hour * 3600 +
       (uint)current_time.second;
@@ -779,6 +811,12 @@ void tls_HceTaskBoot2Cap_Task0(void) {
   set_fsm_state_absolute(next_state);
   return;
 }
+
+
+
+
+
+
 
 
 

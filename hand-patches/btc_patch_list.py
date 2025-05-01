@@ -471,7 +471,7 @@ vfn_patch_list['timelapse_path']['change_to_jump']   = 'jal.wbwl_temp_file_path_
 # (debug) utilities
 # Hce_FWFileChk
 # source code line 47
-####utilities_patch_list = {}
+utilities_patch_list = {}
 utilities_patch_list['tty_flush'] = {}
 utilities_patch_list['tty_flush']['function'] = 'Hce_FWFileChk'
 utilities_patch_list['tty_flush']['line_number'] = {}
@@ -495,7 +495,6 @@ utilities_patch_list['tty_flush']['change_to_jump']   = 'jal.utilities_check_pos
 
 # handleLanguage_menu
 # source code line 38
-utilities_patch_list = {}
 utilities_patch_list['tty_flush'] = {}
 utilities_patch_list['tty_flush']['function'] = 'handleLanguage_menu'
 utilities_patch_list['tty_flush']['line_number'] = {}
@@ -4310,6 +4309,107 @@ ctm_patch_list['ctm_bk_ok_string_hex']['change_from_bytes']['BTC-7A'] = bytes([0
 ctm_patch_list['ctm_bk_ok_string_hex']['change_to_bytes'] = {}
 ctm_patch_list['ctm_bk_ok_string_hex']['change_to_bytes']['BTC-7A'] = bytes([0x4b, 0x28, 0x25, 0x78])
 
+# Don't schedule a timelapse alarm if the cpature timer is currently active (i.e. we're out of
+#       operating hours) and we're in all day/night timelapse period mode
+ctm_patch_list['ctm_set_wakeup_alarms'] = {}
+ctm_patch_list['ctm_set_wakeup_alarms']['function'] = 'set_wakeup_alarms'
+ctm_patch_list['ctm_set_wakeup_alarms']['line_number'] = {}
+ctm_patch_list['ctm_set_wakeup_alarms']['line_number']['BTC-7A'] = 153
+ctm_patch_list['ctm_set_wakeup_alarms']['line_number']['BTC-7E'] = 153 
+ctm_patch_list['ctm_set_wakeup_alarms']['line_number']['BTC-8E'] = 155
+ctm_patch_list['ctm_set_wakeup_alarms']['line_number']['BTC-7E-HP4'] = 145
+ctm_patch_list['ctm_set_wakeup_alarms']['line_number']['BTC-8E-HP4'] = 145
+ctm_patch_list['ctm_set_wakeup_alarms']['line_number']['BTC-7E-HP5'] = 121
+ctm_patch_list['ctm_set_wakeup_alarms']['line_number']['BTC-8E-HP5'] = 123
+ctm_patch_list['ctm_set_wakeup_alarms']['start_offset'] = {}
+ctm_patch_list['ctm_set_wakeup_alarms']['start_offset']['BTC-7A'] = 0x0116e74
+ctm_patch_list['ctm_set_wakeup_alarms']['start_offset']['BTC-7E'] = 0x0116e74
+ctm_patch_list['ctm_set_wakeup_alarms']['start_offset']['BTC-8E'] = 0x01170cc
+ctm_patch_list['ctm_set_wakeup_alarms']['start_offset']['BTC-7E-HP4'] = 0x0112688
+ctm_patch_list['ctm_set_wakeup_alarms']['start_offset']['BTC-8E-HP4'] = 0x0112b84
+ctm_patch_list['ctm_set_wakeup_alarms']['start_offset']['BTC-7E-HP5'] = 0x00ef4e4
+ctm_patch_list['ctm_set_wakeup_alarms']['start_offset']['BTC-8E-HP5'] = 0x00ef584
+ctm_patch_list['ctm_set_wakeup_alarms']['change_from_jump'] = 'jal.schedule_alarm_global_callback'
+ctm_patch_list['ctm_set_wakeup_alarms']['change_to_jump']   = 'jal.ctm_schedule_alarm_global_callback'
+
+#
+# Turn the preview screen rightside up
+#  Changing 
+ctm_patch_list['ctm_sensor_feed_flip'] = {}
+ctm_patch_list['ctm_sensor_feed_flip']['function'] = 'g_sensor_bulk_initializationB'
+ctm_patch_list['ctm_sensor_feed_flip']['line_number'] = {}
+ctm_patch_list['ctm_sensor_feed_flip']['line_number']['BTC-7A'] = 6
+ctm_patch_list['ctm_sensor_feed_flip']['start_offset'] = {}
+ctm_patch_list['ctm_sensor_feed_flip']['start_offset']['BTC-7A'] = 0x033cde5
+ctm_patch_list['ctm_sensor_feed_flip']['change_from_bytes'] = bytes([0x00])
+ctm_patch_list['ctm_sensor_feed_flip']['change_to_bytes']   = bytes([0x03])
+
+# Debug Timelapse Capture Timer
+#
+
+# Debug VoltCalib
+# Report back on the raw value from the ADC
+# ctm_patch_list['ctm_raw_battery_adc'] = {}
+# ctm_patch_list['ctm_raw_battery_adc']['function'] = 'update_battery_state'
+# ctm_patch_list['ctm_raw_battery_adc']['line_number'] = {}
+# ctm_patch_list['ctm_raw_battery_adc']['line_number']['BTC-7E-HP5'] = 8
+# ctm_patch_list['ctm_raw_battery_adc']['start_offset'] = {}
+# ctm_patch_list['ctm_raw_battery_adc']['start_offset']['BTC-7E-HP5'] = 0x00ebc9c
+# ctm_patch_list['ctm_raw_battery_adc']['change_from_jump'] = {}
+# ctm_patch_list['ctm_raw_battery_adc']['change_from_jump']['BTC-7E-HP5'] = 'jal.spawn_HceModeVoltCalib_FSM'
+# ctm_patch_list['ctm_raw_battery_adc']['change_to_jump'] = {}
+# ctm_patch_list['ctm_raw_battery_adc']['change_to_jump']['BTC-7E-HP5'] = 'jal.ctm_spawn_HceModeVoltCalib_FSM'
+
+# Shout out if we spwan the voltCalib FSM
+#       I don't think this spawns the FSM, merely checks to see if it is done
+#       THIS IS CLUE -- COme back to this
+# ctm_patch_list['ctm_spawn_volt_calib'] = {}
+# ctm_patch_list['ctm_spawn_volt_calib']['function'] = 'update_battery_state'
+# ctm_patch_list['ctm_spawn_volt_calib']['line_number'] = {}
+# ctm_patch_list['ctm_spawn_volt_calib']['line_number']['BTC-7E-HP5'] = 8
+# ctm_patch_list['ctm_spawn_volt_calib']['start_offset'] = {}
+# ctm_patch_list['ctm_spawn_volt_calib']['start_offset']['BTC-7E-HP5'] = 0x00ebc9c
+# ctm_patch_list['ctm_spawn_volt_calib']['change_from_jump'] = {}
+# ctm_patch_list['ctm_spawn_volt_calib']['change_from_jump']['BTC-7E-HP5'] = 'jal.spawn_HceModeVoltCalib_FSM'
+# ctm_patch_list['ctm_spawn_volt_calib']['change_to_jump'] = {}
+# ctm_patch_list['ctm_spawn_volt_calib']['change_to_jump']['BTC-7E-HP5'] = 'jal.ctm_spawn_HceModeVoltCalib_FSM'
+
+# Work through each of the states in the voltCalib FSM
+# ctm_patch_list['ctm_iterate_volt_calib_fsm'] = {}
+# ctm_patch_list['ctm_iterate_volt_calib_fsm']['function'] = 'HceModeVoltCalib_FSM_iterator'
+# ctm_patch_list['ctm_iterate_volt_calib_fsm']['line_number'] = {}
+# ctm_patch_list['ctm_iterate_volt_calib_fsm']['line_number']['BTC-7E-HP5'] = 28
+# ctm_patch_list['ctm_iterate_volt_calib_fsm']['start_offset'] = {}
+# ctm_patch_list['ctm_iterate_volt_calib_fsm']['start_offset']['BTC-7E-HP5'] = 0x010b45c
+# ctm_patch_list['ctm_iterate_volt_calib_fsm']['change_from_jump'] = {}
+# ctm_patch_list['ctm_iterate_volt_calib_fsm']['change_from_jump']['BTC-7E-HP5'] = 'jal.execute_if_not_null'
+# ctm_patch_list['ctm_iterate_volt_calib_fsm']['change_to_jump'] = {}
+# ctm_patch_list['ctm_iterate_volt_calib_fsm']['change_to_jump']['BTC-7E-HP5'] = 'jal.ctm_execute_if_not_null'
+
+# Are we writing to VOLTCALIB.BIN?
+# ctm_patch_list['ctm_task4_write_calib_file'] = {}
+# ctm_patch_list['ctm_task4_write_calib_file']['function'] = 'HceModeVoltCalib_task4'
+# ctm_patch_list['ctm_task4_write_calib_file']['line_number'] = {}
+# ctm_patch_list['ctm_task4_write_calib_file']['line_number']['BTC-7E-HP5'] = 30
+# ctm_patch_list['ctm_task4_write_calib_file']['start_offset'] = {}
+# ctm_patch_list['ctm_task4_write_calib_file']['start_offset']['BTC-7E-HP5'] = 0x010b5c4
+# ctm_patch_list['ctm_task4_write_calib_file']['change_from_jump'] = {}
+# ctm_patch_list['ctm_task4_write_calib_file']['change_from_jump']['BTC-7E-HP5'] = 'jal.btc_fwrite'
+# ctm_patch_list['ctm_task4_write_calib_file']['change_to_jump'] = {}
+# ctm_patch_list['ctm_task4_write_calib_file']['change_to_jump']['BTC-7E-HP5'] = 'jal.ctm_btc_fwrite'
+
+# Are we writing to VOLTCALIB.BIN?
+# ctm_patch_list['ctm_calibrate_command'] = {}
+# ctm_patch_list['ctm_calibrate_command']['function'] = 'calibrate_command'
+# ctm_patch_list['ctm_calibrate_command']['line_number'] = {}
+# ctm_patch_list['ctm_calibrate_command']['line_number']['BTC-7E-HP5'] = 40
+# ctm_patch_list['ctm_calibrate_command']['start_offset'] = {}
+# ctm_patch_list['ctm_calibrate_command']['start_offset']['BTC-7E-HP5'] = 0x00fd5cc
+# ctm_patch_list['ctm_calibrate_command']['change_from_jump'] = {}
+# ctm_patch_list['ctm_calibrate_command']['change_from_jump']['BTC-7E-HP5'] = 'jal.btc_fwrite'
+# ctm_patch_list['ctm_calibrate_command']['change_to_jump'] = {}
+# ctm_patch_list['ctm_calibrate_command']['change_to_jump']['BTC-7E-HP5'] = 'jal.ctm_btc_fwrite'
+
 # Debug by Crash 
 
 # Place this patch anywhere you want to cause the system to crash by jumping to a null address
@@ -4664,3 +4764,16 @@ fdb_patch_list['format_fsm_6']['start_offset']['BTC-8E-HP5'] = 0x02cf6b4
 fdb_patch_list['format_fsm_6']['change_from_ptr'] = 'HceTaskFormat_task6'
 fdb_patch_list['format_fsm_6']['change_to_ptr']   = 'fdb_HceTaskFormat_task6'
 
+#DEBUG -- Enable CLI
+###### 2025-04-10 This is broken
+cli_patch_list = {}
+# cli_patch_list['cli_get_enable_cli_interface_p'] = {}
+# cli_patch_list['cli_get_enable_cli_interface_p']['function'] = 'hal_platform_init'
+# cli_patch_list['cli_get_enable_cli_interface_p']['line_number'] = {} 
+# cli_patch_list['cli_get_enable_cli_interface_p']['line_number']['BTC-7E-HP5'] = 74
+# cli_patch_list['cli_get_enable_cli_interface_p']['start_offset'] = {} 
+# cli_patch_list['cli_get_enable_cli_interface_p']['start_offset']['BTC-7E-HP5'] = 0x0002c50
+# cli_patch_list['cli_get_enable_cli_interface_p']['change_from_bytes'] = {}
+# cli_patch_list['cli_get_enable_cli_interface_p']['change_from_bytes']['BTC-7E-HP5'] = bytes([0xff, 0x00, 0x42, 0x30]) ## andi v0, v0, 0xff
+# cli_patch_list['cli_get_enable_cli_interface_p']['change_to_bytes'] = {}
+# cli_patch_list['cli_get_enable_cli_interface_p']['change_to_bytes']['BTC-7E-HP5'] = bytes([0xff, 0x00, 0x42, 0x34]) ## ori v0, v0, 0xff

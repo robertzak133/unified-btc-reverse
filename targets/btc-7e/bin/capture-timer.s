@@ -6,6 +6,72 @@
 	.module	nooddspreg
 	.text
 	.align	2
+	.globl	ctm_schedule_alarm_global_callback
+	.set	nomips16
+	.set	nomicromips
+	.ent	ctm_schedule_alarm_global_callback
+	.type	ctm_schedule_alarm_global_callback, @function
+ctm_schedule_alarm_global_callback:
+	.frame	$sp,40,$31		# vars= 0, regs= 5/0, args= 16, gp= 0
+	.mask	0x800f0000,-4
+	.fmask	0x00000000,0
+	.set	noreorder
+	.set	nomacro
+	li	$2,1			# 0x1
+	beq	$4,$2,$L13
+	nop
+
+	addiu	$sp,$sp,-40
+	sw	$19,32($sp)
+	sw	$18,28($sp)
+	sw	$17,24($sp)
+	sw	$16,20($sp)
+	sw	$31,36($sp)
+	move	$16,$4
+	move	$17,$5
+	move	$18,$6
+	jal	get_within_operating_hours_p
+	move	$19,$7
+
+	beq	$2,$0,$L12
+	lw	$31,36($sp)
+
+	jal	get_cold_item_timelapse_period
+	nop
+
+	li	$3,5			# 0x5
+	beq	$2,$3,$L1
+	lw	$31,36($sp)
+
+	move	$7,$19
+	move	$6,$18
+	lw	$19,32($sp)
+	lw	$18,28($sp)
+	move	$5,$17
+	move	$4,$16
+	lw	$17,24($sp)
+	lw	$16,20($sp)
+	j	schedule_alarm_global_callback
+	addiu	$sp,$sp,40
+
+$L1:
+$L12:
+	lw	$19,32($sp)
+	lw	$18,28($sp)
+	lw	$17,24($sp)
+	lw	$16,20($sp)
+	jr	$31
+	addiu	$sp,$sp,40
+
+$L13:
+	jr	$31
+	nop
+
+	.set	macro
+	.set	reorder
+	.end	ctm_schedule_alarm_global_callback
+	.size	ctm_schedule_alarm_global_callback, .-ctm_schedule_alarm_global_callback
+	.align	2
 	.globl	ctm_tty_printf
 	.set	nomips16
 	.set	nomicromips
@@ -86,9 +152,9 @@ ctm_DigiPIRSpi_Write:
 	addiu	$21,$21,%lo($LC0)
 	lui	$23,%hi($LC2)
 	li	$17,25			# 0x19
-$L15:
+$L28:
 	li	$22,16777216			# 0x1000000
-$L8:
+$L21:
 	jal	digi_pir_spi_serial_out
 	move	$4,$0
 
@@ -105,14 +171,14 @@ $L8:
 	jal	get_fine_grained_time
 	srl	$22,$22,1
 
-	bne	$fp,$0,$L4
+	bne	$fp,$0,$L17
 	move	$19,$2
 
 	jal	digi_pir_spi_serial_out
 	move	$4,$0
 
 	move	$5,$21
-$L5:
+$L18:
 	jal	log_printf
 	li	$4,4			# 0x4
 
@@ -128,7 +194,7 @@ $L5:
 
 	move	$19,$2
 	sltu	$2,$2,301
-	bne	$2,$0,$L6
+	bne	$2,$0,$L19
 	nop
 
 	jal	set_pre_printf_state
@@ -144,7 +210,7 @@ $L5:
 	jal	check_post_printf_state_set_sio_params
 	addiu	$16,$16,1
 
-$L7:
+$L20:
 	jal	digi_pir_spi_serial_out
 	move	$4,$0
 
@@ -152,7 +218,7 @@ $L7:
 	li	$4,560			# 0x230
 
 	slt	$2,$16,3
-	bne	$2,$0,$L9
+	bne	$2,$0,$L22
 	nop
 
 	jal	set_pre_printf_state
@@ -167,7 +233,7 @@ $L7:
 	jal	check_post_printf_state_set_sio_params
 	nop
 
-	bne	$16,$0,$L3
+	bne	$16,$0,$L16
 	lw	$31,52($sp)
 
 	lw	$fp,48($sp)
@@ -183,22 +249,22 @@ $L7:
 	j	DigiPIRSpi_Write
 	addiu	$sp,$sp,56
 
-$L4:
+$L17:
 	jal	digi_pir_spi_serial_out
 	li	$4,1			# 0x1
 
-	b	$L5
+	b	$L18
 	move	$5,$20
 
-$L6:
-	bne	$17,$0,$L8
+$L19:
+	bne	$17,$0,$L21
 	nop
 
-	b	$L7
+	b	$L20
 	nop
 
-$L9:
-	bne	$17,$0,$L15
+$L22:
+	bne	$17,$0,$L28
 	li	$17,25			# 0x19
 
 	lw	$31,52($sp)
@@ -218,7 +284,7 @@ $L9:
 	j	log_printf
 	addiu	$sp,$sp,56
 
-$L3:
+$L16:
 	lw	$fp,48($sp)
 	lw	$23,44($sp)
 	lw	$22,40($sp)

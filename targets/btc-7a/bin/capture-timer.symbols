@@ -34,15 +34,19 @@ SYMBOL TABLE:
 00000000 l    d  .pdr	00000000 .pdr
 00000000 l    d  .comment	00000000 .comment
 00000000 l    d  .gnu.attributes	00000000 .gnu.attributes
-00000000 g     F .text	0000003c ctm_get_power_supply_mode
+00000000 g     F .text	0000009c ctm_schedule_alarm_global_callback
+00000000         *UND*	00000000 get_within_operating_hours_p
+00000000         *UND*	00000000 get_cold_item_timelapse_period
+00000000         *UND*	00000000 schedule_alarm_global_callback
+0000009c g     F .text	0000003c ctm_get_power_supply_mode
 00000000         *UND*	00000000 get_power_supply_mode
 00000000         *UND*	00000000 get_device_csr_bit
-0000003c g     F .text	0000002c ctm_tty_printf
+000000d8 g     F .text	0000002c ctm_tty_printf
 00000000         *UND*	00000000 set_pre_printf_state
 00000000         *UND*	00000000 tty_printf
 00000000         *UND*	00000000 check_post_printf_state_set_sio_params
-00000068 g     F .text	00000008 ctm_check_event_null_function
-00000070 g     F .text	00000480 ctm_event_loop_iterator
+00000104 g     F .text	00000008 ctm_check_event_null_function
+0000010c g     F .text	00000480 ctm_event_loop_iterator
 00000000         *UND*	00000000 g_event_descriptor
 00000000         *UND*	00000000 event_descriptor_init
 00000000         *UND*	00000000 get_matching_event_descriptor
@@ -75,7 +79,7 @@ SYMBOL TABLE:
 00000000         *UND*	00000000 set_g_some_sd_status_p
 00000000         *UND*	00000000 app_init_directory_suffix_file_prefix
 00000000         *UND*	00000000 check_remaining_sd_capacity
-000004f0 g     F .text	000001f8 ctm_DigiPIRSpi_Write
+0000058c g     F .text	000001f8 ctm_DigiPIRSpi_Write
 00000000         *UND*	00000000 digi_pir_spi_serial_out
 00000000         *UND*	00000000 some_sort_of_delay
 00000000         *UND*	00000000 get_fine_grained_time

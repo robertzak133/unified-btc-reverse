@@ -6,6 +6,72 @@
 	.module	nooddspreg
 	.text
 	.align	2
+	.globl	ctm_schedule_alarm_global_callback
+	.set	nomips16
+	.set	nomicromips
+	.ent	ctm_schedule_alarm_global_callback
+	.type	ctm_schedule_alarm_global_callback, @function
+ctm_schedule_alarm_global_callback:
+	.frame	$sp,40,$31		# vars= 0, regs= 5/0, args= 16, gp= 0
+	.mask	0x800f0000,-4
+	.fmask	0x00000000,0
+	.set	noreorder
+	.set	nomacro
+	li	$2,1			# 0x1
+	beq	$4,$2,$L13
+	nop
+
+	addiu	$sp,$sp,-40
+	sw	$19,32($sp)
+	sw	$18,28($sp)
+	sw	$17,24($sp)
+	sw	$16,20($sp)
+	sw	$31,36($sp)
+	move	$16,$4
+	move	$17,$5
+	move	$18,$6
+	jal	get_within_operating_hours_p
+	move	$19,$7
+
+	beq	$2,$0,$L12
+	lw	$31,36($sp)
+
+	jal	get_cold_item_timelapse_period
+	nop
+
+	li	$3,5			# 0x5
+	beq	$2,$3,$L1
+	lw	$31,36($sp)
+
+	move	$7,$19
+	move	$6,$18
+	lw	$19,32($sp)
+	lw	$18,28($sp)
+	move	$5,$17
+	move	$4,$16
+	lw	$17,24($sp)
+	lw	$16,20($sp)
+	j	schedule_alarm_global_callback
+	addiu	$sp,$sp,40
+
+$L1:
+$L12:
+	lw	$19,32($sp)
+	lw	$18,28($sp)
+	lw	$17,24($sp)
+	lw	$16,20($sp)
+	jr	$31
+	addiu	$sp,$sp,40
+
+$L13:
+	jr	$31
+	nop
+
+	.set	macro
+	.set	reorder
+	.end	ctm_schedule_alarm_global_callback
+	.size	ctm_schedule_alarm_global_callback, .-ctm_schedule_alarm_global_callback
+	.align	2
 	.globl	ctm_get_power_supply_mode
 	.set	nomips16
 	.set	nomicromips
@@ -168,113 +234,113 @@ ctm_event_loop_iterator:
 	jal	get_matching_event_descriptor
 	sw	$18,4($16)
 
-	beq	$2,$0,$L8
+	beq	$2,$0,$L21
 	li	$2,1364262912			# 0x51510000
 
 	lw	$4,16($sp)
-	beq	$4,$2,$L9
+	beq	$4,$2,$L22
 	addiu	$2,$2,1
 
 	slt	$2,$4,$2
-	beq	$2,$0,$L10
+	beq	$2,$0,$L23
 	li	$2,1481703424			# 0x58510000
 
 	slt	$2,$4,259
-	beq	$2,$0,$L11
+	beq	$2,$0,$L24
 	slt	$2,$4,256
 
-	beq	$2,$0,$L12
+	beq	$2,$0,$L25
 	li	$2,16			# 0x10
 
-	beq	$4,$2,$L13
+	beq	$4,$2,$L26
 	slt	$2,$4,17
 
-	beq	$2,$0,$L14
+	beq	$2,$0,$L27
 	li	$2,32			# 0x20
 
 	li	$2,-268435456			# 0xfffffffff0000000
-	beq	$4,$2,$L15
+	beq	$4,$2,$L28
 	li	$2,-1			# 0xffffffffffffffff
 
-	beq	$4,$2,$L16
+	beq	$4,$2,$L29
 	move	$5,$18
 
-$L17:
+$L30:
 	lw	$2,8($16)
-$L66:
+$L79:
 	li	$3,-5			# 0xfffffffffffffffb
 	and	$2,$2,$3
-	b	$L8
+	b	$L21
 	sw	$2,8($16)
 
-$L14:
-	bne	$4,$2,$L17
+$L27:
+	bne	$4,$2,$L30
 	lui	$5,%hi($LC3)
 
-	b	$L60
+	b	$L73
 	addiu	$5,$5,%lo($LC3)
 
-$L11:
+$L24:
 	li	$2,517			# 0x205
-	beq	$4,$2,$L19
+	beq	$4,$2,$L32
 	slt	$2,$4,518
 
-	beq	$2,$0,$L20
+	beq	$2,$0,$L33
 	li	$2,8192			# 0x2000
 
 	li	$2,515			# 0x203
-	beq	$4,$2,$L21
+	beq	$4,$2,$L34
 	lui	$5,%hi($LC4)
 
 	addiu	$4,$4,-514
 	li	$2,-3			# 0xfffffffffffffffd
 	and	$4,$4,$2
-	bnel	$4,$0,$L66
+	bnel	$4,$0,$L79
 	lw	$2,8($16)
 
-$L8:
+$L21:
 	jal	fsm_iterate_all_in_g_fsm_descriptor_list
 	nop
 
-	b	$L65
+	b	$L78
 	lw	$31,44($sp)
 
-$L20:
-	beq	$4,$2,$L22
+$L33:
+	beq	$4,$2,$L35
 	li	$2,8193			# 0x2001
 
-	bne	$4,$2,$L17
+	bne	$4,$2,$L30
 	lw	$6,20($sp)
 
 	li	$2,2			# 0x2
-	beq	$6,$2,$L42
+	beq	$6,$2,$L55
 	lui	$5,%hi($LC7)
 
-	b	$L61
+	b	$L74
 	addiu	$5,$5,%lo($LC7)
 
-$L10:
-	beq	$4,$2,$L24
+$L23:
+	beq	$4,$2,$L37
 	addiu	$2,$2,1
 
 	slt	$2,$4,$2
-	beq	$2,$0,$L25
+	beq	$2,$0,$L38
 	li	$2,1683030016			# 0x64510000
 
 	li	$2,1381040128			# 0x52510000
 	addiu	$3,$2,1295
-	beq	$4,$3,$L26
+	beq	$4,$3,$L39
 	addiu	$3,$2,1296
 
 	slt	$3,$4,$3
-	beql	$3,$0,$L27
+	beql	$3,$0,$L40
 	addiu	$2,$2,1310
 
 	addiu	$3,$2,1287
-	beq	$4,$3,$L63
+	beq	$4,$3,$L76
 	addiu	$2,$2,1290
 
-	bnel	$4,$2,$L66
+	bnel	$4,$2,$L79
 	lw	$2,8($16)
 
 	jal	get_g_evt_0x5251050a_counter
@@ -283,68 +349,68 @@ $L10:
 	jal	set_g_evt_0x5251050a_counter
 	addiu	$4,$2,1
 
-	b	$L8
+	b	$L21
 	nop
 
-$L27:
-	beq	$4,$2,$L30
+$L40:
+	beq	$4,$2,$L43
 	slt	$2,$4,$2
 
-	bnel	$2,$0,$L66
+	bnel	$2,$0,$L79
 	lw	$2,8($16)
 
 	li	$2,1397817344			# 0x53510000
 	addiu	$2,$2,1302
-	beq	$4,$2,$L8
+	beq	$4,$2,$L21
 	li	$2,1397817344			# 0x53510000
 
 	addiu	$2,$2,1305
-	beq	$4,$2,$L8
+	beq	$4,$2,$L21
 	nop
 
-	b	$L66
+	b	$L79
 	lw	$2,8($16)
 
-$L25:
+$L38:
 	addiu	$3,$2,1
-	beq	$4,$3,$L31
+	beq	$4,$3,$L44
 	addiu	$3,$2,2
 
 	slt	$3,$4,$3
-	beq	$3,$0,$L32
+	beq	$3,$0,$L45
 	addiu	$2,$2,3
 
 	li	$2,1649475584			# 0x62510000
 	addiu	$3,$2,5
-	beq	$4,$3,$L33
+	beq	$4,$3,$L46
 	addiu	$2,$2,6
 
-	bne	$4,$2,$L17
+	bne	$4,$2,$L30
 	lui	$5,%hi($LC9)
 
-	b	$L64
+	b	$L77
 	addiu	$5,$5,%lo($LC9)
 
-$L32:
-	bne	$4,$2,$L17
+$L45:
+	bne	$4,$2,$L30
 	lui	$5,%hi($LC11)
 
-	b	$L60
+	b	$L73
 	addiu	$5,$5,%lo($LC11)
 
-$L16:
+$L29:
 	jal	event_loop_iterator
 	move	$4,$17
 
 	lw	$31,44($sp)
-$L65:
+$L78:
 	lw	$18,40($sp)
 	lw	$17,36($sp)
 	lw	$16,32($sp)
 	jr	$31
 	addiu	$sp,$sp,48
 
-$L13:
+$L26:
 	lui	$5,%hi($LC0)
 	addiu	$5,$5,%lo($LC0)
 	jal	debug_print_string
@@ -360,119 +426,119 @@ $L13:
 
 	lui	$5,%hi($LC2)
 	addiu	$5,$5,%lo($LC2)
-$L60:
+$L73:
 	jal	debug_print_string
 	move	$4,$0
 
-	b	$L8
+	b	$L21
 	nop
 
-$L12:
+$L25:
 	jal	service_button_event
 	lw	$5,20($sp)
 
-	b	$L8
+	b	$L21
 	nop
 
-$L21:
-	b	$L60
+$L34:
+	b	$L73
 	addiu	$5,$5,%lo($LC4)
 
-$L19:
+$L32:
 	lw	$6,20($sp)
 	lui	$5,%hi($LC5)
 	addiu	$5,$5,%lo($LC5)
-$L61:
+$L74:
 	jal	debug_print_string
 	move	$4,$0
 
-	b	$L8
+	b	$L21
 	nop
 
-$L22:
+$L35:
 	lw	$16,20($sp)
 	li	$2,2			# 0x2
-	beq	$16,$2,$L37
+	beq	$16,$2,$L50
 	lui	$5,%hi($LC6)
 
 	move	$6,$16
-	b	$L61
+	b	$L74
 	addiu	$5,$5,%lo($LC6)
 
-$L37:
+$L50:
 	jal	get_SDCardState
 	nop
 
-	bne	$2,$16,$L38
+	bne	$2,$16,$L51
 	nop
 
 	jal	get_g_test_mode
 	nop
 
-	beq	$2,$0,$L40
+	beq	$2,$0,$L53
 	nop
 
 	jal	get_g_sd_card_mounted_p
 	nop
 
-	beq	$2,$0,$L40
+	beq	$2,$0,$L53
 	nop
 
 	li	$4,65536			# 0x10000
 	jal	vfs_unmount_wrapper2
 	addiu	$4,$4,2
 
-$L40:
+$L53:
 	jal	set_g_sd_card_mounted_p
 	move	$4,$0
 
-$L38:
+$L51:
 	jal	set_sd_card_state_w_init
 	li	$4,65535			# 0xffff
 
-$L62:
+$L75:
 	jal	initialize_g_mode_change_counter
 	li	$4,1			# 0x1
 
-	b	$L8
+	b	$L21
 	nop
 
-$L42:
+$L55:
 	jal	set_sd_card_state_w_init
 	li	$4,2			# 0x2
 
 	jal	get_g_sd_card_valid_p
 	nop
 
-	beq	$2,$0,$L62
+	beq	$2,$0,$L75
 	nop
 
 	jal	set_g_sd_card_state_valid_p
 	move	$4,$0
 
-	b	$L8
+	b	$L21
 	nop
 
-$L9:
+$L22:
 	lw	$5,20($sp)
 	jal	serviceEvent_0x5151000
 	li	$4,1364262912			# 0x51510000
 
-	b	$L8
+	b	$L21
 	nop
 
-$L30:
+$L43:
 	jal	set_g_evt_0x52510507_state_initialized_p
 	move	$4,$0
 
-	b	$L8
+	b	$L21
 	nop
 
-$L26:
+$L39:
 	jal	setStillCapDone
 	nop
 
-$L63:
+$L76:
 	jal	set_g_evt_0x52510507_state_initialized_p
 	move	$4,$0
 
@@ -482,56 +548,56 @@ $L63:
 	jal	set_g_evt_0x52510507_counter
 	addiu	$4,$2,1
 
-	b	$L8
+	b	$L21
 	nop
 
-$L24:
+$L37:
 	jal	service_event_0x5851000
 	lw	$4,20($sp)
 
-	b	$L8
+	b	$L21
 	nop
 
-$L33:
+$L46:
 	lui	$5,%hi($LC8)
 	addiu	$5,$5,%lo($LC8)
-$L64:
+$L77:
 	jal	debug_print_string
 	move	$4,$0
 
-	b	$L62
+	b	$L75
 	nop
 
-$L31:
+$L44:
 	lui	$5,%hi($LC10)
-	b	$L60
+	b	$L73
 	addiu	$5,$5,%lo($LC10)
 
-$L15:
+$L28:
 	lw	$5,20($sp)
 	li	$3,1			# 0x1
 	sra	$2,$5,8
-	bne	$2,$3,$L44
+	bne	$2,$3,$L57
 	li	$3,7			# 0x7
 
 	andi	$5,$5,0x00ff
 	jal	serviceSetCurrentMode_event
 	li	$4,1			# 0x1
 
-	b	$L8
+	b	$L21
 	nop
 
-$L44:
-	beq	$2,$3,$L45
+$L57:
+	beq	$2,$3,$L58
 	li	$3,8			# 0x8
 
-	bne	$2,$3,$L8
+	bne	$2,$3,$L21
 	nop
 
 	jal	get_g_fast_cap_mount_active_p
 	nop
 
-	beq	$2,$0,$L8
+	beq	$2,$0,$L21
 	lui	$5,%hi($LC12)
 
 	addiu	$5,$5,%lo($LC12)
@@ -544,14 +610,14 @@ $L44:
 	jal	set_fast_cap_mount_active_p
 	move	$4,$0
 
-	b	$L8
+	b	$L21
 	nop
 
-$L45:
+$L58:
 	jal	get_g_fast_cap_mount_active_p
 	nop
 
-	beq	$2,$0,$L8
+	beq	$2,$0,$L21
 	lui	$5,%hi($LC13)
 
 	addiu	$5,$5,%lo($LC13)
@@ -577,7 +643,7 @@ $L45:
 	move	$4,$0
 
 	lui	$5,%hi($LC14)
-	b	$L60
+	b	$L73
 	addiu	$5,$5,%lo($LC14)
 
 	.set	macro
@@ -635,9 +701,9 @@ ctm_DigiPIRSpi_Write:
 	addiu	$21,$21,%lo($LC15)
 	lui	$23,%hi($LC17)
 	li	$17,25			# 0x19
-$L79:
+$L92:
 	li	$22,16777216			# 0x1000000
-$L72:
+$L85:
 	jal	digi_pir_spi_serial_out
 	move	$4,$0
 
@@ -654,14 +720,14 @@ $L72:
 	jal	get_fine_grained_time
 	srl	$22,$22,1
 
-	bne	$fp,$0,$L68
+	bne	$fp,$0,$L81
 	move	$19,$2
 
 	jal	digi_pir_spi_serial_out
 	move	$4,$0
 
 	move	$5,$21
-$L69:
+$L82:
 	jal	log_printf
 	li	$4,4			# 0x4
 
@@ -677,7 +743,7 @@ $L69:
 
 	move	$19,$2
 	sltu	$2,$2,301
-	bne	$2,$0,$L70
+	bne	$2,$0,$L83
 	nop
 
 	jal	set_pre_printf_state
@@ -693,7 +759,7 @@ $L69:
 	jal	check_post_printf_state_set_sio_params
 	addiu	$16,$16,1
 
-$L71:
+$L84:
 	jal	digi_pir_spi_serial_out
 	move	$4,$0
 
@@ -701,7 +767,7 @@ $L71:
 	li	$4,560			# 0x230
 
 	slt	$2,$16,3
-	bne	$2,$0,$L73
+	bne	$2,$0,$L86
 	nop
 
 	jal	set_pre_printf_state
@@ -716,7 +782,7 @@ $L71:
 	jal	check_post_printf_state_set_sio_params
 	nop
 
-	bne	$16,$0,$L67
+	bne	$16,$0,$L80
 	lw	$31,52($sp)
 
 	lw	$fp,48($sp)
@@ -732,22 +798,22 @@ $L71:
 	j	DigiPIRSpi_Write
 	addiu	$sp,$sp,56
 
-$L68:
+$L81:
 	jal	digi_pir_spi_serial_out
 	li	$4,1			# 0x1
 
-	b	$L69
+	b	$L82
 	move	$5,$20
 
-$L70:
-	bne	$17,$0,$L72
+$L83:
+	bne	$17,$0,$L85
 	nop
 
-	b	$L71
+	b	$L84
 	nop
 
-$L73:
-	bne	$17,$0,$L79
+$L86:
+	bne	$17,$0,$L92
 	li	$17,25			# 0x19
 
 	lw	$31,52($sp)
@@ -767,7 +833,7 @@ $L73:
 	j	log_printf
 	addiu	$sp,$sp,56
 
-$L67:
+$L80:
 	lw	$fp,48($sp)
 	lw	$23,44($sp)
 	lw	$22,40($sp)

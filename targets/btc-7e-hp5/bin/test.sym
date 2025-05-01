@@ -44,6 +44,7 @@ SYMBOL TABLE:
 80111118 g       *ABS*	00000000 get_min_minute
 801097f4 g       *ABS*	00000000 TaskTimeLapseFSM_task4
 80060e3c g       *ABS*	00000000 get_rtc_extra_byte_range
+801878d0 g     F entry4_section	0000009c ctm_schedule_alarm_global_callback
 800d7a60 g     F entry1_section	00000008 cli_command_function
 800e5848 g       *ABS*	00000000 get_g_cold_item_battery_type
 8031473c g       *ABS*	00000000 g_photo_delay_menu
@@ -87,6 +88,7 @@ SYMBOL TABLE:
 80187368 g     F entry4_section	0000006c cdt_get_date_time_current_field_value
 8018f610 g     F entry3_section	00000210 tlps_handle_file_type_menu
 8018f010 g     F entry3_section	00000058 wbwl_fatVolLabSet
+80061c28 g       *ABS*	00000000 schedule_alarm_global_callback
 8005c850 g       *ABS*	00000000 HceCommon_RestoreDefaultColdItem
 8011110c g       *ABS*	00000000 get_g_menu_temp_minute
 8006d850 g     F entry0_section	00000030 apt_get_rtc_extra_aperture
@@ -97,6 +99,7 @@ SYMBOL TABLE:
 80012cb8 g       *ABS*	00000000 btc_strlen
 8000a420 g       *ABS*	00000000 memcpy
 800ed38c g       *ABS*	00000000 checkForSDCard
+800eb1cc g       *ABS*	00000000 get_battery_voltage_from_adc
 800e5754 g       *ABS*	00000000 get_cold_item_camera_name
 80314cb4 g       *ABS*	00000000 g_restore_default_menu
 800ddc88 g     F entry2_section	0000005c dt_IRLedOff
@@ -259,7 +262,7 @@ SYMBOL TABLE:
 80111128 g       *ABS*	00000000 get_am_pm_current_value
 8031cc0c g       *ABS*	00000000 g_menu_root
 800de0a0 g     O entry2_section	0000008c g_ifm_ir_led_power_menu
-801878d0 g     F entry4_section	0000002c ctm_tty_printf
+8018796c g     F entry4_section	0000002c ctm_tty_printf
 8005e20c g       *ABS*	00000000 check_post_printf_state_set_sio_params
 800e5140 g       *ABS*	00000000 reset_capture_timer
 803146e8 g       *ABS*	00000000 g_video_quality_menu

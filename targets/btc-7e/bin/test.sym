@@ -29,7 +29,7 @@ SYMBOL TABLE:
 00000000 l    df *ABS*	00000000 native-quality.c
 00000000 l    df *ABS*	00000000 white-flash.c
 00000000 l    df *ABS*	00000000 entry3.c
-8017a74c g     F entry2_section	00000074 wfl_spawnIRCutFSM_per_mode
+8017a7fc g     F entry2_section	00000074 wfl_spawnIRCutFSM_per_mode
 80176880 g     F entry2_section	000000a4 wbwl_custom_info_strip_date_sprintf
 8013167c g       *ABS*	00000000 menu_draw_selected_item
 80055be8 g       *ABS*	00000000 get_power_switch_on_p
@@ -41,6 +41,7 @@ SYMBOL TABLE:
 8005c5d0 g       *ABS*	00000000 set_rtc_extra_byte_range
 80131acc g       *ABS*	00000000 get_min_minute
 8005c618 g       *ABS*	00000000 get_rtc_extra_byte_range
+8017a130 g     F entry2_section	0000009c ctm_schedule_alarm_global_callback
 8010e570 g       *ABS*	00000000 get_g_cold_item_battery_type
 803b3768 g       *ABS*	00000000 g_photo_delay_menu
 80134d30 g       *ABS*	00000000 handleCommitUpdates_menu
@@ -57,11 +58,11 @@ SYMBOL TABLE:
 803be8af g       *ABS*	00000000 g_right_button_enable
 8010e414 g       *ABS*	00000000 get_cold_item_multi_shot_encoding
 801786d4 g     F entry2_section	00000044 tlps_TaskTimeLapseFSM_task7
-8017a470 g     F entry2_section	00000074 ntvq_get_camera_photo_resolution
+8017a520 g     F entry2_section	00000074 ntvq_get_camera_photo_resolution
 80122df4 g       *ABS*	00000000 set_fsm_state_absolute
 80177f60 g     O entry2_section	00000070 g_ext_trigger_enable_menu
 80131a1c g       *ABS*	00000000 get_max_month
-8017a15c g     F entry2_section	000001f8 ctm_DigiPIRSpi_Write
+8017a1f8 g     F entry2_section	000001f8 ctm_DigiPIRSpi_Write
 80176b98 g     F entry2_section	00000104 vfn_get_dir_suffix_file_prefix_from_camera_name
 80131ad4 g       *ABS*	00000000 get_max_minute
 80176f64 g     F entry2_section	000001a0 cst_RestoreCustomColdItem
@@ -83,6 +84,7 @@ SYMBOL TABLE:
 80179bd8 g     F entry2_section	0000006c cdt_get_date_time_current_field_value
 80178ba4 g     F entry2_section	00000210 tlps_handle_file_type_menu
 80176b40 g     F entry2_section	00000058 wbwl_fatVolLabSet
+8005c9e0 g       *ABS*	00000000 schedule_alarm_global_callback
 80055f3c g       *ABS*	00000000 HceCommon_RestoreDefaultColdItem
 80131ac0 g       *ABS*	00000000 get_g_menu_temp_minute
 8006c610 g     F entry1_section	00000030 apt_get_rtc_extra_aperture
@@ -143,7 +145,7 @@ SYMBOL TABLE:
 80110158 g       *ABS*	00000000 encoded_timelapse_frequency_to_seconds
 80178f6c g     O entry2_section	0000016c g_wbwl_timelapse_frequency_menu
 80355ad0 g       *ABS*	00000000 setDigitalEffectswitchdataD_table
-8017a718 g     F entry2_section	0000002c wfl_HceIRCut_SetIRCutOpen
+8017a7c8 g     F entry2_section	0000002c wfl_HceIRCut_SetIRCutOpen
 8035527c g       *ABS*	00000000 g_HceTaskMenuMultiItem_fsm_function_array
 80131a30 g       *ABS*	00000000 get_min_day
 801293a0 g       *ABS*	00000000 TaskTimeLapseFSM_task9
@@ -153,7 +155,7 @@ SYMBOL TABLE:
 801799b0 g     F entry2_section	00000038 cdt_twelve_to_twenty_four
 8010e564 g       *ABS*	00000000 set_g_cold_item_battery_type
 80177d50 g     F entry2_section	0000000c xtrg_set_cold_item_ext_trigger_enum
-8017a5a0 g     O entry2_section	0000000a g_npr_photo_resolution_string_lookup_table
+8017a650 g     O entry2_section	0000000a g_npr_photo_resolution_string_lookup_table
 8012963c g       *ABS*	00000000 TaskTimeLapseFSM_task6
 803b3ab0 g       *ABS*	00000000 g_camera_name_menu
 803b400c g       *ABS*	00000000 g_language_menu
@@ -167,7 +169,7 @@ SYMBOL TABLE:
 80026588 g       *ABS*	00000000 thread_sleep
 80112434 g       *ABS*	00000000 set_exif_time_of_capture
 80127208 g       *ABS*	00000000 HceTaskStillFSM_valid_p
-8017a6e4 g     F entry2_section	00000034 wfl_setSensorDigitalEffectVideo
+8017a794 g     F entry2_section	00000034 wfl_setSensorDigitalEffectVideo
 8006c6d4 g     F entry1_section	00000024 apt_get_night_mode_threshold_min_max
 8006c7c0 g     O entry1_section	00000006 g_apt_nightmode_threshold_lookup_table
 80177d44 g     F entry2_section	0000000c xtrg_get_cold_item_ext_trigger_enum
@@ -175,7 +177,7 @@ SYMBOL TABLE:
 80177a30 g     O entry2_section	00000054 g_rtc_time_format_menu
 8010e4d4 g       *ABS*	00000000 cold_item_led_power_blur_reduction_p
 80179cd8 g     F entry2_section	0000017c cdt_check_keyboard
-8017a744 g     F entry2_section	00000008 wfl_video_log_printf
+8017a7f4 g     F entry2_section	00000008 wfl_video_log_printf
 80122eb8 g       *ABS*	00000000 getCameraConfigStructPtr
 80055378 g       *ABS*	00000000 hal_set_rtc
 80057bd4 g       *ABS*	00000000 set_pre_printf_state
@@ -251,7 +253,7 @@ SYMBOL TABLE:
 803b40ec g       *ABS*	00000000 g_capture_timer_menu
 80055714 g       *ABS*	00000000 photo_sensor_hysteresis
 80118b04 g       *ABS*	00000000 get_current_video_duration_in_seconds
-8017a5ac g     O entry2_section	000000a8 g_ntvq_photo_quality_menu
+8017a65c g     O entry2_section	000000a8 g_ntvq_photo_quality_menu
 80179660 g     O entry2_section	00000070 g_apt_aperture_menu
 803b389c g       *ABS*	00000000 g_multi_shot_mode_menu
 80131384 g       *ABS*	00000000 menu_redraw_items
@@ -261,7 +263,7 @@ SYMBOL TABLE:
 80131adc g       *ABS*	00000000 get_am_pm_current_value
 803bea94 g       *ABS*	00000000 g_menu_root
 80179780 g     O entry2_section	00000070 g_ifm_ir_led_power_menu
-8017a130 g     F entry2_section	0000002c ctm_tty_printf
+8017a1cc g     F entry2_section	0000002c ctm_tty_printf
 80057bf0 g       *ABS*	00000000 check_post_printf_state_set_sio_params
 8010df40 g       *ABS*	00000000 reset_capture_timer
 803b3714 g       *ABS*	00000000 g_video_quality_menu
@@ -272,7 +274,7 @@ SYMBOL TABLE:
 80003c9c g       *ABS*	00000000 tty_printf
 80176674 g     F entry2_section	000000b4 ld_draw_video_scroll_bar
 801793bc g     F entry2_section	0000000c apt_set_cold_item_aperture
-8017a4e4 g     F entry2_section	000000b4 npr_draw_sst_string_on_display
+8017a594 g     F entry2_section	000000b4 npr_draw_sst_string_on_display
 80353aa0 g       *ABS*	00000000 g_image_resolution_lookup_table
 801799e8 g     F entry2_section	00000078 cdt_menu_draw_selected_item
 80177c8c g     F entry2_section	0000005c dt_video_log_printf_hook
@@ -328,7 +330,7 @@ SYMBOL TABLE:
 8013336c g       *ABS*	00000000 handleRestoreDefault_menu
 801360c4 g       *ABS*	00000000 handleSetTimeMenu
 801116ac g       *ABS*	00000000 power_on_IR_LED
-8017a6b0 g     F entry2_section	00000034 wfl_setSensorDigitalEffectPhoto
+8017a760 g     F entry2_section	00000034 wfl_setSensorDigitalEffectPhoto
 80178758 g     F entry2_section	00000024 tlps_get_tod_in_timelapse_region
 801769b8 g     F entry2_section	00000070 wbwl_custom_info_strip_strlen
 80111874 g       *ABS*	00000000 IRLedOff
